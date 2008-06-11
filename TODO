@@ -1,7 +1,9 @@
 - finish adding support for all tags in a Product record
 - convenience methods
-  - probably mostly getters on ONIX::Product that access nested data
+  - getters on ONIX::Product that access nested data
     - title, isbn13, isbn10, price
+- allow symbols to be used instead of numeric codes
+  - contribution type, id type, etc
 - validations
   - hard stuff from the spec
     - 2 digit numbers, 8 digit dates, char limits on text fields
