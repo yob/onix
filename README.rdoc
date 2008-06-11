@@ -1,1 +1,21 @@
-Stuff
+== ONIX
+
+The ONIX standard is a somewhat verbose XML format that is rapidly becoming the
+industry standard for electronic data sharing in the book and publishing
+industries.
+
+This library provides a slim layer over the format and simplifies both reading
+and writing ONIX files in your ruby applications.
+
+== Usage
+
+See files in the examples directory. 
+
+More documentation is coming Real Soon Now (tm)
+
+Generally speaking you should probably use the stream reading and writing
+approach to ensure you application can handle large files.
+
+== Further Reading
+
+- The official specs --> http://www.editeur.org/onix.html
