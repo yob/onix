@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/reference/onix-international.dtd">
+<ONIXMessage>
+<Header>
+  <FromCompany>Sample Company</FromCompany>
+  <FromPerson>Sample Company</FromPerson>
+</Header>
+<Product>
+  <RecordReference>9781842021323</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+    <ProductIDType>03</ProductIDType>
+    <IDValue>9781842021323</IDValue>
+  </ProductIdentifier>
+  <ProductForm></ProductForm>
+  <NoSeries/>
+  <Title>
+    <TitleType>01</TitleType>
+    <TitleText>In Fashion (beacons)</TitleText>
+  </Title>
+  <NoEdition/>
+</Product>
+</ONIXMessage>
