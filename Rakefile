@@ -24,6 +24,8 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.title    = 'Riddle - Ruby Sphinx Client'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('TODO')
+  rdoc.rdoc_files.include('CHANGELOG')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
@@ -36,6 +38,7 @@ desc "Generate RCov reports"
 Spec::Rake::SpecTask.new(:rcov) do |t|
   t.libs << 'lib'
   t.spec_files = FileList['spec/**/*_spec.rb']
+  t.spec_opts = ['-c']
   t.rcov = true
   t.rcov_opts = ['--exclude', 'spec', '--exclude', 'gems', '--exclude', 'riddle']
 end
@@ -54,6 +57,8 @@ spec = Gem::Specification.new do |s|
   s.files             = FileList[
     "lib/**/*.rb",
     "README.rdoc",
+    "TODO",
+    "CHANGELOG",
     "tasks/**/*.rb",
     "tasks/**/*.rake"
   ]
