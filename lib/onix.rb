@@ -6,6 +6,8 @@ require File.join(File.dirname(__FILE__), "onix", "product_identifier")
 require File.join(File.dirname(__FILE__), "onix", "title")
 require File.join(File.dirname(__FILE__), "onix", "product")
 require File.join(File.dirname(__FILE__), "onix", "message")
+require File.join(File.dirname(__FILE__), "onix", "stream_reader")
+require File.join(File.dirname(__FILE__), "onix", "stream_writer")
 
 module ONIX
   module Version #:nodoc:

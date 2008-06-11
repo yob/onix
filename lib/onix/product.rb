@@ -5,7 +5,7 @@ module ONIX
     text_node    :record_reference,    "RecordReference"
     numeric_node :notification_type,   "NotificationType"
     array_node   :product_identifiers, "ProductIdentifier", :class => ONIX::ProductIdentifier
-    text_node    :product_form,        "ProductForm"
+    text_node    :product_form,        "ProductForm",       :optional => true
     text_node    :series,              "Series",            :optional => true
     text_node    :edition,             "Edition",           :optional => true
     array_node   :titles,              "Title",             :class => ONIX::Title
