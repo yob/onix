@@ -111,14 +111,70 @@ module ONIX
   # to store the entire thing in memory at once.
   #
   # This class provides forward only iteration over a single ONIX file,
-  # returning a RBook::ONIX::Product object for each product encountered.
+  # returning a either a ONIX::Header or ONIX::Product object each time
+  # it encounters </Header> or </Product>.
   #
-  # = Basic usage
-  #  require 'rbook/onix'
-  #  reader = RBook::ONIX::StreamReader.new("some_onix_file.xml")
-  #  reader.each do |product|
-  #    puts product.inspect
-  #  end
+  # == Basic usage
+  #   require 'rbook/onix'
+  #   reader = RBook::ONIX::StreamReader.new("some_onix_file.xml")
+  #   reader.each do |item|
+  #     case item
+  #     when ONIX::Header
+  #       puts "From Person: #{item.from_person}"
+  #       puts "From Company: #{item.from_company}"
+  #       puts "Date: #{item.sent_date}"
+  #       puts
+  #     else
+  #       puts item.record_reference
+  #     end
+  #   end
+  #
+  # == Better Usage
+  #
+  # The problem with using ONIX::Product objects is they are the tip of a very
+  # large and irritating iceberg. The designers of the ONIX spec attempted
+  # to support all regional book industries around the world, so they included
+  # everything except the kitchen sink. Obediently, ONIX::Product provides
+  # access to it all.
+  #
+  # This can make even the most basic tasks quiet tedious. Take finding the 
+  # products ISBN13 for example. A product record supports something like 15
+  # different types of identifiers (ISBN, ISBN13, EAN, UPC, custom, etc). To
+  # find the ISBN 13, you have to iterate over the array of IDs and look
+  # for the one with the right ID Type Code (15 for an ISBN13):
+  #
+  #   isbn13 = product.product_identifiers.find { |id| id.product_id_type == 15 }
+  #
+  # A similar story exists for titles, subtitles, contributors, prices, 
+  # cover images and descriptions!
+  #
+  # To hide all this complexity from your app, it's possible to write a proxy 
+  # object that wraps each ONIX::Product object and simplifies access. This 
+  # proxy object must extend ONIX::SimpleProduct. I've created on called
+  # ONIX::APAProduct that offers simple access to the subset of the ONIX 
+  # format that is used in the Australian market.
+  # 
+  # With this new class, reading an ONIX file with a StreamReader now looks
+  # like this:
+  #
+  #   require 'rbook/onix'
+  #   reader = RBook::ONIX::StreamReader.new("some_onix_file.xml", Onix::APAProduct)
+  #   reader.each do |item|
+  #     case item
+  #     when ONIX::Header
+  #       puts "From Person: #{item.from_person}"
+  #       puts "From Company: #{item.from_company}"
+  #       puts "Date: #{item.sent_date}"
+  #       puts
+  #     else
+  #       puts "#{item.isbn13} - #{item.rrp_inc_sales_tax}"
+  #       puts "#{item.title}"
+  #       puts
+  #     end
+  #   end
+  #
+  # Basically very similar, but we pass in a second param to the StreamReader
+  # constructor that tells it what class to return the products as.
   class StreamReader
 
     # creates a new stream reader to read the specified file.
