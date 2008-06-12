@@ -9,9 +9,12 @@ and writing ONIX files in your ruby applications.
 
 == Usage
 
-See files in the examples directory. 
+See files in the examples directory to get started quickly. For further reading
+view the comments to the following classes:
 
-More documentation is coming Real Soon Now (tm)
+* ONIX::Message - old school, less useful way of reading and writing ONIX files
+* ONIX::StreamReader - newer, better way of reading ONIX files
+* ONIX::StreamWriter - newer, better way of writing ONIX files
 
 Generally speaking you should probably use the stream reading and writing
 approach to ensure you application can handle large files. On my system with a
