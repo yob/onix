@@ -16,6 +16,8 @@ module ONIX
       # TODO ensure product_class is ::ONIX::Product or ::ONIX::SimpleProduct
       @product_klass = product_klass
       @in_product = false
+      @in_header = false
+      @fragment = StringIO.new
     end
 
     def doctype(name, pub_sys, long_name, uri)
@@ -28,19 +30,23 @@ module ONIX
 
     def tag_start(name, attrs)
       case name
+      when "Header"
+        @in_header = true
+        @fragment = StringIO.new
+        @fragment << "<Header>"
       when "Product"
         # A new product tag has been read, so start
         # building a new product to add to the queue
         @in_product = true
-        @product_fragment = StringIO.new
-        @product_fragment << "<Product>"
+        @fragment = StringIO.new
+        @fragment << "<Product>"
       else
-        @product_fragment << "<#{name}>" if @in_product
+        @fragment << "<#{name}>" if @in_product || @in_header
       end
     end
 
     def text(text)
-      @product_fragment << CGI::escapeHTML(text) if @in_product
+      @fragment << CGI::escapeHTML(text) if @in_product || @in_header
     end
 
     def tag_end(name)
@@ -50,11 +56,25 @@ module ONIX
         # nil to the queue to let the iterating thread know reading
         # is finished
         @queue.push(nil)
+      when "Header"
+        # The header tag is finished, so add it to the queue
+        @fragment << "</Header>"
+        begin
+          element = REXML::Document.new(@fragment.string).root
+          header = ONIX::Header.load_from_xml(element)
+          @queue.push(header) unless header.nil?
+        rescue Exception => e
+          # error occurred while building the product from an XML fragment
+          # pop the error on the queue so it can be raised by the thread
+          # reading items off the queue
+          @queue.push(e)
+        end
+        @in_header = false
       when "Product"
         # A product tag is finished, so add it to the queue
-        @product_fragment << "</Product>"
+        @fragment << "</Product>"
         begin
-          element = REXML::Document.new(@product_fragment.string).root
+          element = REXML::Document.new(@fragment.string).root
           product = @product_klass.load_from_xml(element)
           @queue.push(product) unless product.nil?
         rescue Exception => e
@@ -65,7 +85,7 @@ module ONIX
         end
         @in_product = false
       else
-        @product_fragment << "</#{name}>" if @in_product
+        @fragment << "</#{name}>" if @in_product || @in_header
       end
     end
 
@@ -119,6 +139,7 @@ module ONIX
 
       # launch a reader thread to process the file and store each
       # product in the queue
+      Thread.abort_on_exception = true
       Thread.new do
         producer = Listener.new(@queue, product_klass)
         parser = REXML::Parsers::StreamParser.new(@input, producer)
