@@ -5,7 +5,7 @@ module ONIX
 
     # Default constructor.
     def initialize(output, header)
-      raise ArgumentError, 'msg must be an ONIX::Message object' unless header.kind_of?(ONIX::Header)
+      raise ArgumentError, 'msg must be an ONIX::Header object' unless header.kind_of?(ONIX::Header)
       @output = output
       @header = header
       @formatter = REXML::Formatters::Default.new(2)
@@ -15,7 +15,7 @@ module ONIX
 
     def << (product)
       unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
-        raise ArgumentError, 'product must be an ONIX::Product object' 
+        raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct' 
       end
       @formatter.write(product.save_to_xml, @output)
     end
@@ -26,7 +26,7 @@ module ONIX
 
     private
 
-    def start_document(encoding)
+    def start_document
       decl = REXML::XMLDecl.new
       doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{ONIX::Message::ONIX_DTD_URL}\"")
       decl.encoding = "utf-8"
