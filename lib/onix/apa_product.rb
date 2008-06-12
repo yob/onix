@@ -54,7 +54,7 @@ module ONIX
     # retrieve the current title
     def title
       composite = product.titles.first
-      if compsite.nil?
+      if composite.nil?
         nil
       else
         composite.title_text || composite.title_without_prefix
@@ -75,7 +75,7 @@ module ONIX
     # retrieve the current subtitle
     def subtitle
       composite = product.titles.first
-      if compsite.nil?
+      if composite.nil?
         nil
       else
         composite.subtitle
@@ -191,11 +191,7 @@ module ONIX
     # retrieve the imprint
     def imprint
       composite = product.imprints.first
-      if compsite.nil?
-        nil
-      else
-        composite.imprint_name
-      end
+      composite ? composite.imprint_name : nil 
     end
 
     # set a new imprint
@@ -221,7 +217,7 @@ module ONIX
     # retrieve the sales restriction type
     def sales_restriction_type
       composite = product.sales_restrictions.first
-      compsite.nil? ? nil : composite.imprint_name
+      composite.nil? ? nil : composite.imprint_name
     end
 
     # set a new sales restriction type
@@ -237,7 +233,7 @@ module ONIX
     # retrieve the supplier name
     def supplier_name
       composite = product.supplier_details.first
-      compsite.nil? ? nil : composite.supplier_name
+      composite.nil? ? nil : composite.supplier_name
     end
 
     # set a new supplier name
@@ -249,7 +245,7 @@ module ONIX
     # retrieve the supplier phone number
     def supplier_phone
       composite = product.supplier_details.first
-      compsite.nil? ? nil : composite.telephone_number
+      composite.nil? ? nil : composite.telephone_number
     end
 
     # set a new supplier phone number
@@ -261,7 +257,7 @@ module ONIX
     # retrieve the supplier fax number
     def supplier_fax
       composite = product.supplier_details.first
-      compsite.nil? ? nil : composite.fax_number
+      composite.nil? ? nil : composite.fax_number
     end
 
     # set a new supplier fax number
@@ -273,7 +269,7 @@ module ONIX
     # retrieve the supplier email address
     def supplier_email
       composite = product.supplier_details.first
-      compsite.nil? ? nil : composite.email_address
+      composite.nil? ? nil : composite.email_address
     end
 
     # set a new supplier email address
@@ -285,7 +281,7 @@ module ONIX
     # retrieve the supply country code
     def supply_country
       composite = product.supplier_details.first
-      compsite.nil? ? nil : composite.supply_to_country
+      composite.nil? ? nil : composite.supply_to_country
     end
 
     # set a new supply country code
