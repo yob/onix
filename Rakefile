@@ -62,6 +62,7 @@ spec = Gem::Specification.new do |s|
     "tasks/**/*.rb",
     "tasks/**/*.rake"
   ]
+  s.add_dependency('xml-mapping', '>= 0.8.1')
 end
 
 Rake::GemPackageTask.new(spec) do |p|
