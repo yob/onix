@@ -11,8 +11,10 @@ module ONIX
   # basic usage instructions.
   class Listener
 
-    def initialize(queue)
+    def initialize(queue, product_klass = ::ONIX::Product)
       @queue = queue
+      # TODO ensure product_class is ::ONIX::Product or ::ONIX::SimpleProduct
+      @product_klass = product_klass
       @in_product = false
     end
 
@@ -53,7 +55,7 @@ module ONIX
         @product_fragment << "</Product>"
         begin
           element = REXML::Document.new(@product_fragment.string).root
-          product = ONIX::Product.load_from_xml(element)
+          product = @product_klass.load_from_xml(element)
           @queue.push(product) unless product.nil?
         rescue Exception => e
           # error occurred while building the product from an XML fragment
@@ -101,7 +103,7 @@ module ONIX
 
     # creates a new stream reader to read the specified file.
     # file can be specified as a String or File object
-    def initialize(input)
+    def initialize(input, product_klass = ::ONIX::Product)
       if input.kind_of? String
         @input = File.new(input)
       elsif input.kind_of?(File) || input.kind_of?(StringIO)
@@ -109,6 +111,8 @@ module ONIX
       else
         throw "Unable to read from path or file"
       end
+      
+      # TODO ensure product_class is ::ONIX::Product or ::ONIX::SimpleProduct
 
       # create a sized queue to store each product read from the file
       @queue = SizedQueue.new(100)
@@ -116,7 +120,7 @@ module ONIX
       # launch a reader thread to process the file and store each
       # product in the queue
       Thread.new do
-        producer = Listener.new(@queue)
+        producer = Listener.new(@queue, product_klass)
         parser = REXML::Parsers::StreamParser.new(@input, producer)
         parser.parse
       end

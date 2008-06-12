@@ -2,6 +2,8 @@ module ONIX
   class Product
     include XML::Mapping
 
+    root_element_name "Product"
+
     text_node    :record_reference,    "RecordReference"
     numeric_node :notification_type,   "NotificationType"
     array_node   :product_identifiers, "ProductIdentifier", :class => ONIX::ProductIdentifier
@@ -20,18 +22,16 @@ module ONIX
     array_node   :sales_restrictions,  "SalesRestriction",  :optional => true, :class => ONIX::SalesRestriction
     array_node   :supply_details,      "SupplyDetail",      :optional => true, :class => ONIX::SupplyDetail
 
-    def isbn13
-      product_identifiers.each do |id|
-        return id.id_value if id.product_id_type == 2
-      end
-      return nil
-    end
-
-    def title
-      titles.each do |title|
-        return title.title_text if title.title_type == 3
-      end
-      return nil
+    def initialize
+      # setup some default values for when the object is created from scratch
+      self.product_identifiers = []
+      self.titles = []
+      self.websites = []
+      self.contributors = []
+      self.imprints = []
+      self.publishers = []
+      self.sales_restrictions = []
+      self.supply_details = []
     end
   end
 end

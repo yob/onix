@@ -14,7 +14,9 @@ module ONIX
     end
 
     def << (product)
-      raise ArgumentError, 'product must be an ONIX::Product object' unless product.kind_of?(ONIX::Product)
+      unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
+        raise ArgumentError, 'product must be an ONIX::Product object' 
+      end
       @formatter.write(product.save_to_xml, @output)
     end
 

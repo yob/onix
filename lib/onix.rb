@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'xml/mapping'
 
+# core files
 require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
 require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
 require File.join(File.dirname(__FILE__), "onix", "header")
@@ -18,6 +19,10 @@ require File.join(File.dirname(__FILE__), "onix", "product")
 require File.join(File.dirname(__FILE__), "onix", "message")
 require File.join(File.dirname(__FILE__), "onix", "stream_reader")
 require File.join(File.dirname(__FILE__), "onix", "stream_writer")
+
+# product wrappers
+require File.join(File.dirname(__FILE__), "onix", "simple_product")
+require File.join(File.dirname(__FILE__), "onix", "apa_product")
 
 module ONIX
   module Version #:nodoc:
