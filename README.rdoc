@@ -14,7 +14,9 @@ See files in the examples directory.
 More documentation is coming Real Soon Now (tm)
 
 Generally speaking you should probably use the stream reading and writing
-approach to ensure you application can handle large files.
+approach to ensure you application can handle large files. On my system with a
+test file with 238 product records, I needed ~12Mb of RAM to read the file with
+ONIX::StreamReader, and ~54Mb of RAM when using ONIX::Message.
 
 == Further Reading
 
