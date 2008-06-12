@@ -7,7 +7,8 @@ reader = ONIX::StreamReader.new(File.join(File.dirname(__FILE__),"..","data","ju
 counter = 0
 
 reader.each do |product|
-  puts product.inspect
+  #puts product.inspect
+  puts product.cover_image
   puts
   counter += 1
 end

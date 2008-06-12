@@ -31,6 +31,10 @@ module ONIX
       @product
     end
 
+    def fill_into_xml(xml)
+      product.fill_into_xml(xml)
+    end
+
     def save_to_xml
       product.save_to_xml
     end

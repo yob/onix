@@ -11,6 +11,26 @@ module ONIX
     delegate :publishing_status, :publishing_status=
     delegate :publication_date, :publication_date=
 
+    # retrieve the current EAN
+    def ean
+      identifier(3)
+    end
+
+    # set a new EAN
+    def ean=(isbn)
+      identifier_set(3, isbn)
+    end
+
+    # retrieve the proprietary ID
+    def proprietary_id
+      identifier(1)
+    end
+
+    # set a new proprietary ID
+    def proprietary_id=(isbn)
+      identifier_set(1, isbn)
+    end
+
     # retrieve the current ISBN 10
     def isbn10
       identifier(2)
@@ -23,12 +43,12 @@ module ONIX
 
     # retrieve the current ISBN 13
     def isbn13
-      identifier(3)
+      identifier(15)
     end
 
     # set a new ISBN 13
     def isbn13=(isbn)
-      identifier_set(3, isbn)
+      identifier_set(15, isbn)
     end
 
     # retrieve the current title
@@ -106,6 +126,66 @@ module ONIX
       contrib.contributor_role = role
       contrib.person_name_inverted = str
       product.contributors << contrib
+    end
+
+    # retrieve the url to the product cover image
+    def cover_url
+      media_file(4)
+    end
+
+    # set the url to the product cover image
+    def cover_url=(url)
+      media_file_set(4,url)
+    end
+
+    # retrieve the url to the high quality product cover image
+    def cover_url_hq
+      media_file(6)
+    end
+
+    # set the url to the high quality product cover image
+    def cover_url_hq=(url)
+      media_file_set(6,url)
+    end
+
+    # retrieve the url to the product thumbnail
+    def thumbnail_url
+      media_file(7)
+    end
+
+    # set the url to the product cover image
+    def thumbnail_url=(url)
+      media_file_set(7,url)
+    end
+
+    # retrieve the main description
+    def main_description
+      other_text(1)
+    end
+
+    # set the main description
+    def main_description=(t)
+      other_text_set(1,t)
+    end
+
+    # retrieve the short description
+    def short_description
+      other_text(2)
+    end
+
+    # set the short description
+    def short_description=(t)
+      other_text_set(2,t)
+    end
+
+    # retrieve the long description
+    def long_description
+      other_text(3)
+    end
+
+    # set the long description
+    def long_description=(t)
+      other_text_set(3,t)
     end
 
     # retrieve the imprint
@@ -310,6 +390,27 @@ module ONIX
       isbn_id.id_value = value.to_s
     end
 
+    # retrieve the value of a particular media file
+    def media_file(type)
+      media = product.media_files.find { |m| m.media_file_type_code == type }
+      media ? media.media_file_link : nil
+    end
+
+    # set the value of a particular ID
+    def media_file_set(type, value)
+      media = media_file(type)
+
+      # create a new isbn record if we need to
+      if media.nil?
+        media = ONIX::MediaFile.new
+        media.media_file_type_code = type
+        media.media_files << media
+      end
+
+      # store the new value
+      media.media_file_link = value.to_s
+    end
+
     # retrieve the value of a particular price
     def price_get(type)
       supply = find_or_create_supply_detail
@@ -352,6 +453,26 @@ module ONIX
 
       # store the new value
       pub.publisher_name = value.to_s
+    end
+
+    # retrieve the value of a particular other text value
+    def other_text(type)
+      t = product.text.find { |t| t.text_type_code == type }
+      t ? t.text : nil
+    end
+
+    # set the value of a particular other text value
+    def other_text_set(type, value)
+      text = other_text(type)
+
+      if text.nil?
+        text = ONIX::OtherText.new
+        text.text_type_code = type
+        self.text << text
+      end
+
+      # store the new value
+      text.text = value.to_s
     end
 
     # retrieve the value of a particular website

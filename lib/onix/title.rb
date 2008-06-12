@@ -4,7 +4,7 @@ module ONIX
 
     numeric_node :title_type, "TitleType"
     text_node    :title_text, "TitleText"
-    text_node    :subtitle,   "Subtitle"
+    text_node    :subtitle,   "Subtitle", :optional => true
 
   end
 end

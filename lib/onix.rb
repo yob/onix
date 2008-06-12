@@ -2,6 +2,8 @@ require 'rubygems'
 require 'xml/mapping'
 
 # core files
+# - ordering is important, classes need to be defined before any
+#   other class can use them
 require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
 require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
 require File.join(File.dirname(__FILE__), "onix", "header")
@@ -9,6 +11,8 @@ require File.join(File.dirname(__FILE__), "onix", "product_identifier")
 require File.join(File.dirname(__FILE__), "onix", "title")
 require File.join(File.dirname(__FILE__), "onix", "website")
 require File.join(File.dirname(__FILE__), "onix", "contributor")
+require File.join(File.dirname(__FILE__), "onix", "other_text")
+require File.join(File.dirname(__FILE__), "onix", "media_file")
 require File.join(File.dirname(__FILE__), "onix", "imprint")
 require File.join(File.dirname(__FILE__), "onix", "publisher")
 require File.join(File.dirname(__FILE__), "onix", "sales_restriction")

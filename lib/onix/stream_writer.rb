@@ -4,13 +4,13 @@ module ONIX
   class StreamWriter
 
     # Default constructor.
-    def initialize(output, header, encoding = "utf-8")
+    def initialize(output, header)
       raise ArgumentError, 'msg must be an ONIX::Message object' unless header.kind_of?(ONIX::Header)
       @output = output
       @header = header
-      @formatter = REXML::Formatters::Pretty.new(2)
+      @formatter = REXML::Formatters::Default.new(2)
 
-      start_document encoding
+      start_document
     end
 
     def << (product)
@@ -29,7 +29,7 @@ module ONIX
     def start_document(encoding)
       decl = REXML::XMLDecl.new
       doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{ONIX::Message::ONIX_DTD_URL}\"")
-      decl.encoding = encoding
+      decl.encoding = "utf-8"
       @output.write(decl.to_s+"\n")
       @output.write(doctype.to_s+"\n")
       @output.write("<ONIXMessage>\n")

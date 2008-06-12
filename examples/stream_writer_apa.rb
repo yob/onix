@@ -26,9 +26,9 @@ File.open('output.xml', "w") do |output|
   product.supplier_fax = "+61 3 9481 2371"
   product.supplier_email = "rba@rainbowbooks.com.au"
   product.supply_country = "AU"
-  product.on_hand = 10
-  product.on_order = 20
-  product.rrp_inc_sales_tax = 29.95
+  #product.on_hand = 10
+  #product.on_order = 20
+  #product.rrp_inc_sales_tax = 29.95
 
   writer << product
 

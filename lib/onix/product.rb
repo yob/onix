@@ -15,6 +15,8 @@ module ONIX
     array_node   :contributors,        "Contributor",       :optional => true, :class => ONIX::Contributor
     numeric_node :number_of_pages,     "NumberOfPages",     :optional => true
     text_node    :bic_main_subject,    "BICMainSubject",    :optional => true
+    array_node   :text,                "OtherTest",         :optional => true, :class => ONIX::OtherText
+    array_node   :media_files,         "MediaFile",         :optional => true, :class => ONIX::MediaFile
     array_node   :imprints,            "Imprint",           :optional => true, :class => ONIX::Imprint
     array_node   :publishers,          "Publisher",         :optional => true, :class => ONIX::Publisher
     numeric_node :publishing_status,   "PublishingStatus",  :optional => true
