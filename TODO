@@ -1,8 +1,5 @@
 - finish adding support for all tags in a Product record
   - contributor still needs some obscure tags added
-- convenience methods
-  - getters on ONIX::Product that access nested data
-    - title, isbn13, isbn10, price
 - allow symbols to be used instead of numeric codes
   - contribution type, id type, etc
 - validations
@@ -13,3 +10,4 @@
   - regional requirements
     - titlepage minimum set of tags
     - APA (if different to titlepage)
+- documentation

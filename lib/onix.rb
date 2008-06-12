@@ -27,8 +27,8 @@ require File.join(File.dirname(__FILE__), "onix", "apa_product")
 module ONIX
   module Version #:nodoc:
     Major = 0
-    Minor = 0
-    Tiny  = 1
+    Minor = 1
+    Tiny  = 0
     
     String = [Major, Minor, Tiny].join('.')
   end
