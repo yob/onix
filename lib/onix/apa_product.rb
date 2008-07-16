@@ -128,6 +128,30 @@ module ONIX
       product.contributors << contrib
     end
 
+    # return an array of BIC subjects for this title
+    # could be version 1 or version 2, most ONIX files don't
+    # specifiy
+    def bic_subjects
+      subjects = product.subjects.select { |sub| sub.subject_scheme_id.to_i == 12 }
+      subjects.collect { |sub| sub.subject_code}
+    end
+
+    # add a BIC subject code to the product
+    def add_bic_subject(code)
+      add_subject code, "12"
+    end
+
+    # return an array of BISAC subjects for this title
+    def bisac_subjects
+      subjects = product.subjects.select { |sub| sub.subject_scheme_id.to_i == 10 }
+      subjects.collect { |sub| sub.subject_code}
+    end
+
+    # add a BISAC subject code to the product
+    def add_bisac_subject(code)
+      add_subject code, "10"
+    end
+
     # retrieve the url to the product cover image
     def cover_url
       media_file(4)
@@ -355,6 +379,17 @@ module ONIX
     end
 
     private
+
+    # add a new subject to this product
+    # str should be the subject code
+    # type should be the code for the subject scheme you're using. See ONIX codelist 27.
+    # 12 is BIC
+    def add_subject(str, type = "12")
+      subject = ::ONIX::Subject.new
+      subject.subject_scheme_id = type
+      subject.subject_code = str
+      product.subjects << subject
+    end
 
     def find_or_create_supply_detail
       composite = product.supply_details.first
