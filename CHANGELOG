@@ -1,2 +1,5 @@
+v0.2.0 (16th July 2008)
+- Add support for reading and storing subject codes (BIC, BISAC, etc)
+
 v0.1.0 (12th June 2008)
 - Initial Release
