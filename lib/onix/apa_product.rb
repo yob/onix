@@ -314,6 +314,18 @@ module ONIX
       composite.supply_to_country = str
     end
 
+    # retrieve the product availability code
+    def product_availability
+      composite = product.supplier_details.first
+      composite.nil? ? nil : composite.product_availability
+    end
+
+    # set a new product availability
+    def product_availability=(num)
+      composite = find_or_create_supply_detail
+      composite.product_availability = num
+    end
+
     # retrieve the number in stock
     def on_hand
       supply = find_or_create_supply_detail
