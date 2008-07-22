@@ -9,11 +9,11 @@ module ONIX
     text_node    :fax_number,          "FaxNumber", :optional => true
     text_node    :email_address,       "EmailAddress", :optional => true
     array_node   :websites,            "Website", :class => ONIX::Website, :optional => true
-    numeric_node :supplier_role,       "SupplierRole", :optional => true
+    two_digit_node :supplier_role,       "SupplierRole", :optional => true
     text_node    :supply_to_country,   "SupplyToCountry", :optional => true
     text_node    :supply_to_territory, "SupplyToTerritory", :optional => true
     text_node    :availability_status_code, "AvailabilityStatusCode", :optional => true
-    text_node    :product_availability, "ProductAvailability", :optional => true
+    two_digit_node :product_availability, "ProductAvailability", :optional => true
     array_node   :stock,               "Stock", :class => ONIX::Stock, :optional => true
     array_node   :prices,              "Price", :class => ONIX::Price, :optional => true
 

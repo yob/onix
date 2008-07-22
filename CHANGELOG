@@ -1,3 +1,6 @@
+v0.2.3 (Unreleased)
+- Switch a few more fields over to TwoDigitNodes
+
 v0.2.2 (Unreleased)
 - Add a new nodetype (DateNode) for YYYYMMDD fields
 
