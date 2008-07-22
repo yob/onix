@@ -17,7 +17,7 @@ module ONIX
     text_node  :to_person,            "ToPerson", :optional => true
     text_node  :message_number,       "MessageNumber", :optional => true
     text_node  :message_repeat,       "MessageRepeat", :optional => true
-    text_node  :sent_date,            "SentDate", :optional => true
+    date_node  :sent_date,            "SentDate", :optional => true
     text_node  :message_note,         "MessageNote", :optional => true
 
     # defaults

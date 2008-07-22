@@ -6,6 +6,7 @@ File.open('output.xml', "w") do |output|
   header = ONIX::Header.new
   header.from_company = "Sample Company"
   header.from_person  = "James"
+  header.sent_date = Time.now
 
   writer = ONIX::StreamWriter.new(output, header)
 

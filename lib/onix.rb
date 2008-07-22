@@ -4,6 +4,7 @@ require 'xml/mapping'
 
 # custom xml-mapping node types
 require File.join(File.dirname(__FILE__), "onix", "two_digit_node")
+require File.join(File.dirname(__FILE__), "onix", "date_node")
 
 # core files
 # - ordering is important, classes need to be defined before any
@@ -37,7 +38,7 @@ module ONIX
   module Version #:nodoc:
     Major = 0
     Minor = 2
-    Tiny  = 1
+    Tiny  = 2
     
     String = [Major, Minor, Tiny].join('.')
   end
