@@ -1,5 +1,9 @@
 require 'rubygems'
+gem 'xml-mapping', '0.8.1'
 require 'xml/mapping'
+
+# custom xml-mapping node types
+require File.join(File.dirname(__FILE__), "onix", "two_digit_node")
 
 # core files
 # - ordering is important, classes need to be defined before any

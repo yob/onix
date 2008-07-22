@@ -386,7 +386,7 @@ module ONIX
     # 12 is BIC
     def add_subject(str, type = "12")
       subject = ::ONIX::Subject.new
-      subject.subject_scheme_id = type
+      subject.subject_scheme_id = type.to_i
       subject.subject_code = str
       product.subjects << subject
     end

@@ -1,3 +1,6 @@
+v0.3.0 (XXX)
+- Add a new nodetype (TwoDigitNode) for two digit codes
+
 v0.2.0 (16th July 2008)
 - Add support for reading and storing subject codes (BIC, BISAC, etc)
 
