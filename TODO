@@ -1,5 +1,6 @@
 - finish adding support for all tags in a Product record
   - contributor still needs some obscure tags added
+- add a new node type for dates that should be in the form YYYYMMDD
 - allow symbols to be used instead of numeric codes
   - contribution type, id type, etc
 - validations
