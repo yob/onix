@@ -1,3 +1,6 @@
+v0.2.4 (Unreleased)
+- Initialise the media files array of a new product correctly
+
 v0.2.3 (Unreleased)
 - Switch a few more fields over to TwoDigitNodes
 - Make the product availability field accessible from APAProduct

@@ -33,6 +33,7 @@ module ONIX
       self.contributors = []
       self.subjects = []
       self.text = []
+      self.media_files = []
       self.imprints = []
       self.publishers = []
       self.sales_restrictions = []
