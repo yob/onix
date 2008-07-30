@@ -447,7 +447,7 @@ module ONIX
       if media.nil?
         media = ONIX::MediaFile.new
         media.media_file_type_code = type
-        media.media_files << media
+        product.media_files << media
       end
 
       # store the new value
