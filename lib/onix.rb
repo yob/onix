@@ -30,6 +30,9 @@ require File.join(File.dirname(__FILE__), "onix", "message")
 require File.join(File.dirname(__FILE__), "onix", "stream_reader")
 require File.join(File.dirname(__FILE__), "onix", "stream_writer")
 
+# lists
+require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
+
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
@@ -38,7 +41,7 @@ module ONIX
   module Version #:nodoc:
     Major = 0
     Minor = 2
-    Tiny  = 4
+    Tiny  = 5
     
     String = [Major, Minor, Tiny].join('.')
   end
