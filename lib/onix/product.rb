@@ -20,7 +20,7 @@ module ONIX
     array_node     :media_files,         "MediaFile",         :optional => true, :class => ONIX::MediaFile
     array_node     :imprints,            "Imprint",           :optional => true, :class => ONIX::Imprint
     array_node     :publishers,          "Publisher",         :optional => true, :class => ONIX::Publisher
-    numeric_node   :publishing_status,   "PublishingStatus",  :optional => true
+    two_digit_node :publishing_status,   "PublishingStatus",  :optional => true
     text_node      :publication_date,    "PublicationDate",   :optional => true
     array_node     :sales_restrictions,  "SalesRestriction",  :optional => true, :class => ONIX::SalesRestriction
     array_node     :supply_details,      "SupplyDetail",      :optional => true, :class => ONIX::SupplyDetail

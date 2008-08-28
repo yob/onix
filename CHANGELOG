@@ -1,3 +1,6 @@
+v0.2.5 (Unreleased)
+- Make PublishingStatus a two_digit_node
+
 v0.2.4 (Unreleased)
 - Initialise the media files array of a new product correctly
 
