@@ -13,6 +13,10 @@ module ONIX
       start_document
     end
 
+    def start_document
+      puts "ONIX::StreamWriter#start_document is no longer required"
+    end
+
     def << (product)
       unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
         raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct' 
