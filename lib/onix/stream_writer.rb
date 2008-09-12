@@ -22,10 +22,11 @@ module ONIX
         raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct' 
       end
       @formatter.write(product.save_to_xml, @output)
+      @output.write("\n")
     end
 
     def end_document
-      @output.write("\n</ONIXMessage>\n")
+      @output.write("</ONIXMessage>\n")
     end
 
     private
@@ -38,6 +39,7 @@ module ONIX
       @output.write(doctype.to_s+"\n")
       @output.write("<ONIXMessage>\n")
       @formatter.write(@header.save_to_xml, @output)
+      @output.write("\n")
     end
 
   end
