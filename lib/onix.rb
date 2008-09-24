@@ -32,6 +32,7 @@ require File.join(File.dirname(__FILE__), "onix", "stream_writer")
 
 # lists
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
+require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability")
 
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")

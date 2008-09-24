@@ -1,5 +1,6 @@
 module ONIX
   module Lists
+    # code list 7
     PRODUCT_FORM = {
       "00" => "Undefined",
       "AA" => "Audio",
