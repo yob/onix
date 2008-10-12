@@ -1,12 +1,12 @@
 module ONIX
   class OtherText
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :text_type_code, "TextTypeCode"
-    numeric_node :text_format,    "TextFormat",   :optional => true
-    text_node    :text,           "Text",         :optional => true
-    numeric_node :text_link_type, "TextLinkType", :optional => true
-    text_node    :text_link,      "TextLink",     :optional => true
-    text_node    :text_author,    "TextAuthor",   :optional => true
+    xml_accessor :text_type_code, :from => "TextTypeCode"
+    xml_accessor :text_format, :from => "TextFormat"
+    xml_accessor :text, :from => "Text"
+    xml_accessor :text_link_type, :from => "TextLinkType"
+    xml_accessor :text_link, :from => "TextLink"
+    xml_accessor :text_author, :from => "TextAuthor"
   end
 end

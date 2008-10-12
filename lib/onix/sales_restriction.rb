@@ -1,7 +1,7 @@
 module ONIX
   class SalesRestriction
-    include XML::Mapping
+    include ROXML
 
-    two_digit_node :sales_restriction_type, "SalesRestrictionType"
+    xml_accessor :sales_restriction_type, :from =>"SalesRestrictionType"
   end
 end

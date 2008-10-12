@@ -13,15 +13,15 @@ module ONIX
     xml_accessor :contributors, [ONIX::Contributor], :from => "Contributor"
     xml_accessor :number_of_pages, :from => "NumberOfPages"
     xml_accessor :bic_main_subject, :from => "BICMainSubject"
-    #array_node     :subjects,            "Subject",           , :class => ONIX::Subject
-    #array_node     :text,                "OtherText",         , :class => ONIX::OtherText
-    #array_node     :media_files,         "MediaFile",         , :class => ONIX::MediaFile
-    #array_node     :imprints,            "Imprint",           , :class => ONIX::Imprint
-    #array_node     :publishers,          "Publisher",         , :class => ONIX::Publisher
+    xml_accessor :subjects, [ONIX::Subject], :from => "Subject"
+    xml_accessor :text, [ONIX::OtherText], :from => "OtherText"
+    xml_accessor :media_files, [ONIX::MediaFile], :from => "MediaFile"
+    xml_accessor :imprints, [ONIX::Imprint], :from => "Imprint"
+    xml_accessor :publishers, [ONIX::Publisher], :from => "Publisher"
     xml_accessor :publishing_status, :from => "PublishingStatus"
     xml_accessor :publication_date, :from => "PublicationDate"
-    #array_node     :sales_restrictions,  "SalesRestriction",  , :class => ONIX::SalesRestriction
-    #array_node     :supply_details,      "SupplyDetail",      , :class => ONIX::SupplyDetail
+    xml_accessor :sales_restrictions, [ONIX::SalesRestriction], :from => "SalesRestriction"
+    xml_accessor :supply_details, [ONIX::SupplyDetail], :from => "SupplyDetail"
 
   end
 end

@@ -1,11 +1,11 @@
 module ONIX
   class MediaFile
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :media_file_type_code,   "MediaFileTypeCode"
-    numeric_node :media_file_format_code, "MediaFileFormatCode", :optional => true
-    numeric_node :image_resolution,       "ImageResolution",     :optional => true
-    numeric_node :media_file_link_type_code, "MediaFileLinkTypeCode", :optional => true
-    text_node    :media_file_link,        "MediaFileLink"
+    xml_accessor :media_file_type_code, :from => "MediaFileTypeCode"
+    xml_accessor :media_file_format_code, :from => "MediaFileFormatCode"
+    xml_accessor :image_resolution, :from => "ImageResolution"
+    xml_accessor :media_file_link_type_code, :from => "MediaFileLinkTypeCode"
+    xml_accessor :media_file_link, :from => "MediaFileLink"
   end
 end

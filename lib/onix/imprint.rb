@@ -1,10 +1,10 @@
 module ONIX
   class Imprint
-    include XML::Mapping
+    include ROXML
 
-    two_digit_node :name_code_type,      "NameCodeType", :optional => true
-    text_node      :name_code_type_name, "NameCodeTypeName", :optional => true
-    text_node      :name_code_value,     "NameCodeValue", :optional => true
-    text_node      :imprint_name,        "ImprintName", :optional => true
+    xml_accessor :name_code_type, :from => "NameCodeType"
+    xml_accessor :name_code_type_name, :from => "NameCodeTypeName"
+    xml_accessor :name_code_value, :from => "NameCodeValue"
+    xml_accessor :imprint_name, :from => "ImprintName"
   end
 end

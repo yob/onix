@@ -1,27 +1,21 @@
 module ONIX
   class SupplyDetail
-    include XML::Mapping
+    include ROXML
 
-    text_node    :supplier_ean_location_number, "SupplierEANLocationNumber", :optional => true
-    text_node    :supplier_san,        "SupplierSAN", :optional => true
-    text_node    :supplier_name,       "SupplierName", :optional => true
-    text_node    :telephone_number,    "TelephoneNumber", :optional => true
-    text_node    :fax_number,          "FaxNumber", :optional => true
-    text_node    :email_address,       "EmailAddress", :optional => true
-    array_node   :websites,            "Website", :class => ONIX::Website, :optional => true
-    two_digit_node :supplier_role,       "SupplierRole", :optional => true
-    text_node    :supply_to_country,   "SupplyToCountry", :optional => true
-    text_node    :supply_to_territory, "SupplyToTerritory", :optional => true
-    text_node    :availability_status_code, "AvailabilityStatusCode", :optional => true
-    two_digit_node :product_availability, "ProductAvailability", :optional => true
-    array_node   :stock,               "Stock", :class => ONIX::Stock, :optional => true
-    array_node   :prices,              "Price", :class => ONIX::Price, :optional => true
+    xml_accessor :supplier_ean_location_number, :from => "SupplierEANLocationNumber"
+    xml_accessor :supplier_san, :from => "SupplierSAN"
+    xml_accessor :supplier_name, :from => "SupplierName"
+    xml_accessor :telephone_number, :from => "TelephoneNumber"
+    xml_accessor :fax_number, :from => "FaxNumber"
+    xml_accessor :email_address, :from => "EmailAddress"
+    xml_accessor :websites, [ONIX::Website], :from => "Website"
+    xml_accessor :supplier_role, :from => "SupplierRole"
+    xml_accessor :supply_to_country, :from => "SupplyToCountry"
+    xml_accessor :supply_to_territory, :from => "SupplyToTerritory"
+    xml_accessor :availability_status_code, :from => "AvailabilityStatusCode"
+    xml_accessor :product_availability, :from => "ProductAvailability"
+    xml_accessor :stock, [ONIX::Stock], :from => "Stock"
+    xml_accessor :prices, [ONIX::Price], :from => "Price"
 
-    def initialize
-      # setup some default values for when the object is created from scratch
-      self.websites = []
-      self.stock = []
-      self.prices = []
-    end
   end
 end

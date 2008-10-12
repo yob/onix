@@ -1,11 +1,11 @@
 module ONIX
   class Publisher
-    include XML::Mapping
+    include ROXML
 
-    two_digit_node :publishing_role,      "PublishingRole", :optional => true
-    numeric_node   :name_code_type,       "NameCodeType", :optional => true
-    text_node      :name_code_type_name,  "NameCodeTypeName", :optional => true
-    text_node      :name_code_type_value, "NameCodeTypeValue", :optional => true
-    text_node      :publisher_name,       "PublisherName", :optional => true
+    xml_accessor :publishing_role,      :from => "PublishingRole"
+    xml_accessor :name_code_type,       :from => "NameCodeType"
+    xml_accessor :name_code_type_name,  :from => "NameCodeTypeName"
+    xml_accessor :name_code_type_value, :from => "NameCodeTypeValue"
+    xml_accessor :publisher_name,       :from => "PublisherName"
   end
 end
