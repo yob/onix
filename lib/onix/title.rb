@@ -1,10 +1,10 @@
 module ONIX
   class Title
-    include XML::Mapping
+    include ROXML 
 
-    two_digit_node :title_type, "TitleType"
-    text_node      :title_text, "TitleText"
-    text_node      :subtitle,   "Subtitle", :optional => true
+    xml_accessor :title_type, :from => "TitleType"
+    xml_accessor :title_text, :from => "TitleText"
+    xml_accessor :subtitle,   :from => "Subtitle"
 
   end
 end

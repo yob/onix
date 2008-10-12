@@ -1,8 +1,8 @@
 module ONIX
   class ProductIdentifier
-    include XML::Mapping
+    include ROXML
 
-    two_digit_node :product_id_type, "ProductIDType"
-    text_node      :id_value,        "IDValue"
+    xml_accessor :product_id_type, :from => "ProductIDType"
+    xml_accessor :id_value, :from => "IDValue"
   end
 end

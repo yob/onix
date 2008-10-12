@@ -42,46 +42,44 @@ module ONIX
   #
   #   puts msg.to_s
   class Message
-    include XML::Mapping
+    include ROXML
 
     ONIX_DTD_URL = "http://www.editeur.org/onix/2.1/reference/onix-international.dtd"
 
-    root_element_name "ONIXMessage"
-
-    object_node :header,   "Header",  :class => ONIX::Header
-    array_node  :products, "Product", :class => ONIX::Product
+    xml_accessor :header, ONIX::Header, :from => "Header"
+    xml_accessor :products, [ONIX::Product], :from => "Product"#, :in => "products"
 
     # create a new onix message
-    def initialize
-      self.products = []
-    end
+    #def initialize
+      #self.products = []
+    #end
 
     # build this message into an XML string
-    def to_s
-      to_stringio.string
-    end
+    #def to_s
+    #  to_stringio.string
+    #end
 
     # build this message into an XML StringIO object
-    def to_stringio
-      write(StringIO.new)
-    end
+    #def to_stringio
+    #  write(StringIO.new)
+    #end
 
     # build this message into an XML and write it to the specified IO stream
     # 
     #   File.open("somefile.xml","w") do |output|
     #     msg.write(output)
     #   end
-    def write(io)
-      formatter = REXML::Formatters::Default.new(2)
+    #def write(io)
+    #  formatter = REXML::Formatters::Default.new(2)
 
-      decl = REXML::XMLDecl.new
-      doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{ONIX::Message::ONIX_DTD_URL}\"")
-      decl.encoding = "utf-8"
-      io.write(decl.to_s+"\n")
-      io.write(doctype.to_s+"\n")
+    #  decl = REXML::XMLDecl.new
+    #  doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{ONIX::Message::ONIX_DTD_URL}\"")
+    #  decl.encoding = "utf-8"
+    #  io.write(decl.to_s+"\n")
+    #  io.write(doctype.to_s+"\n")
 
-      formatter.write(self.save_to_xml, io)
-      io
-    end
+    #  formatter.write(self.save_to_xml, io)
+    #  io
+    #end
   end
 end

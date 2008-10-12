@@ -1,31 +1,29 @@
 module ONIX
   class Header
-    include XML::Mapping
+    include ROXML
 
-    root_element_name "Header"
-
-    text_node  :sender_ean_number,    "SenderEANNumber", :optional => true
-    text_node  :from_san,             "FromSAN", :optional => true
-    array_node :sender_identifiers,   "SenderIdentifier", :optional => true, :class => ONIX::SenderIdentifier
-    text_node  :from_company,         "FromCompany", :optional => true
-    text_node  :from_person,          "FromPerson", :optional => true
-    text_node  :from_email,           "FromEmail", :optional => true
-    text_node  :to_ean_number,        "ToEANNumber", :optional => true
-    text_node  :to_san,               "ToSAN", :optional => true
-    array_node :addressee_identifier, "AddresseeIdentifier", :optional => true, :class => ONIX::AddresseeIdentifier
-    text_node  :to_company,           "ToCompany", :optional => true
-    text_node  :to_person,            "ToPerson", :optional => true
-    text_node  :message_number,       "MessageNumber", :optional => true
-    text_node  :message_repeat,       "MessageRepeat", :optional => true
-    date_node  :sent_date,            "SentDate", :optional => true
-    text_node  :message_note,         "MessageNote", :optional => true
+    xml_accessor  :from_person, :from => "FromPerson"
+    xml_accessor  :sender_ean_number, :from => "SenderEANNumber"
+    xml_accessor  :from_san, :from => "FromSAN"
+    #array_node :sender_identifiers, :from => "SenderIdentifier", :class => ONIX::SenderIdentifier
+    xml_accessor  :from_company, :from => "FromCompany"
+    xml_accessor  :from_email, :from => "FromEmail"
+    xml_accessor  :to_ean_number, :from => "ToEANNumber"
+    xml_accessor  :to_san,  :from => "ToSAN"
+    #array_node :addressee_identifier, "AddresseeIdentifier", :class => ONIX::AddresseeIdentifier
+    xml_accessor  :to_company, :from => "ToCompany"
+    xml_accessor  :to_person, :from => "ToPerson"
+    xml_accessor  :message_number, :from => "MessageNumber"
+    xml_accessor  :message_repeat, :from => "MessageRepeat"
+    #date_node  :sent_date,            "SentDate"
+    xml_accessor  :message_note, :from => "MessageNote"
 
     # defaults
-    text_node  :default_language_of_text, "DefaultLanguageOfText", :optional => true
-    text_node  :default_price_type_code,  "DefaultPriceTypeCode",  :optional => true
-    text_node  :default_currency_code,    "DefaultCurrencyCode",   :optional => true
-    text_node  :default_linear_unit,      "DefaultLinearUnit",     :optional => true   # TODO deprecated. make read only
-    text_node  :default_weight_unit,      "DefaultWeightUnit",     :optional => true   # TODO deprecated. make read only
-    text_node  :default_class_of_trade,   "DefaultClassOfTrade",   :optional => true
+    xml_accessor  :default_language_of_text, :from => "DefaultLanguageOfText"
+    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode"
+    xml_accessor  :default_currency_code, :from => "DefaultCurrencyCode"
+    xml_reader  :default_linear_unit, :from => "DefaultLinearUnit"        # deprecated
+    xml_reader  :default_weight_unit, :from => "DefaultWeightUnit"        # deprecated
+    xml_accessor  :default_class_of_trade, :from => "DefaultClassOfTrade"
   end
 end

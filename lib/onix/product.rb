@@ -1,43 +1,27 @@
 module ONIX
   class Product
-    include XML::Mapping
+    include ROXML
 
-    root_element_name "Product"
+    xml_accessor :record_reference, :from => "RecordReference"
+    xml_accessor :notification_type, :from => "NotificationType"
+    xml_accessor :product_identifiers, [ONIX::ProductIdentifier], :from => "ProductIdentifier"
+    xml_accessor :product_form, :from => "ProductForm"
+    xml_accessor :series, :from => "Series"
+    xml_accessor :edition, :from => "Edition"
+    xml_accessor :titles, [ONIX::Title], :from => "Title"
+    xml_accessor :websites, [ONIX::Website], :from => "Website"
+    xml_accessor :contributors, [ONIX::Contributor], :from => "Contributor"
+    xml_accessor :number_of_pages, :from => "NumberOfPages"
+    xml_accessor :bic_main_subject, :from => "BICMainSubject"
+    #array_node     :subjects,            "Subject",           , :class => ONIX::Subject
+    #array_node     :text,                "OtherText",         , :class => ONIX::OtherText
+    #array_node     :media_files,         "MediaFile",         , :class => ONIX::MediaFile
+    #array_node     :imprints,            "Imprint",           , :class => ONIX::Imprint
+    #array_node     :publishers,          "Publisher",         , :class => ONIX::Publisher
+    xml_accessor :publishing_status, :from => "PublishingStatus"
+    xml_accessor :publication_date, :from => "PublicationDate"
+    #array_node     :sales_restrictions,  "SalesRestriction",  , :class => ONIX::SalesRestriction
+    #array_node     :supply_details,      "SupplyDetail",      , :class => ONIX::SupplyDetail
 
-    text_node      :record_reference,    "RecordReference"
-    two_digit_node :notification_type,   "NotificationType"
-    array_node     :product_identifiers, "ProductIdentifier", :class => ONIX::ProductIdentifier
-    text_node      :product_form,        "ProductForm",       :optional => true
-    text_node      :series,              "Series",            :optional => true
-    text_node      :edition,             "Edition",           :optional => true
-    array_node     :titles,              "Title",             :optional => true, :class => ONIX::Title
-    array_node     :websites,            "Website",           :optional => true, :class => ONIX::Website
-    array_node     :contributors,        "Contributor",       :optional => true, :class => ONIX::Contributor
-    numeric_node   :number_of_pages,     "NumberOfPages",     :optional => true
-    text_node      :bic_main_subject,    "BICMainSubject",    :optional => true
-    array_node     :subjects,            "Subject",           :optional => true, :class => ONIX::Subject
-    array_node     :text,                "OtherText",         :optional => true, :class => ONIX::OtherText
-    array_node     :media_files,         "MediaFile",         :optional => true, :class => ONIX::MediaFile
-    array_node     :imprints,            "Imprint",           :optional => true, :class => ONIX::Imprint
-    array_node     :publishers,          "Publisher",         :optional => true, :class => ONIX::Publisher
-    two_digit_node :publishing_status,   "PublishingStatus",  :optional => true
-    text_node      :publication_date,    "PublicationDate",   :optional => true
-    array_node     :sales_restrictions,  "SalesRestriction",  :optional => true, :class => ONIX::SalesRestriction
-    array_node     :supply_details,      "SupplyDetail",      :optional => true, :class => ONIX::SupplyDetail
-
-    def initialize
-      # setup some default values for when the object is created from scratch
-      self.product_identifiers = []
-      self.titles = []
-      self.websites = []
-      self.contributors = []
-      self.subjects = []
-      self.text = []
-      self.media_files = []
-      self.imprints = []
-      self.publishers = []
-      self.sales_restrictions = []
-      self.supply_details = []
-    end
   end
 end

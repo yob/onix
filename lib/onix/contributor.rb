@@ -1,20 +1,20 @@
 module ONIX
   class Contributor
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :sequence_number,      "SequenceNumber", :optional => true
-    text_node    :contributor_role,     "ContributorRole", :optional => true
-    text_node    :language_code,        "LanguageCode", :optional => true
-    numeric_node :sequence_number_within_role, "SequenceNumberWithinRole", :optional => true
-    text_node    :person_name,          "PersonName", :optional => true
-    text_node    :person_name_inverted, "PersonNameInverted", :optional => true
-    text_node    :titles_before_name,   "TitlesBeforeName", :optional => true
-    text_node    :names_before_key,     "NamesBeforeKey", :optional => true
-    text_node    :prefix_to_key,        "PrefixToKey", :optional => true
-    text_node    :key_names,            "KeyNames", :optional => true
-    text_node    :names_after_key,      "NamesArterKey", :optional => true
-    text_node    :suffix_to_key,        "SuffixToKey", :optional => true
-    text_node    :letters_after_names,  "LettersAfterNames", :optional => true
-    text_node    :titles_after_names,   "TitlesAfterNames", :optional => true
+    xml_accessor :sequence_number,      :from => "SequenceNumber"
+    xml_accessor :contributor_role,     :from => "ContributorRole"
+    xml_accessor :language_code,        :from => "LanguageCode"
+    xml_accessor :sequence_number_within_role, :from => "SequenceNumberWithinRole"
+    xml_accessor :person_name,          :from => "PersonName"
+    xml_accessor :person_name_inverted, :from => "PersonNameInverted"
+    xml_accessor :titles_before_name,   :from => "TitlesBeforeName"
+    xml_accessor :names_before_key,     :from => "NamesBeforeKey"
+    xml_accessor :prefix_to_key,        :from => "PrefixToKey"
+    xml_accessor :key_names,            :from => "KeyNames"
+    xml_accessor :names_after_key,      :from => "NamesArterKey"
+    xml_accessor :suffix_to_key,        :from => "SuffixToKey"
+    xml_accessor :letters_after_names,  :from => "LettersAfterNames"
+    xml_accessor :titles_after_names,   :from => "TitlesAfterNames"
   end
 end

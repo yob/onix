@@ -1,9 +1,9 @@
 module ONIX
   class Website
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :website_role,        "WebsiteRole", :optional => true
-    text_node    :website_description, "WebsiteDescription", :optional => true
-    text_node    :website_link,        "WebsiteLink"
+    xml_accessor :website_role,        :from => "WebsiteRole"
+    xml_accessor :website_description, :from => "WebsiteDescription"
+    xml_accessor :website_link,        :from => "WebsiteLink"
   end
 end
