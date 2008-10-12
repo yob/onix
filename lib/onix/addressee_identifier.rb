@@ -1,9 +1,9 @@
 module ONIX
   class AddresseeIdentifier
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :addressee_id_type, "AddresseeIDType"
-    text_node    :id_type_name,      "IDTypeName", :optional => true
-    text_node    :id_value,          "IDValue"
+    xml_accessor :addressee_id_type, :from => "AddresseeIDType"
+    xml_accessor :id_type_name,      :from => "IDTypeName"
+    xml_accessor :id_value,          :from => "IDValue"
   end
 end

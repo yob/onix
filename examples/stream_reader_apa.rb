@@ -15,7 +15,7 @@ reader.each do |item|
     puts "From: #{item.from_company}"
   else
     puts "#{item.record_reference} - #{item.cover_url}"
-    puts item.main_description
+    puts item.title
     counter += 1
   end
   puts

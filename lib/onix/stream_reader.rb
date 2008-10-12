@@ -1,4 +1,3 @@
-require 'rexml/document'
 require 'rexml/parsers/streamparser'
 require 'thread'
 require 'timeout'
@@ -60,8 +59,7 @@ module ONIX
         # The header tag is finished, so add it to the queue
         @fragment << "</Header>"
         begin
-          element = REXML::Document.new(@fragment.string).root
-          header = ONIX::Header.load_from_xml(element)
+          header = ONIX::Header.parse(@fragment.string)
           @queue.push(header) unless header.nil?
         rescue Exception => e
           # error occurred while building the product from an XML fragment
@@ -74,8 +72,7 @@ module ONIX
         # A product tag is finished, so add it to the queue
         @fragment << "</Product>"
         begin
-          element = REXML::Document.new(@fragment.string).root
-          product = @product_klass.load_from_xml(element)
+          product = @product_klass.parse(@fragment.string)
           @queue.push(product) unless product.nil?
         rescue Exception => e
           # error occurred while building the product from an XML fragment

@@ -1,9 +1,9 @@
 module ONIX
   class SenderIdentifier
-    include XML::Mapping
+    include ROXML
 
-    numeric_node :sender_id_type, "SenderIDType"
-    text_node    :id_type_name,   "IDTypeName", :optional => true
-    text_node    :id_value,       "IDValue"
+    xml_accessor :sender_id_type, :from => "SenderIDType"
+    xml_accessor :id_type_name,   :from => "IDTypeName"
+    xml_accessor :id_value,       :from => "IDValue"
   end
 end

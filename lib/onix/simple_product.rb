@@ -12,12 +12,12 @@ module ONIX
       
       include Forwardable
 
-      def load_from_file(filename)
-        self.new(::ONIX::Product.load_from_file(filename))
+      def parse_file(filename)
+        self.new(::ONIX::Product.parse(File.read(filename)))
       end
 
-      def load_from_xml(xml)
-        self.new(::ONIX::Product.load_from_xml(xml))
+      def parse(xml)
+        self.new(::ONIX::Product.parse(xml))
       end
     
       protected
@@ -31,12 +31,8 @@ module ONIX
       @product
     end
 
-    def fill_into_xml(xml)
-      product.fill_into_xml(xml)
-    end
-
-    def save_to_xml
-      product.save_to_xml
+    def to_xml
+      product.to_xml
     end
 
     # TODO: add method missing magic to proxy through to the underlying product?

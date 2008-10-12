@@ -2,6 +2,8 @@ module ONIX
   class Product
     include ROXML
 
+    xml_name "Product"
+
     xml_accessor :record_reference, :from => "RecordReference"
     xml_accessor :notification_type, :from => "NotificationType"
     xml_accessor :product_identifiers, [ONIX::ProductIdentifier], :from => "ProductIdentifier"

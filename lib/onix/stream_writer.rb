@@ -1,5 +1,3 @@
-require 'rexml/document'
-
 module ONIX
   class StreamWriter
 
@@ -8,11 +6,11 @@ module ONIX
       raise ArgumentError, 'msg must be an ONIX::Header object' unless header.kind_of?(ONIX::Header)
       @output = output
       @header = header
-      @formatter = REXML::Formatters::Default.new(2)
 
       start_document
     end
 
+    # deprecated
     def start_document
       puts "ONIX::StreamWriter#start_document is no longer required"
     end
@@ -21,7 +19,7 @@ module ONIX
       unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
         raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct' 
       end
-      @formatter.write(product.save_to_xml, @output)
+      @output.write(product.to_xml.to_s)
       @output.write("\n")
     end
 
@@ -38,7 +36,8 @@ module ONIX
       @output.write(decl.to_s+"\n")
       @output.write(doctype.to_s+"\n")
       @output.write("<ONIXMessage>\n")
-      @formatter.write(@header.save_to_xml, @output)
+      @output.write(@header.to_xml.to_s)
+      #@formatter.write(@header.to_xml, @output)
       @output.write("\n")
     end
 

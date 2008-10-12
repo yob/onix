@@ -46,6 +46,8 @@ module ONIX
 
     ONIX_DTD_URL = "http://www.editeur.org/onix/2.1/reference/onix-international.dtd"
 
+    xml_name "ONIXMessage"
+
     xml_accessor :header, ONIX::Header, :from => "Header"
     xml_accessor :products, [ONIX::Product], :from => "Product"#, :in => "products"
 
