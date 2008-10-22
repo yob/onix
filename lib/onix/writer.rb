@@ -1,5 +1,7 @@
 module ONIX
-  class StreamWriter
+  class Writer
+
+    DOCTYPE = "http://www.editeur.org/onix/2.1/03/reference/onix-international.dtd"
 
     # Default constructor.
     def initialize(output, header)
@@ -17,7 +19,7 @@ module ONIX
 
     def << (product)
       unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
-        raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct' 
+        raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct'
       end
       @output.write(product.to_xml.to_s)
       @output.write("\n")
@@ -31,7 +33,7 @@ module ONIX
 
     def start_document
       decl = REXML::XMLDecl.new
-      doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{ONIX::Message::ONIX_DTD_URL}\"")
+      doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{DOCTYPE}\"")
       decl.encoding = "utf-8"
       @output.write(decl.to_s+"\n")
       @output.write(doctype.to_s+"\n")

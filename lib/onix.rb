@@ -27,7 +27,7 @@ require File.join(File.dirname(__FILE__), "onix", "price")
 require File.join(File.dirname(__FILE__), "onix", "supply_detail")
 require File.join(File.dirname(__FILE__), "onix", "product")
 require File.join(File.dirname(__FILE__), "onix", "reader")
-require File.join(File.dirname(__FILE__), "onix", "stream_writer")
+require File.join(File.dirname(__FILE__), "onix", "writer")
 
 # lists
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
