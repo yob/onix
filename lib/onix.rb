@@ -45,4 +45,5 @@ module ONIX
 
     String = [Major, Minor, Tiny].join('.')
   end
+
 end
