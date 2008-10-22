@@ -5,7 +5,7 @@ module ONIX
     xml_name "Product"
 
     xml_accessor :record_reference, :from => "RecordReference"
-    xml_accessor :notification_type, :from => "NotificationType"
+    xml_accessor :notification_type, :twodigit, :from => "NotificationType"
     xml_accessor :product_identifiers, [ONIX::ProductIdentifier], :from => "ProductIdentifier"
     xml_accessor :product_form, :from => "ProductForm"
     xml_accessor :series, :from => "Series"
@@ -20,8 +20,8 @@ module ONIX
     xml_accessor :media_files, [ONIX::MediaFile], :from => "MediaFile"
     xml_accessor :imprints, [ONIX::Imprint], :from => "Imprint"
     xml_accessor :publishers, [ONIX::Publisher], :from => "Publisher"
-    xml_accessor :publishing_status, :from => "PublishingStatus"
-    xml_accessor :publication_date, :from => "PublicationDate"
+    xml_accessor :publishing_status, :twodigit, :from => "PublishingStatus"
+    xml_accessor :publication_date, :yyyymmdd, :from => "PublicationDate"
     xml_accessor :sales_restrictions, [ONIX::SalesRestriction], :from => "SalesRestriction"
     xml_accessor :supply_details, [ONIX::SupplyDetail], :from => "SupplyDetail"
 

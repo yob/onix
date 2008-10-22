@@ -9,6 +9,8 @@ counter = 0
 
 # display header info
 puts reader.header.from_company
+puts reader.header.sent_date
+puts
 
 reader.each do |item|
   puts item.inspect

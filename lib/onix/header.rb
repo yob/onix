@@ -17,7 +17,7 @@ module ONIX
     xml_accessor :to_person, :from => "ToPerson"
     xml_accessor :message_number, :from => "MessageNumber"
     xml_accessor :message_repeat, :from => "MessageRepeat"
-    xml_accessor :sent_date, :from => "SentDate"
+    xml_accessor :sent_date, :yyyymmdd, :from => "SentDate"
     xml_accessor :message_note, :from => "MessageNote"
 
     # defaults
