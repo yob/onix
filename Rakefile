@@ -63,6 +63,7 @@ spec = Gem::Specification.new do |s|
     "tasks/**/*.rake"
   ]
   s.add_dependency('roxml', '2.1')
+  s.add_dependency('andand')
 end
 
 Rake::GemPackageTask.new(spec) do |p|

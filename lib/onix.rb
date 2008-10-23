@@ -1,6 +1,8 @@
 require 'rubygems'
-gem 'roxml', '2.1'
+gem 'roxml', '>=2.1'
 require 'roxml'
+gem 'andand'
+require 'andand'
 
 # custom xml-mapping node types
 require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
