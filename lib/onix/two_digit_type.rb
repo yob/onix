@@ -28,7 +28,7 @@ module ONIX
       else
         value = "00"
       end
-      add(parent.child_add(XML::Node.new_element(name)), value)
+      add(parent.child_add(LibXML::XML::Node.new_element(name)), value)
       xml
     end
 
@@ -41,7 +41,7 @@ module ONIX
 
     def add(dest, value)
       if cdata
-        dest.child_add(XML::Node.new_cdata(value.to_utf))
+        dest.child_add(LibXML::XML::Node.new_cdata(value.to_utf))
       else
         dest.content = value.to_utf
       end

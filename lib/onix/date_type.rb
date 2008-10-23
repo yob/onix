@@ -21,7 +21,7 @@ module ONIX
     # the _value_ provided.
     def update_xml(xml, value)
       parent = wrap(xml)
-      add(parent.child_add(XML::Node.new_element(name)), value.strftime("%Y%m%d"))
+      add(parent.child_add(LibXML::XML::Node.new_element(name)), value.strftime("%Y%m%d"))
       xml
     end
 
@@ -39,7 +39,7 @@ module ONIX
 
     def add(dest, value)
       if cdata
-        dest.child_add(XML::Node.new_cdata(value.to_utf))
+        dest.child_add(LibXML::XML::Node.new_cdata(value.to_utf))
       else
         dest.content = value.to_utf
       end

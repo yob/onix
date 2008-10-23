@@ -13,7 +13,7 @@ module ONIX
 
     # retrieve the current EAN
     def ean
-      identifier(3)
+      identifier(3).andand.id_value
     end
 
     # set a new EAN
@@ -23,7 +23,7 @@ module ONIX
 
     # retrieve the proprietary ID
     def proprietary_id
-      identifier(1)
+      identifier(1).andand.id_value
     end
 
     # set a new proprietary ID
@@ -33,7 +33,7 @@ module ONIX
 
     # retrieve the current ISBN 10
     def isbn10
-      identifier(2)
+      identifier(2).andand.id_value
     end
 
     # set a new ISBN 10
@@ -43,7 +43,7 @@ module ONIX
 
     # retrieve the current ISBN 13
     def isbn13
-      identifier(15)
+      identifier(15).andand.id_value
     end
 
     # set a new ISBN 13
@@ -95,7 +95,7 @@ module ONIX
 
     # retrieve the current publisher website for this particular product
     def publisher_website
-      website(2)
+      website(2).andand.website_link
     end
 
     # set a new publisher website for this particular product
@@ -105,7 +105,7 @@ module ONIX
 
     # retrieve the current supplier website for this particular product
     def supplier_website
-      website(12)
+      website(12).andand.website_link
     end
 
     # set a new supplier website for this particular product
@@ -154,7 +154,7 @@ module ONIX
 
     # retrieve the url to the product cover image
     def cover_url
-      media_file(4)
+      media_file(4).andand.media_file_link
     end
 
     # set the url to the product cover image
@@ -164,7 +164,7 @@ module ONIX
 
     # retrieve the url to the high quality product cover image
     def cover_url_hq
-      media_file(6)
+      media_file(6).andand.media_file_link
     end
 
     # set the url to the high quality product cover image
@@ -174,7 +174,7 @@ module ONIX
 
     # retrieve the url to the product thumbnail
     def thumbnail_url
-      media_file(7)
+      media_file(7).andand.media_file_link
     end
 
     # set the url to the product cover image
@@ -184,7 +184,7 @@ module ONIX
 
     # retrieve the main description
     def main_description
-      other_text(1)
+      other_text(1).andand.text
     end
 
     # set the main description
@@ -194,7 +194,7 @@ module ONIX
 
     # retrieve the short description
     def short_description
-      other_text(2)
+      other_text(2).andand.text
     end
 
     # set the short description
@@ -204,7 +204,7 @@ module ONIX
 
     # retrieve the long description
     def long_description
-      other_text(3)
+      other_text(3).andand.text
     end
 
     # set the long description
@@ -215,7 +215,7 @@ module ONIX
     # retrieve the imprint
     def imprint
       composite = product.imprints.first
-      composite ? composite.imprint_name : nil 
+      composite ? composite.imprint_name : nil
     end
 
     # set a new imprint
@@ -230,7 +230,7 @@ module ONIX
 
     # retrieve the publisher
     def publisher
-      publisher_get(1)
+      publisher_get(1).andand.publisher_name
     end
 
     # set a new publisher
@@ -372,7 +372,7 @@ module ONIX
 
     # retrieve the rrp excluding any sales tax
     def rrp_exc_sales_tax
-      price_get(1)
+      price_get(1).andand.price_amount
     end
 
     # set the rrp excluding any sales tax
@@ -382,7 +382,7 @@ module ONIX
 
     # retrieve the rrp including any sales tax
     def rrp_inc_sales_tax
-      price_get(2)
+      price_get(2).andand.price_amount
     end
 
     # set the rrp including any sales tax
@@ -414,8 +414,7 @@ module ONIX
 
     # retrieve the value of a particular ID
     def identifier(type)
-      isbn_id = product.product_identifiers.find { |id| id.product_id_type == type }
-      isbn_id ? isbn_id.id_value : nil
+      product.product_identifiers.find { |id| id.product_id_type == type }
     end
 
     # set the value of a particular ID
@@ -429,14 +428,12 @@ module ONIX
         product.product_identifiers << isbn_id
       end
 
-      # store the new value
-      isbn_id.id_value = value.to_s
+      isbn_id.id_value = value
     end
 
     # retrieve the value of a particular media file
     def media_file(type)
-      media = product.media_files.find { |m| m.media_file_type_code == type }
-      media ? media.media_file_link : nil
+      product.media_files.find { |m| m.media_file_type_code == type }
     end
 
     # set the value of a particular ID
@@ -457,8 +454,7 @@ module ONIX
     # retrieve the value of a particular price
     def price_get(type)
       supply = find_or_create_supply_detail
-      p = supply.prices.find { |p| p.price_type_code == type }
-      p ? p.price_amount : nil
+      supply.prices.find { |p| p.price_type_code == type }
     end
 
     # set the value of a particular price
@@ -479,8 +475,7 @@ module ONIX
 
     # retrieve the value of a particular publisher
     def publisher_get(type)
-      pub = product.publishers.find { |pub| pub.publishing_role == type }
-      pub ? pub.publisher_name : nil
+      product.publishers.find { |pub| pub.publishing_role == type }
     end
 
     # set the value of a particular ID
@@ -500,8 +495,7 @@ module ONIX
 
     # retrieve the value of a particular other text value
     def other_text(type)
-      t = product.text.find { |t| t.text_type_code == type }
-      t ? t.text : nil
+      product.text.find { |t| t.text_type_code == type }
     end
 
     # set the value of a particular other text value
@@ -520,8 +514,7 @@ module ONIX
 
     # retrieve the value of a particular website
     def website(type)
-      site = product.websites.find { |site| site.website_role == type }
-      site ? site.website_link : nil
+      product.websites.find { |site| site.website_role == type }
     end
 
     # set the value of a particular website
@@ -534,6 +527,7 @@ module ONIX
         site.website_role = type
         product.websites << site
       end
+
       site.website_link = value.to_s
     end
   end
