@@ -3,8 +3,8 @@ gem 'roxml', '2.1'
 require 'roxml'
 
 # custom xml-mapping node types
-#require File.join(File.dirname(__FILE__), "onix", "two_digit_node")
-#require File.join(File.dirname(__FILE__), "onix", "date_node")
+require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
+require File.join(File.dirname(__FILE__), "onix", "date_type")
 
 # core files
 # - ordering is important, classes need to be defined before any
