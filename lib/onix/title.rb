@@ -3,8 +3,8 @@ module ONIX
     include ROXML 
 
     xml_accessor :title_type, :twodigit, :from => "TitleType"
-    xml_accessor :title_text,            :from => "TitleText"
-    xml_accessor :subtitle,              :from => "Subtitle"
+    xml_accessor :title_text, :etext,    :from => "TitleText"
+    xml_accessor :subtitle,   :etext,    :from => "Subtitle"
 
   end
 end
