@@ -33,8 +33,13 @@ module ONIX
     end
 
     def value(xml)
-      val = xml.content.to_i
-      block ? block.call(val) : val
+      if content
+        value = xml.content.to_i
+      else
+        child = xml.search(name).first
+        value = child.content.to_i if child
+      end
+      block ? block.call(value) : value
     end
 
     private
