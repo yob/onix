@@ -14,7 +14,7 @@ context "ONIX::Header" do
   end
 
   specify "should correctly convert to a string" do
-    header = ONIX::Header.parse(@header_node)
+    header = ONIX::Header.parse(@header_node.to_s)
     header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
@@ -94,5 +94,18 @@ context "ONIX::Header" do
 
     header.default_class_of_trade = "f"
     header.default_class_of_trade.should eql("f")
+  end
+
+  specify "should correctly handle text with & < and >" do
+    header = ONIX::Header.new
+
+    header.from_company = "James & Healy"
+    header.to_xml.to_s.include?("James &amp; Healy").should be_true
+
+    header.from_company = "James < Healy"
+    header.to_xml.to_s.include?("James &lt; Healy").should  be_true
+
+    header.from_company = "James > Healy"
+    header.to_xml.to_s.include?("James &gt; Healy").should  be_true
   end
 end
