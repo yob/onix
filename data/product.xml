@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product>
+  <RecordReference>365-9780194351898</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+    <ProductIDType>02</ProductIDType>
+    <IDValue>0194351890</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>03</ProductIDType>
+    <IDValue>9780194351898</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>15</ProductIDType>
+    <IDValue>9780194351898</IDValue>
+  </ProductIdentifier>
+  <ProductForm>BC</ProductForm>
+  <Series>
+    <TitleOfSeries>DICTIONARIES BEGINNER TO PRE-INTERMED</TitleOfSeries>
+  </Series>
+  <Title>
+    <TitleType>01</TitleType>
+    <TitleText>OXFORD PICTURE DICTIONARY CHINESE</TitleText>
+  </Title>
+  <Website>
+    <WebsiteLink>http://www.oup.com.au/searchbuy/product.asp?ISBN=9780194351898</WebsiteLink>
+  </Website>
+  <Contributor>
+    <ContributorRole>A01</ContributorRole>
+    <PersonNameInverted>SHAPIRO</PersonNameInverted>
+  </Contributor>
+  <BICMainSubject>EB</BICMainSubject>
+  <EditionNumber>1</EditionNumber>
+  <NumberOfPages>100</NumberOfPages>
+  <Subject>
+    <SubjectSchemeIdentifier>14</SubjectSchemeIdentifier>
+    <SubjectCode>2ABM</SubjectCode>
+  </Subject>
+  <AudienceCode>07</AudienceCode>
+  <Imprint>
+    <ImprintName>Oxford University Press UK</ImprintName>
+  </Imprint>
+  <Publisher>
+    <PublishingRole>01</PublishingRole>
+    <PublisherName>Oxford University Press</PublisherName>
+  </Publisher>
+  <PublishingStatus>04</PublishingStatus>
+  <PublicationDate>19980901</PublicationDate>
+  <YearFirstPublished>1998</YearFirstPublished>
+  <Measure>
+    <MeasureTypeCode>08</MeasureTypeCode>
+    <Measurement>720   </Measurement>
+    <MeasureUnitCode>gr</MeasureUnitCode>
+  </Measure>
+  <SupplyDetail>
+    <SupplierName>Oxford University Press Australia and New Zealand</SupplierName>
+    <ProductAvailability>21</ProductAvailability>
+    <Stock>
+      <OnHand>70</OnHand>
+    </Stock>
+    <Price>
+      <PriceTypeCode>02</PriceTypeCode>
+      <PriceAmount>59.95</PriceAmount>
+    </Price>
+  </SupplyDetail>
+</Product>

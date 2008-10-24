@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Header>
+  <FromEANNumber>1111111111111</FromEANNumber>
+  <FromSAN>1111111</FromSAN>
+  <FromCompany>Text Company</FromCompany>
+  <FromPerson>James</FromPerson>
+  <FromEmail>james@rainbowbooks.com.au</FromEmail>
+  <ToEANNumber>2222222222222</ToEANNumber>
+  <ToSAN>2222222</ToSAN>
+  <ToCompany>Company 2</ToCompany>
+  <ToPerson>Chris</ToPerson>
+  <MessageNote>A Message</MessageNote>
+  <MessageRepeat>1</MessageRepeat>
+  <SentDate>20080519</SentDate>
+  <DefaultLanguageOfText>aaa</DefaultLanguageOfText>
+  <DefaultPriceTypeCode>1</DefaultPriceTypeCode>
+  <DefaultCurrencyCode>ccc</DefaultCurrencyCode>
+  <DefaultLinearUnit>dd</DefaultLinearUnit>
+  <DefaultWeightUnit>ee</DefaultWeightUnit>
+  <DefaultClassOfTrade>f</DefaultClassOfTrade>
+</Header>
