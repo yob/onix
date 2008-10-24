@@ -8,6 +8,7 @@ module ONIX
       raise ArgumentError, 'msg must be an ONIX::Header object' unless header.kind_of?(ONIX::Header)
       @output = output
       @header = header
+      @finished = false
 
       start_document
     end
@@ -21,12 +22,29 @@ module ONIX
       unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
         raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct'
       end
+      raise "Can't add products to a finished writer" if finished?
+
       @output.write(product.to_xml.to_s)
       @output.write("\n")
     end
 
     def end_document
       @output.write("</ONIXMessage>\n")
+      @finished = true
+    end
+
+    def finished?
+      @finished
+    end
+
+    def self.open(output, header)
+      if block_given?
+        writer = self.new(output, header)
+        yield writer
+        writer.end_document
+      else
+        self.new(output, header)
+      end
     end
 
     private
