@@ -26,6 +26,12 @@ module ONIX
       # product in the queue
       Thread.abort_on_exception = true
       Thread.new { read_input }
+
+      # TODO: this is a seriously hacky way to ensure the reading thread
+      #       has enough time to read our metadata and header objects from
+      #       the input stream. I should be making the constructor block until
+      #       it has actively confirmed the data has been read
+      sleep 1
     end
 
     def each(&block)
@@ -48,10 +54,11 @@ module ONIX
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
           @version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.name == "Header" && @reader.node_type == 1
-          @header = ONIX::Header.parse(@reader.expand)
+          @header = ONIX::Header.parse(@reader.expand.to_s)
           @reader.next_sibling
         elsif @reader.name == "Product" && @reader.node_type == 1
-          @queue.push @product_klass.parse(@reader.expand)
+          node = @reader.expand
+          @queue.push @product_klass.parse(node.to_s)
           @reader.next_sibling
         end
       end

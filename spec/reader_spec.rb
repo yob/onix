@@ -14,15 +14,17 @@ context "ONIX::Reader" do
 
   specify "should initialize with a filename" do
     reader = ONIX::Reader.new(@file1)
-    reader.instance_variable_get("@reader").should be_a_kind_of(XML::Reader)
+    reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
   end
 
+=begin
   specify "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
       reader = ONIX::Reader.new(f)
-      reader.instance_variable_get("@reader").should be_a_kind_of(XML::Reader)
+      reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
     end
   end
+=end
 
   specify "should provide access to various XML metadata from file" do
     reader = ONIX::Reader.new(@file1)
@@ -56,7 +58,7 @@ context "ONIX::Reader" do
     end
 
     products.size.should eql(2)
-    products[0].id(:ean).should eql("9780194351898")
-    products[1].id(:ean).should eql("9780754672326")
+    products[0].record_reference.should eql("365-9780194351898")
+    products[1].record_reference.should eql("9780754672326")
   end
 end
