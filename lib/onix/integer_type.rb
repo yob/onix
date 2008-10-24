@@ -1,14 +1,7 @@
-require 'date'
 
 module ONIX
 
-  # Internal class representing XML content date binding
-  #
-  # In context:
-  #  <element attribute="XMLAttributeRef">
-  #   XMLYYYYMMDDRef
-  #  </element>
-  class DateType < ROXML::XMLRef # ::nodoc::
+  class IntegerType < ROXML::XMLRef # ::nodoc::
     attr_reader :cdata, :content
 
     def initialize(accessor, args, &block)
@@ -21,20 +14,16 @@ module ONIX
     # the _value_ provided.
     def update_xml(xml, value)
       parent = wrap(xml)
-      add(parent.child_add(LibXML::XML::Node.new_element(name)), value.strftime("%Y%m%d"))
+      add(parent.child_add(LibXML::XML::Node.new_element(name)), value)
       xml
     end
 
     def value(xml)
-      begin
-        if content
-          value = Date.parse(xml.content.strip)
-        else
-          child = xml.search(name).first
-          value = Date.parse(child.content.strip) if child
-        end
-      rescue ArgumentError
-        value = nil
+      if content
+        value = xml.content.to_i
+      else
+        child = xml.search(name).first
+        value = child.content.to_i if child
       end
       block ? block.call(value) : value
     end
@@ -51,4 +40,4 @@ module ONIX
   end
 end
 
-ROXML::TypeRegistry.register(:yyyymmdd, ONIX::DateType)
+ROXML::TypeRegistry.register(:integer, ONIX::IntegerType)

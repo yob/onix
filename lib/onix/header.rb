@@ -5,7 +5,7 @@ module ONIX
     xml_name "Header"
 
     xml_accessor :from_person, :from => "FromPerson"
-    xml_accessor :sender_ean_number, :from => "SenderEANNumber"
+    xml_accessor :from_ean_number, :from => "FromEANNumber"
     xml_accessor :from_san, :from => "FromSAN"
     xml_accessor :sender_identifiers, [ONIX::SenderIdentifier], :from => "SenderIdentifier"
     xml_accessor :from_company, :from => "FromCompany"
@@ -16,16 +16,16 @@ module ONIX
     xml_accessor :to_company, :from => "ToCompany"
     xml_accessor :to_person, :from => "ToPerson"
     xml_accessor :message_number, :from => "MessageNumber"
-    xml_accessor :message_repeat, :from => "MessageRepeat"
+    xml_accessor :message_repeat, :integer, :from => "MessageRepeat"
     xml_accessor :sent_date, :yyyymmdd, :from => "SentDate"
     xml_accessor :message_note, :from => "MessageNote"
 
     # defaults
     xml_accessor  :default_language_of_text, :from => "DefaultLanguageOfText"
-    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode"
+    xml_accessor  :default_price_type_code, :integer, :from => "DefaultPriceTypeCode"
     xml_accessor  :default_currency_code, :from => "DefaultCurrencyCode"
-    xml_reader  :default_linear_unit, :from => "DefaultLinearUnit"        # deprecated
-    xml_reader  :default_weight_unit, :from => "DefaultWeightUnit"        # deprecated
+    xml_reader    :default_linear_unit, :from => "DefaultLinearUnit"        # deprecated
+    xml_reader    :default_weight_unit, :from => "DefaultWeightUnit"        # deprecated
     xml_accessor  :default_class_of_trade, :from => "DefaultClassOfTrade"
   end
 end

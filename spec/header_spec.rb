@@ -9,27 +9,17 @@ context "ONIX::Header" do
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(data_path, "header.xml")
-    @doc = XML::Document.file(file1)
+    @doc = LibXML::XML::Document.file(file1)
     @header_node = @doc.root
   end
 
   specify "should correctly convert to a string" do
-    header = ONIX::Header.new(@header_node)
-    header.to_s[0,8].should eql("<Header>")
-  end
-
-  specify "should initialise with an existing node" do
-    header = ONIX::Header.new(@header_node)
-    header.instance_variable_get("@root_node").should eql(@header_node)
-  end
-
-  specify "should create an empty node if none is provided on init" do
-    header = ONIX::Header.new
-    header.instance_variable_get("@root_node").should be_a_kind_of(XML::Node)
+    header = ONIX::Header.parse(@header_node)
+    header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
   specify "should provide read access to first level attibutes" do
-    header = ONIX::Header.new(@header_node)
+    header = ONIX::Header.parse(@header_node.to_s)
 
     header.from_ean_number.should eql("1111111111111")
     header.from_san.should eql("1111111")
@@ -101,12 +91,6 @@ context "ONIX::Header" do
 
     header.default_currency_code = "ccc"
     header.default_currency_code.should eql("ccc")
-
-    header.default_linear_unit = "dd"
-    header.default_linear_unit.should eql("dd")
-
-    header.default_weight_unit = "ee"
-    header.default_weight_unit.should eql("ee")
 
     header.default_class_of_trade = "f"
     header.default_class_of_trade.should eql("f")
