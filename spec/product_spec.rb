@@ -8,8 +8,8 @@ require 'date'
 context "ONIX::Product" do
 
   before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "product.xml")
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    file1    = File.join(@data_path, "product.xml")
     @doc = LibXML::XML::Document.file(file1)
     @product_node = @doc.root
   end
@@ -84,4 +84,14 @@ context "ONIX::Product" do
     product.year_first_published = 1998
     product.year_first_published.should eql(1998)
   end
+
+  specify "should correctly parse files that have non-standard entties"
+=begin
+  do
+    file = File.join(@data_path, "extra_entities.xml")
+    product = ONIX::Product.parse(File.read(file))
+
+    product.titles.first.title_text.should eql("Ipod® & Itunes® for Dummies®, 4th Edition")
+  end
+=end
 end
