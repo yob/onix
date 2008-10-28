@@ -1,7 +1,11 @@
 require 'rubygems'
-gem 'roxml', '>=2.1'
-require 'roxml'
+
+# ensure we load the correct gem versions
+gem 'yob-roxml', '2.1.1'
 gem 'andand'
+
+# and now load the actual gems
+require 'roxml'
 require 'andand'
 
 # custom xml-mapping node types
