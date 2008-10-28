@@ -1,0 +1,65 @@
+ <Product>
+  <RecordReference>0470048948</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+   <ProductIDType>02</ProductIDType>
+   <IDValue>0470048948</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+   <ProductIDType>03</ProductIDType>
+   <IDValue>9780470048948</IDValue>
+  </ProductIdentifier>
+  <ProductForm>BC</ProductForm>
+  <ContainedItem>
+   <ProductForm>DH</ProductForm>
+  </ContainedItem>
+  <Title>
+   <TitleType>01</TitleType>
+   <TitleText>Ipod&reg; &amp; Itunes&reg; for Dummies&reg;, 4th Edition</TitleText>
+  </Title>
+  <Contributor>
+   <ContributorRole>A01</ContributorRole>
+   <PersonName>Bove</PersonName>
+   <PersonNameInverted>Bove</PersonNameInverted>
+   <KeyNames>Bove</KeyNames>
+  </Contributor>
+  <NumberOfPages>432</NumberOfPages>
+  <BICMainSubject>UH</BICMainSubject>
+  <Subject>
+   <SubjectSchemeIdentifier>12</SubjectSchemeIdentifier>
+   <SubjectCode>F</SubjectCode>
+  </Subject>
+  <Imprint>
+   <ImprintName>Wiley US</ImprintName>
+  </Imprint>
+  <Publisher>
+   <PublishingRole>01</PublishingRole>
+   <PublisherName>John Wiley &amp; Sons Inc (US)</PublisherName>
+  </Publisher>
+  <PublishingStatus>02</PublishingStatus>
+  <PublicationDate>20061101</PublicationDate>
+  <SupplyDetail>
+   <SupplierName>John Wiley &amp; Sons Australia</SupplierName>
+   <SupplierRole>01</SupplierRole>
+   <ProductAvailability>10</ProductAvailability>
+   <ExpectedShipDate>20061101</ExpectedShipDate>
+   <Price>
+    <PriceAmount>33.95</PriceAmount>
+    <CurrencyCode>AUD</CurrencyCode>
+   </Price>
+   <Price>
+    <PriceAmount>38.95</PriceAmount>
+    <CurrencyCode>NZD</CurrencyCode>
+   </Price>
+  </SupplyDetail>
+  <MarketRepresentation>
+   <AgentName>John Wiley &amp; Sons Australia</AgentName>
+   <AgentRole>05</AgentRole>
+   <MarketCountry>AU</MarketCountry>
+   <MarketPublishingStatus>02</MarketPublishingStatus>
+   <MarketDate>
+    <MarketDateRole>02</MarketDateRole>
+    <Date>20061101</Date>
+   </MarketDate>
+  </MarketRepresentation>
+ </Product>

@@ -11,10 +11,8 @@ module ONIX
     delegate :publishing_status, :publishing_status=
     delegate :publication_date, :publication_date=
 
-    attr_reader :measurement_system
-
-    def initialize
-      @measurement_system = :metric
+    def measurement_system
+      @measurement_system ||= :metric
     end
 
     def measurement_system=(value)
