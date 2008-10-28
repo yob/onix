@@ -36,7 +36,7 @@ module ONIX
   # APAProduct stands for Australian Publishers Association and provides simple
   # access to the ONIX attributes that are commonly used in the Australian market.
   #
-  # As well as accessing the file header, there are handful of other readonly 
+  # As well as accessing the file header, there are handful of other read only
   # attributes that might be useful
   #
   #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
@@ -96,7 +96,7 @@ module ONIX
 
     # Walk the ONIX file, and grab the bits we're interested in.
     #
-    # High level attributes and the header are stored as attributes of the reade
+    # High level attributes and the header are stored as attributes of the reader
     # class. Products are placed in a queue, ready to be popped off when the
     # user uses the each() method.
     #

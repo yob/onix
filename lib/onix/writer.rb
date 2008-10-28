@@ -1,7 +1,7 @@
 module ONIX
   # The primary way to write a new ONIX file.
   #
-  # Heres a quick example. The generated file will be nice an boring, as the
+  # Heres a quick example. The generated file will be nice and boring, as the
   # header and product objects have no data in them, but you get the idea.
   #
   #   File.open("output.xml","w") do |output|
