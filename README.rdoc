@@ -7,6 +7,9 @@ industries.
 This library provides a slim layer over the format and simplifies both reading
 and writing ONIX files in your ruby applications.
 
+This replaces the obsolete rbook-onix gem that was spectacular in its crapness.
+Let us never speak of it again.
+
 == Installation
 
     gem install onix
