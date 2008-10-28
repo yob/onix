@@ -11,6 +11,20 @@ module ONIX
     delegate :publishing_status, :publishing_status=
     delegate :publication_date, :publication_date=
 
+    attr_reader :measurement_system
+
+    def initialize
+      @measurement_system = :metric
+    end
+
+    def measurement_system=(value)
+      if value == :metric || value == :imperial
+        @measurement_system = value
+      else
+        raise ArgumentError, "#{value} is not a recognised measurement system"
+      end
+    end
+
     # retrieve the current EAN
     def ean
       identifier(3).andand.id_value
@@ -390,6 +404,98 @@ module ONIX
       price_set(2, num)
     end
 
+    # retrieve the height of the product
+    #
+    # If APAProduct#measurement_system is metric, these will be in mm, otherwise they
+    # will be in inches.
+    #
+    def height
+      # TODO: auto unit conversion
+      measurement(1).andand.measurement
+    end
+
+    # set the height of the book
+    #
+    # If APAProduct#measurement_system is metric, this should be in mm, otherwise it
+    # will be in inches.
+    #
+    def height=(value)
+      if measurement_system == :metric
+        measurement_set(1,value, "mm")
+      elsif measurement_system == :imperial
+        measurement_set(1,value, "in")
+      end
+    end
+
+    # retrieve the width of the product
+    #
+    # If APAProduct#measurement_system is metric, these will be in mm, otherwise they
+    # will be in inches.
+    #
+    def width
+      # TODO: auto unit conversion
+      measurement(2).andand.measurement
+    end
+
+    # set the width of the product
+    #
+    # If APAProduct#measurement_system is metric, this should be in mm, otherwise it
+    # will be in inches.
+    #
+    def width=(value)
+      if measurement_system == :metric
+        measurement_set(2,value, "mm")
+      elsif measurement_system == :imperial
+        measurement_set(2,value, "in")
+      end
+    end
+
+    # retrieve the weight of the product
+    #
+    # If APAProduct#measurement_system is metric, these will be in grams, otherwise they
+    # will be in ounces.
+    #
+    def weight
+      # TODO: auto unit conversion
+      measurement(8).andand.measurement
+    end
+
+    # set the weight of the product
+    #
+    # If APAProduct#measurement_system is metric, this should be in grams, otherwise it
+    # will be in ounces.
+    #
+    def weight=(value)
+      if measurement_system == :metric
+        measurement_set(8,value, "gr")
+      elsif measurement_system == :imperial
+        measurement_set(8,value, "oz")
+      end
+    end
+
+    # retrieve the thickness of the product
+    #
+    # If APAProduct#measurement_system is metric, these will be in mm, otherwise they
+    # will be in inches.
+    #
+    def thickness
+      # TODO: auto unit conversion
+      measurement(3).andand.measurement
+    end
+
+    # set the thickness of the product
+    #
+    # If APAProduct#measurement_system is metric, this should be in mm, otherwise it
+    # will be in inches.
+    #
+    def thickness=(value)
+      if measurement_system == :metric
+        measurement_set(3,value, "mm")
+      elsif measurement_system == :imperial
+        measurement_set(3,value, "in")
+      end
+    end
+
     private
 
     # add a new subject to this product
@@ -429,6 +535,27 @@ module ONIX
       end
 
       isbn_id.id_value = value
+    end
+
+    # retrieve the value of a particular measurement
+    def measurement(type)
+      product.measurements.find { |m| m.measure_type_code == type }
+    end
+
+    # set the value of a particular measurement
+    def measurement_set(type, value, unit)
+      measure = measurement(type)
+
+      # create a new isbn record if we need to
+      if measure.nil?
+        measure = ONIX::Measure.new
+        measure.measure_type_code = type
+        product.measurements << measure
+      end
+
+      # store the new value
+      measure.measurement = value
+      measure.measure_unit_code = unit.to_s
     end
 
     # retrieve the value of a particular media file
