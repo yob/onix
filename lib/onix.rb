@@ -9,6 +9,7 @@ require 'roxml'
 require 'andand'
 
 # custom xml-mapping node types
+require File.join(File.dirname(__FILE__), "onix", "decimal_type")
 require File.join(File.dirname(__FILE__), "onix", "etext_type")
 require File.join(File.dirname(__FILE__), "onix", "integer_type")
 require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
@@ -33,6 +34,7 @@ require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
 require File.join(File.dirname(__FILE__), "onix", "stock")
 require File.join(File.dirname(__FILE__), "onix", "price")
 require File.join(File.dirname(__FILE__), "onix", "supply_detail")
+require File.join(File.dirname(__FILE__), "onix", "measure")
 require File.join(File.dirname(__FILE__), "onix", "product")
 require File.join(File.dirname(__FILE__), "onix", "reader")
 require File.join(File.dirname(__FILE__), "onix", "writer")

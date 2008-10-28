@@ -24,7 +24,17 @@ module ONIX
     xml_accessor :publication_date, :yyyymmdd, :from => "PublicationDate"
     xml_accessor :year_first_published, :integer, :from => "YearFirstPublished"
     xml_accessor :sales_restrictions, [ONIX::SalesRestriction], :from => "SalesRestriction"
+    xml_accessor :measurements, [ONIX::Measure], :from => "Measure"
     xml_accessor :supply_details, [ONIX::SupplyDetail], :from => "SupplyDetail"
+
+    # some deprecated attributes. Read only
+    # - See the measures array for the current way of specifying
+    #   various measurements of the product
+    xml_reader :height,    :decimal, :from => "Height"
+    xml_reader :width,     :decimal, :from => "Width"
+    xml_reader :thickness, :decimal, :from => "Thickness"
+    xml_reader :weight,    :decimal, :from => "Weight"
+    xml_reader :dimensions, :etext,  :from => "Dimensions"
 
   end
 end

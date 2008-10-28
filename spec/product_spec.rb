@@ -26,6 +26,13 @@ context "ONIX::Product" do
     product.publishing_status.should eql(4)
     product.publication_date.should eql(Date.civil(1998,9,1))
     product.year_first_published.should eql(1998)
+
+    # including ye olde, deprecated ones
+    product.height.should eql(100)
+    product.width.should eql(BigDecimal.new("200.5"))
+    product.weight.should eql(300)
+    product.thickness.should eql(300)
+    product.dimensions.should eql("100x200")
   end
 
   specify "should provide read access to product IDs" do
@@ -41,6 +48,11 @@ context "ONIX::Product" do
   specify "should provide read access to subjects" do
     product = ONIX::Product.parse(@product_node.to_s)
     product.subjects.size.should eql(1)
+  end
+
+  specify "should provide read access to measurements" do
+    product = ONIX::Product.parse(@product_node.to_s)
+    product.measurements.size.should eql(1)
   end
 
   specify "should provide write access to first level attibutes" do

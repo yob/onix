@@ -52,6 +52,11 @@
     <Measurement>720   </Measurement>
     <MeasureUnitCode>gr</MeasureUnitCode>
   </Measure>
+  <Height>100</Height>
+  <Width>200.5</Width>
+  <Weight>300</Weight>
+  <Thickness>300</Thickness>
+  <Dimensions>100x200</Dimensions>
   <SupplyDetail>
     <SupplierName>Oxford University Press Australia and New Zealand</SupplierName>
     <ProductAvailability>21</ProductAvailability>
