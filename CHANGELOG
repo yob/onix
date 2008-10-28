@@ -1,5 +1,6 @@
 v0.4.1 (28th October 2008)
 - Added accesses to various product measurements. Height, weight, etc.
+- Reduced time for an ONIX::Reader class to initialise
 
 v0.4.0 (28th October 2008)
 - Major rework: now based on ROXML instead of xml-mapping

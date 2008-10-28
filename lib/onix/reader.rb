@@ -75,11 +75,9 @@ module ONIX
       Thread.abort_on_exception = true
       Thread.new { read_input }
 
-      # TODO: this is a seriously hacky way to ensure the reading thread
-      #       has enough time to read our metadata and header objects from
-      #       the input stream. I should be making the constructor block until
-      #       it has actively confirmed the data has been read
-      sleep 1
+      while @queue.size == 0
+        sleep 0.05
+      end
     end
 
     # Iterate over all the products in an ONIX file
