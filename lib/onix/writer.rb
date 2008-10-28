@@ -1,4 +1,27 @@
 module ONIX
+  # The primary way to write a new ONIX file.
+  #
+  # Heres a quick example. The generated file will be nice an boring, as the
+  # header and product objects have no data in them, but you get the idea.
+  #
+  #   File.open("output.xml","w") do |output|
+  #     header = ONIX::Header.new
+  #     ONIX::Writer.open(output, header) do |writer|
+  #       writer << ONIX::Product.new
+  #       writer << ONIX::Product.new
+  #     end
+  #   end
+  #
+  # If you prefer, you can build your products using the APAProduct shim layer.
+  #
+  #   File.open("output.xml","w") do |output|
+  #     header = ONIX::Header.new
+  #     ONIX::Writer.open(output, header) do |writer|
+  #       writer << ONIX::APAProduct.new
+  #       writer << ONIX::APAProduct.new
+  #     end
+  #   end
+  #
   class Writer
 
     DOCTYPE = "http://www.editeur.org/onix/2.1/03/reference/onix-international.dtd"
@@ -57,7 +80,6 @@ module ONIX
       @output.write(doctype.to_s+"\n")
       @output.write("<ONIXMessage>\n")
       @output.write(@header.to_xml.to_s)
-      #@formatter.write(@header.to_xml, @output)
       @output.write("\n")
     end
 
