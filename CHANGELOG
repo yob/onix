@@ -1,3 +1,9 @@
+v0.4.0 (28th October 2008)
+- Major rework: now based on ROXML instead of xml-mapping
+  - Mostly API Compatible
+  - StreamReader and StreamWriter renamed to Reader and Writer
+  - ROXML is based on libxml, so things should be significantly faster
+
 v0.2.7 (Unreleased)
 - Add line breaks after each product
 

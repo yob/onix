@@ -21,7 +21,7 @@ task :default => [ :spec ]
 desc 'Generate documentation'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Riddle - Ruby Sphinx Client'
+  rdoc.title    = 'ONIX'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('TODO')
@@ -51,9 +51,11 @@ spec = Gem::Specification.new do |s|
   s.author            = "James Healy"
   s.email             = "jimmy@deefa.com"
   s.has_rdoc          = true
+  s.rubyforge_project = "rbook"
+  s.homepage          = "http://github.com/yob/onix/tree/master"
   s.rdoc_options     << "--title" << "ONIX - Working with the ONIX XML spec" <<
                         "--line-numbers"
-  s.test_files        = FileList["spec/**/*_spec.rb"]
+  s.test_files        = FileList["spec/**/*.rb"]
   s.files             = FileList[
     "lib/**/*.rb",
     "README.rdoc",
