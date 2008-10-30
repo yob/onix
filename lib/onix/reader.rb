@@ -68,13 +68,19 @@ module ONIX
       @product_klass = product_klass
 
       # create a sized queue to store each product read from the file
+      # We use a separate thread to read products from the source file.
+      # This queue is a thread-safe way to transfer products from that
+      # thread back into the main one.
       @queue = SizedQueue.new(100)
 
-      # launch a reader thread to process the file and store each
-      # product in the queue
+      # launch a reader thread
       Thread.abort_on_exception = true
       Thread.new { read_input }
 
+      # don't return from the constructor until the reading thread
+      # has spun up and put at least one item into the queue. If
+      # it finds no Products in the file, it queues a nil, so we
+      # shouldn't get stuck here indefinitely
       while @queue.size == 0
         sleep 0.05
       end
