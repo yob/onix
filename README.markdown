@@ -22,9 +22,15 @@ view the comments to the following classes:
 * ONIX::Reader - For reading ONIX files
 * ONIX::Writer - For writing ONIX files
 
+## Licensing
+
+This library is distributed under the terms of the MIT License. See the included file for
+more detail.
+
 ## Contributing
 
 All suggestions and patches welcome, preferably via a git repository I can pull from.
+To be honest, I'm not really expecting any, this is a niche library.
 
 ## Further Reading
 
