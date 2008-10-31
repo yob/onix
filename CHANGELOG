@@ -1,4 +1,7 @@
-v0.4.1 (28th October 2008)
+v0.4.2 (XXX)
+- Remove final remnants of REXML code
+
+v0.4.1 (UNRELEASED)
 - Added accesses to various product measurements. Height, weight, etc.
 - Reduced time for an ONIX::Reader class to initialise
 

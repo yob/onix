@@ -73,11 +73,8 @@ module ONIX
     private
 
     def start_document
-      decl = REXML::XMLDecl.new
-      doctype = REXML::DocType.new('ONIXMessage', "SYSTEM \"#{DOCTYPE}\"")
-      decl.encoding = "utf-8"
-      @output.write(decl.to_s+"\n")
-      @output.write(doctype.to_s+"\n")
+      @output.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+      @output.write("<!DOCTYPE ONIXMessage SYSTEM \"#{DOCTYPE}\">\n")
       @output.write("<ONIXMessage>\n")
       @output.write(@header.to_xml.to_s)
       @output.write("\n")
