@@ -23,7 +23,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'ONIX'
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('README.markdown')
   rdoc.rdoc_files.include('TODO')
   rdoc.rdoc_files.include('CHANGELOG')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -58,7 +58,7 @@ spec = Gem::Specification.new do |s|
   s.test_files        = FileList["spec/**/*.rb"]
   s.files             = FileList[
     "lib/**/*.rb",
-    "README.rdoc",
+    "README.markdown",
     "TODO",
     "CHANGELOG",
     "tasks/**/*.rb",
