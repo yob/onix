@@ -1,5 +1,6 @@
 v0.4.2 (XXX)
 - Remove final remnants of REXML code
+- Minor reordering of elements to match DTD
 
 v0.4.1 (UNRELEASED)
 - Added accesses to various product measurements. Height, weight, etc.

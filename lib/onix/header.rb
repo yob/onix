@@ -4,11 +4,11 @@ module ONIX
 
     xml_name "Header"
 
-    xml_accessor :from_person,     :etext, :from => "FromPerson"
     xml_accessor :from_ean_number, :etext, :from => "FromEANNumber"
     xml_accessor :from_san,        :etext, :from => "FromSAN"
     xml_accessor :sender_identifiers, [ONIX::SenderIdentifier], :from => "SenderIdentifier"
     xml_accessor :from_company,    :etext, :from => "FromCompany"
+    xml_accessor :from_person,     :etext, :from => "FromPerson"
     xml_accessor :from_email,      :etext, :from => "FromEmail"
     xml_accessor :to_ean_number,   :etext, :from => "ToEANNumber"
     xml_accessor :to_san,          :etext, :from => "ToSAN"
