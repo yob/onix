@@ -1,4 +1,7 @@
-v0.4.2 (XXX)
+v0.4.3 (11th November 2008)
+- Added support for AgentName and MarketPublishingStatus
+
+v0.4.2 (1st November 2008)
 - Remove final remnants of REXML code
 - Minor reordering of elements to match DTD
 

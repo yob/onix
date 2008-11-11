@@ -26,6 +26,7 @@ module ONIX
     xml_accessor :sales_restrictions, [ONIX::SalesRestriction], :from => "SalesRestriction"
     xml_accessor :measurements, [ONIX::Measure], :from => "Measure"
     xml_accessor :supply_details, [ONIX::SupplyDetail], :from => "SupplyDetail"
+    xml_accessor :market_representations, [ONIX::MarketRepresentation], :from => "MarketRepresentation"
 
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying

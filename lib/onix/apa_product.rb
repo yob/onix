@@ -494,6 +494,36 @@ module ONIX
       end
     end
 
+    def agent_name
+      reps = product.market_representations.first
+      return nil if reps.nil?
+      reps.agent_name
+    end
+
+    def agent_name=(value)
+      reps = product.market_representations.first
+      if reps.nil?
+        reps = ONIX::MarketRepresentation.new
+        product.market_representations << reps
+      end
+      reps.agent_name = value.to_s
+    end
+
+    def market_publishing_status
+      reps = product.market_representations.first
+      return nil if reps.nil?
+      reps.market_publishing_status
+    end
+
+    def market_publishing_status=(value)
+      reps = product.market_representations.first
+      if reps.nil?
+        reps = ONIX::MarketRepresentation.new
+        product.market_representations << reps
+      end
+      reps.market_publishing_status = value.to_i
+    end
+
     private
 
     # add a new subject to this product
