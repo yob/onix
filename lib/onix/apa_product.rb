@@ -509,6 +509,21 @@ module ONIX
       reps.agent_name = value.to_s
     end
 
+    def market_country
+      reps = product.market_representations.first
+      return nil if reps.nil?
+      reps.market_country
+    end
+
+    def market_country=(value)
+      reps = product.market_representations.first
+      if reps.nil?
+        reps = ONIX::MarketRepresentation.new
+        product.market_representations << reps
+      end
+      reps.market_country = value.to_s
+    end
+
     def market_publishing_status
       reps = product.market_representations.first
       return nil if reps.nil?
