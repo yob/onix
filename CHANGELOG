@@ -1,3 +1,6 @@
+v0.4.5 (21st November 2008)
+- APAProduct wrapper should generate valid MediaFile composites
+
 v0.4.4 (19th November 2008)
 - Added support for more elements from MarketRepresentation
 

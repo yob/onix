@@ -171,7 +171,9 @@ module ONIX
 
     # set the url to the product cover image
     def cover_url=(url)
-      media_file_set(4,url)
+      # 4 - cover image
+      # 1 - URI
+      media_file_set(4,1,url)
     end
 
     # retrieve the url to the high quality product cover image
@@ -181,7 +183,9 @@ module ONIX
 
     # set the url to the high quality product cover image
     def cover_url_hq=(url)
-      media_file_set(6,url)
+      # 6 - hq cover image
+      # 1 - URI
+      media_file_set(6,1,url)
     end
 
     # retrieve the url to the product thumbnail
@@ -191,7 +195,9 @@ module ONIX
 
     # set the url to the product cover image
     def thumbnail_url=(url)
-      media_file_set(7,url)
+      # 7 - thumbnail image
+      # 1 - URI
+      media_file_set(7,1,url)
     end
 
     # retrieve the main description
@@ -607,13 +613,14 @@ module ONIX
     end
 
     # set the value of a particular ID
-    def media_file_set(type, value)
+    def media_file_set(type, link_type, value)
       media = media_file(type)
 
       # create a new isbn record if we need to
       if media.nil?
         media = ONIX::MediaFile.new
         media.media_file_type_code = type
+        media.media_file_link_type_code = link_type
         product.media_files << media
       end
 
