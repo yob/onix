@@ -16,7 +16,7 @@ module ONIX
     xml_accessor :suffix_to_key,        :etext, :from => "SuffixToKey"
     xml_accessor :letters_after_names,  :etext, :from => "LettersAfterNames"
     xml_accessor :titles_after_names,   :etext, :from => "TitlesAfterNames"
-    xml_accessor :biographical_note,    :etext, :from => "BiographicalNote"
     xml_accessor :corporate_name,       :etext, :from => "CorporateName"
+    xml_accessor :biographical_note,    :etext, :from => "BiographicalNote"
   end
 end

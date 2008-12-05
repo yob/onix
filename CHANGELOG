@@ -1,3 +1,6 @@
+v0.4.7 (XXX)
+- Contributor sub elements should match the order specified in the DTD
+
 v0.4.6 (2nd December 2008)
 - 2 new accessors on the contributor class - bio and corporate name
 
