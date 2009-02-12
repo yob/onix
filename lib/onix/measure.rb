@@ -2,8 +2,8 @@ module ONIX
   class Measure
     include ROXML
 
-    xml_accessor :measure_type_code, :twodigit, :from => "MeasureTypeCode"
-    xml_accessor :measurement,       :decimal,  :from => "Measurement"
-    xml_accessor :measure_unit_code, :etext,    :from => "MeasureUnitCode"
+    xml_accessor :measure_type_code, :from => "MeasureTypeCode", :as => Integer # should be a 2 digit num
+    xml_accessor :measurement,       :from => "Measurement", :as => Float
+    xml_accessor :measure_unit_code, :from => "MeasureUnitCode"
   end
 end

@@ -52,7 +52,7 @@ module ONIX
   #
   class Reader
 
-    attr_reader :header, :version, :xml_lang, :xml_version, :encoding
+    attr_reader :header, :version, :xml_lang, :xml_version, :encoding, :queue
 
     # Create a new ONIX::Reader object
     #
@@ -105,20 +105,21 @@ module ONIX
     # user uses the each() method.
     #
     def read_input
-      while @reader.read == 1
+      while @reader.read
         @xml_lang    = @reader.xml_lang         if @xml_lang.nil?
         @xml_version = @reader.xml_version.to_f if @xml_version.nil?
         @encoding    = @reader.encoding         if @encoding.nil?
-        if @reader.node_type == 10
+        if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
           uri = @reader.expand.to_s
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
           @version = [major.to_i, minor.to_i, rev.to_i]
-        elsif @reader.name == "Header" && @reader.node_type == 1
-          @header = ONIX::Header.parse(@reader.expand.to_s)
+        elsif @reader.name == "Header" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
+          @header = ONIX::Header.from_xml(@reader.expand.to_s)
           @reader.next_sibling
-        elsif @reader.name == "Product" && @reader.node_type == 1
+        elsif @reader.name == "Product" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           node = @reader.expand
-          @queue.push @product_klass.parse(node.to_s)
+          puts node.to_s
+          @queue.push @product_klass.from_xml(node.to_s)
           @reader.next_sibling
         end
       end

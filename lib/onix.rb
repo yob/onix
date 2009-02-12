@@ -1,7 +1,7 @@
 require 'rubygems'
 
 # ensure we load the correct gem versions
-gem 'yob-roxml', '2.1.1'
+gem 'roxml', '2.4.3'
 gem 'andand'
 
 # and now load the actual gems
@@ -9,11 +9,11 @@ require 'roxml'
 require 'andand'
 
 # custom xml-mapping node types
-require File.join(File.dirname(__FILE__), "onix", "decimal_type")
-require File.join(File.dirname(__FILE__), "onix", "etext_type")
-require File.join(File.dirname(__FILE__), "onix", "integer_type")
-require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
-require File.join(File.dirname(__FILE__), "onix", "date_type")
+#require File.join(File.dirname(__FILE__), "onix", "decimal_type")
+#require File.join(File.dirname(__FILE__), "onix", "etext_type")
+#require File.join(File.dirname(__FILE__), "onix", "integer_type")
+#require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
+#require File.join(File.dirname(__FILE__), "onix", "date_type")
 
 # core files
 # - ordering is important, classes need to be defined before any

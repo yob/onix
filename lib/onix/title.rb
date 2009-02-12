@@ -2,9 +2,9 @@ module ONIX
   class Title
     include ROXML 
 
-    xml_accessor :title_type, :twodigit, :from => "TitleType"
-    xml_accessor :title_text, :etext,    :from => "TitleText"
-    xml_accessor :subtitle,   :etext,    :from => "Subtitle"
+    xml_accessor :title_type, :from => "TitleType", :as => Integer # should be a 2 digit num
+    xml_accessor :title_text, :from => "TitleText"
+    xml_accessor :subtitle,   :from => "Subtitle"
 
   end
 end
