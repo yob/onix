@@ -118,7 +118,6 @@ module ONIX
           @reader.next_sibling
         elsif @reader.name == "Product" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           node = @reader.expand
-          puts node.to_s
           @queue.push @product_klass.from_xml(node.to_s)
           @reader.next_sibling
         end
