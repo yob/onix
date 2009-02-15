@@ -31,10 +31,10 @@ module ONIX
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying
     #   various measurements of the product
-    xml_reader :height,     :from => "Height", :as => Float
-    xml_reader :width,      :from => "Width", :as => Float
-    xml_reader :thickness,  :from => "Thickness", :as => Float
-    xml_reader :weight,     :from => "Weight", :as => Float
+    xml_reader :height,     :from => "Height", :as => BigDecimal
+    xml_reader :width,      :from => "Width", :as => BigDecimal
+    xml_reader :thickness,  :from => "Thickness", :as => BigDecimal
+    xml_reader :weight,     :from => "Weight", :as => BigDecimal
     xml_reader :dimensions, :from => "Dimensions"
 
   end

@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'bigdecimal'
 
 # ensure we load the correct gem versions
 gem 'roxml', '2.4.9'
