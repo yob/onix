@@ -1,7 +1,7 @@
 require 'rubygems'
 
 # ensure we load the correct gem versions
-gem 'roxml', '2.4.3'
+gem 'roxml', '2.4.9'
 gem 'andand'
 
 # and now load the actual gems
