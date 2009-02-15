@@ -16,13 +16,13 @@ module ONIX
     xml_accessor :to_company,      :from => "ToCompany"
     xml_accessor :to_person,       :from => "ToPerson"
     xml_accessor :message_number,  :from => "MessageNumber"
-    xml_accessor :message_repeat,  :from => "MessageRepeat", :as => Integer
+    xml_accessor :message_repeat,  :from => "MessageRepeat", :as => Fixnum
     xml_accessor :sent_date,       :from => "SentDate", :as => Date
     xml_accessor :message_note,    :from => "MessageNote"
 
     # defaults
     xml_accessor  :default_language_of_text, :from => "DefaultLanguageOfText"
-    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode", :as => Integer
+    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode", :as => Fixnum
     xml_accessor  :default_currency_code,   :from => "DefaultCurrencyCode"
     xml_reader    :default_linear_unit,     :from => "DefaultLinearUnit"        # deprecated in ONIX spec
     xml_reader    :default_weight_unit,     :from => "DefaultWeightUnit"        # deprecated in ONIX spec

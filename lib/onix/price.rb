@@ -2,7 +2,7 @@ module ONIX
   class Price
     include ROXML
 
-    xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Integer # should be a 2 digit num
+    xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Fixnum # should be a 2 digit num
     xml_accessor :price_type_qualifier, :from => "PriceTypeQualifier"
     xml_accessor :price_type_description, :from => "PriceTypeDescription"
     xml_accessor :price_per, :from => "PricePer"
