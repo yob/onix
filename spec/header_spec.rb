@@ -14,12 +14,12 @@ context "ONIX::Header" do
   end
 
   specify "should correctly convert to a string" do
-    header = ONIX::Header.parse(@header_node.to_s)
+    header = ONIX::Header.from_xml(@header_node.to_s)
     header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
   specify "should provide read access to first level attibutes" do
-    header = ONIX::Header.parse(@header_node.to_s)
+    header = ONIX::Header.from_xml(@header_node.to_s)
 
     header.from_ean_number.should eql("1111111111111")
     header.from_san.should eql("1111111")
