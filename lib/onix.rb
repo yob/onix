@@ -9,12 +9,41 @@ gem 'andand'
 require 'roxml'
 require 'andand'
 
-# custom xml-mapping node types
-#require File.join(File.dirname(__FILE__), "onix", "decimal_type")
-#require File.join(File.dirname(__FILE__), "onix", "etext_type")
-#require File.join(File.dirname(__FILE__), "onix", "integer_type")
-#require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
-#require File.join(File.dirname(__FILE__), "onix", "date_type")
+module ONIX
+  module Version #:nodoc:
+    Major = 0
+    Minor = 4
+    Tiny  = 7
+
+    String = [Major, Minor, Tiny].join('.')
+  end
+
+  class Formatters
+    def self.yyyymmdd
+      lambda do |val|
+        if val.nil? || !val.respond_to?(:strftime)
+          nil
+        else
+          val.strftime("%Y%m%d")
+        end
+      end
+    end
+
+    def self.two_digit
+      lambda do |val|
+        if val.nil?
+          nil
+        elsif val < 10
+          "0#{val}"
+        elsif val > 99
+          val.to_s[-2,2]
+        else
+          val.to_s
+        end
+      end
+    end
+  end
+end
 
 # core files
 # - ordering is important, classes need to be defined before any
@@ -49,13 +78,3 @@ require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
 
-module ONIX
-  module Version #:nodoc:
-    Major = 0
-    Minor = 4
-    Tiny  = 7
-
-    String = [Major, Minor, Tiny].join('.')
-  end
-
-end
