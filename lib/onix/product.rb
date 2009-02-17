@@ -4,8 +4,28 @@ module ONIX
 
     xml_name "Product"
 
+    two_digit = lambda do |val|
+      if val.nil?
+        nil
+      elsif val < 10
+        "0#{val}"
+      elsif val > 99
+        val.to_s[-2,2]
+      else
+        val.to_s
+      end
+    end
+
+    yyyymmdd = lambda do |val|
+      if val.nil? || !val.respond_to?(:strftime)
+        nil
+      else
+        val.strftime("%Y%m%d")
+      end
+    end
+
     xml_accessor :record_reference, :from => "RecordReference"
-    xml_accessor :notification_type, :from => "NotificationType", :as => Fixnum # should be a 2 digit num
+    xml_accessor :notification_type, :as => Fixnum, :to_xml => two_digit, :from => "NotificationType" # should be a 2 digit num
     xml_accessor :product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier]
     xml_accessor :product_form, :from => "ProductForm"
     xml_accessor :series, :from => "Series"
@@ -20,8 +40,8 @@ module ONIX
     xml_accessor :media_files, :from => "MediaFile", :as => [ONIX::MediaFile]
     xml_accessor :imprints, :from => "Imprint", :as => [ONIX::Imprint]
     xml_accessor :publishers, :from => "Publisher", :as => [ONIX::Publisher]
-    xml_accessor :publishing_status, :from => "PublishingStatus", :as => Fixnum # should be a 2 digit num
-    xml_accessor :publication_date, :from => "PublicationDate", :as => Date
+    xml_accessor :publishing_status, :as => Fixnum, :to_xml => two_digit, :from => "PublishingStatus" # should be a 2 digit num
+    xml_accessor :publication_date, :from => "PublicationDate", :as => Date, :to_xml => yyyymmdd
     xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Fixnum
     xml_accessor :sales_restrictions, :from => "SalesRestriction", :as => [ONIX::SalesRestriction]
     xml_accessor :measurements, :from => "Measure", :as => [ONIX::Measure]

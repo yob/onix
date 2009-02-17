@@ -74,7 +74,7 @@ context "ONIX::Product" do
     product.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be_true
 
     product.bic_main_subject = "EB"
-    product.to_xml.to_s.include?("<BicMainSubject>EB</BicMainSubject>").should be_true
+    product.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be_true
 
     product.publishing_status = 4
     product.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be_true
