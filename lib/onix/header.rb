@@ -22,7 +22,7 @@ module ONIX
 
     # defaults
     xml_accessor  :default_language_of_text, :from => "DefaultLanguageOfText"
-    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
+    xml_accessor  :default_price_type_code, :from => "DefaultPriceTypeCode", :as => TwoDigitInt #Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor  :default_currency_code,   :from => "DefaultCurrencyCode"
     xml_reader    :default_linear_unit,     :from => "DefaultLinearUnit"        # deprecated in ONIX spec
     xml_reader    :default_weight_unit,     :from => "DefaultWeightUnit"        # deprecated in ONIX spec

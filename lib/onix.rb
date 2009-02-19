@@ -45,6 +45,9 @@ module ONIX
   end
 end
 
+# type classes
+require File.join(File.dirname(__FILE__), "onix", "two_digit_int")
+
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them
