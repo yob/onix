@@ -108,7 +108,7 @@ module ONIX
       while @reader.read
         @xml_lang    = @reader.xml_lang         if @xml_lang.nil?
         @xml_version = @reader.xml_version.to_f if @xml_version.nil?
-        @encoding    = @reader.encoding         if @encoding.nil?
+        @encoding    = encoding_const_to_name(@reader.encoding) if @encoding.nil?
         if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
           uri = @reader.expand.to_s
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
@@ -123,6 +123,49 @@ module ONIX
         end
       end
       @queue.push nil
+    end
+
+    def encoding_const_to_name(const)
+      case const
+      when LibXML::XML::Encoding::UTF_8
+        "utf-8"
+      when LibXML::XML::Encoding::UTF_16LE
+        "utf-16le"
+      when LibXML::XML::Encoding::UTF_16BE
+        "utf-16be"
+      when LibXML::XML::Encoding::UCS_4LE
+        "ucs-4le"
+      when LibXML::XML::Encoding::UCS_4BE
+        "ucs-4be"
+      when LibXML::XML::Encoding::UCS_2
+        "ucs-2"
+      when LibXML::XML::Encoding::ISO_8859_1
+        "iso-8859-1"
+      when LibXML::XML::Encoding::ISO_8859_2
+        "iso-8859-2"
+      when LibXML::XML::Encoding::ISO_8859_3
+        "iso-8859-3"
+      when LibXML::XML::Encoding::ISO_8859_4
+        "iso-8859-4"
+      when LibXML::XML::Encoding::ISO_8859_5
+        "iso-8859-5"
+      when LibXML::XML::Encoding::ISO_8859_6
+        "iso-8859-6"
+      when LibXML::XML::Encoding::ISO_8859_7
+        "iso-8859-7"
+      when LibXML::XML::Encoding::ISO_8859_8
+        "iso-8859-8"
+      when LibXML::XML::Encoding::ISO_8859_9
+        "iso-8859-9"
+      when LibXML::XML::Encoding::ISO_2022_JP
+        "iso-2022-jp"
+      when LibXML::XML::Encoding::SHIF_JIS
+        "shift-jis"
+      when LibXML::XML::Encoding::EUC_JP
+        "euc-jp"
+      when LibXML::XML::Encoding::ASCII
+        "ascii"
+      end
     end
   end
 end
