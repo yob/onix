@@ -2,10 +2,12 @@ module ONIX
   class Contributor
     include ROXML
 
-    xml_accessor :sequence_number,      :from => "SequenceNumber"
+    xml_name "Contributor"
+
+    xml_accessor :sequence_number,      :from => "SequenceNumber", :as => Fixnum
     xml_accessor :contributor_role,     :from => "ContributorRole"
     xml_accessor :language_code,        :from => "LanguageCode"
-    xml_accessor :sequence_number_within_role,  :from => "SequenceNumberWithinRole"
+    xml_accessor :sequence_number_within_role,  :from => "SequenceNumberWithinRole", :as => Fixnum
     xml_accessor :person_name,          :from => "PersonName"
     xml_accessor :person_name_inverted, :from => "PersonNameInverted"
     xml_accessor :titles_before_name,   :from => "TitlesBeforeName"
