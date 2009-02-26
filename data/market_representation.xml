@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MarketRepresentation>
+  <AgentName>Allen &amp; Unwin</AgentName>
+  <AgentRole>07</AgentRole>
+  <MarketCountry>AU</MarketCountry>
+  <MarketPublishingStatus>02</MarketPublishingStatus>
+  <MarketDate>
+    <MarketDateRole>01</MarketDateRole>
+    <Date>20080701</Date>
+  </MarketDate>
+</MarketRepresentation>
