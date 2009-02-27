@@ -46,6 +46,9 @@ module ONIX
   end
 end
 
+# silence some warnings from ROXML
+ROXML::SILENCE_XML_NAME_WARNING = true
+
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them
