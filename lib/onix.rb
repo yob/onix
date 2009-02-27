@@ -13,8 +13,8 @@ require 'andand'
 module ONIX
   module Version #:nodoc:
     Major = 0
-    Minor = 4
-    Tiny  = 7
+    Minor = 5
+    Tiny  = 0
 
     String = [Major, Minor, Tiny].join('.')
   end
