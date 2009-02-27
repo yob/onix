@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SupplyDetail>
+  <SupplierName>Rainbow Book Agencies</SupplierName>
+  <TelephoneNumber>+61 3 9481 6611</TelephoneNumber>
+  <FaxNumber>+61 3 9481 2371</FaxNumber>
+  <EmailAddress>rba@rainbowbooks.com.au</EmailAddress>
+  <SupplyToCountry>AU</SupplyToCountry>
+  <ProductAvailability>21</ProductAvailability>
+  <Stock>
+    <OnHand>2862</OnHand>
+    <OnOrder>0</OnOrder>
+  </Stock>
+  <Price>
+    <PriceTypeCode>02</PriceTypeCode>
+    <PriceAmount>7.5</PriceAmount>
+  </Price>
+</SupplyDetail>
