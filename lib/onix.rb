@@ -20,6 +20,16 @@ module ONIX
   end
 
   class Formatters
+    def self.decimal
+      lambda do |val|
+        if val.kind_of?(BigDecimal)
+          val.to_s("F")
+        else
+          val.to_s
+        end
+      end
+    end
+
     def self.yyyymmdd
       lambda do |val|
         if val.nil? || !val.respond_to?(:strftime)
