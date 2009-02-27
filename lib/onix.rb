@@ -1,19 +1,63 @@
 require 'rubygems'
+require 'bigdecimal'
+require 'cgi'
 
 # ensure we load the correct gem versions
-gem 'yob-roxml', '2.1.1'
+gem 'roxml', '2.5.0'
 gem 'andand'
 
 # and now load the actual gems
 require 'roxml'
 require 'andand'
 
-# custom xml-mapping node types
-require File.join(File.dirname(__FILE__), "onix", "decimal_type")
-require File.join(File.dirname(__FILE__), "onix", "etext_type")
-require File.join(File.dirname(__FILE__), "onix", "integer_type")
-require File.join(File.dirname(__FILE__), "onix", "two_digit_type")
-require File.join(File.dirname(__FILE__), "onix", "date_type")
+module ONIX
+  module Version #:nodoc:
+    Major = 0
+    Minor = 4
+    Tiny  = 7
+
+    String = [Major, Minor, Tiny].join('.')
+  end
+
+  class Formatters
+    def self.decimal
+      lambda do |val|
+        if val.kind_of?(BigDecimal)
+          val.to_s("F")
+        else
+          val.to_s
+        end
+      end
+    end
+
+    def self.yyyymmdd
+      lambda do |val|
+        if val.nil? || !val.respond_to?(:strftime)
+          nil
+        else
+          val.strftime("%Y%m%d")
+        end
+      end
+    end
+
+    def self.two_digit
+      lambda do |val|
+        if val.nil?
+          nil
+        elsif val < 10
+          "0#{val}"
+        elsif val > 99
+          val.to_s[-2,2]
+        else
+          val.to_s
+        end
+      end
+    end
+  end
+end
+
+# silence some warnings from ROXML
+ROXML::SILENCE_XML_NAME_WARNING = true
 
 # core files
 # - ordering is important, classes need to be defined before any
@@ -48,13 +92,3 @@ require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
 
-module ONIX
-  module Version #:nodoc:
-    Major = 0
-    Minor = 4
-    Tiny  = 7
-
-    String = [Major, Minor, Tiny].join('.')
-  end
-
-end

@@ -15,7 +15,7 @@ context "ONIX::Product" do
   end
 
   specify "should provide read access to first level attibutes" do
-    product = ONIX::Product.parse(@product_node.to_s)
+    product = ONIX::Product.from_xml(@product_node.to_s)
 
     product.record_reference.should eql("365-9780194351898")
     product.notification_type.should eql(3)
@@ -36,22 +36,22 @@ context "ONIX::Product" do
   end
 
   specify "should provide read access to product IDs" do
-    product = ONIX::Product.parse(@product_node.to_s)
+    product = ONIX::Product.from_xml(@product_node.to_s)
     product.product_identifiers.size.should eql(3)
   end
 
   specify "should provide read access to titles" do
-    product = ONIX::Product.parse(@product_node.to_s)
+    product = ONIX::Product.from_xml(@product_node.to_s)
     product.titles.size.should eql(1)
   end
 
   specify "should provide read access to subjects" do
-    product = ONIX::Product.parse(@product_node.to_s)
+    product = ONIX::Product.from_xml(@product_node.to_s)
     product.subjects.size.should eql(1)
   end
 
   specify "should provide read access to measurements" do
-    product = ONIX::Product.parse(@product_node.to_s)
+    product = ONIX::Product.from_xml(@product_node.to_s)
     product.measurements.size.should eql(1)
   end
 
@@ -74,7 +74,7 @@ context "ONIX::Product" do
     product.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be_true
 
     product.bic_main_subject = "EB"
-    product.to_xml.to_s.include?("<BicMainSubject>EB</BicMainSubject>").should be_true
+    product.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be_true
 
     product.publishing_status = 4
     product.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be_true
@@ -86,11 +86,11 @@ context "ONIX::Product" do
     product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be_true
   end
 
-  specify "should correctly parse files that have non-standard entties"
+  specify "should correctly from_xml files that have non-standard entties"
 =begin
   do
     file = File.join(@data_path, "extra_entities.xml")
-    product = ONIX::Product.parse(File.read(file))
+    product = ONIX::Product.from_xml(File.read(file))
 
     product.titles.first.title_text.should eql("Ipod® & Itunes® for Dummies®, 4th Edition")
   end

@@ -64,8 +64,8 @@ spec = Gem::Specification.new do |s|
     "tasks/**/*.rb",
     "tasks/**/*.rake"
   ]
-  s.add_dependency('yob-roxml', '2.1.1')
-  s.add_dependency('libxml-ruby', '>=0.8.3')
+  s.add_dependency('roxml', '2.5.0')
+  s.add_dependency('libxml-ruby', '>=0.9.8')
   s.add_dependency('andand')
 end
 

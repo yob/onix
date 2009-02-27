@@ -12,6 +12,10 @@ module ONIX
       
       include Forwardable
 
+      def from_xml(xml)
+        self.new(::ONIX::Product.from_xml(xml))
+      end
+
       def parse_file(filename)
         self.new(::ONIX::Product.parse(File.read(filename)))
       end

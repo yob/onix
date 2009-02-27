@@ -2,21 +2,23 @@ module ONIX
   class Contributor
     include ROXML
 
-    xml_accessor :sequence_number,      :from => "SequenceNumber"
+    xml_name "Contributor"
+
+    xml_accessor :sequence_number,      :from => "SequenceNumber", :as => Fixnum
     xml_accessor :contributor_role,     :from => "ContributorRole"
     xml_accessor :language_code,        :from => "LanguageCode"
-    xml_accessor :sequence_number_within_role,  :from => "SequenceNumberWithinRole"
-    xml_accessor :person_name,          :etext, :from => "PersonName"
-    xml_accessor :person_name_inverted, :etext, :from => "PersonNameInverted"
-    xml_accessor :titles_before_name,   :etext, :from => "TitlesBeforeName"
-    xml_accessor :names_before_key,     :etext, :from => "NamesBeforeKey"
-    xml_accessor :prefix_to_key,        :etext, :from => "PrefixToKey"
-    xml_accessor :key_names,            :etext, :from => "KeyNames"
-    xml_accessor :names_after_key,      :etext, :from => "NamesArterKey"
-    xml_accessor :suffix_to_key,        :etext, :from => "SuffixToKey"
-    xml_accessor :letters_after_names,  :etext, :from => "LettersAfterNames"
-    xml_accessor :titles_after_names,   :etext, :from => "TitlesAfterNames"
-    xml_accessor :corporate_name,       :etext, :from => "CorporateName"
-    xml_accessor :biographical_note,    :etext, :from => "BiographicalNote"
+    xml_accessor :sequence_number_within_role,  :from => "SequenceNumberWithinRole", :as => Fixnum
+    xml_accessor :person_name,          :from => "PersonName"
+    xml_accessor :person_name_inverted, :from => "PersonNameInverted"
+    xml_accessor :titles_before_name,   :from => "TitlesBeforeName"
+    xml_accessor :names_before_key,     :from => "NamesBeforeKey"
+    xml_accessor :prefix_to_key,        :from => "PrefixToKey"
+    xml_accessor :key_names,            :from => "KeyNames"
+    xml_accessor :names_after_key,      :from => "NamesArterKey"
+    xml_accessor :suffix_to_key,        :from => "SuffixToKey"
+    xml_accessor :letters_after_names,  :from => "LettersAfterNames"
+    xml_accessor :titles_after_names,   :from => "TitlesAfterNames"
+    xml_accessor :corporate_name,       :from => "CorporateName"
+    xml_accessor :biographical_note,    :from => "BiographicalNote"
   end
 end
