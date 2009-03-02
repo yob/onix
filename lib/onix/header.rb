@@ -12,7 +12,7 @@ module ONIX
     xml_accessor :from_email,      :from => "FromEmail"
     xml_accessor :to_ean_number,   :from => "ToEANNumber"
     xml_accessor :to_san,          :from => "ToSAN"
-    xml_accessor :addressee_identifier, :from => "AddresseeIdentifier", :as => [ONIX::AddresseeIdentifier]
+    xml_accessor :addressee_identifiers, :from => "AddresseeIdentifier", :as => [ONIX::AddresseeIdentifier]
     xml_accessor :to_company,      :from => "ToCompany"
     xml_accessor :to_person,       :from => "ToPerson"
     xml_accessor :message_number,  :from => "MessageNumber"
@@ -27,5 +27,11 @@ module ONIX
     xml_reader    :default_linear_unit,     :from => "DefaultLinearUnit"        # deprecated in ONIX spec
     xml_reader    :default_weight_unit,     :from => "DefaultWeightUnit"        # deprecated in ONIX spec
     xml_accessor  :default_class_of_trade,  :from => "DefaultClassOfTrade"
+
+    def initialize
+      self.sender_identifiers = []
+      self.addressee_identifiers = []
+    end
   end
+
 end

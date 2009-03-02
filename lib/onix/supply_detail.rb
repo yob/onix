@@ -19,5 +19,10 @@ module ONIX
     xml_accessor :stock, :from => "Stock", :as => [ONIX::Stock]
     xml_accessor :prices, :from => "Price", :as => [ONIX::Price]
 
+    def initialize
+      self.websites = []
+      self.stock = []
+      self.prices = []
+    end
   end
 end

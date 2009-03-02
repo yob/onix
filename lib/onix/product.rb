@@ -37,5 +37,20 @@ module ONIX
     xml_reader :weight,     :from => "Weight", :as => BigDecimal
     xml_reader :dimensions, :from => "Dimensions"
 
+    def initialize
+      self.product_identifiers = []
+      self.titles = []
+      self.contributors = []
+      self.websites = []
+      self.subjects = []
+      self.text = []
+      self.media_files = []
+      self.imprints = []
+      self.publishers = []
+      self.sales_restrictions = []
+      self.measurements = []
+      self.supply_details = []
+      self.market_representations = []
+    end
   end
 end
