@@ -1,6 +1,7 @@
-v0.5 (28th Febuary 2009)
-- Swicth ROXML dependency from a patched version to vanilla
-- Transparent change to ONIX gem users
+v0.5 (2nd March 2009)
+- Switch ROXML dependency from a patched version to vanilla
+  - Vanilla ROXML now has all the features we need
+  - This change should be transparent to ONIX gem users
 
 v0.4.7 (9th December 2008)
 - Contributor sub elements should match the order specified in the DTD
