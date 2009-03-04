@@ -159,7 +159,7 @@ module ONIX
         "iso-8859-9"
       when LibXML::XML::Encoding::ISO_2022_JP
         "iso-2022-jp"
-      when LibXML::XML::Encoding::SHIF_JIS
+      when LibXML::XML::Encoding::SHIFT_JIS
         "shift-jis"
       when LibXML::XML::Encoding::EUC_JP
         "euc-jp"

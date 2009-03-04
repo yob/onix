@@ -1,3 +1,6 @@
+v0.5.1 (4th March 2009)
+- Fix a single letter typo
+
 v0.5 (2nd March 2009)
 - Switch ROXML dependency from a patched version to vanilla
   - Vanilla ROXML now has all the features we need
