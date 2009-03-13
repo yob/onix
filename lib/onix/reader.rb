@@ -1,5 +1,3 @@
-require 'thread'
-require 'timeout'
 require 'stringio'
 
 module ONIX
@@ -66,65 +64,56 @@ module ONIX
       end
 
       @product_klass = product_klass
+      @header = nil
 
-      # create a sized queue to store each product read from the file
-      # We use a separate thread to read products from the source file.
-      # This queue is a thread-safe way to transfer products from that
-      # thread back into the main one.
-      @queue = SizedQueue.new(100)
-
-      # launch a reader thread
-      Thread.abort_on_exception = true
-      Thread.new { read_input }
-
-      # don't return from the constructor until the reading thread
-      # has spun up and put at least one item into the queue. If
-      # it finds no Products in the file, it queues a nil, so we
-      # shouldn't get stuck here indefinitely
-      while @queue.size == 0
-        sleep 0.05
+      while @header.nil? 
+        obj = read_next
+        if obj.kind_of?(ONIX::Header)
+          @header = obj
+        end
       end
     end
 
     # Iterate over all the products in an ONIX file
     #
     def each(&block)
-      obj = @queue.pop
-      while !obj.nil?
+      while !(obj = read_next).nil?
         yield obj
-        obj = @queue.pop
       end
     end
 
     private
 
-    # Walk the ONIX file, and grab the bits we're interested in.
+    # Walk the ONIX file, and grab the next header or product fragment. If we
+    # encounter other useful bits of info along the way (encoding, etc) then
+    # store them for later.
     #
-    # High level attributes and the header are stored as attributes of the reader
-    # class. Products are placed in a queue, ready to be popped off when the
-    # user uses the each() method.
-    #
-    def read_input
+    def read_next
       while @reader.read
+
         @xml_lang    = @reader.xml_lang         if @xml_lang.nil?
         @xml_version = @reader.xml_version.to_f if @xml_version.nil?
         @encoding    = encoding_const_to_name(@reader.encoding) if @encoding.nil?
+
         if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
           uri = @reader.expand.to_s
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
           @version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.name == "Header" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          @header = ONIX::Header.from_xml(@reader.expand.to_s)
+          node = @reader.expand
           @reader.next_sibling
+          return ONIX::Header.from_xml(node.to_s)
         elsif @reader.name == "Product" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           node = @reader.expand
-          @queue.push @product_klass.from_xml(node.to_s)
           @reader.next_sibling
+          return @product_klass.from_xml(node.to_s)
         end
       end
-      @queue.push nil
+      return nil
     end
 
+    # simple mapping of encoding constants to a string
+    #
     def encoding_const_to_name(const)
       case const
       when LibXML::XML::Encoding::UTF_8

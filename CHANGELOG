@@ -1,4 +1,8 @@
-v0.5.2 (XXX)
+v0.6.0 (XXX)
+- remove use of threads in ONIX::Reader
+  - a producer/consumer pattern was useful in the REXML stream parsing days, but
+    now LibXML's Reader binding provides a better alternative
+  - API left unchanged, this was all under the hood
 - bump required ROXML version to 2.5.2
 
 v0.5.1 (4th March 2009)
