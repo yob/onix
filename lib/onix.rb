@@ -3,7 +3,7 @@ require 'bigdecimal'
 require 'cgi'
 
 # ensure we load the correct gem versions
-gem 'roxml', '2.5.1'
+gem 'roxml', '2.5.2'
 gem 'andand'
 
 # and now load the actual gems
