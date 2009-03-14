@@ -10,6 +10,7 @@ context "ONIX::Reader" do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     @file1    = File.join(data_path, "9780194351898.xml")
     @file2    = File.join(data_path, "two_products.xml")
+    @entity_file = File.join(data_path, "entities.xml")
   end
 
   specify "should initialize with a filename" do
@@ -58,5 +59,21 @@ context "ONIX::Reader" do
     products.size.should eql(2)
     products[0].record_reference.should eql("365-9780194351898")
     products[1].record_reference.should eql("9780754672326")
+  end
+
+  # libxml can handle the 3 standard entities fine (&amp; &lt; and ^gt;) but
+  # barfs when it encounters others. In theory other entityies are defined in the
+  # ONIX DTD, but I can't work out how to get libxml to recognise them
+  specify "should correctly parse a file that has an entity in it" do
+    reader = ONIX::Reader.new(@entity_file)
+    
+    products = []
+    reader.each do |product|
+      products << product
+    end
+
+    products.size.should eql(1)
+    products.first.record_reference.should eql("9780732287573")
+    products.first.titles.first.title_text.should eql("High Noon\342\200\223in Nimbin")
   end
 end

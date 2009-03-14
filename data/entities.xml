@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/02/reference/onix-international.dtd">
+<ONIXMessage>
+  <Header>
+    <FromCompany>HarperCollins Publishers</FromCompany>
+    <ToCompany>Australian Booksellers Association</ToCompany>
+    <SentDate>20081106</SentDate>
+  </Header>
+  <Product>
+    <RecordReference>9780732287573</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>02</ProductIDType>
+      <IDValue>073228757X</IDValue>
+    </ProductIdentifier>
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9780732287573</IDValue>
+    </ProductIdentifier>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9780732287573</IDValue>
+    </ProductIdentifier>
+    <ProductForm>BC</ProductForm>
+    <ProductFormDetail>B106</ProductFormDetail>
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>High Noon&ndash;in Nimbin</TitleText>
+    </Title>
+    <Website>
+      <WebsiteLink>http://www.harpercollins.com.au/global_scripts/product_catalog/book_xml.asp?isbn=073228757X</WebsiteLink>
+    </Website>
+    <Contributor>
+      <ContributorRole>A01</ContributorRole>
+      <PersonNameInverted>Barrett, Robert G</PersonNameInverted>
+      <KeyNames>Barrett</KeyNames>
+    </Contributor>
+    <BICMainSubject>FA</BICMainSubject>
+    <OtherText>
+      <TextTypeCode>02</TextTypeCode>
+      <Text textformat="02">&#39;He looks kind of happyn, the Ken Done of local literature&#39; Courier-Mail </Text>
+    </OtherText>
+    <Imprint>
+      <ImprintName>HarperCollins</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublishingRole>01</PublishingRole>
+      <PublisherName>HarperCollins Publishers</PublisherName>
+    </Publisher>
+    <PublishingStatus>02</PublishingStatus>
+    <PublicationDate>20090301</PublicationDate>
+    <Measure><MeasureTypeCode>01</MeasureTypeCode>
+      <Measurement>234</Measurement>
+      <MeasureUnitCode>mm</MeasureUnitCode>
+    </Measure>
+    <Measure><MeasureTypeCode>02</MeasureTypeCode>
+      <Measurement>153</Measurement>
+      <MeasureUnitCode>mm</MeasureUnitCode>
+    </Measure>
+    <SupplyDetail>
+      <SupplierName>Harper Entertainment Distribution Services</SupplierName>
+      <Price>
+        <PriceTypeCode>02</PriceTypeCode>
+        <PriceAmount>29.99</PriceAmount>
+      </Price>
+    </SupplyDetail>
+    <MarketRepresentation>
+      <AgentName>HarperCollins Publishers</AgentName>
+      <AgentRole>07</AgentRole>
+      <MarketCountry>AU</MarketCountry>
+      <MarketPublishingStatus>02</MarketPublishingStatus>
+      <MarketDate>
+        <MarketDateRole>01</MarketDateRole>
+        <Date>20090301</Date>
+      </MarketDate>
+    </MarketRepresentation>
+  </Product>
+</ONIXMessage>
