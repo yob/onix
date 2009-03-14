@@ -17,14 +17,12 @@ context "ONIX::Reader" do
     reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
   end
 
-=begin
   specify "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
       reader = ONIX::Reader.new(f)
       reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
     end
   end
-=end
 
   specify "should provide access to various XML metadata from file" do
     reader = ONIX::Reader.new(@file1)
