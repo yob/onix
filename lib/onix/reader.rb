@@ -100,13 +100,13 @@ module ONIX
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
           @version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.name == "Header" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          node = @reader.expand
+          str = @reader.read_outer_xml
           @reader.next_sibling
-          return ONIX::Header.from_xml(node.to_s)
+          return ONIX::Header.from_xml(str)
         elsif @reader.name == "Product" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          node = @reader.expand
+          str = @reader.read_outer_xml
           @reader.next_sibling
-          return @product_klass.from_xml(node.to_s)
+          return @product_klass.from_xml(str)
         end
       end
       return nil
