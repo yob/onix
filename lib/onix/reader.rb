@@ -91,9 +91,9 @@ module ONIX
     def read_next
       while @reader.read
 
-        @xml_lang    = @reader.xml_lang         if @xml_lang.nil?
-        @xml_version = @reader.xml_version.to_f if @xml_version.nil?
-        @encoding    = encoding_const_to_name(@reader.encoding) if @encoding.nil?
+        @xml_lang    ||= @reader.xml_lang
+        @xml_version ||= @reader.xml_version.to_f
+        @encoding    ||= encoding_const_to_name(@reader.encoding)
 
         if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
           uri = @reader.expand.to_s
