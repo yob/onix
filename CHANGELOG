@@ -1,3 +1,14 @@
+v0.6.1 (Unreleased)
+- Stopped using LibXMLs Reader class as the basis for our reader.
+  - We were getting too many segfaults (even 1 is too many!)
+  - until we resolve it, reverted to manual string parsing
+  - This is a fairly major regression of functionality. For 99% of files
+    it won't matter, but for some corner cases it will. ie UTF-16 encoded
+    files
+  - Will also be noticeably slower
+  - Hopefully only a short term fix, until I work out what is going on with
+    libxml
+
 v0.6.0 (18th March 2009)
 - remove use of threads in ONIX::Reader
   - a producer/consumer pattern was useful in the REXML stream parsing days, but
