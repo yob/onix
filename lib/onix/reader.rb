@@ -82,7 +82,7 @@ module ONIX
       @offsets.each_with_index do |offset, idx|
         if idx + 1 < @offsets.size
           str = read_frag(@offsets[idx], @offsets[idx+1] - @offsets[idx])
-          yield ONIX::Product.from_xml(str)
+          yield @product_klass.from_xml(str)
         end
       end
     end
