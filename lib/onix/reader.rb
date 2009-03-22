@@ -49,6 +49,7 @@ module ONIX
   # version it is.
   #
   class Reader
+    include Enumerable
 
     attr_reader :header, :version, :xml_lang, :xml_version, :encoding, :queue
 
