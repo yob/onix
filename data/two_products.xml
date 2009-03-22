@@ -70,45 +70,45 @@
         <PriceAmount>59.95</PriceAmount>
       </Price>
     </SupplyDetail>
-    <Product>
-      <RecordReference>9780754672326</RecordReference>
-      <NotificationType>03</NotificationType>
-      <ProductIdentifier>
-        <ProductIDType>03</ProductIDType>
-        <IDValue>9780754672326</IDValue>
-      </ProductIdentifier>
-      <ProductForm>BB</ProductForm>
-      <NoSeries/>
-      <Title>
-        <TitleType>01</TitleType>
-        <TitleText>Air Transport and Globalisation</TitleText>
-      </Title>
-      <Contributor>
-        <SequenceNumber>01</SequenceNumber>
-        <ContributorRole>A01</ContributorRole>
-        <PersonNameInverted>Professor B. Graham</PersonNameInverted>
-      </Contributor>
-      <NoEdition/>
-      <OtherText>
-        <TextTypeCode>01</TextTypeCode>
-        <Text>'Time-space compression' as theorized by David Harvey and Manuel Castells, has been accompanied by an exponential growth in global air transport. Yet, despite the importance of aviation in the functioning of globalizing economies and transnational societies, it has been little more than an assumption in the existing literature concerning globalisation.*While also addressing key issues such as the geopolitics and economics of air transport and the very significant changes which have occurred in the world air transport industry over the past decade, this book focuses on the globalization of air transport and its impacts on globalization. It shows how this interconnects with the processes of liberalization and deregulation, as well as examining the ever more vital interaction with issues of sustainability. *The dominant theme of the book is that globalization and transnationalism are increasingly dependent on the growth of a transport mode that is, in itself, incompatible with the attainment of the greater social good of a sustainable environment.</Text>
-      </OtherText>
-      <Publisher>
-        <PublishingRole>01</PublishingRole>
-        <PublisherName>Ashgate</PublisherName>
-      </Publisher>
-      <SupplyDetail>
-        <SupplierName>Ashgate</SupplierName>
-        <AvailabilityCode>CS</AvailabilityCode>
-        <Price>
-          <PriceAmount>124.95</PriceAmount>
-          <PriceTypeCode>02</PriceTypeCode>
-        </Price>
-      </SupplyDetail>
-      <SalesRestriction>
-        <SalesRestrictionType>00</SalesRestrictionType>
-        <SalesRestrictionDetail>Unknown</SalesRestrictionDetail>
-      </SalesRestriction>
-    </Product>
+  </Product>
+  <Product>
+    <RecordReference>9780754672326</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9780754672326</IDValue>
+    </ProductIdentifier>
+    <ProductForm>BB</ProductForm>
+    <NoSeries/>
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Air Transport and Globalisation</TitleText>
+    </Title>
+    <Contributor>
+      <SequenceNumber>01</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonNameInverted>Professor B. Graham</PersonNameInverted>
+    </Contributor>
+    <NoEdition/>
+    <OtherText>
+      <TextTypeCode>01</TextTypeCode>
+      <Text>'Time-space compression' as theorized by David Harvey and Manuel Castells, has been accompanied by an exponential growth in global air transport. Yet, despite the importance of aviation in the functioning of globalizing economies and transnational societies, it has been little more than an assumption in the existing literature concerning globalisation.*While also addressing key issues such as the geopolitics and economics of air transport and the very significant changes which have occurred in the world air transport industry over the past decade, this book focuses on the globalization of air transport and its impacts on globalization. It shows how this interconnects with the processes of liberalization and deregulation, as well as examining the ever more vital interaction with issues of sustainability. *The dominant theme of the book is that globalization and transnationalism are increasingly dependent on the growth of a transport mode that is, in itself, incompatible with the attainment of the greater social good of a sustainable environment.</Text>
+    </OtherText>
+    <Publisher>
+      <PublishingRole>01</PublishingRole>
+      <PublisherName>Ashgate</PublisherName>
+    </Publisher>
+    <SupplyDetail>
+      <SupplierName>Ashgate</SupplierName>
+      <AvailabilityCode>CS</AvailabilityCode>
+      <Price>
+        <PriceAmount>124.95</PriceAmount>
+        <PriceTypeCode>02</PriceTypeCode>
+      </Price>
+    </SupplyDetail>
+    <SalesRestriction>
+      <SalesRestrictionType>00</SalesRestrictionType>
+      <SalesRestrictionDetail>Unknown</SalesRestrictionDetail>
+    </SalesRestriction>
   </Product>
 </ONIXMessage>
