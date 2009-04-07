@@ -682,7 +682,7 @@ module ONIX
       if text.nil?
         text = ONIX::OtherText.new
         text.text_type_code = type
-        self.text << text
+        product.text << text
       end
 
       # store the new value
