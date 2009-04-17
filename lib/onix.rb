@@ -22,7 +22,9 @@ module ONIX
   class Formatters
     def self.decimal
       lambda do |val|
-        if val.kind_of?(BigDecimal)
+        if val.nil?
+          nil
+        elsif val.kind_of?(BigDecimal)
           val.to_s("F")
         else
           val.to_s
