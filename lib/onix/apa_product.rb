@@ -408,6 +408,12 @@ module ONIX
       price_set(2, num)
     end
 
+    # just get the first price we can find, regardless of the type.
+    # useful as a backup for reading files from that don't contain a type
+    def price
+      price_get(nil).andand.price_amount
+    end
+
     # retrieve the height of the product
     #
     # If APAProduct#measurement_system is metric, these will be in mm, otherwise they
