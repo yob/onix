@@ -10,19 +10,18 @@ context "ONIX::Reader" do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     @file1    = File.join(data_path, "9780194351898.xml")
     @file2    = File.join(data_path, "two_products.xml")
-    @long_file = File.join(data_path, "Bookwise_July_2008.xml")
     @entity_file = File.join(data_path, "entities.xml")
   end
 
   specify "should initialize with a filename" do
     reader = ONIX::Reader.new(@file1)
-    reader.instance_variable_get("@input").should be_a_kind_of(IO)
+    reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
   end
 
   specify "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
       reader = ONIX::Reader.new(f)
-      reader.instance_variable_get("@input").should be_a_kind_of(IO)
+      reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
     end
   end
 
@@ -76,16 +75,5 @@ context "ONIX::Reader" do
     products.size.should eql(1)
     products.first.record_reference.should eql("9780732287573")
     products.first.titles.first.title_text.should eql("High Noon\342\200\223in Nimbin")
-  end
-
-  # for some reason I'm getting segfaults when I read a file with more than 7 records
-  specify "should correctly parse a file with more than 7 records in in" do
-    reader = ONIX::Reader.new(@long_file)
-    counter = 0
-    reader.each do |product|
-      counter += 1
-    end
-
-    counter.should eql(346)
   end
 end

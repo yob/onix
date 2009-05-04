@@ -1,3 +1,6 @@
+v0.6.5 (Unreleased)
+- try using LibXML for reader again
+
 v0.6.4 (Unrelease)
 - Add APAProduct#price
 
