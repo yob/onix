@@ -69,9 +69,9 @@ module ONIX
 
       while @header.nil? 
         obj = read_next
-        if obj.kind_of?(ONIX::Header)
+        #if obj.kind_of?(ONIX::Header)
           @header = obj
-        end
+        #end
       end
     end
 
@@ -92,22 +92,28 @@ module ONIX
     def read_next
       while @reader.read
 
-        @xml_lang    ||= @reader.xml_lang
-        @xml_version ||= @reader.xml_version.to_f
-        @encoding    ||= encoding_const_to_name(@reader.encoding)
+        #raise @reader.node_type.to_s
+        #@xml_lang    ||= @reader.xml_lang
+        #@xml_version ||= @reader.xml_version.to_f
+        #@encoding    ||= encoding_const_to_name(@reader.encoding)
 
         if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
           uri = @reader.expand.to_s
           m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
           @version = [major.to_i, minor.to_i, rev.to_i]
-        elsif @reader.name == "Header" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          str = @reader.read_outer_xml
-          @reader.next_sibling
-          return ONIX::Header.from_xml(str)
-        elsif @reader.name == "Product" && @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          str = @reader.read_outer_xml
-          @reader.next_sibling
-          return @product_klass.from_xml(str)
+        elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
+          if @reader.name == "Header"
+            str = @reader.read_outer_xml
+            @reader.next_sibling
+            #return str.dup
+            return ONIX::Header.from_xml(str.dup)
+          elsif @reader.name == "Product"
+            str = @reader.read_outer_xml
+            @reader.next_sibling
+            @product_klass.from_xml(str.dup)
+            return str.dup
+            #return @product_klass.from_xml(str.dup)
+          end
         end
       end
       return nil
@@ -116,6 +122,7 @@ module ONIX
     # simple mapping of encoding constants to a string
     #
     def encoding_const_to_name(const)
+      return nil if const.nil?
       case const
       when LibXML::XML::Encoding::UTF_8
         "utf-8"
