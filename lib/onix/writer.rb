@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module ONIX
   # The primary way to write a new ONIX file.
   #

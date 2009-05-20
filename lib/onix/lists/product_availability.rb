@@ -1,3 +1,5 @@
+# coding: utf-8
+
 module ONIX
   module Lists
     # Code list 65
