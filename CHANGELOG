@@ -1,4 +1,7 @@
-v0.6.4 (Unrelease)
+v0.6.5 (Unreleased)
+- Ruby 1.9 compat
+
+v0.6.4 (Unreleased)
 - Add APAProduct#price
 
 v0.6.3(Unreleased)
