@@ -12,7 +12,7 @@ module ONIX
     xml_accessor :sequence_number_within_role,  :from => "SequenceNumberWithinRole", :as => Fixnum
     xml_accessor :person_name,          :from => "PersonName"
     xml_accessor :person_name_inverted, :from => "PersonNameInverted"
-    xml_accessor :titles_before_name,   :from => "TitlesBeforeName"
+    xml_accessor :titles_before_names,  :from => "TitlesBeforeNames"
     xml_accessor :names_before_key,     :from => "NamesBeforeKey"
     xml_accessor :prefix_to_key,        :from => "PrefixToKey"
     xml_accessor :key_names,            :from => "KeyNames"
