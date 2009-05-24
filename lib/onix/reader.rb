@@ -71,9 +71,9 @@ module ONIX
 
       while @header.nil? 
         obj = read_next
-        #if obj.kind_of?(ONIX::Header)
+        if obj.kind_of?(ONIX::Header)
           @header = obj
-        #end
+        end
       end
     end
 
@@ -106,14 +106,14 @@ module ONIX
         elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           if @reader.name == "Header"
             str = @reader.read_outer_xml
-            @reader.next_sibling
+            #@reader.next_sibling
             #return str.dup
             return ONIX::Header.from_xml(str.dup)
           elsif @reader.name == "Product"
             str = @reader.read_outer_xml
-            @reader.next_sibling
-            @product_klass.from_xml(str.dup)
-            return str.dup
+            #@reader.next_sibling
+            return @product_klass.from_xml(str.dup)
+            #return str.dup
             #return @product_klass.from_xml(str.dup)
           end
         end
