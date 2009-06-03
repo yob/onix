@@ -53,71 +53,63 @@ module ONIX
   class Reader
     include Enumerable
 
-    attr_reader :header, :version, :xml_lang, :xml_version, :encoding, :queue
+    attr_reader :header , :version, :xml_lang, :xml_version, :encoding
 
-    # Create a new ONIX::Reader object
-    #
     def initialize(input, product_klass = ::ONIX::Product)
-      if input.kind_of? String
+      if input.kind_of?(String)
         @reader = LibXML::XML::Reader.file(input)
       elsif input.kind_of?(IO)
         @reader = LibXML::XML::Reader.io(input)
       else
-        throw "Unable to read from path or file"
+        ArgumentError "Unable to read from file or IO stream"
       end
 
       @product_klass = product_klass
-      @header = nil
 
-      while @header.nil? 
-        obj = read_next
-        if obj.kind_of?(ONIX::Header)
-          @header = obj
-        end
-      end
+      @header = read_next
+
+      @xml_lang    ||= @reader.xml_lang
+      @xml_version ||= @reader.xml_version.to_f
+      @encoding    ||= encoding_const_to_name(@reader.encoding)
     end
 
     # Iterate over all the products in an ONIX file
     #
     def each(&block)
-      while !(obj = read_next).nil?
+      while obj = read_next
         yield obj
       end
     end
 
+    def close
+      @reader.close if @reader
+    end
+
     private
 
-    # Walk the ONIX file, and grab the next header or product fragment. If we
-    # encounter other useful bits of info along the way (encoding, etc) then
-    # store them for later.
+    # Walk the ONIX file, and grab the next header or product fragment.
     #
     def read_next
       while @reader.read
 
-        #raise @reader.node_type.to_s
-        #@xml_lang    ||= @reader.xml_lang
-        #@xml_version ||= @reader.xml_version.to_f
-        #@encoding    ||= encoding_const_to_name(@reader.encoding)
-
         if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
-          uri = @reader.expand.to_s
-          m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
-          @version = [major.to_i, minor.to_i, rev.to_i]
+          # TODO restore ONIX version extraction. The following expand()
+          #      call is triggering unpredictable behaviour in libxml-ruby
+          #      1.1.3 with libxml2 2.7.3. Sometimes segfaults, othertimes
+          #      cryptic errors about the input file being truncated or
+          #      incomplete
+          #uri = @reader.expand.to_s.dup
+          #m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
+          #@version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           if @reader.name == "Header"
-            str = @reader.read_outer_xml
-            #@reader.next_sibling
-            #return str.dup
-            return ONIX::Header.from_xml(str.dup)
+            return ONIX::Header.from_xml(@reader.read_outer_xml.dup)
           elsif @reader.name == "Product"
-            str = @reader.read_outer_xml
-            #@reader.next_sibling
-            return @product_klass.from_xml(str.dup)
-            #return str.dup
-            #return @product_klass.from_xml(str.dup)
+            return @product_klass.from_xml(@reader.read_outer_xml.dup)
           end
         end
       end
+
       return nil
     end
 
@@ -164,6 +156,8 @@ module ONIX
         "euc-jp"
       when LibXML::XML::Encoding::ASCII
         "ascii"
+      else
+        nil
       end
     end
   end
