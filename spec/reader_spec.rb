@@ -79,8 +79,9 @@ context "ONIX::Reader" do
     end
 
     products.size.should eql(1)
-    products.first.record_reference.should eql("9780732287573")
+    products.first.titles.size.should eql(1)
     products.first.titles.first.title_text.should eql("High Noon\342\200\223in Nimbin")
+    products.first.record_reference.should eql("9780732287573")
   end
 
   # for some reason I'm getting segfaults when I read a file with more than 7 records
