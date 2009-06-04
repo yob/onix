@@ -103,10 +103,10 @@ context "ONIX::Reader" do
     end
 
     # ROXML appears to munge the string encodings
-    #if RUBY_VERSION >= "1.9"
-    #  utf8 = Encoding.find("utf-8")
-    #  product.contributors[0].person_name_inverted.encoding.should eql(utf8)
-    #end
+    if RUBY_VERSION >= "1.9"
+      utf8 = Encoding.find("utf-8")
+      product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+    end
 
     product.contributors[0].person_name_inverted.should eql("Küng, Hans")
 
@@ -120,10 +120,10 @@ context "ONIX::Reader" do
     end
 
     # ROXML appears to munge the string encodings
-    #if RUBY_VERSION >= "1.9"
-    #  utf8 = Encoding.find("utf-8")
-    #  product.contributors[0].person_name_inverted.encoding.should eql(utf8)
-    #end
+    if RUBY_VERSION >= "1.9"
+      utf8 = Encoding.find("utf-8")
+      product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+    end
 
     product.contributors[0].person_name_inverted.should eql("Küng, Hans")
 

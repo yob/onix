@@ -3,6 +3,7 @@
 module ONIX
   class Imprint
     include ROXML
+    include ONIX::Common
 
     xml_name "Imprint"
 

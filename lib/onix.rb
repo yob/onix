@@ -65,6 +65,8 @@ unless ROXML.const_defined?("SILENCE_XML_NAME_WARNING")
   ROXML::SILENCE_XML_NAME_WARNING = true
 end
 
+require File.join(File.dirname(__FILE__), "onix", "common")
+
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them

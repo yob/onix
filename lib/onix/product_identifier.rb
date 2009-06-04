@@ -3,6 +3,7 @@
 module ONIX
   class ProductIdentifier
     include ROXML
+    include ONIX::Common
 
     xml_name "ProductIdentifier"
 
