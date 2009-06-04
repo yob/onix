@@ -10,6 +10,7 @@ context "ONIX::Reader" do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     @file1    = File.join(data_path, "9780194351898.xml")
     @file2    = File.join(data_path, "two_products.xml")
+    @long_file   = File.join(data_path, "Bookwise_July_2008.xml")
     @entity_file = File.join(data_path, "entities.xml")
     @utf_16_file = File.join(data_path, "utf_16.xml")
     @iso_8859_1_file = File.join(data_path, "iso_8859_1.xml")
