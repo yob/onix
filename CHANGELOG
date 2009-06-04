@@ -1,6 +1,12 @@
-v0.6.5 (Unreleased)
+vXXXX (Unreleased)
 - try using LibXML for reader again
-- Ruby 1.9 compat
+  - retrieving the ONIX version of the input file is currently disabled, as 
+    that seems to be the source of our instability
+- Various Ruby 1.9 compatability tweaks
+  - add source file coding declarations. All source files are UTF-8
+  - ONIX::Reader ensures all input data is converted to UTF-8
+  - the ROXML based objects seem to forget the encoding when they're marshalled,
+    so force string based attributes *back* to UTF-8
 
 v0.6.4 (Unreleased)
 - Add APAProduct#price
