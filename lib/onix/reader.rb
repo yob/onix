@@ -61,7 +61,7 @@ module ONIX
       elsif input.kind_of?(IO)
         @reader = LibXML::XML::Reader.io(input)
       else
-        ArgumentError "Unable to read from file or IO stream"
+        raise ArgumentError, "Unable to read from file or IO stream"
       end
 
       @product_klass = product_klass
