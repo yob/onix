@@ -103,15 +103,25 @@ module ONIX
           #@version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           if @reader.name == "Header"
-            str = normalise_string_encoding(@reader.read_outer_xml.dup)
-            return ONIX::Header.from_xml(str)
+            str = normalise_string_encoding(@reader.read_outer_xml.to_s.dup)
+            if str.size == 0
+              return ONIX::Header.new
+            else
+              return ONIX::Header.from_xml(str)
+            end
           elsif @reader.name == "Product"
-            str = normalise_string_encoding(@reader.read_outer_xml.dup)
-            return @product_klass.from_xml(str)
+            str = normalise_string_encoding(@reader.read_outer_xml.to_s.dup)
+            if str.size == 0
+              return @product_klass.new
+            else
+              return @product_klass.from_xml(str)
+            end
           end
         end
       end
 
+      return nil
+    rescue LibXML::XML::Error => e
       return nil
     end
 

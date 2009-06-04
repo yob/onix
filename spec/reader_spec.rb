@@ -67,11 +67,11 @@ context "ONIX::Reader" do
   end
 
   # libxml can handle the 3 standard entities fine (&amp; &lt; and ^gt;) but
-  # barfs when it encounters others. In theory other entityies are defined in the
+  # barfs when it encounters others. In theory other entities are defined in the
   # ONIX DTD, but I can't work out how to get libxml to recognise them
   specify "should correctly parse a file that has an entity in it" do
     reader = ONIX::Reader.new(@entity_file)
-    
+
     products = []
     reader.each do |product|
       products << product
