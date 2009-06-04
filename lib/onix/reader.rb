@@ -103,7 +103,8 @@ module ONIX
           #@version = [major.to_i, minor.to_i, rev.to_i]
         elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
           if @reader.name == "Header"
-            return ONIX::Header.from_xml(@reader.read_outer_xml.dup)
+            str = normalise_string_encoding(@reader.read_outer_xml.dup)
+            return ONIX::Header.from_xml(str)
           elsif @reader.name == "Product"
             str = normalise_string_encoding(@reader.read_outer_xml.dup)
             return @product_klass.from_xml(str)
@@ -114,7 +115,8 @@ module ONIX
       return nil
     end
 
-    # if necesary, convert the provided string to utf-8
+    # XML::Reader seems to transparently convert all input data to utf-8, howver
+    # on Ruby 1.9 it fails to correctly set the encoding on the strings.
     #
     def normalise_string_encoding(str)
       if RUBY_VERSION >= "1.9"
