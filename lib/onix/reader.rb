@@ -105,12 +105,23 @@ module ONIX
           if @reader.name == "Header"
             return ONIX::Header.from_xml(@reader.read_outer_xml.dup)
           elsif @reader.name == "Product"
-            return @product_klass.from_xml(@reader.read_outer_xml.dup)
+            str = normalise_string_encoding(@reader.read_outer_xml.dup)
+            return @product_klass.from_xml(str)
           end
         end
       end
 
       return nil
+    end
+
+    # if necesary, convert the provided string to utf-8
+    #
+    def normalise_string_encoding(str)
+      if RUBY_VERSION >= "1.9"
+        return str.dup.force_encoding("utf-8")
+      else
+        str
+      end
     end
 
     # simple mapping of encoding constants to a string
