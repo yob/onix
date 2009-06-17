@@ -3,6 +3,7 @@
 module ONIX
   class Publisher
     include ROXML
+    include ONIX::Common
 
     xml_name "Publisher"
 

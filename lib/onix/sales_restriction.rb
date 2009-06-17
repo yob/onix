@@ -3,6 +3,7 @@
 module ONIX
   class SalesRestriction
     include ROXML
+    include ONIX::Common
 
     xml_name "SalesRestriction"
 

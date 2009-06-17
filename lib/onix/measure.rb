@@ -3,6 +3,7 @@
 module ONIX
   class Measure
     include ROXML
+    include ONIX::Common
 
     xml_name "Measure"
 

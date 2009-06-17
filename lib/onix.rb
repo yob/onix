@@ -15,8 +15,8 @@ require 'andand'
 module ONIX
   module Version #:nodoc:
     Major = 0
-    Minor = 6
-    Tiny  = 7
+    Minor = 7
+    Tiny  = 0
 
     String = [Major, Minor, Tiny].join('.')
   end
@@ -64,6 +64,8 @@ end
 unless ROXML.const_defined?("SILENCE_XML_NAME_WARNING")
   ROXML::SILENCE_XML_NAME_WARNING = true
 end
+
+require File.join(File.dirname(__FILE__), "onix", "common")
 
 # core files
 # - ordering is important, classes need to be defined before any

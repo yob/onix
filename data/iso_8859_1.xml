@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/02/reference/onix-international.dtd">
+<ONIXMessage>
+ <Header>
+  <FromCompany>John Wiley &amp; Sons Australia</FromCompany>
+  <ToCompany>Professional/Trade</ToCompany>
+  <SentDate>20090519</SentDate>
+  <MessageNote>Complete Reload</MessageNote>
+  <DefaultLanguageOfText>eng</DefaultLanguageOfText>
+  <DefaultPriceTypeCode>02</DefaultPriceTypeCode>
+  <DefaultCurrencyCode>AUD</DefaultCurrencyCode>
+ </Header>
+ <Product>
+  <RecordReference>1742169341</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+   <ProductIDType>02</ProductIDType>
+   <IDValue>1742169341</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+   <ProductIDType>15</ProductIDType>
+   <IDValue>9781742169347</IDValue>
+  </ProductIdentifier>
+  <ProductForm>BC</ProductForm>
+  <Title>
+   <TitleType>01</TitleType>
+   <TitleText>Property Is a Girl's Best Friend</TitleText>
+  </Title>
+  <Contributor>
+   <ContributorRole>A01</ContributorRole>
+   <PersonNameInverted>Küng, Hans</PersonNameInverted>
+  </Contributor>
+  <NumberOfPages>304</NumberOfPages>
+  <BICMainSubject>KF</BICMainSubject>
+  <Subject>
+   <SubjectSchemeIdentifier>12</SubjectSchemeIdentifier>
+   <SubjectCode>F</SubjectCode>
+  </Subject>
+  <AudienceCode>01</AudienceCode>
+  <Imprint>
+   <ImprintName>Wrightbooks</ImprintName>
+  </Imprint>
+  <Publisher>
+   <PublishingRole>01</PublishingRole>
+   <PublisherName>John Wiley &amp; Sons Australia</PublisherName>
+  </Publisher>
+  <PublishingStatus>02</PublishingStatus>
+  <PublicationDate>20091001</PublicationDate>
+  <SupplyDetail>
+   <SupplierName>John Wiley &amp; Sons Australia</SupplierName>
+   <SupplierRole>01</SupplierRole>
+   <ProductAvailability>10</ProductAvailability>
+   <Price>
+    <PriceAmount>32.95</PriceAmount>
+   </Price>
+  </SupplyDetail>
+ </Product>
+</ONIXMessage>

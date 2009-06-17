@@ -3,6 +3,7 @@
 module ONIX
   class Website
     include ROXML
+    include ONIX::Common
 
     xml_name "Website"
 
