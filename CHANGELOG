@@ -1,3 +1,6 @@
+v0.7.1 (24th June 2009)
+- Small tweak to ordering of elements in the Product group
+
 v0.7.0 (17th June 2009)
 - try using LibXML for reader again
   - retrieving the ONIX version of the input file is currently disabled, as 

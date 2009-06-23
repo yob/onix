@@ -14,8 +14,8 @@ module ONIX
     xml_accessor :series, :from => "Series"
     xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
     xml_accessor :titles, :from => "Title", :as => [ONIX::Title]
-    xml_accessor :contributors, :from => "Contributor", :as => [ONIX::Contributor]
     xml_accessor :websites, :from => "Website", :as => [ONIX::Website]
+    xml_accessor :contributors, :from => "Contributor", :as => [ONIX::Contributor]
     xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
     xml_accessor :bic_main_subject, :from => "BICMainSubject"
     xml_accessor :subjects, :from => "Subject", :as => [ONIX::Subject]
