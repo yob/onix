@@ -39,10 +39,10 @@ module ONIX
     def initialize(oldfile, newfile)
       raise ArgumentError, "#{oldfile} does not exist" unless File.file?(oldfile)
       raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
-      raise "xsltproc app not found" unless app_available?("xsltproc")
-      raise "isutf8 app not found"   unless app_available?("isutf8")
-      raise "iconv app not found"    unless app_available?("iconv")
-      raise "sed app not found"      unless app_available?("sed")
+      raise "java app not found"    unless app_available?("which")
+      raise "isutf8 app not found"  unless app_available?("isutf8")
+      raise "iconv app not found"   unless app_available?("iconv")
+      raise "sed app not found"     unless app_available?("sed")
 
       @oldfile = oldfile
       @newfile = newfile
@@ -95,7 +95,10 @@ module ONIX
       inpath = File.expand_path(src)
       outpath = File.expand_path(dest)
       xsltpath = File.dirname(__FILE__) + "/../../support/switch-onix-tagnames-1.1.xsl"
-      `xsltproc -o #{outpath} #{xsltpath} #{inpath}`
+      # xsltproc doesn't set the DTD correctly in the output. Using
+      # saxon instead.
+      #`xsltproc -o #{outpath} #{xsltpath} #{inpath}`
+      `java -jar /usr/share/java/saxon.jar #{inpath} #{xsltpath} > #{outpath}`
     end
 
     def to_utf8(src, dest)
