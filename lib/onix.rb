@@ -100,3 +100,5 @@ require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
 
+# misc
+require File.join(File.dirname(__FILE__), "onix", "normaliser")

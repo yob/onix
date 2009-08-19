@@ -1,3 +1,9 @@
+v0.7.2 (19th August 2009)
+- Added ONIX::Normaliser class
+  - for normalising various ONIX files into a form that makes them easy
+    to process. Shouldn't be necesary to pre-process files like this, but
+    I'm sick of trying to wrestle the libxml ruby bindings
+
 v0.7.1 (24th June 2009)
 - Small tweak to ordering of elements in the Product group
 

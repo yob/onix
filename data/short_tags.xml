@@ -1,0 +1,191 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE ONIXmessage SYSTEM "http://www.editeur.org/onix/2.1/short/onix-international.dtd">
+<ONIXmessage release="2.1">
+  <header>
+    <m174>Baylor University Press</m174>
+    <m175>Jennifer Hannah, 2547104800, jennifer_hannah@baylor.edu</m175>
+    <m178></m178>
+    <m179></m179>
+    <m182>20090622</m182>
+    <m183>Title information from Baylor University Press</m183>
+    <m184>eng</m184>
+    <m185>01</m185>
+    <m186>USD</m186>
+    <m187>in</m187>
+    <m188>oz</m188>
+    <m193>General trade</m193>
+  </header>
+  <product>
+    <a001>160258186X</a001>
+    <a002>03</a002>
+    <productidentifier>
+      <b221>02</b221>
+      <b244>160258186X</b244>
+    </productidentifier>
+    <productidentifier>
+      <b221>03</b221>
+      <b244>9781602581869</b244>
+    </productidentifier>
+    <productidentifier>
+      <b221>15</b221>
+      <b244>9781602581869</b244>
+    </productidentifier>
+    <b246>02</b246>
+    <b012>BB</b012>
+    <n338/>
+    <title>
+      <b202>01</b202>
+      <b203>The Acts of the Apostles</b203>
+      <b030>The</b030>
+      <b031>Acts of the Apostles</b031>
+      <b029>Four Centuries of Baptist Interpretation</b029>
+    </title>
+    <contributor>
+      <b034>1</b034>
+      <b035>B01</b035>
+      <b036>Beth Allison Barr</b036>
+      <b037>Barr, Beth Allison</b037>
+      <b044><![CDATA[
+        Beth Allison Barr is Assistant Professor of European Women?s History, Baylor University.  Her research interests focus on sermon literature in England, 1350-1750, and she is the author of The Pastoral Care of Women in Late Medieval England.  She lives in Waco, Texas.]]>
+      </b044>
+    </contributor>
+    <contributor>
+      <b034>2</b034>
+      <b035>B01</b035>
+      <b036>Bill J. Leonard</b036>
+      <b037>Leonard, Bill J.</b037>
+      <b044><![CDATA[
+        Bill J. Leonard is Dean of the School of Divinity and Professor of Church History, Wake Forest University.  A prolific writer, his most recent books include Baptist Questions, Baptist Answers: Exploring Christian Faith (2008), Baptists in America (2007), and Baptist Ways: A History (2003).  He lives in Winston-Salem, North Carolina.]]>
+      </b044>
+    </contributor>
+    <contributor>
+      <b034>3</b034>
+      <b035>B01</b035>
+      <b036>Mikeal C. Parsons</b036>
+      <b037>Parsons, Mikeal C.</b037>
+      <b044><![CDATA[
+        Mikeal C. Parsons is Kidd L. and Buna Hitchcock Macon Chair in Religion, Baylor University.  His most recently published books are Acts: Paideia Commentary on the New Testament (2008), Luke: Storyteller, Interpreter, Evangelist (2007), Body and Character in Luke and Acts: The Subversion of Physiognomy in Early Christianity (2006), and with Heidi J. Hornik, the three-volume work Illuminating Luke.  He lives in Waco, Texas.]]>
+      </b044>
+    </contributor>
+    <contributor>
+      <b034>4</b034>
+      <b035>B01</b035>
+      <b036>C. Douglas Weaver</b036>
+      <b037>Weaver, C. Douglas</b037>
+      <b044><![CDATA[
+        C. Douglas Weaver is Director of Undergraduate Studies and Associate Professor of Religion, Baylor University.  He is the author or editor of six books, including most recently In Search of the New Testament Church: The Baptist Story (2008), Second to None: A History of Second-Ponce de Leon.]]>
+      </b044>
+    </contributor>
+    <contributor>
+      <b034>5</b034>
+      <b035>A32</b035>
+      <b036>Helen Barrett Montgomery</b036>
+      <b037>Montgomery, Helen Barrett</b037>
+    </contributor>
+    <n386/>
+    <language>
+      <b253>01</b253>
+      <b252>eng</b252>
+    </language>
+    <b061>1000</b061>
+    <b064>REL073000</b064>
+    <subject>
+      <b067>10</b067>
+      <b069>REL006050</b069>
+    </subject>
+    <subject>
+      <b067>10</b067>
+      <b069>REL006080</b069>
+    </subject>
+    <subject>
+      <b067>20</b067>
+      <b070>Baptist; theology; religion; interpretation; Scripture; Bible; Acts; hermeneutics; New Testament</b070>
+    </subject>
+    <b073>01</b073>
+    <othertext>
+      <d102>01</d102>
+      <d103>02</d103>
+      <d104><![CDATA[
+        <i>The Acts of the Apostles: Four Centuries of Baptist Interpretation</i> is a landmark work of research, containing examples of specific ways that Baptists have used Acts in their confessions, sermons, tracts, commentaries, monographs, devotional and denominational literature, speeches, and hymns. Including the entirety of the Acts as translated by Baptist luminary Helen Barrett Montgomery, this commentary beautifully illustrates the diversity of Baptist responses to this book of Scripture, and in so doing, a variety of hermeneutical approaches within the Baptist tradition.]]>
+      </d104>
+    </othertext>
+    <othertext>
+      <d102>08</d102>
+      <d103>02</d103>
+      <d104><![CDATA[
+        ?This is a path-breaking scholarly undertaking that shows Baptisst the scriptural reasoning that underlies their denominational existence.?<br><br>?David W. Bebbington, Professor of History, University of Stirling]]>
+          </d104>
+        </othertext>
+        <mediafile>
+          <f114>04</f114>
+          <f115>05</f115>
+          <f116>01</f116>
+          <f117>http://www.netread.com/jcusers/1338/1795382/image/lgcover.2337028.tif</f117>
+        </mediafile>
+        <mediafile>
+          <f114>07</f114>
+          <f115>03</f115>
+          <f116>01</f116>
+          <f117>http://www.netread.com/jcusers/1338/1795382/image/smcover.2337029.tif</f117>
+        </mediafile>
+        <imprint>
+          <b241>02</b241>
+          <b242>Baylor University Press</b242>
+          <b243>BAYL001</b243>
+          <b079>Baylor University Press</b079>
+        </imprint>
+        <publisher>
+          <b291>01</b291>
+          <b241>02</b241>
+          <b243>BAYL001</b243>
+          <b081>Baylor University Press</b081>
+        </publisher>
+        <b083>United States</b083>
+        <b394>04</b394>
+        <b003>20090701</b003>
+        <salesrights>
+          <b089>01</b089>
+          <b388>WORLD</b388>
+        </salesrights>
+        <measure>
+          <c093>01</c093>
+          <c094>10</c094>
+          <c095>in</c095>
+        </measure>
+        <measure>
+          <c093>02</c093>
+          <c094>7</c094>
+          <c095>in</c095>
+        </measure>
+        <supplydetail>
+          <j137>Baylor University Press</j137>
+          <j268>02</j268>
+          <j269>Y</j269>
+          <j141>IP</j141>
+          <j396>20</j396>
+          <j142>20090615</j142>
+          <price>
+            <j148>01</j148>
+            <discountcoded>
+              <j363>02</j363>
+              <j378>Baylor University Press</j378>
+              <j364>BSR</j364>
+            </discountcoded>
+            <j151>99.95</j151>
+            <j152>USD</j152>
+            <j161>20090622</j161>
+          </price>
+          <price>
+            <j148>01</j148>
+            <discountcoded>
+              <j363>02</j363>
+              <j378>Baylor University Press</j378>
+              <j364>BSR</j364>
+            </discountcoded>
+            <j151>66.99</j151>
+            <j152>GBP</j152>
+            <j161>20090622</j161>
+          </price>
+        </supplydetail>
+      </product>
+    </ONIXmessage>
