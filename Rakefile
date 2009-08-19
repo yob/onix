@@ -62,7 +62,10 @@ spec = Gem::Specification.new do |s|
     "TODO",
     "CHANGELOG",
     "tasks/**/*.rb",
-    "tasks/**/*.rake"
+    "tasks/**/*.rake",
+    "dtd/**/*.*",
+    "support/**/*.*",
+    "spec/**/*.*"
   ]
   s.add_dependency('roxml', '2.5.3')
   s.add_dependency('libxml-ruby', '>=1.1.3')
