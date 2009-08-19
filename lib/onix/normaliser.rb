@@ -77,10 +77,12 @@ module ONIX
     end
 
     def next_tempfile
+      p = nil
       Tempfile.open("onix") do |tf|
         tf.close
-        tf.path
+        p = tf.path
       end
+      p
     end
 
     # uses an XSLT stylesheet provided by edituer to convert
