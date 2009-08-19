@@ -1,0 +1,1012 @@
+<!--
+**************************************************
+*                                                *
+*               ONIX INTERNATIONAL               *
+*                                                *
+*                    XML DTD                     *
+*       LOCAL TAG NAMES DEFINITION MODULE        *
+*              REFERENCE TAG VERSION             *
+*                                                *
+*    Original filename: ONIX-INTERNATIONAL.DTD   *
+*                                                *
+*          Original author: Francis Cave         *
+*                                                *
+*                  Version 2.1                   *
+*                  Revision 03                   *
+*                Status: RELEASED                *
+*            Release date: 2006-01-31            *
+*                                                *
+*             (c) 2000-2006 EDItEUR              *
+*             http://www.editeur.org/            *
+*                                                *
+**************************************************
+
+
+
+TERMS AND CONDITIONS OF USE OF THE ONIX PRODUCT INFORMATION XML DTD
+
+All ONIX standards and documentation are copyright materials, made available 
+free of charge for general use.  If you use the ONIX Product Information 
+Message DTD, you will be deemed to have accepted these terms and conditions:
+
+1.  You agree that you will not add to, delete from, amend, or copy for use 
+outside of the ONIX Product Information Message DTD, any part of the DTD 
+except for strictly internal use in your own organisation.
+
+2.  You agree that if you wish to add to, amend, or make extracts of the 
+DTD for any purpose that is not strictly internal to your own organisation, 
+you will in the first instance notify EDItEUR and allow EDItEUR to review 
+and comment on your proposed use, in the interest of securing an orderly 
+development of the DTD for the benefit of other users.
+
+If you do not accept these terms, you must not use the ONIX Product Information 
+Message DTD.
+
+Full copies of the latest release of this DTD and all associated documentation 
+are available from the EDItEUR web site, where may also be found details of 
+how to contact EDItEUR for advice on the use of this DTD. The URL for the 
+EDItEUR web site is:
+
+http://www.editeur.org/
+
+
+
+MODULE REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+2006-01-31: Release 2.1 Revision 03
+
+     1. (PR.24) New composite element added with reference tag name 'StockQuantityCoded'
+        and short tag name 'stockquantitycoded', containing new elements with 
+        reference tag names 'StockQuantityCodeType', 'StockQuantityCodeTypeName' and 
+        'StockQuantityCode' and short tag names 'j293', 'j296' and 'j297' 
+        respectively.
+     2. (PR.24) New composite element added with reference tag name 'OnOrderDetail'
+        and short tag name 'onorderdetail', containing a new element with 
+        reference tag name 'ExpectedDate' and short tag name 'j302'.
+     3. (PR.24) New elements added with reference tag names 'Territory', 
+        'CountryExcluded' and 'TerritoryExcluded' and short tag names 'j303', 'j304' 
+        and 'j308' respectively.
+     4. (PR.26) New element added with reference tag name 'ReprintDetail' and short 
+        tag name 'k309'.
+
+2004-08-03: Release 2.1 Revision 02
+
+     2. (PR.8) New element added with reference tag name 'RegionCode' 
+        and short tag name 'b398'.
+     3. (PR.24) New element added with reference tag name 'SupplyRestrictionDetail' 
+        and short tag name 'j399'.
+     5. (PR.25) New composite element added with reference tag name 'MarketRepresentation' 
+        and short tag name 'marketrepresentation'.
+     6. (PR.25) New composite element added with reference tag name 'AgentIdentifier' 
+        and short tag name 'agentidentifier', containing new element with 
+        reference tag name 'AgentIDType' and short tag name 'j400'.
+     7. (PR.25) New elements added with reference tag names 'AgentName', 
+        'AgentRole', 'MarketCountry', 'MarketTerritory', 'MarketCountryExcluded', 
+        'MarketRestrictionDetail' and 'MarketPublishingStatus' and short tag 
+        names 'j401', 'j402', 'j403', 'j404', 'j405', 'j406' and 'j407' 
+        respectively.
+     8. (PR.25) New composite element with reference tag name 'MarketDate' 
+        and short tag name 'marketdate' added, containing new element with 
+        reference tag name 'MarketDateRole' and short tag name 'j408'.
+
+2004-03-16: Release 2.1 Revision 01 - corrections
+
+     1. Element %Percentage; renamed %Percent; to be consistent with 
+        documentation.
+
+2003-12-29: Release 2.1 Revision 01
+
+     New elements:
+
+     1. (PR.20) New elements added with reference tag names 'PublishingStatus' 
+        and 'PublishingStatusNote' and short tag names 'b394' and 'b395' 
+        respectively.
+     2. (PR.24) New element added with reference tag name 'ProductAvailability' 
+        and short tag name 'j396'.
+     3. (PR.24) New element added with reference tag name 'LastDateForReturns' 
+        and short tag name 'j387'.
+
+     For details of corrections see module 'reference.elt'.
+
+2003-06-20: Major revision of Release 2.0 for Release 2.1
+
+     NOTE - Only notes relating to changes affecting this module are given here. 
+            See 'reference.elt' for a complete set of revision notes.
+
+        GENERAL
+
+     2. Main module renamed according to the version of the DTD, i.e.
+        "reference.elt" in this version.
+
+        PR.3
+
+     6. New data elements added with reference tag names 'ProductFormDetail', 
+        'ProductPackaging', 'TradeCategory' and 'ProductContentType' and 
+        short tag names 'b333', 'b225', 'b384' and 'b385' respectively.
+     7. New composite element added with reference tag name 'ProductFormFeature' 
+        and short tag name 'productformfeature', containing new elements with 
+        reference tag names 'ProductFormFeatureType', 'ProductFormFeatureValue' 
+        and 'ProductFormFeatureDescription' and short tag names 'b334', 'b335' 
+        and 'b336' respectively.
+     9. Content model of composite element %ProductClassification; modified 
+        to include a new data element with reference tag name 'Percentage' 
+        and short tag name 'b337'.
+
+        PR.5
+
+    10. New empty element added with reference tag name 'NoSeries' and short 
+        tag name 'n338'.
+
+        PR.7
+
+    14. Group content model modified to include a new composite element with 
+        reference tag name 'Website' and short tag name 'website', to contain 
+        new data elements with reference tag names 'WebsiteRole', 
+        'WebsiteDescription' and 'WebsiteLink' and short tag names 'b367', 
+        'b294' and 'b295' respectively.
+    15. New data elements added with reference tag names 'ThesisType', 
+        'ThesisPresentedTo' and 'ThesisYear' and short tag names 'b368', 
+        'b369' and 'b370' respectively.
+
+        PR.8
+
+    16. Content model of composite element %Contributor modified to include 
+        a new data element with reference tag name 'SequenceNumberWithinRole' 
+        and short tag name 'b340'.
+    17. Content model of composite element %Contributor; modified to include 
+        a new composite element with reference tag name 'PersonNameIdentifier' 
+        and short tag name 'personnameidentifier', containing new 
+        data element with reference tag name 'PersonNameIDType' and 
+        short tag name 'b390' and other existing data elements.
+    19. Content model of composite element %Contributor; modified to include 
+        a new composite element with reference tag name 'PersonDate' and short 
+        tag name 'persondate', containing new data elements with reference 
+        tag names 'PersonDateRole' and 'Date' and short tag names 'b305' 
+        and 'b306' respectively.
+    20. Content model of composite element %Contributor; modified to include 
+        new composite element with reference tag name 'ProfessionalAffiliation' 
+        and short tag name 'professionalaffiliation'.
+    21. New empty element added with reference tag name 'NoContributor' and 
+        short tag name 'n339'.
+
+        PR.9
+
+    22. New composite element added with reference tag name 'Conference' and 
+        short tag name 'conference', containing some existing data elements 
+        plus new data elements with reference tag names 'ConferenceAcronym' 
+        and 'ConferenceTheme', with short tag names 'b341' and 'b342' respectively, 
+        and a new composite element with reference tag name 'ConferenceSponsor' 
+        and short tag name 'conferencesponsor', containing some existing data 
+        elements and a new composite element with reference tag name 
+        'ConferenceSponsorIdentifier' and short tag name 'conferencesponsoridentifier', 
+        containing a new data element with reference tag name 'ConferenceSponsorIDType' 
+        and short tag name 'b391' and other existing data elements.
+
+        PR.10
+
+    23. New empty data element added with reference tag name 'NoEdition' 
+        and short tag name 'n386'. New composite element added with reference 
+        tag name 'ReligiousText' and short tag name 'religioustext'.
+    24. New composite element added to content model of %ReligiousText; with 
+        reference tag name 'Bible' and short tag name 'bible', containing new 
+        data elements with reference tag names 'BibleContents', 'BibleVersion', 
+        'StudyBibleType', 'BiblePurpose', 'BibleTextOrganization', 'BibleReferenceLocation' 
+        and 'BibleTextFeature' and short tag names 'b352', 'b353', 'b389', 'b354', 
+        'b355', 'b356' and 'b357' respectively.
+    25. New data element added to content model of %ReligiousText; with reference 
+        tag name 'ReligiousTextID' and short tag name 'b374'.
+    26. New composite element added to content model of %ReligiousText; with 
+        reference tag name 'ReligiousTextFeature' and short tag name 
+        'religioustextfeature' containing new data elements with reference tag 
+        names 'ReligiousTextFeature', 'ReligiousTextFeatureCode' and 
+        'ReligiousTextFeatureDescription' and short tag names 'b358', 'b359' 
+        and 'b360' respectively.
+
+        PR.12
+
+    27. Content model of composite element %Illustrations; modified to include 
+        a new data element with reference tag name 'IllustrationTypeDescription' 
+        and short tag name 'b361'.
+
+        PR.15
+
+    32. Content model of composite element %OtherText; modified to include 
+        new data elements with reference tag names 'StartDate', 'EndDate' 
+        and 'TextSourceCorporate' and short tag names 'b324', 'b325' and 
+        'b374' respectively.
+
+        PR.16
+
+    33. Content model of composite element %MediaFile; modified to include a 
+        new data element with reference tag name 'MediaFileDate' and short tag 
+        name 'f373'.
+
+        PR.17
+
+    35. Content model of composite element %Prize; modified to include a new 
+        data element with reference tag name 'PrizeJury' and short tag name 'g343'.
+
+        PR.18
+
+    36. New composite element added with reference tag name 'PageRun' and short 
+        tag name 'pagerun'.
+
+        PR.20
+
+    39. New data element added with reference tag name 'TradeAnnouncementDate' 
+        and short tag name 'b362'.
+    40. New composite element added with reference tag name 'CopyrightStatement' 
+        and short tag name 'copyrightstatement', containing a new composite 
+        with reference tag name 'CopyrightOwner' and short tag name 
+        'copyrightowner'.
+
+        PR.21
+
+    41. New composite element added with reference tag name 'SalesRestriction' 
+        and short tag name 'salesrestriction', containing new data elements 
+        with reference tag names 'SalesRestrictionType' and 'SalesRestrictionDetail' 
+        and short tag names 'b381' and 'b383' respectively and a new composite 
+        element with reference tag name 'SalesOutlet' and short tag name 'salesoutlet', 
+        containing a new data element with reference tag name 'SalesOutletName' 
+        and short tag name 'b382' and a new composite element with reference 
+        tag name 'SalesOutletIdentifier' and short tag name 'salesoutletidentifier', 
+        containing a new data element with reference tag name 'SalesOutletIDType' 
+        and short tag name 'b393'.
+    42. Content models of %SalesRights; and %NotForSale; modified to include 
+        a new data element with reference tag name 'RightsTerritory' and 
+        short tag name 'b388'.
+
+        PR.24
+
+    46. Content model of composite element %SupplyDetail; modified to include 
+        a new composite element with reference tag name 'SupplierIdentifier' 
+        and short tag name 'supplieridentifier', containing a new data element 
+        with reference tag name 'SupplierIDType' and short tag name 'j345'.
+    48. Content model of composite element %SupplyDetail; further modified to 
+        include new data elements with reference tag names 'SupplierRole', 
+        'SupplyToTerritory' and 'IntermediaryAvailabilityCode' and short 
+        tag names 'j292', 'j388' and 'j348' respectively.
+    49. Content model of composite element %SupplyDetail; further modified to 
+        include a new composite element with reference tag name 'Stock' and 
+        short tag name 'stock', itself containing a new composite element 
+        with reference tag name 'LocationIdentifier' and short tag name 
+        'locationidentifier', and new data elements with reference tag names 
+        'LocationName', 'OnHand','OnOrder' and 'CBO' and short tag names 
+        'j349', 'j350', 'j351' and 'j375' respectively.
+    50. Content model of composite element %LocationIdentifier; to contain a 
+        new data element with reference tag name 'LocationIDType' and short 
+        tag name 'b999'.
+    52. Content model of composite element %Price; modified to include a 
+        new composite element with reference tag name 'DiscountCoded' 
+        and short tag name 'discountcoded', itself containing new data 
+        elements with reference tag names 'DiscountCodeType', 'DiscountCodeTypeName'
+        and 'DiscountCode' and short tag names 'j363', 'j376' and 'j364' 
+        respectively.
+    53. Content model of composite element %SupplyDetail; further modified to 
+        include a new composite element with reference tag name 'Reissue' and 
+        short tag name 'reissue', containing new data elements with reference 
+        tag names 'ReissueDate' and 'ReissueDescription' and short tag names 
+        'j365' and 'j366' respectively.
+
+        MH (Message Header)
+
+    55. New composites added with reference tag names 'SenderIdentifier' 
+        and 'AddresseeIdentifier' and short tag names 'senderidentifier' 
+        and 'addresseeidentifier' respectively, containing respectively 
+        new data elements with reference tag names 'SenderIDType' and 
+        'AddresseeIDType' and short tag names 'm379' and 'm380' respectively.
+
+2001-07-25: Major revision of Release 1.2.1 for Release 2.0
+
+     1. New record-level elements added with verbose names "MainSeriesRecord" and "SubSeriesRecord".
+     2. New composite element added with verbose name "ProductIdentifier".
+     3. New composite element added with verbose name "ProductIdentifier", to contain 
+        new data elements with verbose names "ProductIDType", "IDTypeName", and "IDValue".
+     4. New data element added with verbose name "Barcode".
+     5. New composite element added with verbose name "ProductClassification", 
+        to contain new data elements with verbose names "ProductClassificationType" and 
+        "ProductClassificationCode".
+     6. New data elements added with verbose names "EpubType", "EpubTypeVersion", 
+        "EpubTypeDescription", "EpubFormat", "EpubFormatVersion", "EpubFormatDescription", 
+        "EpubSource", "EpubSourceVersion", "EpubSourceDescription" and "EpubTypeNote".
+     7. New composite element added with verbose name "SeriesIdentifier", to contain new 
+        data element with verbose name "SeriesIDType".
+     8. New data element added with verbose name "SetItemTitle".
+     9. Verbose name "ItemNumberWithinSeries" renamed "NumberWithinSeries".
+    10. New composite element added to Group PR7 with verbose name "Title", to contain 
+        new data elements with verbose names "TitleType", "AbbreviatedLength" and "TitleText".
+    11. New composite element added to Group PR7 with verbose name "WorkIdentifier", to 
+        contain new data element with verbose name "WorkIDType".
+    12. Verbose name "ContributorSequenceNumber" renamed "SequenceNumber".
+    13. New data element added with verbose name "LanguageCode".
+    14. New data elements added with verbose names "PrefixToKey" and "SuffixToKey".
+    15. New composite element added with verbose name "Name", to contain a new 
+        data element with verbose name "PersonNameType".
+    16. New data element added with verbose name "UnnamedPersons".
+    17. New data element added with verbose name "EditionVersionNumber".
+    18. New composite element added with verbose name "Language", to contain new data 
+        elements with verbose names "LanguageRole" and "CountryCode".
+    19. New data elements added with verbose names "PagesRoman" and "PagesArabic".
+    20. New composite element added with verbose name "Illustrations", to contain new 
+        data elements with verbose names "IllustrationType" and "Number".
+    21. Verbose names "Rights" and "RightsTypeCode" renamed "SalesRights" and 
+        "SalesRightsTypeCode" respectively.
+    22. New data element added with verbose name "Dimensions".
+    23. New data elements added with verbose names "TelephoneNumber", "FaxNumber" and 
+        "EmailAddress".
+    24. New data elements added with verbose names "ReturnsCodeType" and "ReturnsCode".
+    25. New composite element added with verbose name "NewSupplier".
+    26. New data element added with verbose name "DateFormat".
+    27. New data elements added with verbose names "PriceQualifier" and 
+        "PriceTypeDescription".
+    28. New data element added with verbose name "MinimumOrderQuantity".
+    29. New composite element added with verbose name "BatchBonus", to contain new data 
+        elements with verbose names "BatchQuantity" and "FreeQuantity".
+    30. Verbose name "DiscountGroupCode" renamed "BICDiscountGroupCode". 
+    31. New data elements added with verbose names "DiscountPercent" and "PriceStatus".
+    32. New data element added with verbose name "SubordinateEntries".
+    33. New composite element added with verbose name "ParentIdentifier".
+    34. New data elements added with verbose names "LevelSequenceNumber" and 
+        "SeriesPartName".
+    35. New data element added with verbose name "PublishingRole".
+    36. New composite element added with verbose name "ContentItem", to 
+        contain new composite elements with verbose names "TextItem" and 
+        "TextItemIdentifier" and new data elements with verbose names 
+        "TextItemType", "TextItemIDType", "FirstPageNumber", "LastPageNumber", 
+        "ComponentTypeName" and "ComponentNumber".
+    37. New data element added with verbose name "FromEmail".
+    38. Verbose names "Rights" and "RightsTypeCode" renamed "SalesRights" and 
+        "SalesRightsType".
+    39. New data element added with verbose name "ImageResolution".
+
+2001-04-11: Amendment of Release 1.2 for Release 1.2.1
+
+     1. New composite element added with verbose name "Imprint", to contain new
+        data elements with verbose names "NameCodeType", "NameCodeTypeName" and
+        "NameCodeValue".
+     2. New composite element added with verbose name "Publisher", to contain the 
+        same data elements as the new composite element "Publisher".
+     3. Removed data elements with verbose names "ImprintCode" and "PublisherCode".
+     4. New data element added with verbose name "OriginalPublisher".
+     5. New data element added with verbose name "PricePer".
+     6. New composite element added with verbose name "Header", to contain existing 
+        header elements in Group 0.
+
+2000-11-27: Amendment of Revision 03b for Release 1.2
+
+     1. New elements added to indicate the source of a record, with verbose names 
+        "RecordSourceType", "RecordSourceIdentifierType", "RecordSourceIdentifier" 
+        and "RecordSourceName"
+     2. New elements added to indicate why a record has been deleted, with verbose 
+        names "DeletionCode" and "DeletionText"
+     3. Verbose name "ProductFormDetail" renamed "BookFormDetail"
+     4. New element added to represent the number of pieces in a product, with 
+        verbose name "NumberOfPieces"
+     5. New composite element added with verbose name "Extent", to contain new data 
+        elements with verbose names "ExtentType", "ExtentValue" and "ExtentUnit"
+     6. New element added to represent the BASIC subject categories version number, 
+        with verbose name "BASICVersion"
+     7. New composite element added with verbose name "Audience", to contain new 
+        data elements with verbose names "AudienceCodeType", "AudienceCodeTypeName" 
+        and "AudienceCode"
+     8. New element added with verbose name "AudienceDescription"
+     9. Element with verbose name "RightsRegion" (formerly "Region") reinstated
+    10. New composite element added with verbose name "NotForSale"
+    11. New composite element added with verbose name "RelatedProduct", to contain 
+        new data element with verbose name "RelationCode" and other existing data 
+        elements
+
+2000-09-01: Amendment of Revision 03a following user test results (NO REVISION RELEASED)
+
+     1. Short tag names moved to main module, and comments on selection
+        of short or reference tag names revised to improve clarity. 
+
+2000-08-08: Alteration of Revision 03 to enable use with Icon XML Spy
+
+     1. Comment added following end of final conditional section.
+
+2000-07-25: Amendments to Revision 02 for Release 1.1 of ONIX International
+
+     1. Removed declarations of reference names, which are already declared in
+        the main module
+     2. Surrounded short names with marked section controlled by new paramenter 
+        entity %UsingShortNames;
+     3. Blank lines added to end of file to avoid "unexpected file end" error
+        reported by Microsoft Internet Explorer 5.x
+     4. New element added for prices specified as "free of charge" and "to be 
+        announced", with entity and verbose name "UnpricedItemType" and 
+        short tag name "j192"
+     5. New composite added for Main subject with entity and verbose name 
+        "MainSubject" and short tag name "mainsubject"
+     6. New element added for Main subject scheme identifier with entity and 
+        verbose name "MainSubjectSchemeIdentifier" and short tag name "b191"
+     7. Reference name "ClassOfTradeCode" changed to "ClassOfTrade"
+     8. New element added for default class of trade with entity and verbose 
+        name "DefaultClassOfTrade" and short tag name "m193"
+
+2000-05-20: Amendments to Revision 01 for Release 1.0 of ONIX International
+
+     1. Short tag name for %PublicationDate; changed from "a003" to "b003"
+     2. Removed elements with verbose names "multiple", "quantity" and "tradeonly"
+     3. Entity and verbose names for Series ISSN changed from "issn" to "SeriesISSN"
+     4. Entity and verbose names for Contributor sequence number changed 
+        from "contributornumber" to "ContributorSequenceNumber"
+     5. New element added for Number of illustrations, with entity and verbose name 
+        "NumberOfIllustrations" and short tag name "b125"
+     6. Entity and verbose names "lexilecode" and "lexilenumber" replaced by
+        "ComplexitySchemeIdentifier" and "ComplexityCode"
+     7. New composite added for Complexity with name "Complexity"
+     8. Removed elements with verbose names "region" and "countryexcluded"
+     9. New element added for Product website composite with name "ProductWebsite"
+    10. New element added for Product website description with entity and verbose name
+        "ProductWebsiteDescription" and short tag name "f170"
+    11. Changed short tag name for %Prize; from "g125" to "Prize" - it's a composite
+    12. New elements added for Other alternative Product ISBN and Other alternative 
+        Product EAN-13 with entity and verbose names "AlternativeProductISBN" and 
+        "AlternativeProductEAN13" and short tag names "h163" and "h164"
+    13. New elements added for Promotion campaign information, Promotion contact details, 
+        Initial print run, Copies sold and Book Club adoption, with entity and verbose 
+        names "PromotionCampaign", "PromotionContact", "InitialPrintRun", "CopiesSold" 
+        and "BookClubAdoption" and short tag names "k165", "k166", "k167", "k168" and "k169"
+    14. Changed all other names to UpperCamelCase
+    15. New element added for Proprietary subject scheme name, with entity and verbose
+        names "SubjectSchemeName" and short tag name "b171"
+    16. New elements added for the following message elements: 
+        Element title:             Entity and verbose name:       Short tag name:
+        Sender EAN number          FromEANNumber                  m172
+        Sender SAN                 FromSAN                        m173
+        Sender company name        FromCompany                    m174
+        Sender contact             FromPerson                     m175
+        Addressee EAN number       ToEANNumber                    m176
+        Addressee SAN              ToSAN                          m177
+        Addressee company name     ToCompany                      m178
+        Addressee contact          ToPerson                       m179
+        Message sequence number    MessageNumber                  m180
+        Message repeat number      MessageRepeat                  m181
+        Transmission date          SentDate                       m182
+        Message note               MessageNote                    m183
+        Default language of text   DefaultLanguageOfText          m184
+        Default price type         DefaultPriceTypeCode           m185
+        Default currency           DefaultCurrencyCode            m186
+        Default linear unit        DefaultLinearUnit              m187
+        Default unit of weight     DefaultWeightUnit              m188
+    17. Top-level element entity and verbose name changed from "Message" to "ONIXMessage"
+    18. Removed elements with entity and verbose names "PageTrimHeight" and "PageTrimWidth"
+    19. Added new Measure composite element with entity and verbose name "Measure"
+    20. Short tag name for %MeasureUnitCode; changed from "c093" to "c095"
+    21. Added new elements with entity and verbose names "MeasureTypeCode" and "Measurement"
+        and short tag names "c093" and "c094"
+    22. Added new elements with entity and verbose names "USSchoolGrade" and "InterestAge" 
+        and short tag names "b189" and "b190"
+    23. Changed entity and verbose names "SalesRestrictionFlag" and "SalesRestrictionNote"
+        to "AudienceRestrictionFlag" and "AudienceRestrictionNote"
+    24. Local Name and Reference Name lists enclosed within marked sections, so that either 
+        may be selected without modification of this file, by externally setting the
+        replacement value for the appropriate parameter entity to "INCLUDE"
+
+2000-05-04: First draft of Version 1 released
+
+-->
+<!--
+**************************************************
+*                                                *
+*     SELECTING REFERENCE OR SHORT TAG NAMES     *
+*             (FOR INFORMATION ONLY)             *
+*                                                *
+**************************************************
+
+Two versions of the DTD are available, one defining meaningful 
+English-language names - the reference names - and the other defining 
+short tags - four character alphanumerics which, although they carried 
+some significance in the first ONIX releases, should now be regarded as 
+arbitrary.  The appropriate version of the DTD must be referenced in the 
+document type declaration included at the start of each ONIX message.
+
+Both versions of the DTD include both reference and short tag names as 
+fixed attributes of each element type, to aid conversion between the two 
+versions and for compatibility with previous releases.
+
+Neither version has in the past been recommended in preference to the 
+other.  Initially, a majority of ONIX implementations seem to have used 
+the short tags.  It is noticeable, however, that as ONIX moves into new 
+areas of application, and as XML itself becomes more widely used and 
+accepted, more implementors are choosing the reference names, to the 
+point that some have questioned the desirability of maintaining the 
+short tags.
+
+There is no possibility that the short tags could be withdrawn from ONIX 
+for Books in the near-term, or in any event without full consultation 
+with ONIX national groups and the ONIX International Steering Committee. 
+However, it is possible that some new ONIX applications (eg for Serials) 
+may use reference names only; and the ONIX support team would encourage 
+new implementors of any ONIX format to use reference names unless they 
+have a strong reason for doing otherwise.
+-->
+<!--
+**************************************************
+*                                                *
+*               DEFINE MAIN MODULE               *
+*                                                *
+**************************************************
+
+This module only declares local tag name variants. All declarations of ONIX International message structures are to be found in a separate module whose filename in the reference tag name version of the DTD is assumed to be 'reference.elt' and which is assumed to be located at the same relative path as this module. If this is not appropriate for a specific application, or for some other reason an absolute URI must be specified, a different URI can be used by inserting the desired string in between the double-quotation-marks in the following entity declaration.
+
+WARNING!! ONLY CHANGE THE FOLLOWING DECLARATION IF YOU ARE CHANGING THE URI FOR THE MAIN MODULE! DELETING OR CHANGING THE DECLARATION IN ANY OTHER WAY OR CIRCUMSTANCES MAY RENDER THE DTD INOPERABLE!
+
+-->
+<!-- DO NOT DELETE THE FOLLOWING LINE! -->
+<!ENTITY % MainModule SYSTEM "reference.elt">
+<!--
+**************************************************
+*                                                *
+*      ENABLE LOCAL MESSAGE EXTENSION MODULE     *
+*                                                *
+**************************************************
+
+The model for product information may, with the prior consent of EDItEUR, be extended to include elements not defined by ONIX. This is done by declaring all new elements in a separate module named ONIX-EXTENDED.ELT and including them as the content of an extra supergroup Z.
+
+To include a defined extension module in the DTD, change the replacement value of %ExtendedProductModel; below from "IGNORE" to "INCLUDE".
+
+Further guidance on adding an extension module can be found in the ONIX International Level 2 Guide.
+
+WARNING!! ONLY CHANGE THE FOLLOWING DECLARATION IF YOU WISH TO ENABLE THE LOCAL MESSAGE EXTENSION MODULE! DELETING OR CHANGING THE DECLARATION IN ANY OTHER WAY OR CIRCUMSTANCES MAY RENDER THE DTD INOPERABLE!
+
+-->
+<!-- DO NOT DELETE THE FOLLOWING LINE! -->
+<!ENTITY % ExtendedProductModel "IGNORE">
+<!--
+**************************************************
+*                                                *
+*              LOCAL NAMES TEMPLATE              *
+*                                                *
+**************************************************
+
+If there is a need to replace the reference names with others for local application, this should be done by defining a complete, new Set of names in the list that follows. The new name should be entered between double-quotation-marks following the corresponding reference name, e.g.
+
+<!ENTITY % ISBN                         "LocalNameForISBN">
+
+IMPORTANT NOTE!! Names must obey XML naming rules, i.e. they must begin with a letter and may only contain letters, digits, ".", "-" or "_". Space characters, in particular, are not valid in names. Names in XML are case-sensitive.
+
+-->
+<!--
+
+To activate locally-defined names in this DTD for XML validation purposes, first define a COMPLETE set of local names! Then change the replacement value of %UsingLocalNames to "INCLUDE".
+
+-->
+<!-- DO NOT DELETE THE FOLLOWING LINE! -->
+<!ENTITY % UsingLocalNames "IGNORE">
+<![%UsingLocalNames;[
+<!ENTITY % ONIXMessage                      "">
+<!ENTITY % Product                          "">
+<!ENTITY % MainSeriesRecord                 "">
+<!ENTITY % SubSeriesRecord                  "">
+<!ENTITY % RecordReference                  "">
+<!ENTITY % NotificationType                 "">
+<!ENTITY % RecordSourceType                 "">
+<!ENTITY % RecordSourceIdentifierType       "">
+<!ENTITY % RecordSourceIdentifier           "">
+<!ENTITY % RecordSourceName                 "">
+<!ENTITY % DeletionCode                     "">
+<!ENTITY % DeletionText                     "">
+<!ENTITY % ISBN                             "">
+<!ENTITY % EAN13                            "">
+<!ENTITY % UPC                              "">
+<!ENTITY % PublisherProductNo               "">
+<!ENTITY % ISMN                             "">
+<!ENTITY % DOI                              "">
+<!ENTITY % ProductIdentifier                "">
+<!ENTITY % ProductIDType                    "">
+<!ENTITY % IDTypeName                       "">
+<!ENTITY % IDValue                          "">
+<!ENTITY % Barcode                          "">
+<!ENTITY % ReplacesISBN                     "">
+<!ENTITY % ReplacesEAN13                    "">
+<!ENTITY % ProductForm                      "">
+<!ENTITY % ProductFormDetail                "">
+<!ENTITY % ProductFormFeature               "">
+<!ENTITY % ProductFormFeatureType           "">
+<!ENTITY % ProductFormFeatureValue          "">
+<!ENTITY % ProductFormFeatureDescription    "">
+<!ENTITY % BookFormDetail                   "">
+<!ENTITY % ProductPackaging                 "">
+<!ENTITY % TradeCategory                    "">
+<!ENTITY % ProductContentType               "">
+<!ENTITY % ProductFormDescription           "">
+<!ENTITY % ContainedItem                    "">
+<!ENTITY % NumberOfPieces                   "">	
+<!ENTITY % ItemQuantity                     "">
+<!ENTITY % ProductClassification            "">
+<!ENTITY % ProductClassificationType        "">
+<!ENTITY % ProductClassificationCode        "">
+<!ENTITY % Percent                          "">
+<!ENTITY % EpubType                         "">
+<!ENTITY % EpubTypeVersion                  "">
+<!ENTITY % EpubTypeDescription              "">
+<!ENTITY % EpubFormat                       "">
+<!ENTITY % EpubFormatVersion                "">
+<!ENTITY % EpubFormatDescription            "">
+<!ENTITY % EpubSource                       "">
+<!ENTITY % EpubSourceVersion                "">
+<!ENTITY % EpubSourceDescription            "">
+<!ENTITY % EpubTypeNote                     "">
+<!ENTITY % Series                           "">
+<!ENTITY % NoSeries                         "">
+<!ENTITY % SeriesISSN                       "">
+<!ENTITY % PublisherSeriesCode              "">
+<!ENTITY % SeriesIdentifier                 "">
+<!ENTITY % SeriesIDType                     "">
+<!ENTITY % TitleOfSeries                    "">
+<!ENTITY % NumberWithinSeries               "">
+<!ENTITY % YearOfAnnual                     "">
+<!ENTITY % Set                              "">
+<!ENTITY % ISBNOfSet                        "">
+<!ENTITY % EAN13OfSet                       "">
+<!ENTITY % TitleOfSet                       "">
+<!ENTITY % SetPartNumber                    "">
+<!ENTITY % SetPartTitle                     "">
+<!ENTITY % ItemNumberWithinSet              "">
+<!ENTITY % SetItemTitle                     "">
+<!ENTITY % TextCaseFlag                     "">
+<!ENTITY % DistinctiveTitle                 "">
+<!ENTITY % Subtitle                         "">
+<!ENTITY % TitlePrefix                      "">
+<!ENTITY % TitleWithoutPrefix               "">
+<!ENTITY % TranslationOfTitle               "">
+<!ENTITY % FormerTitle                      "">
+<!ENTITY % Title                            "">
+<!ENTITY % TitleType                        "">
+<!ENTITY % AbbreviatedLength                "">
+<!ENTITY % TitleText                        "">
+<!ENTITY % WorkIdentifier                   "">
+<!ENTITY % WorkIDType                       "">
+<!ENTITY % Website                          "">
+<!ENTITY % WebsiteRole                      "">
+<!ENTITY % WebsiteDescription               "">
+<!ENTITY % WebsiteLink                      "">
+<!ENTITY % ThesisType                       "">
+<!ENTITY % ThesisPresentedTo                "">
+<!ENTITY % ThesisYear                       "">
+<!ENTITY % Contributor                      "">
+<!ENTITY % SequenceNumber                   "">
+<!ENTITY % ContributorRole                  "">
+<!ENTITY % LanguageCode                     "">
+<!ENTITY % SequenceNumberWithinRole         "">
+<!ENTITY % PersonName                       "">
+<!ENTITY % PersonNameInverted               "">
+<!ENTITY % TitlesBeforeNames                "">
+<!ENTITY % NamesBeforeKey                   "">
+<!ENTITY % PrefixToKey                      "">
+<!ENTITY % SuffixToKey                      "">
+<!ENTITY % KeyNames                         "">
+<!ENTITY % NamesAfterKey                    "">
+<!ENTITY % LettersAfterNames                "">
+<!ENTITY % TitlesAfterNames                 "">
+<!ENTITY % Name                             "">
+<!ENTITY % PersonNameType                   "">
+<!ENTITY % PersonNameIdentifier             "">
+<!ENTITY % PersonNameIDType                 "">
+<!ENTITY % PersonDate                       "">
+<!ENTITY % PersonDateRole                   "">
+<!ENTITY % Date                             "">
+<!ENTITY % BiographicalNote                 "">
+<!ENTITY % ProfessionalAffiliation          "">
+<!ENTITY % ProfessionalPosition             "">
+<!ENTITY % Affiliation                      "">
+<!ENTITY % CorporateName                    "">
+<!ENTITY % ContributorDescription           "">
+<!ENTITY % UnnamedPersons                   "">
+<!ENTITY % RegionCode                       "">
+<!ENTITY % NoContributor                    "">
+<!ENTITY % ContributorStatement             "">
+<!ENTITY % ConferenceDescription            "">
+<!ENTITY % ConferenceRole                   "">
+<!ENTITY % ConferenceName                   "">
+<!ENTITY % ConferenceNumber                 "">
+<!ENTITY % ConferenceDate                   "">
+<!ENTITY % ConferencePlace                  "">
+<!ENTITY % Conference                       "">
+<!ENTITY % ConferenceAcronym                "">
+<!ENTITY % ConferenceTheme                  "">
+<!ENTITY % ConferenceSponsor                "">
+<!ENTITY % ConferenceSponsorIdentifier      "">
+<!ENTITY % ConferenceSponsorIDType          "">
+<!ENTITY % EditionTypeCode                  "">
+<!ENTITY % EditionNumber                    "">
+<!ENTITY % EditionVersionNumber             "">
+<!ENTITY % EditionStatement                 "">
+<!ENTITY % NoEdition                        "">
+<!ENTITY % ReligiousText                    "">
+<!ENTITY % Bible                            "">
+<!ENTITY % BibleContents                    "">
+<!ENTITY % BibleVersion                     "">
+<!ENTITY % StudyBibleType                   "">
+<!ENTITY % BiblePurpose                     "">
+<!ENTITY % BibleTextOrganization            "">
+<!ENTITY % BibleReferenceLocation           "">
+<!ENTITY % BibleTextFeature                 "">
+<!ENTITY % ReligiousTextID                  "">
+<!ENTITY % ReligiousTextFeature             "">
+<!ENTITY % ReligiousTextFeatureType         "">
+<!ENTITY % ReligiousTextFeatureCode         "">
+<!ENTITY % ReligiousTextFeatureDescription  "">
+<!ENTITY % LanguageOfText                   "">
+<!ENTITY % OriginalLanguage                 "">
+<!ENTITY % Language                         "">
+<!ENTITY % LanguageRole                     "">
+<!ENTITY % CountryCode                      "">
+<!ENTITY % NumberOfPages                    "">
+<!ENTITY % PagesRoman                       "">
+<!ENTITY % PagesArabic                      "">
+<!ENTITY % NumberOfIllustrations            "">
+<!ENTITY % IllustrationsNote                "">
+<!ENTITY % Illustrations                    "">
+<!ENTITY % IllustrationType                 "">
+<!ENTITY % IllustrationTypeDescription      "">
+<!ENTITY % Number                           "">
+<!ENTITY % MapScale                         "">
+<!ENTITY % Extent                           "">
+<!ENTITY % ExtentType                       "">
+<!ENTITY % ExtentValue                      "">
+<!ENTITY % ExtentUnit                       "">
+<!ENTITY % BASICMainSubject                 "">
+<!ENTITY % BASICVersion                     "">
+<!ENTITY % BICMainSubject                   "">
+<!ENTITY % BICVersion                       "">
+<!ENTITY % MainSubject                      "">
+<!ENTITY % MainSubjectSchemeIdentifier      "">
+<!ENTITY % Subject                          "">
+<!ENTITY % SubjectSchemeIdentifier          "">
+<!ENTITY % SubjectSchemeName                "">
+<!ENTITY % SubjectSchemeVersion             "">
+<!ENTITY % SubjectCode                      "">
+<!ENTITY % SubjectHeadingText               "">
+<!ENTITY % PersonAsSubject                  "">
+<!ENTITY % CorporateBodyAsSubject           "">
+<!ENTITY % PlaceAsSubject                   "">
+<!ENTITY % Audience                         "">
+<!ENTITY % AudienceCodeType                 "">
+<!ENTITY % AudienceCodeTypeName             "">
+<!ENTITY % AudienceCode                     "">
+<!ENTITY % AudienceCodeValue                "">
+<!ENTITY % USSchoolGrade                    "">
+<!ENTITY % InterestAge                      "">
+<!ENTITY % AudienceRange                    "">
+<!ENTITY % AudienceRangeQualifier           "">
+<!ENTITY % AudienceRangePrecision           "">
+<!ENTITY % AudienceRangeValue               "">
+<!ENTITY % AudienceDescription              "">
+<!ENTITY % Complexity                       "">
+<!ENTITY % ComplexitySchemeIdentifier       "">
+<!ENTITY % ComplexityCode                   "">
+<!ENTITY % ImprintName                      "">
+<!ENTITY % PublisherName                    "">
+<!ENTITY % PublishingRole                   "">
+<!ENTITY % Imprint                          "">
+<!ENTITY % Publisher                        "">
+<!ENTITY % NameCodeType                     "">
+<!ENTITY % NameCodeTypeName                 "">
+<!ENTITY % NameCodeValue                    "">
+<!ENTITY % CityOfPublication                "">
+<!ENTITY % CountryOfPublication             "">
+<!ENTITY % CopublisherName                  "">
+<!ENTITY % SponsorName                      "">
+<!ENTITY % OriginalPublisher                "">
+<!ENTITY % PublishingStatus                 "">
+<!ENTITY % PublishingStatusNote             "">
+<!ENTITY % AnnouncementDate                 "">
+<!ENTITY % TradeAnnouncementDate            "">
+<!ENTITY % PublicationDate                  "">
+<!ENTITY % CopyrightYear                    "">
+<!ENTITY % YearFirstPublished               "">
+<!ENTITY % CopyrightStatement               "">
+<!ENTITY % CopyrightOwner                   "">
+<!ENTITY % CopyrightOwnerIdentifier         "">
+<!ENTITY % CopyrightOwnerIDType             "">
+<!ENTITY % SalesRights                      "">
+<!ENTITY % NotForSale                       "">
+<!ENTITY % SalesRightsType                  "">
+<!ENTITY % RightsCountry                    "">
+<!ENTITY % RightsTerritory                  "">
+<!ENTITY % RightsRegion                     "">
+<!ENTITY % SalesRestriction                 "">
+<!ENTITY % SalesRestrictionType             "">
+<!ENTITY % SalesOutlet                      "">
+<!ENTITY % SalesOutletIdentifier            "">
+<!ENTITY % SalesOutletIDType                "">
+<!ENTITY % SalesOutletName                  "">
+<!ENTITY % SalesRestrictionDetail           "">
+<!ENTITY % Measure                          "">
+<!ENTITY % MeasureTypeCode                  "">
+<!ENTITY % Measurement                      "">
+<!ENTITY % MeasureUnitCode                  "">
+<!ENTITY % Height                           "">
+<!ENTITY % Width                            "">
+<!ENTITY % Thickness                        "">
+<!ENTITY % Weight                           "">
+<!ENTITY % Dimensions                       "">
+<!ENTITY % Annotation                       "">
+<!ENTITY % MainDescription                  "">
+<!ENTITY % OtherText                        "">
+<!ENTITY % TextTypeCode                     "">
+<!ENTITY % TextFormat                       "">
+<!ENTITY % Text                             "">
+<!ENTITY % TextLinkType                     "">
+<!ENTITY % TextLink                         "">
+<!ENTITY % TextAuthor                       "">
+<!ENTITY % TextSourceCorporate              "">
+<!ENTITY % TextSourceTitle                  "">
+<!ENTITY % TextPublicationDate              "">
+<!ENTITY % StartDate                        "">
+<!ENTITY % EndDate                          "">
+<!ENTITY % ReviewQuote                      "">
+<!ENTITY % CoverImageFormatCode             "">
+<!ENTITY % CoverImageLinkTypeCode           "">
+<!ENTITY % CoverImageLink                   "">
+<!ENTITY % MediaFile                        "">
+<!ENTITY % MediaFileTypeCode                "">
+<!ENTITY % MediaFileFormatCode              "">
+<!ENTITY % ImageResolution                  "">
+<!ENTITY % MediaFileLinkTypeCode            "">
+<!ENTITY % MediaFileLink                    "">
+<!ENTITY % TextWithDownload                 "">
+<!ENTITY % DownloadCaption                  "">
+<!ENTITY % DownloadCredit                   "">
+<!ENTITY % DownloadCopyrightNotice          "">
+<!ENTITY % DownloadTerms                    "">
+<!ENTITY % MediaFileDate                    "">
+<!ENTITY % ProductWebsite                   "">
+<!ENTITY % ProductWebsiteDescription        "">
+<!ENTITY % ProductWebsiteLink               "">
+<!ENTITY % PrizesDescription                "">
+<!ENTITY % Prize                            "">
+<!ENTITY % PrizeName                        "">
+<!ENTITY % PrizeYear                        "">
+<!ENTITY % PrizeCountry                     "">
+<!ENTITY % PrizeCode                        "">
+<!ENTITY % PrizeJury                        "">
+<!ENTITY % ContentItem                      "">
+<!ENTITY % LevelSequenceNumber              "">
+<!ENTITY % TextItem                         "">
+<!ENTITY % TextItemType                     "">
+<!ENTITY % TextItemIdentifier               "">
+<!ENTITY % TextItemIDType                   "">
+<!ENTITY % FirstPageNumber                  "">
+<!ENTITY % LastPageNumber                   "">
+<!ENTITY % PageRun                          "">
+<!ENTITY % ComponentTypeName                "">
+<!ENTITY % ComponentNumber                  "">
+<!ENTITY % ReplacedByISBN                   "">
+<!ENTITY % ReplacedByEAN13                  "">
+<!ENTITY % RelatedProduct                   "">
+<!ENTITY % RelationCode                     "">
+<!ENTITY % AlternativeFormatISBN            "">
+<!ENTITY % AlternativeFormatEAN13           "">
+<!ENTITY % AlternativeProductISBN           "">
+<!ENTITY % AlternativeProductEAN13          "">
+<!ENTITY % OutOfPrintDate                   "">
+<!ENTITY % SupplyDetail                     "">
+<!ENTITY % SupplierEANLocationNumber        "">
+<!ENTITY % SupplierSAN                      "">
+<!ENTITY % SupplierIdentifier               "">
+<!ENTITY % SupplierIDType                   "">
+<!ENTITY % SupplierName                     "">
+<!ENTITY % TelephoneNumber                  "">
+<!ENTITY % FaxNumber                        "">
+<!ENTITY % EmailAddress                     "">
+<!ENTITY % SupplierRole                     "">
+<!ENTITY % SupplyToCountry                  "">
+<!ENTITY % SupplyToRegion                   "">
+<!ENTITY % SupplyToTerritory                "">
+<!ENTITY % SupplyToCountryExcluded          "">
+<!ENTITY % SupplyRestrictionDetail          "">
+<!ENTITY % ReturnsCodeType                  "">
+<!ENTITY % ReturnsCode                      "">
+<!ENTITY % LastDateForReturns               "">
+<!ENTITY % AvailabilityCode                 "">
+<!ENTITY % ProductAvailability              "">
+<!ENTITY % IntermediaryAvailabilityCode     "">
+<!ENTITY % NewSupplier                      "">
+<!ENTITY % Stock                            "">
+<!ENTITY % LocationIdentifier               "">
+<!ENTITY % LocationIDType                   "">
+<!ENTITY % LocationName                     "">
+<!ENTITY % StockQuantityCoded               "">
+<!ENTITY % StockQuantityCodeType            "">
+<!ENTITY % StockQuantityCodeTypeName        "">
+<!ENTITY % StockQuantityCode                "">
+<!ENTITY % OnHand                           "">
+<!ENTITY % OnOrder                          "">
+<!ENTITY % CBO                              "">
+<!ENTITY % OnOrderDetail                    "">
+<!ENTITY % ExpectedDate                     "">
+<!ENTITY % DateFormat                       "">
+<!ENTITY % ExpectedShipDate                 "">
+<!ENTITY % OnSaleDate                       "">
+<!ENTITY % OrderTime                        "">
+<!ENTITY % PackQuantity                     "">
+<!ENTITY % AudienceRestrictionFlag          "">
+<!ENTITY % AudienceRestrictionNote          "">
+<!ENTITY % Price                            "">
+<!ENTITY % PriceTypeCode                    "">
+<!ENTITY % PriceQualifier                   "">
+<!ENTITY % PriceTypeDescription             "">
+<!ENTITY % PricePer                         "">
+<!ENTITY % MinimumOrderQuantity             "">
+<!ENTITY % BatchBonus                       "">
+<!ENTITY % BatchQuantity                    "">
+<!ENTITY % FreeQuantity                     "">
+<!ENTITY % ClassOfTrade                     "">
+<!ENTITY % BICDiscountGroupCode             "">
+<!ENTITY % DiscountCoded                    "">
+<!ENTITY % DiscountCodeType                 "">
+<!ENTITY % DiscountCodeTypeName             "">
+<!ENTITY % DiscountCode                     "">
+<!ENTITY % DiscountPercent                  "">
+<!ENTITY % PriceStatus                      "">
+<!ENTITY % PriceAmount                      "">
+<!ENTITY % UnpricedItemType                 "">
+<!ENTITY % CurrencyCode                     "">
+<!ENTITY % Territory                        "">
+<!ENTITY % CountryExcluded                  "">
+<!ENTITY % TerritoryExcluded                "">
+<!ENTITY % TaxRateCode1                     "">
+<!ENTITY % TaxRatePercent1                  "">
+<!ENTITY % TaxableAmount1                   "">
+<!ENTITY % TaxAmount1                       "">
+<!ENTITY % TaxRateCode2                     "">
+<!ENTITY % TaxRatePercent2                  "">
+<!ENTITY % TaxableAmount2                   "">
+<!ENTITY % TaxAmount2                       "">
+<!ENTITY % Reissue                          "">
+<!ENTITY % ReissueDate                      "">
+<!ENTITY % ReissueDescription               "">
+<!ENTITY % PriceEffectiveFrom               "">
+<!ENTITY % PriceEffectiveUntil              "">
+<!ENTITY % MarketRepresentation             "">
+<!ENTITY % AgentIdentifier                  "">
+<!ENTITY % AgentIDType                      "">
+<!ENTITY % AgentName                        "">
+<!ENTITY % AgentRole                        "">
+<!ENTITY % MarketCountry                    "">
+<!ENTITY % MarketTerritory                  "">
+<!ENTITY % MarketCountryExcluded            "">
+<!ENTITY % MarketRestrictionDetail          "">
+<!ENTITY % MarketPublishingStatus           "">
+<!ENTITY % MarketDate                       "">
+<!ENTITY % MarketDateRole                   "">
+<!ENTITY % PromotionCampaign                "">
+<!ENTITY % PromotionContact                 "">
+<!ENTITY % InitialPrintRun                  "">
+<!ENTITY % ReprintDetail                    "">
+<!ENTITY % CopiesSold                       "">
+<!ENTITY % BookClubAdoption                 "">
+<!ENTITY % SubordinateEntries               "">
+<!ENTITY % ParentIdentifier                 "">
+<!ENTITY % SeriesPartName                   "">
+<!ENTITY % FromEANNumber                    "">
+<!ENTITY % FromSAN                          "">
+<!ENTITY % FromCompany                      "">
+<!ENTITY % FromPerson                       "">
+<!ENTITY % FromEmail                        "">
+<!ENTITY % ToEANNumber                      "">
+<!ENTITY % ToSAN                            "">
+<!ENTITY % ToCompany                        "">
+<!ENTITY % ToPerson                         "">
+<!ENTITY % MessageNumber                    "">
+<!ENTITY % MessageRepeat                    "">
+<!ENTITY % SentDate                         "">
+<!ENTITY % MessageNote                      "">
+<!ENTITY % DefaultLanguageOfText            "">
+<!ENTITY % DefaultPriceTypeCode             "">
+<!ENTITY % DefaultCurrencyCode              "">
+<!ENTITY % DefaultLinearUnit                "">
+<!ENTITY % DefaultWeightUnit                "">
+<!ENTITY % DefaultClassOfTrade              "">
+<!ENTITY % SenderIdentifier                 "">
+<!ENTITY % AddresseeIdentifier              "">
+<!ENTITY % SenderIDType                     "">
+<!ENTITY % AddresseeIDType                  "">
+<!ENTITY % Header                           "">
+]]>
+<!-- This comment inserted as a work-around for a known bug in XML Spy -->
+%MainModule;
