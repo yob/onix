@@ -132,7 +132,7 @@ module ONIX
       path = File.dirname(__FILE__) + "/../../support/entities.txt"
       @map = {}
       File.read(path).split.each do |line|
-        elements = line.split(";")
+        elements = line.split(":")
         @map[elements.first] = elements.last
       end
       @map
