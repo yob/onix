@@ -1,3 +1,7 @@
+v0.7.3 (19th August 2009)
+- Switch from java to xsltproc to convert short tag ONIX files
+  to reference tags
+
 v0.7.2 (19th August 2009)
 - Added ONIX::Normaliser class
   - for normalising various ONIX files into a form that makes them easy
