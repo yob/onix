@@ -72,10 +72,14 @@ module ONIX
 
     private
 
+    # check the specified app is available on the system
+    #
     def app_available?(app)
       `which #{app}`.strip == "" ? false : true
     end
 
+    # generate a temp filename
+    #
     def next_tempfile
       p = nil
       Tempfile.open("onix") do |tf|
@@ -101,6 +105,8 @@ module ONIX
       `java -jar /usr/share/java/saxon.jar #{inpath} #{xsltpath} > #{outpath}`
     end
 
+    # ensure the file is valid utf8, then make sure it's declared as such
+    #
     def to_utf8(src, dest)
       inpath = File.expand_path(src)
       outpath = File.expand_path(dest)
@@ -120,12 +126,19 @@ module ONIX
       end
     end
 
+    # replace all named entities in the specified file with
+    # numeric entities.
+    #
     def replace_named_entities(path)
+      # TODO: this is horrible. 1500 sed calls.
       entity_map.each do |named, numeric|
         `sed -i 's/\\&#{named};/\\&#{numeric};/g' #{path}`
       end
     end
 
+    # return a named entity to numeric entity mapping, build by extracting
+    # data from the ONIX DTD
+    #
     def entity_map
       return @map if @map
 
