@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/02/reference/onix-international.dtd">
+<ONIXMessage>
+  <Header>
+    <FromCompany>Penguin Group Australia</FromCompany>
+    <SentDate>20090820</SentDate>
+    <MessageNote>A message</MessageNote>
+  </Header>
+  <Product>
+    <RecordReference>9781847394408</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9781847394408</IDValue>
+    </ProductIdentifier>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9781847394408</IDValue>
+    </ProductIdentifier>
+    <ProductForm>BC</ProductForm>
+    <ProductFormDetail>B105</ProductFormDetail>
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Queenpin</TitleText>
+      <TitlePrefix></TitlePrefix>
+      <TitleWithoutPrefix>Queenpin</TitleWithoutPrefix>
+    </Title>
+    <Website>
+      <WebsiteLink>http://www.simonandschuster.net/content/book.cfm?tab=73&amp;isbn=9781847394408</WebsiteLink>
+    </Website>
+    <Contributor>
+      <SequenceNumber>001</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonName></PersonName>
+      <PersonNameInverted>Abbott, Megan</PersonNameInverted>
+    </Contributor>
+    <EditionNumber>1</EditionNumber>
+    <NumberOfPages>192</NumberOfPages>
+    <BICMainSubject>FF</BICMainSubject>
+    <AudienceCode></AudienceCode>
+    <Imprint>
+      <ImprintName>S&amp;S POCKET (UK)</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublishingRole>01</PublishingRole>
+      <PublisherName>Simon &amp; Schuster</PublisherName>
+    </Publisher>
+    <PublishingStatus>02</PublishingStatus>
+    <PublicationDate>20091201</PublicationDate>
+    <YearFirstPublished>2009</YearFirstPublished>
+    <Measure>
+      <MeasureTypeCode>08</MeasureTypeCode>
+      <Measurement>0</Measurement>
+      <MeasureUnitCode>gr</MeasureUnitCode>
+    </Measure>
+    <SupplyDetail>
+      <SupplierName>United Book Distributors</SupplierName>
+      <SupplierRole>02</SupplierRole>
+      <ProductAvailability>10</ProductAvailability>
+      <ExpectedShipDate></ExpectedShipDate>
+      <PackQuantity>1</PackQuantity>
+      <Price>
+        <PriceTypeCode>02</PriceTypeCode>
+        <PriceAmount>22.99</PriceAmount>
+      </Price>
+    </SupplyDetail>
+    <MarketRepresentation>
+      <AgentName>Simon &amp; Schuster</AgentName>
+      <AgentRole>07</AgentRole>
+      <MarketCountry>AU</MarketCountry>
+      <MarketPublishingStatus>02</MarketPublishingStatus>
+      <MarketDate>
+        <MarketDateRole>01</MarketDateRole>
+        <Date>20091201</Date>
+      </MarketDate>
+    </MarketRepresentation>
+  </Product>
+</ONIXMessage>

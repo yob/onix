@@ -102,7 +102,18 @@ module ONIX
       `xsltproc -o #{outpath} #{xsltpath} #{inpath}`
     end
 
-    # ensure the file is valid utf8, then make sure it's declared as such
+    # ensure the file is valid utf8, then make sure it's declared as such.
+    #
+    # The following behaviour is  expected:
+    #
+    #   file is valid utf8, is marked correctly
+    #     - copied untouched
+    #   file is valid utf8, is marked incorrectly or has no marked encoding
+    #     - copied and encoding mark fixed or added
+    #   file is no utf8, encoding is marked
+    #     - file is converted to utf8 and enecoding mark is updated
+    #   file is not utf8, encoding is not marked
+    #     - file is copied untouched
     #
     def to_utf8(src, dest)
       inpath = File.expand_path(src)
@@ -112,14 +123,17 @@ module ONIX
 
       # ensure the file is actually utf8
       if `isutf8 #{inpath}`.strip == ""
-        FileUtils.cp(inpath, outpath)
-      else
+        if src_enc.to_s.downcase == "utf-8"
+          FileUtils.cp(inpath, outpath)
+        else
+          FileUtils.cp(inpath, outpath)
+          `sed -i 's/<?xml.*?>/<?xml version=\"1.0\" encoding=\"UTF-8\"?>/' #{outpath}`
+        end
+      elsif src_enc
         `iconv --from-code=#{src_enc} --to-code=UTF-8 #{inpath} > #{outpath}`
-      end
-
-      # ensure the encoding delcaration is correct
-      if src_enc.downcase != "utf-8"
         `sed -i 's/#{src_enc}/UTF-8/' #{outpath}`
+      else
+          FileUtils.cp(inpath, outpath)
       end
     end
 
