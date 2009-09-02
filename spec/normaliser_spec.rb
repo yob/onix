@@ -99,3 +99,27 @@ context "ONIX::Normaliser", "with a utf8 file that has no declared encoding" do
     content.include?("encoding=\"UTF-8\"").should be_true
   end
 end
+
+context "ONIX::Normaliser", "with a utf8 file that has illegal control chars" do
+
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    @filename  = File.join(@data_path, "control_chars.xml")
+    @outfile   = @filename + ".new"
+  end
+
+  after(:each) do
+    File.unlink(@outfile) if File.file?(@outfile)
+  end
+
+  # this is to test for a bug where an exception was raised on files that
+  # had no declared encoding
+  specify "should remove all control chars except LF, CR and TAB" do
+    ONIX::Normaliser.process(@filename, @outfile)
+
+    File.file?(@outfile).should be_true
+    content = File.read(@outfile)
+
+    content.include?("<TitleText>OXFORDPICTURE DICTIONARY CHINESE</TitleText>").should be_true
+  end
+end

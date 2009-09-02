@@ -43,6 +43,7 @@ module ONIX
       raise "isutf8 app not found"   unless app_available?("isutf8")
       raise "iconv app not found"    unless app_available?("iconv")
       raise "sed app not found"      unless app_available?("sed")
+      raise "tr app not found"       unless app_available?("tr")
 
       @oldfile = oldfile
       @newfile = newfile
@@ -62,6 +63,11 @@ module ONIX
       # convert to utf8
       dest = next_tempfile
       to_utf8(@curfile, dest)
+      @curfile = dest
+
+      # remove control chars
+      dest = next_tempfile
+      remove_control_chars(@curfile, dest)
       @curfile = dest
 
       # remove entities
@@ -135,6 +141,14 @@ module ONIX
       else
           FileUtils.cp(inpath, outpath)
       end
+    end
+
+    # XML files shouldn't contain low ASCII control chars. Strip them.
+    #
+    def remove_control_chars(src, dest)
+      inpath = File.expand_path(src)
+      outpath = File.expand_path(dest)
+      `cat #{inpath} | tr -d "\\000-\\010\\013\\014\\016-\\037" > #{outpath}`
     end
 
     # replace all named entities in the specified file with
