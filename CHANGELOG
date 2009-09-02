@@ -1,3 +1,9 @@
+v0.7.4 (2nd September 2009)
+- Expand ONIX::Normaliser
+  - strip control chars
+  - add encoding declaration to valid utf-8 files that aren't declared
+    as such
+
 v0.7.3 (19th August 2009)
 - Switch from java to xsltproc to convert short tag ONIX files
   to reference tags
