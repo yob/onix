@@ -16,7 +16,7 @@ module ONIX
   module Version #:nodoc:
     Major = 0
     Minor = 7
-    Tiny  = 4
+    Tiny  = 5
 
     String = [Major, Minor, Tiny].join('.')
   end
