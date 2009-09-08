@@ -110,3 +110,14 @@ context "ONIX::Header" do
     header.to_xml.to_s.include?("James &gt; Healy").should  be_true
   end
 end
+
+context "ONIX::Header" do
+
+  specify "should correctly handle headers with an invalid sent date" do
+    data_path = File.join(File.dirname(__FILE__),"..","data")
+    file = File.join(data_path, "header_invalid_sentdate.xml")
+    header = ONIX::Header.from_xml(File.read(file))
+
+    header.sent_date.should be_nil
+  end
+end

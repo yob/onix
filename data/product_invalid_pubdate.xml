@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <RecordReference>ESPTAR01</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+    <ProductIDType>03</ProductIDType>
+    <IDValue>9780100000001</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>15</ProductIDType>
+    <IDValue>ESPTAR01</IDValue>
+  </ProductIdentifier>
+  <ProductForm>PB</ProductForm>
+  <NoContributor/>
+  <BICMainSubject>VXFC1</BICMainSubject>
+  <Imprint>
+    <ImprintName>Lo Scarabeo</ImprintName>
+  </Imprint>
+  <Publisher>
+    <PublishingRole>01</PublishingRole>
+    <PublisherName>LO SCARABEO</PublisherName>
+  </Publisher>
+  <PublishingStatus>04</PublishingStatus>
+  <PublicationDate>00000000</PublicationDate>
+  <SupplyDetail>
+    <SupplierName>Brumby Books</SupplierName>
+    <Price>
+      <PriceTypeCode>02</PriceTypeCode>
+      <PriceAmount>0</PriceAmount>
+    </Price>
+  </SupplyDetail>
+  <MarketRepresentation>
+    <AgentName>Brumby Books</AgentName>
+    <AgentRole>05</AgentRole>
+    <MarketCountry>AU</MarketCountry>
+    <MarketPublishingStatus>04</MarketPublishingStatus>
+    <MarketDate>
+      <MarketDateRole>01</MarketDateRole>
+      <Date></Date>
+    </MarketDate>
+  </MarketRepresentation>
+</Product>

@@ -24,7 +24,13 @@ module ONIX
     xml_accessor :imprints, :from => "Imprint", :as => [ONIX::Imprint]
     xml_accessor :publishers, :from => "Publisher", :as => [ONIX::Publisher]
     xml_accessor :publishing_status, :from => "PublishingStatus", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :publication_date, :from => "PublicationDate", :as => Date, :to_xml => ONIX::Formatters.yyyymmdd
+    xml_accessor(:publication_date, :from => "PublicationDate", :to_xml => ONIX::Formatters.yyyymmdd) do |val|
+      begin
+        Date.parse(val)
+      rescue
+        nil
+      end
+    end
     xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Fixnum
     xml_accessor :sales_restrictions, :from => "SalesRestriction", :as => [ONIX::SalesRestriction]
     xml_accessor :measurements, :from => "Measure", :as => [ONIX::Measure]

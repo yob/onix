@@ -86,13 +86,11 @@ context "ONIX::Product" do
     product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be_true
   end
 
-  specify "should correctly from_xml files that have non-standard entties"
-=begin
-  do
-    file = File.join(@data_path, "extra_entities.xml")
+  specify "should correctly from_xml files that have an invalid publication date" do
+    file = File.join(@data_path, "product_invalid_pubdate.xml")
     product = ONIX::Product.from_xml(File.read(file))
 
-    product.titles.first.title_text.should eql("Ipod® & Itunes® for Dummies®, 4th Edition")
+    product.bic_main_subject.should eql("VXFC1")
+    product.publication_date.should be_nil
   end
-=end
 end
