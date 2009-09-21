@@ -63,6 +63,7 @@
     <Stock>
       <OnHand>70</OnHand>
     </Stock>
+    <PackQuantity>12</PackQuantity>
     <Price>
       <PriceTypeCode>02</PriceTypeCode>
       <PriceAmount>59.95</PriceAmount>

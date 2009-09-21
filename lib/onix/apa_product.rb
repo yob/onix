@@ -276,7 +276,7 @@ module ONIX
 
     # retrieve the supplier name
     def supplier_name
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.supplier_name
     end
 
@@ -288,7 +288,7 @@ module ONIX
 
     # retrieve the supplier phone number
     def supplier_phone
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.telephone_number
     end
 
@@ -300,7 +300,7 @@ module ONIX
 
     # retrieve the supplier fax number
     def supplier_fax
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.fax_number
     end
 
@@ -312,7 +312,7 @@ module ONIX
 
     # retrieve the supplier email address
     def supplier_email
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.email_address
     end
 
@@ -324,7 +324,7 @@ module ONIX
 
     # retrieve the supply country code
     def supply_country
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.supply_to_country
     end
 
@@ -336,7 +336,7 @@ module ONIX
 
     # retrieve the product availability code
     def product_availability
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.product_availability
     end
 
@@ -392,7 +392,7 @@ module ONIX
 
     # retrieve the supplier phone number
     def pack_quantity
-      composite = product.supplier_details.first
+      composite = product.supply_details.first
       composite.nil? ? nil : composite.pack_quantity
     end
 
