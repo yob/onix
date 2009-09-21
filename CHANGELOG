@@ -1,3 +1,6 @@
+v0.7.6 (21st September 2009)
+- provide access to the PackQuantity element
+
 v0.7.5 (8th September 2009)
 - Don't raise an exception on malformed dates when reading files
 
