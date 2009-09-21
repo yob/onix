@@ -390,6 +390,18 @@ module ONIX
       composite.on_order = num
     end
 
+    # retrieve the supplier phone number
+    def pack_quantity
+      composite = product.supplier_details.first
+      composite.nil? ? nil : composite.pack_quantity
+    end
+
+    # set a new supplier phone number
+    def pack_quantity=(val)
+      composite = find_or_create_supply_detail
+      composite.pack_quantity = val.to_i
+    end
+
     # retrieve the rrp excluding any sales tax
     def rrp_exc_sales_tax
       price_get(1).andand.price_amount

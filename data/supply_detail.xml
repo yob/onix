@@ -10,6 +10,7 @@
     <OnHand>2862</OnHand>
     <OnOrder>0</OnOrder>
   </Stock>
+  <PackQuantity>16</PackQuantity>
   <Price>
     <PriceTypeCode>02</PriceTypeCode>
     <PriceAmount>7.5</PriceAmount>

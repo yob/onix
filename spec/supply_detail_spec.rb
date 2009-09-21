@@ -25,6 +25,7 @@ context "ONIX::SupplyDetail" do
     sd.product_availability.should eql(21)
     sd.stock.should be_a_kind_of(Array)
     sd.stock.size.should eql(1)
+    sd.pack_quantity.should eql(16)
     sd.prices.should be_a_kind_of(Array)
     sd.prices.size.should eql(1)
   end
@@ -44,6 +45,8 @@ context "ONIX::SupplyDetail" do
     sd.product_availability = 3
     sd.to_xml.to_s.include?("<ProductAvailability>03</ProductAvailability>").should be_true
 
+    sd.pack_quantity = 12
+    sd.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be_true
   end
 
 end

@@ -20,6 +20,7 @@ module ONIX
     xml_accessor :availability_status_code, :from => "AvailabilityStatusCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :product_availability, :from => "ProductAvailability", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :stock, :from => "Stock", :as => [ONIX::Stock]
+    xml_accessor :pack_quantity, :from => "PackQuantity", :as => Fixnum
     xml_accessor :prices, :from => "Price", :as => [ONIX::Price]
 
     def initialize
