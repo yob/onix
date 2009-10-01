@@ -1,3 +1,7 @@
+v0.7.7 (1st October 2009)
+- optimise sed usage in ONIX::Normaliser. *huge* speed improvement on
+  large files.
+
 v0.7.6 (21st September 2009)
 - provide access to the PackQuantity element
 
