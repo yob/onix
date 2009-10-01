@@ -71,12 +71,14 @@ module ONIX
       @curfile = dest
 
       # remove entities
-      replace_named_entities(@curfile)
+      dest = next_tempfile
+      replace_named_entities(@curfile, dest)
+      @curfile = dest
 
       FileUtils.cp(@curfile, @newfile)
     end
 
-    private
+    #private
 
     # check the specified app is available on the system
     #
@@ -133,7 +135,7 @@ module ONIX
           FileUtils.cp(inpath, outpath)
         else
           FileUtils.cp(inpath, outpath)
-          `sed -i 's/<?xml.*?>/<?xml version=\"1.0\" encoding=\"UTF-8\"?>/' #{outpath}`
+          `sed -i 's/<?xml.*?>/<?xml version=\"1.0\" encoding=\"UTF-8\"?>/g' #{outpath}`
         end
       elsif src_enc
         `iconv --from-code=#{src_enc} --to-code=UTF-8 #{inpath} > #{outpath}`
@@ -154,11 +156,15 @@ module ONIX
     # replace all named entities in the specified file with
     # numeric entities.
     #
-    def replace_named_entities(path)
-      # TODO: this is horrible. 1500 sed calls.
-      entity_map.each do |named, numeric|
-        `sed -i 's/\\&#{named};/\\&#{numeric};/g' #{path}`
-      end
+    def replace_named_entities(src, dest)
+      inpath = File.expand_path(src)
+      outpath = File.expand_path(dest)
+
+      cmd = "sed " + entity_map.map do |named, numeric|
+        "-e 's/\\&#{named};/\\&#{numeric};/g'"
+      end.join(" ") + " #{inpath} > #{outpath}"
+      #raise cmd
+      `#{cmd}`
     end
 
     # return a named entity to numeric entity mapping, build by extracting
