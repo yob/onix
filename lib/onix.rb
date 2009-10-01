@@ -70,6 +70,10 @@ require File.join(File.dirname(__FILE__), "onix", "common")
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them
+require File.join(File.dirname(__FILE__), "onix", "language") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "series_identifier") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "series") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "audience_range") # milkfarm
 require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
 require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
 require File.join(File.dirname(__FILE__), "onix", "header")
@@ -95,10 +99,16 @@ require File.join(File.dirname(__FILE__), "onix", "writer")
 # lists
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability")
+require File.join(File.dirname(__FILE__), "onix", "lists", "country_code") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "lists", "language_code") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "lists", "language_role") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "lists", "notification_type") # milkfarm
+require File.join(File.dirname(__FILE__), "onix", "lists", "product_form_detail") # milkfarm
 
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
+require File.join(File.dirname(__FILE__), "onix", "sl_product") # milkfarm
 
 # misc
 require File.join(File.dirname(__FILE__), "onix", "normaliser")

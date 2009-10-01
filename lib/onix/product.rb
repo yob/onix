@@ -10,10 +10,15 @@ module ONIX
     xml_accessor :record_reference, :from => "RecordReference"
     xml_accessor :notification_type, :from => "NotificationType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier]
-    xml_accessor :product_form, :from => "ProductForm"
-    xml_accessor :series, :from => "Series"
-    xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
     xml_accessor :titles, :from => "Title", :as => [ONIX::Title]
+    xml_accessor :series_identifiers, :from => "SeriesIdentifier", :as => [ONIX::SeriesIdentifier] # milkfarm
+    xml_accessor :series, :from => "Series", :as => [ONIX::Series] # milkfarm
+    xml_accessor :product_form, :from => "ProductForm"
+    xml_accessor :product_form_detail, :from => "ProductFormDetail" # milkfarm
+    xml_accessor :copyright_year, :from => "CopyrightYear", :as => Integer # milkfarm
+    xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
+    xml_accessor :audience_ranges, :from => "AudienceRange", :as => [ONIX::AudienceRange] # milkfarm
+    xml_accessor :languages, :from => "Language", :as => [ONIX::Language] # milkfarm
     xml_accessor :websites, :from => "Website", :as => [ONIX::Website]
     xml_accessor :contributors, :from => "Contributor", :as => [ONIX::Contributor]
     xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
@@ -47,7 +52,11 @@ module ONIX
     xml_reader :dimensions, :from => "Dimensions"
 
     def initialize
+      self.series = [] # milkfarm
+      self.audience_ranges = [] # milkfarm
+      self.languages = [] # milkfarm
       self.product_identifiers = []
+      self.series_identifiers = [] # milkfarm
       self.titles = []
       self.contributors = []
       self.websites = []
