@@ -1,63 +1,37 @@
 # coding: utf-8
-# milkfarm
+
 module ONIX
   class SLProduct < APAProduct
 
+    delegate :audience_code, :audience_code=
     delegate :copyright_year, :copyright_year=
     delegate :product_form_detail, :product_form_detail=
     
-    # retrieve the proprietary series ID
-    def proprietary_series_id
-      series_identifier(1).andand.id_value
-    end
-
-    # set a new proprietary series ID
-    def proprietary_series_id=(id)
-      series_identifier_set(1, id)
-    end
-    
-    # retrieve the issn
-    def issn
-      series_identifier(2).andand.id_value
-    end
-
-    # set a new issn
-    def issn=(id)
-      series_identifier_set(2, id)
-    end
-    
-    # retrieve the value of a particular ID
-    def series_identifier(type)
-      product.series_identifiers.find { |id| id.series_id_type == type }
-    end
-
-    # set the value of a particular ID
-    def series_identifier_set(type, value)
-      series_id = series_identifier(type)
-
-      # create a new series identifier record if we need to
-      if series_id.nil?
-        series_id = ONIX::SeriesIdentifier.new
-        series_id.series_id_type = type
-        product.series_identifiers << series_id
-      end
-
-      series_id.id_value = value
+    alias_method :old_initialize, :initialize
+    def initialize(*args)
+      result = old_initialize(*args)
+      result.audience_code = 4 # Primary & secondary/elementary & high school
+      result
     end
     
     # retrieve the value of a particular ID
     def series(str)
-      product.series.find { |id| id.title_of_series == series }
+      product.series.find { |id| id.title_of_series == str }
     end
 
     # set the value of a particular ID
     def series=(value)
-      series_id = series(value)
-
-      # create a new series record if we need to
-      if series_id.nil?
+      # process based on value type
+      if value.is_a?(Series)
+        str = value.title_of_series
+        series_id = value
+      else
+        str = value
         series_id = ONIX::Series.new
         series_id.title_of_series = value
+      end
+      # check if exists already
+      unless series(str)
         product.series << series_id
       end
     end

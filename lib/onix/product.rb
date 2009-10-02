@@ -13,7 +13,6 @@ module ONIX
     xml_accessor :product_form, :from => "ProductForm"
     xml_accessor :product_form_detail, :from => "ProductFormDetail"
     xml_accessor :series, :from => "Series", :as => [ONIX::Series]
-    xml_accessor :series_identifiers, :from => "SeriesIdentifier", :as => [ONIX::SeriesIdentifier]
     xml_accessor :titles, :from => "Title", :as => [ONIX::Title]
     xml_accessor :websites, :from => "Website", :as => [ONIX::Website]
     xml_accessor :contributors, :from => "Contributor", :as => [ONIX::Contributor]
@@ -22,6 +21,7 @@ module ONIX
     xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
     xml_accessor :bic_main_subject, :from => "BICMainSubject"
     xml_accessor :subjects, :from => "Subject", :as => [ONIX::Subject]
+    xml_accessor :audience_code, :from => "AudienceCode", :to_xml => ONIX::Formatters.two_digit
     xml_accessor :audience_ranges, :from => "AudienceRange", :as => [ONIX::AudienceRange]
     xml_accessor :text, :from => "OtherText", :as => [ONIX::OtherText]
     xml_accessor :media_files, :from => "MediaFile", :as => [ONIX::MediaFile]
@@ -54,7 +54,6 @@ module ONIX
     def initialize
       self.product_identifiers = []
       self.series = []
-      self.series_identifiers = []
       self.titles = []
       self.contributors = []
       self.websites = []

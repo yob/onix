@@ -2,8 +2,8 @@
 <AudienceRange>
   <AudienceRangeQualifier>11</AudienceRangeQualifier>
   <AudienceRangePrecision>03</AudienceRangePrecision>
-  <AudienceRangePrecision>04</AudienceRangePrecision>
   <AudienceRangeValue>3</AudienceRangeValue>
+  <AudienceRangePrecision>04</AudienceRangePrecision>
   <AudienceRangeValue>5</AudienceRangeValue>
 </AudienceRange>
 

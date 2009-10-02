@@ -1,5 +1,5 @@
 # coding: utf-8
-# milkfarm
+
 module ONIX
   class SeriesIdentifier
     include ROXML
