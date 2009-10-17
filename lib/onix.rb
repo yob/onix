@@ -3,12 +3,6 @@
 require 'rubygems'
 require 'bigdecimal'
 require 'cgi'
-
-# ensure we load the correct gem versions
-gem 'roxml', '2.5.3'
-gem 'andand'
-
-# and now load the actual gems
 require 'roxml'
 require 'andand'
 
