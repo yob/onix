@@ -78,7 +78,7 @@ module ONIX
     def each(&block)
       @reader.each do |node|
         if @reader.node_type == 1 && @reader.name == "Product"
-          str = normalise_string_encoding(@reader.outer_xml.to_s.dup)
+          str = @reader.outer_xml
           if str.size == 0
             yield @product_klass.new
           else
@@ -98,7 +98,7 @@ module ONIX
       100.times do
         @reader.read
         if @reader.node_type == 1 &&  @reader.name == "Header"
-          str = normalise_string_encoding(@reader.outer_xml.to_s.dup)
+          str = @reader.outer_xml
           if str.size == 0
             return ONIX::Header.new
           else
@@ -107,17 +107,6 @@ module ONIX
         end
       end
       return nil
-    end
-
-    # XML::Reader seems to transparently convert all input data to utf-8, howver
-    # on Ruby 1.9 it fails to correctly set the encoding on the strings.
-    #
-    def normalise_string_encoding(str)
-      if RUBY_VERSION >= "1.9"
-        return str.dup.force_encoding("utf-8")
-      else
-        str
-      end
     end
   end
 end
