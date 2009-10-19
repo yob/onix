@@ -53,7 +53,7 @@ module ONIX
   class Reader
     include Enumerable
 
-    attr_reader :header , :version, :xml_lang, :xml_version, :encoding
+    attr_reader :header , :version, :xml_lang, :xml_version
 
     def initialize(input, product_klass = ::ONIX::Product)
       if input.kind_of?(String)
@@ -71,7 +71,6 @@ module ONIX
 
       @xml_lang    ||= @reader.lang
       @xml_version ||= @reader.xml_version.to_f
-      @encoding    ||= encoding_const_to_name(@reader.encoding)
     end
 
     # Iterate over all the products in an ONIX file
@@ -118,54 +117,6 @@ module ONIX
         return str.dup.force_encoding("utf-8")
       else
         str
-      end
-    end
-
-    # simple mapping of encoding constants to a string
-    #
-    def encoding_const_to_name(const)
-      return nil if const.nil?
-      case const
-      when LibXML::XML::Encoding::UTF_8
-        "utf-8"
-      when LibXML::XML::Encoding::UTF_16LE
-        "utf-16le"
-      when LibXML::XML::Encoding::UTF_16BE
-        "utf-16be"
-      when LibXML::XML::Encoding::UCS_4LE
-        "ucs-4le"
-      when LibXML::XML::Encoding::UCS_4BE
-        "ucs-4be"
-      when LibXML::XML::Encoding::UCS_2
-        "ucs-2"
-      when LibXML::XML::Encoding::ISO_8859_1
-        "iso-8859-1"
-      when LibXML::XML::Encoding::ISO_8859_2
-        "iso-8859-2"
-      when LibXML::XML::Encoding::ISO_8859_3
-        "iso-8859-3"
-      when LibXML::XML::Encoding::ISO_8859_4
-        "iso-8859-4"
-      when LibXML::XML::Encoding::ISO_8859_5
-        "iso-8859-5"
-      when LibXML::XML::Encoding::ISO_8859_6
-        "iso-8859-6"
-      when LibXML::XML::Encoding::ISO_8859_7
-        "iso-8859-7"
-      when LibXML::XML::Encoding::ISO_8859_8
-        "iso-8859-8"
-      when LibXML::XML::Encoding::ISO_8859_9
-        "iso-8859-9"
-      when LibXML::XML::Encoding::ISO_2022_JP
-        "iso-2022-jp"
-      when LibXML::XML::Encoding::SHIFT_JIS
-        "shift-jis"
-      when LibXML::XML::Encoding::EUC_JP
-        "euc-jp"
-      when LibXML::XML::Encoding::ASCII
-        "ascii"
-      else
-        nil
       end
     end
   end
