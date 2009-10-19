@@ -57,18 +57,19 @@ module ONIX
 
     def initialize(input, product_klass = ::ONIX::Product)
       if input.kind_of?(String)
-        @reader = LibXML::XML::Reader.file(input)
+        @file   = File.open(input, "r")
+        @reader = Nokogiri::XML::Reader.from_io(@file)
       elsif input.kind_of?(IO)
-        @reader = LibXML::XML::Reader.io(input)
+        @reader = Nokogiri::XML::Reader.from_io(input)
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end
 
       @product_klass = product_klass
 
-      @header = read_next
+      @header = find_header
 
-      @xml_lang    ||= @reader.xml_lang
+      @xml_lang    ||= @reader.lang
       @xml_version ||= @reader.xml_version.to_f
       @encoding    ||= encoding_const_to_name(@reader.encoding)
     end
@@ -76,8 +77,15 @@ module ONIX
     # Iterate over all the products in an ONIX file
     #
     def each(&block)
-      while obj = read_next
-        yield obj
+      @reader.each do |node|
+        if @reader.node_type == 1 && @reader.name == "Product"
+          str = normalise_string_encoding(@reader.outer_xml.to_s.dup)
+          if str.size == 0
+            yield @product_klass.new
+          else
+            yield @product_klass.from_xml(str)
+          end
+        end
       end
     end
 
@@ -87,41 +95,18 @@ module ONIX
 
     private
 
-    # Walk the ONIX file, and grab the next header or product fragment.
-    #
-    def read_next
-      while @reader.read
-
-        if @reader.node_type == LibXML::XML::Reader::TYPE_DOCUMENT_TYPE
-          # TODO restore ONIX version extraction. The following expand()
-          #      call is triggering unpredictable behaviour in libxml-ruby
-          #      1.1.3 with libxml2 2.7.3. Sometimes segfaults, othertimes
-          #      cryptic errors about the input file being truncated or
-          #      incomplete
-          #uri = @reader.expand.to_s.dup
-          #m, major, minor, rev = *uri.match(/.+(\d)\.(\d)\/(\d*).*/)
-          #@version = [major.to_i, minor.to_i, rev.to_i]
-        elsif @reader.node_type == LibXML::XML::Reader::TYPE_ELEMENT
-          if @reader.name == "Header"
-            str = normalise_string_encoding(@reader.read_outer_xml.to_s.dup)
-            if str.size == 0
-              return ONIX::Header.new
-            else
-              return ONIX::Header.from_xml(str)
-            end
-          elsif @reader.name == "Product"
-            str = normalise_string_encoding(@reader.read_outer_xml.to_s.dup)
-            if str.size == 0
-              return @product_klass.new
-            else
-              return @product_klass.from_xml(str)
-            end
+    def find_header
+      100.times do
+        @reader.read
+        if @reader.node_type == 1 &&  @reader.name == "Header"
+          str = normalise_string_encoding(@reader.outer_xml.to_s.dup)
+          if str.size == 0
+            return ONIX::Header.new
+          else
+            return ONIX::Header.from_xml(str)
           end
         end
       end
-
-      return nil
-    rescue LibXML::XML::Error => e
       return nil
     end
 

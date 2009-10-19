@@ -18,13 +18,13 @@ context "ONIX::Reader" do
 
   specify "should initialize with a filename" do
     reader = ONIX::Reader.new(@file1)
-    reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
+    reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
   end
 
   specify "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
       reader = ONIX::Reader.new(f)
-      reader.instance_variable_get("@reader").should be_a_kind_of(LibXML::XML::Reader)
+      reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
     end
   end
 
