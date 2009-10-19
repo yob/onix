@@ -79,7 +79,7 @@ module ONIX
       @reader.each do |node|
         if @reader.node_type == 1 && @reader.name == "Product"
           str = @reader.outer_xml
-          if str.size == 0
+          if str.nil?
             yield @product_klass.new
           else
             yield @product_klass.from_xml(str)
@@ -99,7 +99,7 @@ module ONIX
         @reader.read
         if @reader.node_type == 1 &&  @reader.name == "Header"
           str = @reader.outer_xml
-          if str.size == 0
+          if str.nil?
             return ONIX::Header.new
           else
             return ONIX::Header.from_xml(str)
