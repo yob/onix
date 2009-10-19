@@ -3,7 +3,6 @@
 module ONIX
   class SeriesIdentifier
     include ROXML
-    include ONIX::Common
 
     xml_name "SeriesIdentifier"
 

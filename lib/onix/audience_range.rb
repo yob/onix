@@ -3,7 +3,6 @@
 module ONIX
   class AudienceRange
     include ROXML
-    include ONIX::Common
 
     xml_name "AudienceRange"
 
