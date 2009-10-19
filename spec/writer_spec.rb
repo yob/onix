@@ -1,9 +1,6 @@
 # coding: utf-8
 
-$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
-
-require 'onix'
-require 'stringio'
+require File.dirname(__FILE__) + '/spec_helper.rb'
 
 context "ONIX::Writer" do
 

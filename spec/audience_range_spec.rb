@@ -1,8 +1,6 @@
 # coding: utf-8
 
-$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
-
-require 'onix'
+require File.dirname(__FILE__) + '/spec_helper.rb'
 
 context "ONIX::AudienceRange" do
 
