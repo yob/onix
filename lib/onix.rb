@@ -108,7 +108,6 @@ require File.join(File.dirname(__FILE__), "onix", "lists", "product_form_detail"
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
-require File.join(File.dirname(__FILE__), "onix", "sl_product")
 
 # misc
 require File.join(File.dirname(__FILE__), "onix", "normaliser")
