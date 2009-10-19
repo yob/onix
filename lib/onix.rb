@@ -3,7 +3,6 @@
 require 'rubygems'
 require 'bigdecimal'
 require 'cgi'
-require 'libxml'
 require 'roxml'
 require 'andand'
 
