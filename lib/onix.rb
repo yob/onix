@@ -10,7 +10,7 @@ module ONIX
   module Version #:nodoc:
     Major = 0
     Minor = 7
-    Tiny  = 7
+    Tiny  = 8
 
     String = [Major, Minor, Tiny].join('.')
   end
@@ -66,14 +66,18 @@ require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
 require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
 require File.join(File.dirname(__FILE__), "onix", "header")
 require File.join(File.dirname(__FILE__), "onix", "product_identifier")
+require File.join(File.dirname(__FILE__), "onix", "series_identifier")
+require File.join(File.dirname(__FILE__), "onix", "series")
 require File.join(File.dirname(__FILE__), "onix", "title")
 require File.join(File.dirname(__FILE__), "onix", "website")
 require File.join(File.dirname(__FILE__), "onix", "contributor")
+require File.join(File.dirname(__FILE__), "onix", "language")
 require File.join(File.dirname(__FILE__), "onix", "subject")
-require File.join(File.dirname(__FILE__), "onix", "other_text")
-require File.join(File.dirname(__FILE__), "onix", "media_file")
+require File.join(File.dirname(__FILE__), "onix", "audience_range")
 require File.join(File.dirname(__FILE__), "onix", "imprint")
 require File.join(File.dirname(__FILE__), "onix", "publisher")
+require File.join(File.dirname(__FILE__), "onix", "other_text")
+require File.join(File.dirname(__FILE__), "onix", "media_file")
 require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
 require File.join(File.dirname(__FILE__), "onix", "stock")
 require File.join(File.dirname(__FILE__), "onix", "price")
@@ -87,6 +91,11 @@ require File.join(File.dirname(__FILE__), "onix", "writer")
 # lists
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
 require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability")
+require File.join(File.dirname(__FILE__), "onix", "lists", "country_code")
+require File.join(File.dirname(__FILE__), "onix", "lists", "language_code")
+require File.join(File.dirname(__FILE__), "onix", "lists", "language_role")
+require File.join(File.dirname(__FILE__), "onix", "lists", "notification_type")
+require File.join(File.dirname(__FILE__), "onix", "lists", "product_form_detail")
 
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")

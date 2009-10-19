@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/03/reference/onix-international.dtd">
+<Product>
+  <RecordReference>10001</RecordReference>
+  <NotificationType>02</NotificationType>
+  <ProductIdentifier>
+    <ProductIDType>01</ProductIDType>
+    <IDValue>10001</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>02</ProductIDType>
+    <IDValue>1602791082</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>15</ProductIDType>
+    <IDValue>9781602791084</IDValue>
+  </ProductIdentifier>
+  <Title>
+    <TitleType>01</TitleType>
+    <TitleText>Citizens and Their Governments</TitleText>
+  </Title>
+  <CopyrightYear>2008</CopyrightYear>
+  <AudienceRange>
+    <AudienceRangeQualifier>11</AudienceRangeQualifier>
+    <AudienceRangePrecision>03</AudienceRangePrecision>
+    <AudienceRangePrecision>04</AudienceRangePrecision>
+    <AudienceRangeValue>3</AudienceRangeValue>
+    <AudienceRangeValue>5</AudienceRangeValue>
+  </AudienceRange>
+  <Language>
+    <LanguageRole>01</LanguageRole>
+    <LanguageCode>eng</LanguageCode>
+  </Language>
+  <Website>
+    <WebsiteRole>12</WebsiteRole>
+    <WebsiteLink>http://www.cherrylakepublishing.com/shop/show/10001</WebsiteLink>
+  </Website>
+  <NumberOfPages>32</NumberOfPages>
+  <OtherText>
+    <TextTypeCode>01</TextTypeCode>
+    <Text>This series focuses on teaching civic literacy from a global perspective.  Why is voting important?  How do elections differ around the world?  What is the impact of immigration? How does the government work?</Text>
+  </OtherText>
+  <MediaFile>
+    <MediaFileTypeCode>04</MediaFileTypeCode>
+    <MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>
+    <MediaFileLink>http://www.cherrylakepublishing.com/images/covers/l/9781602791084</MediaFileLink>
+  </MediaFile>
+  <MediaFile>
+    <MediaFileTypeCode>07</MediaFileTypeCode>
+    <MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>
+    <MediaFileLink>http://www.cherrylakepublishing.com/images/covers/m/9781602791084</MediaFileLink>
+  </MediaFile>
+  <Publisher>
+    <PublishingRole>01</PublishingRole>
+    <PublisherName>Cherry Lake</PublisherName>
+  </Publisher>
+  <PublishingStatus>02</PublishingStatus>
+  <PublicationDate>20091201</PublicationDate>
+  <Measure>
+    <MeasureTypeCode>01</MeasureTypeCode>
+    <Measurement>9.5</Measurement>
+    <MeasureUnitCode>in</MeasureUnitCode>
+  </Measure>
+  <Measure>
+    <MeasureTypeCode>02</MeasureTypeCode>
+    <Measurement>7.5</Measurement>
+    <MeasureUnitCode>in</MeasureUnitCode>
+  </Measure>
+  <SupplyDetail>
+    <SupplierName>Cherry Lake Publishing</SupplierName>
+    <TelephoneNumber>1-866-918-3956</TelephoneNumber>
+    <FaxNumber>1-866-489-6490</FaxNumber>
+    <EmailAddress>sales@cherrylakepublishing.com</EmailAddress>
+    <SupplyToCountry>US</SupplyToCountry>
+    <ProductAvailability>10</ProductAvailability>
+    <Price>
+      <PriceTypeCode>01</PriceTypeCode>
+      <PriceAmount>232.65</PriceAmount>
+    </Price>
+  </SupplyDetail>
+</Product>
