@@ -20,7 +20,7 @@ context "ONIX::AudienceRange" do
 
   specify "should provide read access to first level attibutes" do
     aud = ONIX::AudienceRange.from_xml(@root.to_s)
-    
+
     aud.audience_range_qualifier.should eql(11)
     aud.audience_range_precisions.size.should eql(2)
     aud.audience_range_precisions[0].should eql(3)
@@ -32,13 +32,13 @@ context "ONIX::AudienceRange" do
 
   specify "should provide write access to first level attibutes" do
     aud = ONIX::AudienceRange.new
-    
+
     aud.audience_range_qualifier = 12
     aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be_true
 
     aud.audience_range_precisions[0] = 888
     aud.to_xml.to_s.include?("<AudienceRangePrecision>888</AudienceRangePrecision>").should be_true
-    
+
     aud.audience_range_values[0] = 999
     aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
   end

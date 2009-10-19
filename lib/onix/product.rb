@@ -6,7 +6,7 @@ module ONIX
     include ONIX::Common
 
     xml_name "Product"
-    
+
     xml_accessor :record_reference, :from => "RecordReference"
     xml_accessor :notification_type, :from => "NotificationType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier]

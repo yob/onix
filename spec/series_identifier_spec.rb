@@ -20,17 +20,17 @@ context "ONIX::SeriesIdentifier" do
 
   specify "should provide read access to first level attibutes" do
     series = ONIX::SeriesIdentifier.from_xml(@root.to_s)
-    
+
     series.series_id_type.should eql(1)
     series.id_value.should eql("10001")
   end
 
   specify "should provide write access to first level attibutes" do
     series = ONIX::SeriesIdentifier.new
-    
+
     series.series_id_type = 9
     series.to_xml.to_s.include?("<SeriesIDType>09</SeriesIDType>").should be_true
-    
+
     series.id_value = 999
     series.to_xml.to_s.include?("<IDValue>999</IDValue>").should be_true
   end
