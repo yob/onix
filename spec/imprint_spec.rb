@@ -8,9 +8,9 @@ context "ONIX::Imprint" do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "imprint.xml")
-    @doc = LibXML::XML::Document.file(file1)
-    @root = @doc.root
+    file1     = File.join(data_path, "imprint.xml")
+    @doc      = Nokogiri::XML::Document.parse(File.read(file1))
+    @root     = @doc.root
   end
 
   specify "should correctly convert to a string" do

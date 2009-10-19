@@ -9,7 +9,7 @@ context "ONIX::SalesRestriction" do
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(data_path, "sales_restriction.xml")
-    @doc = LibXML::XML::Document.file(file1)
+    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
     @root = @doc.root
   end
 
