@@ -3,7 +3,6 @@
 module ONIX
   class Stock
     include ROXML
-    include ONIX::Common
 
     xml_name "Stock"
 

@@ -3,7 +3,6 @@
 module ONIX
   class Price
     include ROXML
-    include ONIX::Common
 
     xml_name "Price"
 

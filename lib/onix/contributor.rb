@@ -3,7 +3,6 @@
 module ONIX
   class Contributor
     include ROXML
-    include ONIX::Common
 
     xml_name "Contributor"
 

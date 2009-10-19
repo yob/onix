@@ -3,7 +3,6 @@
 module ONIX
   class Subject
     include ROXML
-    include ONIX::Common
 
     xml_name "Subject"
 

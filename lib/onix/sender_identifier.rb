@@ -3,7 +3,6 @@
 module ONIX
   class SenderIdentifier
     include ROXML
-    include ONIX::Common
 
     xml_name "SenderIdentifier"
 

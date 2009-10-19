@@ -3,7 +3,6 @@
 module ONIX
   class OtherText
     include ROXML
-    include ONIX::Common
 
     xml_name "OtherText"
 

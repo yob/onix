@@ -3,7 +3,6 @@
 module ONIX
   class MarketRepresentation
     include ROXML
-    include ONIX::Common
 
     xml_name "MarketRepresentation"
 

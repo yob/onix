@@ -3,7 +3,6 @@
 module ONIX
   class Title
     include ROXML 
-    include ONIX::Common
 
     xml_name "Title"
 

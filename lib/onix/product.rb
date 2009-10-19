@@ -3,7 +3,6 @@
 module ONIX
   class Product
     include ROXML
-    include ONIX::Common
 
     xml_name "Product"
 
