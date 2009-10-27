@@ -57,3 +57,35 @@ context "ONIX::APAProduct" do
   end
 
 end
+
+context ONIX::APAProduct, "price method" do
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    file1    = File.join(@data_path, "usd.xml")
+    @doc = LibXML::XML::Document.file(file1)
+    @product_node = @doc.root
+  end
+
+  specify "should return the first price in the file, regardless of type" do
+    @product = ONIX::Product.from_xml(@product_node.to_s)
+    @apa     = ONIX::APAProduct.new(@product)
+
+    @apa.price.should eql(BigDecimal.new("99.95"))
+  end
+end
+
+context ONIX::APAProduct, "rrp_exc_sales_tax method" do
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    file1    = File.join(@data_path, "usd.xml")
+    @doc = LibXML::XML::Document.file(file1)
+    @product_node = @doc.root
+  end
+
+  specify "should return the first price in the file of type 1" do
+    @product = ONIX::Product.from_xml(@product_node.to_s)
+    @apa     = ONIX::APAProduct.new(@product)
+
+    @apa.rrp_exc_sales_tax.should eql(BigDecimal.new("99.95"))
+  end
+end
