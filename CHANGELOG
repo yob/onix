@@ -1,4 +1,10 @@
-v0.7.9 (XXX)
+v0.8.0 (31st October 2009)
+- Replace LibXML dependency with Nokogiri. Nokogiri is under active development, has
+  a responsive maintainer and is significantly more stable
+- Switch to ROXML 3.x
+  - roxml also switched from libxml to nokogiri
+  - roxml removed deprecated parts of it's API
+  - should now avoid various conflicts with mongrel
 - Ensure APAProduct#price returns the first product price and ignores
   the price type
 
