@@ -651,7 +651,11 @@ module ONIX
     # retrieve the value of a particular price
     def price_get(type)
       supply = find_or_create_supply_detail
-      supply.prices.find { |p| p.price_type_code == type }
+      if type.nil?
+        supply.prices.first
+      else
+        supply.prices.find { |p| p.price_type_code == type }
+      end
     end
 
     # set the value of a particular price
