@@ -53,11 +53,6 @@ module ONIX
   end
 end
 
-# silence some warnings from ROXML
-unless ROXML.const_defined?("SILENCE_XML_NAME_WARNING")
-  ROXML::SILENCE_XML_NAME_WARNING = true
-end
-
 # core files
 # - ordering is important, classes need to be defined before any
 #   other class can use them
