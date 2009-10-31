@@ -60,7 +60,7 @@ context ONIX::APAProduct, "price method" do
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(@data_path, "usd.xml")
-    @doc = LibXML::XML::Document.file(file1)
+    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
     @product_node = @doc.root
   end
 
@@ -76,7 +76,7 @@ context ONIX::APAProduct, "rrp_exc_sales_tax method" do
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(@data_path, "usd.xml")
-    @doc = LibXML::XML::Document.file(file1)
+    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
     @product_node = @doc.root
   end
 
