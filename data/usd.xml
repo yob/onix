@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <RecordReference>160258186X</RecordReference>
+  <NotificationType>03</NotificationType>
+  <RecordSourceName>NetRead Software and Services, LLC</RecordSourceName>
+  <ProductIdentifier>
+    <ProductIDType>02</ProductIDType>
+    <IDValue>160258186X</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>03</ProductIDType>
+    <IDValue>9781602581869</IDValue>
+  </ProductIdentifier>
+  <ProductIdentifier>
+    <ProductIDType>15</ProductIDType>
+    <IDValue>9781602581869</IDValue>
+  </ProductIdentifier>
+  <Barcode>02</Barcode>
+  <ProductForm>BB</ProductForm>
+  <NoSeries/>
+  <Title>
+    <TitleType>01</TitleType>
+    <TitleText>The Acts of the Apostles</TitleText>
+    <TitlePrefix>The</TitlePrefix>
+    <TitleWithoutPrefix>Acts of the Apostles</TitleWithoutPrefix>
+    <Subtitle>Four Centuries of Baptist Interpretation</Subtitle>
+  </Title>
+  <Contributor>
+    <SequenceNumber>1</SequenceNumber>
+    <ContributorRole>B01</ContributorRole>
+    <PersonName>Beth Allison Barr</PersonName>
+    <PersonNameInverted>Barr, Beth Allison</PersonNameInverted>
+    <BiographicalNote>
+      Beth Allison Barr is Assistant Professor of European Womens History, Baylor University.  Her research interests focus on sermon literature in England, 1350-1750, and she is the author of The Pastoral Care of Women in Late Medieval England.  She lives in Waco, Texas.
+    </BiographicalNote>
+  </Contributor>
+  <Contributor>
+    <SequenceNumber>2</SequenceNumber>
+    <ContributorRole>B01</ContributorRole>
+    <PersonName>Bill J. Leonard</PersonName>
+    <PersonNameInverted>Leonard, Bill J.</PersonNameInverted>
+    <BiographicalNote>
+      Bill J. Leonard is Dean of the School of Divinity and Professor of Church History, Wake Forest University.  A prolific writer, his most recent books include Baptist Questions, Baptist Answers: Exploring Christian Faith (2008), Baptists in America (2007), and Baptist Ways: A History (2003).  He lives in Winston-Salem, North Carolina.
+    </BiographicalNote>
+  </Contributor>
+  <Contributor>
+    <SequenceNumber>3</SequenceNumber>
+    <ContributorRole>B01</ContributorRole>
+    <PersonName>Mikeal C. Parsons</PersonName>
+    <PersonNameInverted>Parsons, Mikeal C.</PersonNameInverted>
+    <BiographicalNote>
+      Mikeal C. Parsons is Kidd L. and Buna Hitchcock Macon Chair in Religion, Baylor University.  His most recently published books are Acts: Paideia Commentary on the New Testament (2008), Luke: Storyteller, Interpreter, Evangelist (2007), Body and Character in Luke and Acts: The Subversion of Physiognomy in Early Christianity (2006), and with Heidi J. Hornik, the three-volume work Illuminating Luke.  He lives in Waco, Texas.
+    </BiographicalNote>
+  </Contributor>
+  <Contributor>
+    <SequenceNumber>4</SequenceNumber>
+    <ContributorRole>B01</ContributorRole>
+    <PersonName>C. Douglas Weaver</PersonName>
+    <PersonNameInverted>Weaver, C. Douglas</PersonNameInverted>
+    <BiographicalNote>
+      C. Douglas Weaver is Director of Undergraduate Studies and Associate Professor of Religion, Baylor University.  He is the author or editor of six books, including most recently In Search of the New Testament Church: The Baptist Story (2008), Second to None: A History of Second-Ponce de Leon.
+    </BiographicalNote>
+  </Contributor>
+  <Contributor>
+    <SequenceNumber>5</SequenceNumber>
+    <ContributorRole>A32</ContributorRole>
+    <PersonName>Helen Barrett Montgomery</PersonName>
+    <PersonNameInverted>Montgomery, Helen Barrett</PersonNameInverted>
+  </Contributor>
+  <NoEdition/>
+  <Language>
+    <LanguageRole>01</LanguageRole>
+    <LanguageCode>eng</LanguageCode>
+  </Language>
+  <NumberOfPages>1000</NumberOfPages>
+  <BASICMainSubject>REL073000</BASICMainSubject>
+  <Subject>
+    <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+    <SubjectCode>REL006050</SubjectCode>
+  </Subject>
+  <Subject>
+    <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+    <SubjectCode>REL006080</SubjectCode>
+  </Subject>
+  <Subject>
+    <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+    <SubjectHeadingText>Baptist; theology; religion; interpretation; Scripture; Bible; Acts; hermeneutics; New Testament</SubjectHeadingText>
+  </Subject>
+  <AudienceCode>01</AudienceCode>
+  <OtherText>
+    <TextTypeCode>01</TextTypeCode>
+    <TextFormat>02</TextFormat>
+    <Text>
+      &#x26;i&#x0003E;The Acts of the Apostles: Four Centuries of Baptist Interpretation&#x26;/i&#x0003E; is a landmark work of research, containing examples of specific ways that Baptists have used Acts in their confessions, sermons, tracts, commentaries, monographs, devotional and denominational literature, speeches, and hymns. Including the entirety of the Acts as translated by Baptist luminary Helen Barrett Montgomery, this commentary beautifully illustrates the diversity of Baptist responses to this book of Scripture, and in so doing, a variety of hermeneutical approaches within the Baptist tradition.
+    </Text>
+  </OtherText>
+  <OtherText>
+    <TextTypeCode>08</TextTypeCode>
+    <TextFormat>02</TextFormat>
+    <Text>
+      This is a path-breaking scholarly undertaking that shows Baptisst the scriptural reasoning that underlies their denominational existence.&#x26;br&#x0003E;&#x26;br&#x0003E;David W. Bebbington, Professor of History, University of Stirling
+    </Text>
+  </OtherText>
+  <MediaFile>
+    <MediaFileTypeCode>04</MediaFileTypeCode>
+    <MediaFileFormatCode>05</MediaFileFormatCode>
+    <MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>
+    <MediaFileLink>http://www.netread.com/jcusers/1338/1795382/image/lgcover.2337028.tif</MediaFileLink>
+  </MediaFile>
+  <MediaFile>
+    <MediaFileTypeCode>07</MediaFileTypeCode>
+    <MediaFileFormatCode>03</MediaFileFormatCode>
+    <MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>
+    <MediaFileLink>http://www.netread.com/jcusers/1338/1795382/image/smcover.2337029.tif</MediaFileLink>
+  </MediaFile>
+  <Imprint>
+    <NameCodeType>02</NameCodeType>
+    <NameCodeTypeName>Baylor University Press</NameCodeTypeName>
+    <NameCodeValue>BAYL001</NameCodeValue>
+    <ImprintName>Baylor University Press</ImprintName>
+  </Imprint>
+  <Publisher>
+    <PublishingRole>01</PublishingRole>
+    <NameCodeType>02</NameCodeType>
+    <NameCodeValue>BAYL001</NameCodeValue>
+    <PublisherName>Baylor University Press</PublisherName>
+  </Publisher>
+  <CountryOfPublication>United States</CountryOfPublication>
+  <PublishingStatus>04</PublishingStatus>
+  <PublicationDate>20090701</PublicationDate>
+  <SalesRights>
+    <SalesRightsType>01</SalesRightsType>
+    <RightsTerritory>WORLD</RightsTerritory>
+  </SalesRights>
+  <Measure>
+    <MeasureTypeCode>01</MeasureTypeCode>
+    <Measurement>10</Measurement>
+    <MeasureUnitCode>in</MeasureUnitCode>
+  </Measure>
+  <Measure>
+    <MeasureTypeCode>02</MeasureTypeCode>
+    <Measurement>7</Measurement>
+    <MeasureUnitCode>in</MeasureUnitCode>
+  </Measure>
+  <SupplyDetail>
+    <SupplierName>Baylor University Press</SupplierName>
+    <ReturnsCodeType>02</ReturnsCodeType>
+    <ReturnsCode>Y</ReturnsCode>
+    <AvailabilityCode>IP</AvailabilityCode>
+    <ProductAvailability>20</ProductAvailability>
+    <ExpectedShipDate>20090615</ExpectedShipDate>
+    <Price>
+      <PriceTypeCode>01</PriceTypeCode>
+      <DiscountCoded>
+        <DiscountCodeType>02</DiscountCodeType>
+        <DiscountCodeTypeName>Baylor University Press</DiscountCodeTypeName>
+        <DiscountCode>BSR</DiscountCode>
+      </DiscountCoded>
+      <PriceAmount>99.95</PriceAmount>
+      <CurrencyCode>USD</CurrencyCode>
+      <PriceEffectiveFrom>20091025</PriceEffectiveFrom>
+    </Price>
+    <Price>
+      <PriceTypeCode>01</PriceTypeCode>
+      <DiscountCoded>
+        <DiscountCodeType>02</DiscountCodeType>
+        <DiscountCodeTypeName>Baylor University Press</DiscountCodeTypeName>
+        <DiscountCode>BSR</DiscountCode>
+      </DiscountCoded>
+      <PriceAmount>66.99</PriceAmount>
+      <CurrencyCode>GBP</CurrencyCode>
+      <PriceEffectiveFrom>20091025</PriceEffectiveFrom>
+    </Price>
+  </SupplyDetail>
+</Product>
