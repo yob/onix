@@ -58,9 +58,9 @@ module ONIX
     def initialize(input, product_klass = ::ONIX::Product)
       if input.kind_of?(String)
         @file   = File.open(input, "r")
-        @reader = Nokogiri::XML::Reader.from_io(@file)
+        @reader = Nokogiri::XML::Reader(@file) { |cfg| cfg.dtdload.noent }
       elsif input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader.from_io(input)
+        @reader = Nokogiri::XML::Reader(input) { |cfg| cfg.dtdload.noent }
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end
