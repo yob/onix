@@ -1,3 +1,6 @@
+v0.8.1 (XXX)
+- Use libxml2's support for transparent entity conversion when reading an ONIX file
+
 v0.8.0 (31st October 2009)
 - Replace LibXML dependency with Nokogiri. Nokogiri is under active development, has
   a responsive maintainer and is significantly more stable
