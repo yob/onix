@@ -40,9 +40,6 @@ module ONIX
       raise ArgumentError, "#{oldfile} does not exist" unless File.file?(oldfile)
       raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
       raise "xsltproc app not found" unless app_available?("xsltproc")
-      raise "isutf8 app not found"   unless app_available?("isutf8")
-      raise "iconv app not found"    unless app_available?("iconv")
-      raise "sed app not found"      unless app_available?("sed")
       raise "tr app not found"       unless app_available?("tr")
 
       @oldfile = oldfile
@@ -60,19 +57,9 @@ module ONIX
         @curfile = dest
       end
 
-      # convert to utf8
-      dest = next_tempfile
-      to_utf8(@curfile, dest)
-      @curfile = dest
-
       # remove control chars
       dest = next_tempfile
       remove_control_chars(@curfile, dest)
-      @curfile = dest
-
-      # remove entities
-      dest = next_tempfile
-      replace_named_entities(@curfile, dest)
       @curfile = dest
 
       FileUtils.cp(@curfile, @newfile)
@@ -110,76 +97,12 @@ module ONIX
       `xsltproc -o #{outpath} #{xsltpath} #{inpath}`
     end
 
-    # ensure the file is valid utf8, then make sure it's declared as such.
-    #
-    # The following behaviour is  expected:
-    #
-    #   file is valid utf8, is marked correctly
-    #     - copied untouched
-    #   file is valid utf8, is marked incorrectly or has no marked encoding
-    #     - copied and encoding mark fixed or added
-    #   file is no utf8, encoding is marked
-    #     - file is converted to utf8 and enecoding mark is updated
-    #   file is not utf8, encoding is not marked
-    #     - file is copied untouched
-    #
-    def to_utf8(src, dest)
-      inpath = File.expand_path(src)
-      outpath = File.expand_path(dest)
-
-      m, src_enc = *@head.match(/encoding=.([a-zA-Z0-9\-]+)./i)
-
-      # ensure the file is actually utf8
-      if `isutf8 #{inpath}`.strip == ""
-        if src_enc.to_s.downcase == "utf-8"
-          FileUtils.cp(inpath, outpath)
-        else
-          FileUtils.cp(inpath, outpath)
-          `sed -i 's/<?xml.*?>/<?xml version=\"1.0\" encoding=\"UTF-8\"?>/g' #{outpath}`
-        end
-      elsif src_enc
-        `iconv --from-code=#{src_enc} --to-code=UTF-8 #{inpath} > #{outpath}`
-        `sed -i 's/#{src_enc}/UTF-8/' #{outpath}`
-      else
-          FileUtils.cp(inpath, outpath)
-      end
-    end
-
     # XML files shouldn't contain low ASCII control chars. Strip them.
     #
     def remove_control_chars(src, dest)
       inpath = File.expand_path(src)
       outpath = File.expand_path(dest)
       `cat #{inpath} | tr -d "\\000-\\010\\013\\014\\016-\\037" > #{outpath}`
-    end
-
-    # replace all named entities in the specified file with
-    # numeric entities.
-    #
-    def replace_named_entities(src, dest)
-      inpath = File.expand_path(src)
-      outpath = File.expand_path(dest)
-
-      cmd = "sed " + entity_map.map do |named, numeric|
-        "-e 's/\\&#{named};/\\&#{numeric};/g'"
-      end.join(" ") + " #{inpath} > #{outpath}"
-      #raise cmd
-      `#{cmd}`
-    end
-
-    # return a named entity to numeric entity mapping, build by extracting
-    # data from the ONIX DTD
-    #
-    def entity_map
-      return @map if @map
-
-      path = File.dirname(__FILE__) + "/../../support/entities.txt"
-      @map = {}
-      File.read(path).split.each do |line|
-        elements = line.split(":")
-        @map[elements.first] = elements.last
-      end
-      @map
     end
 
   end
