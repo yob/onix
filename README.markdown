@@ -47,5 +47,4 @@ To be honest, I'm not really expecting any, this is a niche library.
 ## Further Reading
 
 - The source: [http://github.com/yob/onix/tree/master](http://github.com/yob/onix/tree/master)
-- Rubyforge project: [http://rubyforge.org/projects/rbook/](http://rubyforge.org/projects/rbook/)
-- The official specs [http://www.editeur.org/onix.html](http://www.editeur.org/onix.html)
+- The official specs [http://www.editeur.org/8/ONIX/](http://www.editeur.org/8/ONIX/)
