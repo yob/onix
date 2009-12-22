@@ -10,6 +10,17 @@ and writing ONIX files in your ruby applications.
 This replaces the obsolete rbook-onix gem that was spectacular in its crapness.
 Let us never speak of it again.
 
+## Feature Support
+
+This library currently only handles ONIX 2.1 files (all revisions). At some
+point I'll need to work out what to do about supporting ONIX 3.0 files. I
+suspect a separate library will be the simplest solution.
+
+ONIX::Reader only handles the reference tag versions of ONIX 2.1. Use
+ONIX::Normaliser to convert any short tag files to reference tags.
+
+ONIX::Writer only generates reference tag ONIX files.
+
 ## Installation
 
     gem install onix
