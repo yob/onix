@@ -21,6 +21,18 @@ ONIX::Normaliser to convert any short tag files to reference tags.
 
 ONIX::Writer only generates reference tag ONIX files.
 
+## DTD Loading
+
+To correctly handle named entities when reading an ONIX file, this gem attempts
+to load the DTD describing the ONIX format into memory. By default, this means
+each file you read will require several hundred Kb of data to be downloaded
+over the net.
+
+This is obviously not desirable in most cases. To avoid it, you need to add copies
+of the ONIX DTDs into your system XML catalog. On Debian and Ubuntu systems,
+the quickest way to do that is to build and install the package available @
+http://github.com/yob/onix-dtd
+
 ## Installation
 
     gem install onix
