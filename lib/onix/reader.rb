@@ -53,7 +53,7 @@ module ONIX
   class Reader
     include Enumerable
 
-    attr_reader :header , :version, :xml_lang, :xml_version
+    attr_reader :header, :release
 
     def initialize(input, product_klass = ::ONIX::Product)
       if input.kind_of?(String)
@@ -67,6 +67,7 @@ module ONIX
 
       @product_klass = product_klass
 
+      @release = find_release
       @header = find_header
 
       @xml_lang    ||= @reader.lang
@@ -93,6 +94,23 @@ module ONIX
     end
 
     private
+
+    def find_release
+      2.times do
+        @reader.read
+        if @reader.node_type == 1 && @reader.name == "ONIXMessage"
+          value = @reader.attributes["release"]
+          if value
+            return BigDecimal.new(value)
+          else
+            return nil
+          end
+        elsif @reader.node_type == 14
+          return nil
+        end
+      end
+      return nil
+    end
 
     def find_header
       100.times do

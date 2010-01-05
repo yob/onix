@@ -5,13 +5,13 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 context "ONIX::Reader" do
 
   before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    @file1    = File.join(data_path, "9780194351898.xml")
-    @file2    = File.join(data_path, "two_products.xml")
-    @long_file   = File.join(data_path, "Bookwise_July_2008.xml")
-    @entity_file = File.join(data_path, "entities.xml")
-    @utf_16_file = File.join(data_path, "utf_16.xml")
-    @iso_8859_1_file = File.join(data_path, "iso_8859_1.xml")
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    @file1    = File.join(@data_path, "9780194351898.xml")
+    @file2    = File.join(@data_path, "two_products.xml")
+    @long_file   = File.join(@data_path, "Bookwise_July_2008.xml")
+    @entity_file = File.join(@data_path, "entities.xml")
+    @utf_16_file = File.join(@data_path, "utf_16.xml")
+    @iso_8859_1_file = File.join(@data_path, "iso_8859_1.xml")
   end
 
   specify "should initialize with a filename" do
@@ -26,16 +26,11 @@ context "ONIX::Reader" do
     end
   end
 
-  # This is commented out as the code that I was using to read the ONIX version from the
-  # input was causing segfaults and other stability issues
-  specify "should provide access to various XML metadata from file"
-  #do
-  #  reader = ONIX::Reader.new(@file1)
-  #  reader.encoding.should eql("utf-8")
-  #  reader.xml_lang.should eql(nil)
-  #  reader.xml_version.should eql(1.0)
-  #  reader.version.should eql([2,1,0])
-  #end
+  specify "should provide access to various XML metadata from file" do
+    filename = File.join(@data_path, "reference_with_release_attrib.xml")
+    reader = ONIX::Reader.new(filename)
+    reader.release.should eql(BigDecimal.new("2.1"))
+  end
 
   specify "should provide access to the header in an ONIX file" do
     reader = ONIX::Reader.new(@file1)
