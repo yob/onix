@@ -1,5 +1,15 @@
-v0.8.1 (XXX)
+v0.8.1 (5th January 2010)
 - Use libxml2's support for transparent entity conversion when reading an ONIX file
+- Removed entity replacement from ONIX::Normaliser
+  - the external dependency on sed made me uncomfortable, and it wasn't really
+    necessary now that nokogiri can do it for us
+- Removed utf-8 normalisation from ONIX::Normaliser
+  - nokogiri also handles this really cleanly and transparently. Regardless of
+    the source file encoding, Nokogiri::Reader returns utf-8 encoded data
+- Add the release attribute to files we generate
+  - it's optional in 2.1, but mandatory in 3.0. As we start to see 3.0 files in the
+    wild it will help to have a rapid way to distinguish between them
+- Add ONIX::Reader#release - to detect the release version of files we read in
 
 v0.8.0 (31st October 2009)
 - Replace LibXML dependency with Nokogiri. Nokogiri is under active development, has
