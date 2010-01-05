@@ -9,7 +9,7 @@ module ONIX
   module Version #:nodoc:
     Major = 0
     Minor = 8
-    Tiny  = 0
+    Tiny  = 1
 
     String = [Major, Minor, Tiny].join('.')
   end
