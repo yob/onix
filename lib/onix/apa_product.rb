@@ -6,7 +6,6 @@ module ONIX
     delegate :record_reference, :record_reference=
     delegate :notification_type, :notification_type=
     delegate :product_form, :product_form=
-    delegate :series, :series=
     delegate :edition, :edition=
     delegate :number_of_pages, :number_of_pages=
     delegate :bic_main_subject, :bic_main_subject=
@@ -105,6 +104,20 @@ module ONIX
         product.titles << composite
       end
       composite.subtitle = str
+    end
+
+    def series
+      composite = product.series.first
+      composite.andand.title_of_series
+    end
+
+    def series=(val)
+      composite = product.series.first
+      if composite.nil?
+        composite =  ONIX::Series.new
+        product.series << composite
+      end
+      composite.title_of_series = val.to_s
     end
 
     # retrieve the current publisher website for this particular product

@@ -56,6 +56,16 @@ context "ONIX::APAProduct" do
 
 end
 
+context ONIX::APAProduct, "series method" do
+  specify "should set the nested series value on the underlying product class" do
+    apa = ONIX::APAProduct.new
+
+    apa.series = "Harry Potter"
+    apa.series.should eql("Harry Potter")
+    apa.to_xml.to_s.include?("<TitleOfSeries>Harry Potter</TitleOfSeries>").should be_true
+  end
+end
+
 context ONIX::APAProduct, "price method" do
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
