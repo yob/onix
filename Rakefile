@@ -69,6 +69,7 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('roxml', '>=3.1.1')
   s.add_dependency('andand')
   s.add_dependency('nokogiri', '>=1.4')
+  s.add_dependency('activesupport', '<=2.9.9')
 end
 
 Rake::GemPackageTask.new(spec) do |p|
