@@ -1,3 +1,6 @@
+v0.8.2 (6th May 2010)
+- fix APAProduct#series and APAProduct#series=
+
 v0.8.1 (5th January 2010)
 - Use nokogiri's support for transparent entity conversion when reading an ONIX file
 - Removed entity replacement from ONIX::Normaliser
