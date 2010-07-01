@@ -78,7 +78,7 @@ module ONIX
     def next_tempfile
       p = nil
       Tempfile.open("onix") do |tf|
-        tf.close
+        tf.close!
         p = tf.path
       end
       p

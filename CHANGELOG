@@ -1,3 +1,7 @@
+v0.8.3 (XXX)
+- Fix for race condition in ONIX::Normaliser
+  - thanks to pixelvixen for reporting
+
 v0.8.2 (6th May 2010)
 - fix APAProduct#series and APAProduct#series=
 
