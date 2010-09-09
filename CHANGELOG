@@ -1,6 +1,8 @@
-v0.8.3 (XXX)
+v0.8.3 (9th September 2010)
 - Fix for race condition in ONIX::Normaliser
   - thanks to pixelvixen for reporting
+- force roxml to be 3.1.6 or higher. Earlier versions misbehaved when monkey
+  patching nokogiri
 
 v0.8.2 (6th May 2010)
 - fix APAProduct#series and APAProduct#series=
