@@ -12,7 +12,7 @@ context "ONIX::APAProduct" do
     @product_node = @doc.root
   end
 
-  specify "should provide read access to attibutes" do
+  specify "should provide read access to attributes" do
     @product = ONIX::Product.from_xml(@product_node.to_s)
     @apa     = ONIX::APAProduct.new(@product)
 
@@ -26,7 +26,7 @@ context "ONIX::APAProduct" do
     @apa.pack_quantity.should eql(12)
   end
 
-  specify "should provide write access to attibutes" do
+  specify "should provide write access to attributes" do
     apa = ONIX::APAProduct.new
 
     apa.notification_type = 3

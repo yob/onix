@@ -16,14 +16,14 @@ context "ONIX::SeriesIdentifier" do
     series.to_xml.to_s[0,18].should eql("<SeriesIdentifier>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     series = ONIX::SeriesIdentifier.from_xml(@root.to_s)
 
     series.series_id_type.should eql(1)
     series.id_value.should eql("10001")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     series = ONIX::SeriesIdentifier.new
 
     series.series_id_type = 9

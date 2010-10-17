@@ -16,14 +16,14 @@ context "ONIX::MarketRepresentation" do
     rep.to_xml.to_s[0,22].should eql("<MarketRepresentation>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     rep = ONIX::MarketRepresentation.from_xml(@root.to_s)
 
     rep.agent_name.should eql("Allen & Unwin")
     rep.agent_role.should eql(7)
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     rep = ONIX::MarketRepresentation.new
 
     rep.agent_name = "Rainbow Book Agencies"

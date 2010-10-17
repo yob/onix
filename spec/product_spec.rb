@@ -11,7 +11,7 @@ context "ONIX::Product" do
     @product_node = @doc.root
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     product = ONIX::Product.from_xml(@product_node.to_s)
 
     product.record_reference.should eql("365-9780194351898")
@@ -52,7 +52,7 @@ context "ONIX::Product" do
     product.measurements.size.should eql(1)
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     product = ONIX::Product.new
 
     product.notification_type = 3

@@ -16,14 +16,14 @@ context "ONIX::Price" do
     p.to_xml.to_s[0,7].should eql("<Price>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     p = ONIX::Price.from_xml(@root.to_s)
 
     p.price_type_code.should eql(2)
     p.price_amount.should eql(BigDecimal.new("7.5"))
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     p = ONIX::Price.new
 
     p.price_type_code = 1

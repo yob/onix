@@ -16,7 +16,7 @@ context "ONIX::Measure" do
     m.to_xml.to_s[0,9].should eql("<Measure>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     m = ONIX::Measure.from_xml(@root.to_s)
 
     m.measure_type_code.should eql(1)
@@ -24,7 +24,7 @@ context "ONIX::Measure" do
     m.measure_unit_code.should eql("mm")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     m = ONIX::Measure.new
 
     m.measure_type_code = 1

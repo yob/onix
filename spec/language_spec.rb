@@ -16,7 +16,7 @@ context "ONIX::Language" do
     lan.to_xml.to_s[0,10].should eql("<Language>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     lan = ONIX::Language.from_xml(@root.to_s)
 
     lan.language_role.should eql(1)
@@ -24,7 +24,7 @@ context "ONIX::Language" do
     lan.country_code.should eql("US")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     lan = ONIX::Language.new
 
     lan.language_role = 2

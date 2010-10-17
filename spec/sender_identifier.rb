@@ -16,14 +16,14 @@ context "ONIX::SenderIdentifier" do
     id.to_xml.to_s[0,18].should eql("<SenderIdentifier>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     id = ONIX::SenderIdentifier.from_xml(@root.to_s)
 
     id.sender_id_type.should eql(1)
     id.id_value.should eql("123456")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     id = ONIX::SenderIdentifier.new
 
     id.sender_id_type = 1

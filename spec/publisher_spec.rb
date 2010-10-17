@@ -16,13 +16,13 @@ context "ONIX::Publisher" do
     pub.to_xml.to_s[0,11].should eql("<Publisher>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     pub = ONIX::Publisher.from_xml(@root.to_s)
     pub.publishing_role.should eql(1)
     pub.publisher_name.should eql("Desbooks Publishing")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     pub = ONIX::Publisher.new
 
     pub.publisher_name = "Paulist Press"

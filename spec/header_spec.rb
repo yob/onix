@@ -16,7 +16,7 @@ context "ONIX::Header" do
     header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     header = ONIX::Header.from_xml(@header_node.to_s)
 
     header.from_ean_number.should eql("1111111111111")
@@ -42,7 +42,7 @@ context "ONIX::Header" do
     header.default_class_of_trade.should eql("f")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     header = ONIX::Header.new
 
     header.from_ean_number = "1111111111111"

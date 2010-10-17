@@ -16,14 +16,14 @@ context "ONIX::Title" do
     t.to_xml.to_s[0,7].should eql("<Title>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     t = ONIX::Title.from_xml(@root.to_s)
     t.title_type.should eql(1)
     t.title_text.should eql("Good Grief")
     t.subtitle.should   eql("A Constructive Approach to the Problem of Loss")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     t = ONIX::Title.new
 
     t.title_type = 1

@@ -16,14 +16,14 @@ context "ONIX::MediaFile" do
     mf.to_xml.to_s[0,11].should eql("<MediaFile>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     mf = ONIX::MediaFile.from_xml(@root.to_s)
     mf.media_file_type_code.should eql(4)
     mf.media_file_link_type_code.should eql(1)
     mf.media_file_link.should eql("http://www.allenandunwin.com/BookCovers/resized_9788888028729_224_297_FitSquare.jpg")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     mf = ONIX::MediaFile.new
 
     mf.media_file_type_code = 2

@@ -16,7 +16,7 @@ context "ONIX::Stock" do
     s.to_xml.to_s[0,7].should eql("<Stock>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     s = ONIX::Stock.from_xml(@root.to_s)
 
     # note that these fields *should* be numeric according to the ONIX spec,
@@ -25,7 +25,7 @@ context "ONIX::Stock" do
     s.on_order.should eql("0")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     s = ONIX::Stock.new
 
     s.on_hand = "123"

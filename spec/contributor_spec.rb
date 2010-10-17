@@ -16,7 +16,7 @@ context "ONIX::Contributor" do
     header.to_xml.to_s[0,13].should eql("<Contributor>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     contrib = ONIX::Contributor.from_xml(@root.to_s)
 
     contrib.contributor_role.should eql("A01")
@@ -24,7 +24,7 @@ context "ONIX::Contributor" do
     contrib.sequence_number.should eql(1)
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     contrib = ONIX::Contributor.new
 
     contrib.contributor_role = "A02"

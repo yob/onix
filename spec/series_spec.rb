@@ -16,13 +16,13 @@ context "ONIX::Series" do
     series.to_xml.to_s[0,8].should eql("<Series>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     series = ONIX::Series.from_xml(@root.to_s)
 
     series.title_of_series.should eql("Citizens and Their Governments")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     series = ONIX::Series.new
 
     series.title_of_series = "Cool Science Careers"

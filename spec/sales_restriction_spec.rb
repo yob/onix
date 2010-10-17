@@ -16,13 +16,13 @@ context "ONIX::SalesRestriction" do
     sr.to_xml.to_s[0,18].should eql("<SalesRestriction>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     sr = ONIX::SalesRestriction.from_xml(@root.to_s)
 
     sr.sales_restriction_type.should eql(0)
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     sr = ONIX::SalesRestriction.new
 
     sr.sales_restriction_type = 1

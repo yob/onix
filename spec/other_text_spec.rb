@@ -16,14 +16,14 @@ context "ONIX::OtherText" do
     ot.to_xml.to_s[0,11].should eql("<OtherText>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     ot = ONIX::OtherText.from_xml(@root.to_s)
 
     ot.text_type_code.should eql(2)
     ot.text[0,7].should eql("A woman")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     ot = ONIX::OtherText.new
 
     ot.text_type_code = 2

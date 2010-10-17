@@ -16,14 +16,14 @@ context "ONIX::ProductIdentifier" do
     id.to_xml.to_s[0,19].should eql("<ProductIdentifier>")
   end
 
-  specify "should provide read access to first level attibutes" do
+  specify "should provide read access to first level attributes" do
     id = ONIX::ProductIdentifier.from_xml(@root.to_s)
 
     id.product_id_type.should eql(2)
     id.id_value.should eql("0858198363")
   end
 
-  specify "should provide write access to first level attibutes" do
+  specify "should provide write access to first level attributes" do
     id = ONIX::ProductIdentifier.new
 
     id.product_id_type = 2
