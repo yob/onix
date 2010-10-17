@@ -7,7 +7,7 @@ module ONIX
     xml_name "Price"
 
     xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :price_type_qualifier, :from => "PriceTypeQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
+    xml_accessor :price_type_qualifier, :from => "PriceQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :price_type_description, :from => "PriceTypeDescription"
     xml_accessor :price_per, :from => "PricePer", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :minimum_order_qty, :from => "MinimumOrderQuantity", :as => Fixnum
