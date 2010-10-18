@@ -108,7 +108,7 @@ module ONIX
     end
 
     def path(number)
-      code_dir = File.dirname(__FILE__) + "/../../data/codes"
+      code_dir = File.dirname(__FILE__) + "/../../support/codes"
       filename = number.to_s.rjust(3, "0") + ".tsv"
       File.join(code_dir, filename)
     end
