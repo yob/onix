@@ -2,6 +2,18 @@
 
 module ONIX
 
+  # Builds hashes for all code lists in the ONIX spec.
+  #
+  # Use like so:
+  #
+  #   ONIX::Lists.list(7)
+  #   => { "BB" => "Hardback", ... }
+  #
+  # There are also some constants for commonly used lists:
+  #
+  #   ONIX::Lists::PRODUCT_FORM
+  #   => { "BB" => "Hardback", ... }
+  #
   class Lists
     include Singleton
 

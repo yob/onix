@@ -45,6 +45,7 @@ view the comments to the following classes:
 * ONIX::Reader - For reading ONIX files
 * ONIX::Writer - For writing ONIX files
 * ONIX::Normaliser - For normalising ONIX files before reading them. Fixes encoding issues, etc
+* ONIX::Lists  - For building hashes of code lists from the ONIX spec
 
 ## Licensing
 
