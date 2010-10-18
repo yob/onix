@@ -1,3 +1,7 @@
+v0.8.4 (18th October 2010)
+- some small fixes to xml names from Tim
+- make all code lists available via the ONIX::Lists class
+
 v0.8.3 (9th September 2010)
 - Fix for race condition in ONIX::Normaliser
   - thanks to pixelvixen for reporting
