@@ -1,0 +1,7 @@
+01	Copies	Maximum number of copies that may be made of a permitted extract
+02	Characters	Maximum number of characters in a permitted extract for a specified usage
+03	Words	Maximum number of words in a permitted extract for a specified usage
+04	Pages	Maximum number of pages in a permitted extract for a specified usage
+05	Percentage	Maximum percentage of total content in a permitted extract for a specified usage
+06	Devices	Maximum number of devices in ‘share group’
+07	Concurrent users	Maximum number of concurrent users

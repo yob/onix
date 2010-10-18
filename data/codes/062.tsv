@@ -1,0 +1,5 @@
+H	Higher rate	Specifies that tax is applied at a higher rate than standard
+P	Tax paid at source (Italy)	Under Italian tax rules, VAT on books may be paid at source by the publisher, and subsequent transactions through the supply chain are tax-exempt.
+R	Lower rate	Specifies that tax is applied at a lower rate than standard
+S	Standard rate	
+Z	Zero-rated	

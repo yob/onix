@@ -1,0 +1,3 @@
+00	Unspecified (default)	Collection type is not determined
+10	Publisher collection	The collection is a bibliographic collection (eg a series) defined and identified by a publisher, either on the product itself or in product information supplied by the publisher
+20	Ascribed collection	The collection has been defined and identified by a party in the metadata supply chain other than the publisher, typically an aggregator

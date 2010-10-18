@@ -1,0 +1,9 @@
+00	Unrestricted	Any audience
+01	Restricted	Distribution by agreement between the parties to the ONIX exchange (this value is provided to cover applications where ONIX content includes material which is not for general distribution)
+02	Booktrade	Distributors, bookstores, publisher’s own staff etc
+03	End-customers	
+04	Librarians	
+05	Teachers	
+06	Students	
+07	Press	Press or other media
+08	Shopping comparison service	Where a specially formatted description is required for this audience

@@ -1,0 +1,4 @@
+01	Member/subscriber price	Price applies to a designated group membership
+02	Export price	Price applies to sales outside the territory in which the supplier is located
+03	Reduced price applicable when the item is purchased as part of a set	Use in cases where there is no combined set price, but a lower price is offered for each part if the whole set is purchased
+04	Voucher price	In the Netherlands (or any other market where similar arrangements exist): a reduced fixed price available for a limited time on presentation of a voucher published in a specified medium, eg a newspaper. Should be accompanied by <PriceTypeCode> 13 and additional detail in <PriceTypeDescription>, and by validity dates in <PriceEffectiveFrom> and <PriceEffectiveUntil>.

@@ -1,0 +1,14 @@
+01	Sender-defined text	To be used only in circumstances where the parties to an exchange have agreed to include text which (a) is not for general distribution, and (b) cannot be coded elsewhere. If more than one type of text is sent, it must be identified by tagging within the text itself.
+02	Short description/annotation	Limited to a maximum of 350 characters
+03	Description	Length unrestricted
+04	Table of contents	Used for a table of contents sent as a single text field, which may or may not carry structure expressed as XHTML
+05	Flap / cover copy	Descriptive blurb taken from the back cover and/or flaps
+06	Review quote	A quote taken from a review of the product or of the work in question where there is no need to take account of different editions
+07	Review quote: previous edition	A quote taken from a review of a previous edition of the work, where it is
+08	Review quote: previous work	A quote taken from a review of a previous work by the same author(s) or in the same series
+09	Endorsement	A quote usually provided by a celebrity to promote a new book, not from a review
+10	Promotional headline	A promotional phrase which is intended to headline a description of the product
+11	Feature	Text describing a feature of a product to which the publisher wishes to draw attention for promotional purposes
+12	Biographical note	A note referring to all contributors to a product – NOT linked to a single contributor
+13	Publisher's notice	A statement included by a publisher in fulfilment of contractual obligations, such as a disclaimer, sponsor statement, or legal notice of any sort. Note that the inclusion of such a notice cannot and does not imply that a user of the ONIX record is obliged to reproduce it.
+14	Excerpt	A short excerpt from the work

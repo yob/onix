@@ -1,0 +1,6 @@
+01	Proprietary	
+02	ISBN-10	10-character ISBN of manifestation of work, when this is the only identifier available
+06	DOI	Digital Object Identifier (variable length and character set)
+11	ISTC	International Standard Text Code (16 characters: numerals and letters A-F, unhyphenated)
+15	ISBN-13	13-character ISBN of manifestation of work, when this is the only identifier available
+18	ISRC	International Standard Recording Code

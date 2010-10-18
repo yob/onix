@@ -1,0 +1,4 @@
+00	Undefined	Default
+01	Sentence case	Initial capitals on first word and subsequently on proper names only, eg The conquest of Mexico
+02	Title case	Initial capitals on first word and on all significant words thereafter, eg The Conquest of Mexico
+03	All capitals	For example, THE CONQUEST OF MEXICO

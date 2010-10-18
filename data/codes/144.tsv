@@ -1,0 +1,4 @@
+00	None	Has no technical protection
+01	DRM	Has DRM protection
+02	Digital watermarking	Has digital watermarking
+03	Adobe DRM	Has DRM protection applied by the Adobe CS4 Content Server Package or by the Adobe ADEPT hosted service

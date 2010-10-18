@@ -1,0 +1,13 @@
+00	YYYYMMDD	Year month day (default)
+01	YYYYMM	Year and month
+02	YYYYWW	Year and week number
+03	YYYYQ	Year and quarter (Q = 1, 2, 3, 4)
+04	YYYYS	Year and season (S = 1, 2, 3, 4, with 1 = “Spring”)
+05	YYYY	Year
+06	YYYYMMDDYYYYMMDD	Spread of exact dates
+07	YYYYMMYYYYMM	Spread of months
+08	YYYYWWYYYYWW	Spread of week numbers
+09	YYYYQYYYYQ	Spread of quarters
+10	YYYYSYYYYS	Spread of seasons
+11	YYYYYYYY	Spread of years
+12	Text string	For complex, approximate or uncertain dates

@@ -1,0 +1,9 @@
+00	Unspecified - see text	Restriction must be described in <SalesRestrictionDetail>
+01	Retailer exclusive / own brand	For sale only through designated retailer. Retailer must be named in <SalesOutletName>. Use only when it is not possible to assign the more explicit code 04 or 05.
+02	Office supplies edition	For editions sold only though office supplies wholesalers. Retailer(s) and/or distributor(s) may be named in <SalesOutletName>
+03	Internal publisher use only: do not list	For an ISBN that is assigned for a publisher's internal purposes
+04	Retailer exclusive	For sale only through designated retailer, though not under retailer's own brand/imprint. Retailer must be named in <SalesOutletName>.
+05	Retailer own brand	For sale only through designated retailer under retailer's own brand/imprint. Retailer must be named in <SalesOutletName>.
+06	Library edition	For sale to libraries only; not for sale through retail trade
+07	Schools only edition	For sale directly to schools only; not for sale through retail trade
+08	Indiziert	Indexed for the German market - in Deutschland indiziert

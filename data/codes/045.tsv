@@ -1,0 +1,12 @@
+01	Publisher	
+02	Co-publisher	
+03	Sponsor	
+04	Publisher of original-language version	Of a translated work
+05	Host/distributor of electronic content	
+06	Published for/on behalf of	
+07	Published in association with	Use also for “Published in cooperation with”
+08	Published on behalf of	DEPRECATED: use code 06
+09	New or acquiring publisher	When ownership of a product or title is transferred from one publisher to another
+10	Publishing group	The group to which a publisher (publishing role 01) belongs: use only if a publisher has been identified with role code 01
+11	Publisher of facsimile original	The publisher of the edition of which a product is a facsimile
+12	Repackager of prebound edition	The repackager of a prebound edition that has been assigned its own identifier. (In the US, a 'prebound edition' is a book that was previously bound, normally as a paperback, and has been rebound with a library-quality hardcover binding by a supplier other than the original publisher.) Required when the <EditionType> is coded PRB. The original publisher should be named as the ‘publisher’.

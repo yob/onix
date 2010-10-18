@@ -1,0 +1,11 @@
+01	Height	For a book, the spine height when standing on a shelf. For a folded map, the height when folded. In general, the height of a product in the form in which it is presented or packaged for retail sale.
+02	Width	For a book, the horizontal dimension of the cover when standing upright. For a folded map, the width when folded. In general, the width of a product in the form in which it is presented or packaged for retail sale.
+03	Thickness	For a book, the thickness of the spine. For a folded map, the thickness when folded. In general, the thickness or depth of a product in the form in which it is presented or packaged for retail sale.
+04	Page trim height	Not recommended for general use
+05	Page trim width	Not recommended for general use
+08	Unit weight	
+09	Diameter (sphere)	Of a globe, for example
+10	Unfolded/unrolled sheet height	The height of a folded or rolled sheet map, poster etc when unfolded
+11	Unfolded/unrolled sheet width	The width of a folded or rolled sheet map, poster etc when unfolded
+12	Diameter (tube or cylinder)	The diameter of the cross-section of a tube or cylinder, usually carrying a rolled sheet product. Use 01 “height” for the height or length of the tube.
+13	Rolled sheet package side measure	The length of a side of the cross-section of a long triangular or square package, usually carrying a rolled sheet product. Use 01 “height” for the height or length of the package.

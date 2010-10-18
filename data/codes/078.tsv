@@ -1,0 +1,148 @@
+A101	CD standard audio format	CD 'red book' format
+A102	SACD super audio format	
+A103	MP3 format	
+A104	WAV format	
+A105	Real Audio format	
+A106	WMA	Windows Media Audio format
+A107	AAC	Advanced Audio Coding format
+A108	Ogg/Vorbis	Vorbis audio format in the Ogg container
+A109	Audible	Audio format proprietary to Audible.com
+A110	FLAC	Free lossless audio codec
+A111	AIFF	Audio Interchangeable File Format
+A112	ALAC	Apple Lossless Audio Codec
+A201	DAISY 2: full audio with title only (no navigation)	
+A202	DAISY 2: full audio with navigation	
+A203	DAISY 2: full audio with navigation and partial text	
+A204	DAISY 2: full audio and full text	
+A205	DAISY 2: full text and some audio	
+A206	DAISY 2: full text and no audio	
+A207	DAISY 3: full audio with title only (no navigation)	
+A208	DAISY 3: full audio with navigation	
+A209	DAISY 3: full audio with navigation and partial text	
+A210	DAISY 3: full audio and full text	
+A211	DAISY 3: full text and some audio	
+A212	DAISY 3: full text and no audio	
+B101	Mass market (rack) paperback	In North America, a category of paperback characterized partly by page size (typically 4¼ x 7 1/8 inches) and partly by target market and terms of trade. Use with Product Form code BC.
+B102	Trade paperback (US)	In North America, a category of paperback characterized partly by page size and partly by target market and terms of trade. AKA 'quality paperback', and including textbooks. Most paperback books sold in North America except 'mass-market' (B101) and 'tall rack' (B107) are correctly described with this code. Use with Product Form code BC.
+B103	Digest format paperback	In North America, a category of paperback characterized by page size and generally used for children's books; use with Product Form code BC. Note: was wrongly shown as B102 (duplicate entry) in Issue 3.
+B104	A-format paperback	In UK, a category of paperback characterized by page size (normally 178 x 111 mm approx); use with Product Form code BC
+B105	B-format paperback	In UK, a category of paperback characterized by page size (normally 198 x 129 mm approx); use with Product Form code BC
+B106	Trade paperback (UK)	In UK, a category of paperback characterized partly by size (usually in traditional hardback dimensions), and often used for paperback originals; use with Product Form code BC (replaces 'C-format' from former List 8)
+B107	Tall rack paperback (US)	In North America, a category of paperback characterised partly by page size and partly by target market and terms of trade; use with Product Form code BC
+B108	A5: Tankobon	Japanese hardcover format
+B109	B5: Tankobon	Japanese hardcover format
+B110	B6: Tankobon	Japanese hardcover format
+B111	A6: Bunko	Japanese paperback format
+B112	B40-dori: Shinsho	Japanese paperback format
+B113	Pocket (Sweden)	A Swedish paperback format, use with Product Form Code BC
+B114	Storpocket (Sweden)	A Swedish paperback format, use with Product Form Code BC
+B115	Kartonnage (Sweden)	A Swedish hardback format, use with Product Form Code BB
+B116	Flexband (Sweden)	A Swedish softback format, use with Product Form Code BC
+B201	Coloring / join-the-dot book	
+B202	Lift-the-flap book	
+B203	Fuzzy book	DEPRECATED because of ambiguity - use B210, B214 or B215 as appropriate
+B204	Miniature book	Note: was wrongly shown as B203 (duplicate entry) in Issue 3
+B205	Moving picture / flicker book	
+B206	Pop-up book	
+B207	Scented / 'smelly' book	
+B208	Sound story / 'noisy' book	
+B209	Sticker book	
+B210	Touch-and-feel book	A book whose pages have a variety of textured inserts designed to stimulate tactile exploration: see also B214 and B215
+B211	Toy / die-cut book	DEPRECATED - use B212 or B213 as appropriate
+B212	Die-cut book	A book which is cut into a distinctive non-rectilinear shape and/or in which holes or shapes have been cut internally. (‘Die-cut’ is used here as a convenient shorthand, and does not imply strict limitation to a particular production process.)
+B213	Book-as-toy	A book which is also a toy, or which incorporates a toy as an integral part. (Do not, however, use B213 for a multiple-item product which includes a book and a toy as separate items.)
+B214	Soft-to-touch book	A book whose cover has a soft textured finish, typically over board
+B215	Fuzzy-felt book	A book with detachable felt pieces and textured pages on which they can be arranged
+B221	Picture book	Children's picture book: use with applicable Product Form code
+B301	Loose leaf - sheets & binder	Use with Product Form code BD
+B302	Loose leaf - binder only	Use with Product Form code BD
+B303	Loose leaf - sheets only	Use with Product Form code BD
+B304	Sewn	AKA stitched; for 'saddle-sewn', see code B310
+B305	Unsewn / adhesive bound	Including 'perfect bound', 'glued'
+B306	Library binding	Strengthened binding intended for libraries
+B307	Reinforced binding	Strengthened binding, not specifically intended for libraries
+B308	Half bound	Must be accompanied by a code specifiying a material, eg 'half-bound real leather'
+B309	Quarter bound	Must be accompanied by a code specifiying a material, eg 'quarter bound real leather'
+B310	Saddle-sewn	AKA 'saddle-stitched' or 'wire-stitched'
+B311	Comb bound	Round or oval plastic forms in a clamp-like configuration: use with code BE from List 7
+B312	Wire-O	Twin loop metal or plastic spine: use with code BE from List 7
+B313	Concealed wire	Cased over Wire-O binding: use with code BE from List 7
+B401	Cloth over boards	AKA fabric, linen over boards
+B402	Paper over boards	
+B403	Leather, real	
+B404	Leather, imitation	
+B405	Leather, bonded	
+B406	Vellum	
+B407	Plastic	DEPRECATED - use new B412 or B413 as appropriate
+B408	Vinyl	DEPRECATED - use new B412 or B414 as appropriate
+B409	Cloth	Cloth, not necessarily over boards – cf B401
+B410	Imitation cloth	Spanish 'simil-tela'
+B411	Velvet	
+B412	Flexible plastic/vinyl cover	AKA “flexibound”: use with code BC from List 7
+B413	Plastic-covered	
+B414	Vinyl-covered	
+B415	Laminated cover	Book, laminating material unspecified: use L101 for "whole product laminated", eg a laminated sheet map or wallchart
+B501	With dust jacket	Type unspecified
+B502	With printed dust jacket	Used to distinguish from B503
+B503	With translucent dust cover	With translucent paper or plastic protective cover
+B504	With flaps	For paperback with flaps
+B505	With thumb index	
+B506	With ribbon marker(s)	If the number of markers is significant, it can be stated as free text in <ProductFormDescription>
+B507	With zip fastener	
+B508	With button snap fastener	
+B509	With leather edge lining	AKA yapp edge?
+B601	Turn-around book	A book in which half the content is printed upside-down, to be read the other way round
+B602	Unflipped manga format	Manga with pages and panels in the sequence of the original Japanese, but with Western text
+B701	UK Braille Grade 1	Single letters only
+B702	UK Braille Grade 2	With some letter combinations
+B703	US Braille	
+D101	Real Video format	
+D102	Quicktime format	
+D103	AVI format	
+D104	Windows Media Video format	
+D105	MPEG-4	
+D201	MS-DOS	Use with an applicable Product Form code D*; note that more detail of operating system requirements can be given in a Product Form Feature composite
+D202	Windows	Use with an applicable Product Form code D*; see note on D201
+D203	Macintosh	Use with an applicable Product Form code D*; see note on D201
+D204	UNIX / LINUX	Use with an applicable Product Form code D*; see note on D201
+D205	Other operating system(s)	Use with an applicable Product Form code D*; see note on D201
+D206	Palm OS	Use with an applicable Product Form code D*; see note on D201
+D207	Windows Mobile	Use with an applicable Product Form code D*; see note on D201
+D301	Microsoft XBox	Use with Product Form code DE or DB as applicable
+D302	Nintendo Gameboy Color	Use with Product Form code DE or DB as applicable
+D303	Nintendo Gameboy Advanced	Use with Product Form code DE or DB as applicable
+D304	Nintendo Gameboy	Use with Product Form code DE or DB as applicable
+D305	Nintendo Gamecube	Use with Product Form code DE or DB as applicable
+D306	Nintendo 64	Use with Product Form code DE or DB as applicable
+D307	Sega Dreamcast	Use with Product Form code DE or DB as applicable
+D308	Sega Genesis/Megadrive	Use with Product Form code DE or DB as applicable
+D309	Sega Saturn	Use with Product Form code DE or DB as applicable
+D310	Sony PlayStation 1	Use with Product Form code DE or DB as applicable
+D311	Sony PlayStation 2	Use with Product Form code DE or DB as applicable
+D312	Nintendo Dual Screen	
+D313	Sony PlayStation 3	
+D314	Xbox 360	
+D315	Nintendo Wii	
+D316	Sony PlayStation Portable (PSP)	
+L101	Laminated	Whole product laminated (eg laminated map, fold-out chart, wallchart, etc): use B415 for book with laminated cover
+P101	Desk calendar	Use with Product Form code PC
+P102	Mini calendar	Use with Product Form code PC
+P103	Engagement calendar	Use with Product Form code PC
+P104	Day by day calendar	Use with Product Form code PC
+P105	Poster calendar	Use with Product Form code PC
+P106	Wall calendar	Use with Product Form code PC
+P107	Perpetual calendar	Use with Product Form code PC
+P108	Advent calendar	Use with Product Form code PC
+P109	Bookmark calendar	Use with Product Form code PC
+P110	Student calendar	Use with Product Form code PC
+P111	Project calendar	Use with Product Form code PC
+P112	Almanac calendar	Use with Product Form code PC
+P113	Other calendar	A calendar that is not one of the types specified elsewhere: use with Product Form code PC
+P114	Other calendar or organiser product	A product that is associated with or ancillary to a calendar or organiser, eg a deskstand for a calendar, or an insert for an organiser: use with Product Form code PC or PS
+P201	Hardback (stationery)	Stationery item in hardback book format
+P202	Paperback / softback (stationery)	Stationery item in paperback/softback book format
+P203	Spiral bound (stationery)	Stationery item in spiral-bound book format
+P204	Leather / fine binding (stationery)	Stationery item in leather-bound book format, or other fine binding
+V201	PAL	TV standard for video or DVD
+V202	NTSC	TV standard for video or DVD
+V203	SECAM	TV standard for video or DVD

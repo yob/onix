@@ -1,0 +1,15 @@
+11	US school grade range	Values for <AudienceRangeValue> are specified in List 77
+12	UK school grade	Values are defined by BIC for England & Wales, Scotland and N Ireland
+15	Reading speed, words per minute	Values in <AudienceRangeValue> must be integers
+16	Interest age, months	For use up to 30 months only: values in <AudienceRangeValue> must be integers
+17	Interest age, years	Values in <AudienceRangeValue> must be integers
+18	Reading age, years	Values in <AudienceRangeValue> must be integers
+19	Spanish school grade	Spain: combined grade and region code, maintained by the Ministerio de Educación
+20	Skoletrinn	Norwegian educational grades (4704)
+21	Nivå	Swedish educational qualifier (code)
+22	Italian school grade	
+23	Schulform	DEPRECATED - assigned in error: see List 29
+24	Bundesland	DEPRECATED - assigned in error: see List 29
+25	Ausbildungsberuf	DEPRECATED - assigned in error: see List 29
+26	Canadian school grade range	Values for <AudienceRangeValue> are specified in List 77
+27	Finnish school grade range	

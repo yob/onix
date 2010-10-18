@@ -1,0 +1,4 @@
+01	Product	The title element refers to an individual product
+02	Collection level	The title element refers to the top level of a bibliographic collection.
+03	Subcollection	The title element refers to an intermediate level of a bibliographic collection that comprises two or more ‘sub-collections’
+04	Content item	The title element refers to a content item within a product, eg a work included in a combined or ‘omnibus’ edition, or a chapter in a book.

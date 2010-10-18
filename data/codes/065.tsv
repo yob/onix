@@ -1,0 +1,25 @@
+01	Cancelled	Cancelled: product was announced, and subsequently abandoned
+10	Not yet available	Not yet available (requires <ExpectedShipDate>, except in exceptional circumstances where no date is known)
+11	Awaiting stock	Not yet available, but will be a stock item when available (requires <ExpectedShipDate>, except in exceptional circumstances where no date is known). Used particularly for imports which have been published in the country of origin but have not yet arrived in the importing country.
+12	Not yet available, will be POD	Not yet available, to be published as print-on-demand only. May apply either to a POD successor to an existing conventional edition, when the successor will be published under a different ISBN (normally because different trade terms apply); or to a title that is being published as a POD original.
+20	Available	Available from us (form of availability unspecified)
+21	In stock	Available from us as a stock item
+22	To order	Available from us as a non-stock item, by special order
+23	POD	Available from us by print-on-demand
+30	Temporarily unavailable	Temporarily unavailable: temporarily unavailable from us (reason unspecified) (requires <ExpectedShipDate>, except in exceptional circumstances where no date is known)
+31	Out of stock	Stock item, temporarily out of stock (requires <ExpectedShipDate>, except in exceptional circumstances where no date is known)
+32	Reprinting	Temporarily unavailable, reprinting (requires <ExpectedShipDate>, except in exceptional circumstances where no date is known)
+33	Awaiting reissue	Temporarily unavailable, awaiting reissue (requires the <Reissue> composite, and <ExpectedShipDate>, except in exceptional circumstances where no date is known)
+40	Not available	Not available from us (reason unspecified; if the reason is rights-related, it should be specified in PR.21 (ONIX 2.1) OR P.21 (ONIX 3.0))
+41	Replaced by new product	This product is unavailable, but a successor product or edition is or will be available from us (identify successor in <RelatedProduct>)
+42	Other format available	This product is unavailable, but the same content is or will be available from us in an alternative format (identify other format product in <RelatedProduct>)
+43	No longer supplied by us	Identify new supplier in <NewSupplier> if possible
+44	Apply direct	Not available to trade, apply direct to publisher
+45	Not sold separately	Must be bought as part of a set (identify set in <RelatedProduct>)
+46	Withdrawn from sale	May be for legal reasons or to avoid giving offence
+47	Remaindered	Remaindered
+48	Out of print, replaced by POD	Out of print, but a print-on-demand edition is or will be available under a different ISBN. Use only when the POD successor has a different ISBN, normally because different trade terms apply.
+49	Recalled	Recalled for reasons of consumer safety
+50	Not sold as set	When a collection that is not sold as a set nevertheless has its own ONIX record
+98	No longer receiving updates	Publisher/supplier is no longer providing updates to sender
+99	Contact supplier	Availability not known to sender

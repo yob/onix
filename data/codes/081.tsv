@@ -1,0 +1,11 @@
+01	Audiobook	Audio recording of a reading of a book or other text
+02	Performance - spoken word	Audio recording of a drama or other spoken word performance
+03	Music recording	Audio recording of a music performance, including musical drama and opera
+04	Other audio	Audio recording of other sound, eg birdsong
+05	Game	
+06	Moving images	Film, video etc
+07	Still images / graphics	
+08	Software	
+09	Data	Data files
+10	Text (eye-readable)	Readable text: this value is required, together with applicable <ProductForm> and <ProductFormDetail> values, to designate an e-book or other digital product whose primary content is eye-readable text
+11	Musical notation	

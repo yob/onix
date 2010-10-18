@@ -1,0 +1,7 @@
+01	Proprietary	For example, publisher’s own series ID
+02	ISSN	International Standard Serial Number, unhyphenated, 8 digits
+03	German National Bibliography series ID	Maintained by the Deutsche Bibliothek
+04	German Books in Print series ID	Maintained by VLB
+05	Electre series ID	Maintained by Electre Information, France
+06	DOI	Digital Object Identifier (variable length and character set)
+22	URN	Uniform Resource Name

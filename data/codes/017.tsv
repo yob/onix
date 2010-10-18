@@ -1,0 +1,90 @@
+A01	By (author)	Author of a textual work
+A02	With	With or as told to: 'ghost' author of a literary work
+A03	Screenplay by	Writer of screenplay or script (film or video)
+A04	Libretto by	Writer of libretto (opera): see also A31
+A05	Lyrics by	Author of lyrics (song): see also A31
+A06	By (composer)	Composer of music
+A07	By (artist)	Visual artist when named as the primary creator of, eg, a book of reproductions of artworks
+A08	By (photographer)	Photographer when named as the primary creator of, eg, a book of photographs)
+A09	Created by	
+A10	From an idea by	
+A11	Designed by	
+A12	Illustrated by	Artist when named as the creator of artwork which illustrates a text, or of the artwork of a graphic novel or comic book
+A13	Photographs by	Photographer when named as the creator of photographs which illustrate a text
+A14	Text by	Author of text which accompanies art reproductions or photographs, or which is part of a graphic novel or comic book
+A15	Preface by	Author of preface
+A16	Prologue by	Author of prologue
+A17	Summary by	Author of summary
+A18	Supplement by	Author of supplement
+A19	Afterword by	Author of afterword
+A20	Notes by	Author of notes or annotations: see also A29
+A21	Commentaries by	Author of commentaries on the main text
+A22	Epilogue by	Author of epilogue
+A23	Foreword by	Author of foreword
+A24	Introduction by	Author of introduction: see also A29
+A25	Footnotes by	Author/compiler of footnotes
+A26	Memoir by	Author of memoir accompanying main text
+A27	Experiments by	Person who carried out experiments reported in the text
+A29	Introduction and notes by	Author of introduction and notes: see also A20 and A24
+A30	Software written by	Writer of computer programs ancillary to the text
+A31	Book and lyrics by	Author of the textual content of a musical drama: see also A04 and A05
+A32	Contributions by	Author of additional contributions to the text
+A33	Appendix by	Author of appendix
+A34	Index by	Compiler of index
+A35	Drawings by	
+A36	Cover design or artwork by	Use also for the cover artist of a graphic novel or comic book if named separately
+A37	Preliminary work by	Responsible for preliminary work on which the work is based
+A38	Original author	Author of the first edition (usually of a standard work) who is not an author of the current edition
+A39	Maps by	Maps drawn or otherwise contributed by
+A40	Inked or colored by	When separate persons are named as having respectively drawn and colored artwork, eg for a graphic novel or comic book, use A12 for 'drawn by' and A40 for 'colored by'
+A41	Pop-ups by	Designer of pop-ups in a pop-up book, who may be different from the illustrator
+A42	Continued by	Use where a standard work is being continued by somebody other than the original author
+A43	Interviewer	
+A44	Interviewee	
+A99	Other primary creator	Other type of primary creator not specified above
+B01	Edited by	
+B02	Revised by	
+B03	Retold by	
+B04	Abridged by	
+B05	Adapted by	
+B06	Translated by	
+B07	As told by	
+B08	Translated with commentary by	This code applies where a translator has provided a commentary on issues relating to the translation. If the translator has also provided a commentary on the work itself, codes B06 and A21 should be used.
+B09	Series edited by	Name of a series editor when the product belongs to a series
+B10	Edited and translated by	
+B11	Editor-in-chief	
+B12	Guest editor	
+B13	Volume editor	
+B14	Editorial board member	
+B15	Editorial coordination by	
+B16	Managing editor	
+B17	Founded by	Usually the founder editor of a serial publication: Begruendet von
+B18	Prepared for publication by	
+B19	Associate editor	
+B20	Consultant editor	Use also for 'advisory editor'
+B21	General editor	
+B22	Dramatized by	
+B23	General rapporteur	In Europe, an expert editor who takes responsibility for the legal content of a collaborative law volume
+B24	Literary editor	An editor who is responsible for establishing the text used in an edition of a literary work, where this is recognised as a distinctive role (in Spain, 'editor literario')
+B25	Arranged by (music)	
+B99	Other adaptation by	Other type of adaptation or editing not specified above
+C01	Compiled by	
+C02	Selected by	
+C99	Other compilation by	Other type of compilation not specified above
+D01	Producer	
+D02	Director	
+D03	Conductor	Conductor of a musical performance
+D99	Other direction by	Other type of direction not specified above
+E01	Actor	
+E02	Dancer	
+E03	Narrator	
+E04	Commentator	
+E05	Vocal soloist	Singer etc
+E06	Instrumental soloist	
+E07	Read by	Reader of recorded text, as in an audiobook
+E08	Performed by (orchestra, band, ensemble)	Name of a musical group in a performing role
+E99	Performed by	Other type of performer not specified above: use for a recorded performance which does not fit a category above, eg a performance by a stand-up comedian.
+F01	Filmed/photographed by	
+F99	Other recording by	Other type of recording not specified above
+Z01	Assisted by	May be associated with any contributor role, and placement should therefore be controlled by contributor sequence numbering
+Z99	Other	Other creative responsibility not falling within A to F above

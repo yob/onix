@@ -1,0 +1,9 @@
+00	Main content page count	The highest-numbered page in a single numbered sequence of main content, usually the highest Arabic-numbered page in a book; or, for books without page numbers or (rarely) with multiple numbered sequences of main content, the total number of pages that carry the main content of the book. This is the preferred page count for most books for the general reader. For books with substantial front and/or back matter, include also Front matter and Back matter page counts, or Total numbered pages.
+02	Number of words	Number of words of natural language text
+03	Front matter page count	The total number of numbered (usually Roman-numbered) pages that precede the main content of a book. This usually consists of an introduction, preface, foreword, etc.
+04	Back matter page count	The total number of numbered (usually Roman-numbered) pages that follow the main content of a book. This usually consists of an afterword, appendices, endnotes, index, etc.
+05	Total numbered pages	The sum of all Roman- and Arabic-numbered pages.
+06	Production page count	The total number of pages in a book, including unnumbered pages, front matter, back matter, etc.
+07	Absolute page count	The total number of pages of the book counting the cover as page 1. This page count type should be used only for digital publications.
+09	Duration	Duration in time, expressed in the specified extent unit
+22	Filesize	The size of a digital file, expressed in the specified extent unit

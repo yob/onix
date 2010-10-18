@@ -1,0 +1,15 @@
+00	Unspecified	Status is not specified (as distinct from unknown): the default if the <MarketPublishingStatus> element is not sent.
+01	Cancelled	The product was announced for publication in this market, and subsequently abandoned.
+02	Forthcoming	Not yet published in this market, should be accompanied by expected local publication date..
+03	Postponed indefinitely	The product was announced for publication in this market, and subsequently postponed with no expected local publication date.
+04	Active	The product was published in this market, and is still active in the sense that the publisher will accept orders for it, though it may or may not be immediately available, for which see <SupplyDetail>.
+05	No longer our product	Responsibility for the product in this market has been transferred elsewhere.
+06	Out of stock indefinitely	The product was active, but is now inactive in the sense that (a) no further stock is expected to be made available in this market, though stock may still be available elsewhere in the supply chain, and (b) there are no current plans to bring it back into stock.
+07	Out of print	The product was active, but is now permanently inactive in the sense that (a) no further stock is expected to be made available in this market, though stock may still be available elsewhere in the supply chain, and (b) the product will not be made available again under the same ISBN.
+08	Inactive	The product was active, but is now permanently or indefinitely inactive in the sense that no further stock is expected to be made available in this market, though stock may still be available elsewhere in the supply chain. Code 08 covers both of codes 06 and 07, and may be used where the distinction between those values is either unnecessary or meaningless.
+09	Unknown	The sender of the ONIX record does not know the current publishing status in this market.
+10	Remaindered	The product is no longer available in this market from the local publisher, under the current ISBN, at the current price. It may be available to be traded through another channel, usually at a reduced price.
+11	Withdrawn from sale	Withdrawn from sale in this market, typically for legal reasons
+12	Not available in this market	Either no rights are held for the product in this market, or for other reasons the publisher has decided not to make it available in this market
+13	Active, but not sold separately	The product is published in this market and active but, as a publishing decision, it is not sold separately – only in an assembly or as part of a package
+14	Active, with market restrictions	The product is published in this market and active, but is not available to all customer types, typically because the market is split between exclusive sales agents for different market segments. In ONIX 2.1, should be accompanied by a free-text statement in <MarketRestrictionDetail> describing the nature of the restriction. In ONIX 3.0, the <SalesRestriction> composite in Group P.24 should be used.

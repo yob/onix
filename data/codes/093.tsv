@@ -1,0 +1,13 @@
+00	Unspecified	Default
+01	Publisher to retailers	Publisher as supplier to retail trade outlets
+02	Publisher's exclusive distributor to retailers	
+03	Publisher's non-exclusive distributor to retailers	
+04	Wholesaler	Wholesaler supplying retail trade outlets 
+05	Sales agent	DEPRECATED - use <MarketRepresentation> (ONIX 2.1) or <MarketPublishingDetail> (ONIX 3.0) to specify a sales agent
+06	Publisher's distributor to retailers	In a specified supply territory. Use only where exclusive/non-exclusive status is not known. Prefer 02 or 03 as appropriate, where possible.
+07	POD supplier	Where a POD product is supplied to retailers and/or consumers direct from a POD source.
+08	Retailer	
+09	Publisher to end-customers	Publisher as supplier direct to consumers and/or institutional customers
+10	Exclusive distributor to end-customers	Intermediary as exclusive distributor direct to consumers and/or institutional customers
+11	Non-exclusive distributor to end-customers	Intermediary as non-exclusive distributor direct to consumers and/or institutional customers
+12	Distributor to end-customers	Use only where exclusive/non-exclusive status is not known. Prefer 10 or 11 as appropriate, where possible.

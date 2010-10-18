@@ -1,0 +1,27 @@
+00	Unspecified	X is related to Y in a way that cannot be specified by another code value
+01	Includes	X includes Y (where the product described in the ONIX record is X and the related product is Y)
+02	Is part of	X is part of Y – use for 'also available as part of'
+03	Replaces	X replaces, or is new edition of, Y
+05	Replaced by	X is replaced by, or has new edition, Y
+06	Alternative format	X is available in an alternative format as Y – indicates an alternative format of the same content which is or may be available.
+07	Has ancillary product	X has an ancillary or supplementary product Y
+08	Is ancillary to	X is ancillary or supplementary to Y
+09	Is remaindered as	X is remaindered as Y, when a remainder merchant assigns its own identifier to the product
+10	Is remainder of	X was originally sold as Y, indicating the publisher's original identifier for a title which is offered as a remainder under a different identifier
+11	Is other-language version of	X is an other-language version of Y
+12	Publisher’s suggested alternative	X has a publisher's suggested alternative Y, which does not, however, carry the same content (cf 05 and 06)
+13	Epublication based on (print product)	X is an epublication based on printed product Y
+14	Epublication is distributed as	X is an epublication 'rendered' as Y – use when the ONIX record describes a package of electronic content which is available in multiple 'renderings'
+15	Epublication is a rendering of	X is a 'rendering' of an epublication Y – use when the ONIX record describes a specific rendering of an epublication content package, to identify the package
+16	POD replacement for	X is a POD replacement for Y – Y is an out-of-print product replaced by a print-on-demand version under a new ISBN
+17	Replaced by POD	X is replaced by POD Y – Y is a print-on-demand replacement, under a new ISBN, for an out-of-print product X
+18	Is special edition of	X is a special edition of Y - used for a special edition (German: Sonderausgabe) with different cover, binding etc - more than ‘alternative format’ - which may be available in limited quantity and for a limited time
+19	Has special edition	X has a special edition Y - the reciprocal of code 18
+20	Is prebound edition of	X is a prebound edition of Y (in the US, a prebound edition is ‘a book that was previously bound and has been rebound with a library quality hardcover binding. In almost all commercial cases, the book in question began as a paperback.’)
+21	Is original of prebound edition	X is the regular edition of which Y is a prebound edition
+22	Product by same author	X and Y have a common author
+23	Similar product	Y is another product that is suggested as similar to X (‘if you liked X, you may also like Y’)
+24	Is facsimile of	X is a facsimile edition of Y
+25	Is original of facsimile	X is the original edition from which a facsimile edition Y is taken
+26	Is license for	X is a license for digital product Y, traded or supplied separately
+27	Electronic version available as	Y is an electronic version of print product X (reciprocal of code 13)

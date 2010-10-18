@@ -1,0 +1,11 @@
+01	UK open market edition	An edition from a UK publisher sold only in territories where exclusive rights are not held. Rights details should be carried in PR.21 (ONIX 2.1) OR P.21 (ONIX 3.0) as usual.
+02	Airport edition	In UK, an edition intended primarily for airside sales in UK airports, though it may be available for sale in other territories where exclusive rights are not held. Rights details should be carried in PR.21 (ONIX 2.1) OR P.21 (ONIX 3.0) as usual.
+03	Sonderausgabe	In Germany, a special printing sold at a lower price than the regular hardback
+04	Pocket paperback	In countries where recognised as a distinct trade category, eg France 'livre de poche', Germany 'Taschenbuch', Italy 'tascabile', Spain 'libro de bolsillo
+05	International edition (US)	Edition produced solely for sale in designated export markets
+06	Library audio edition	Audio product sold in special durable packaging and with a replacement guarantee for the contained cassettes or CDs for a specified shelf-life
+07	US open market edition	An edition from a US publisher sold only in territories where exclusive rights are not held. Rights details should be carried in PR.21 (ONIX 2.1) OR P.21 (ONIX 3.0) as usual.
+08	Livre scolaire, déclaré par l'éditeur	In France, a category of book that has a particular legal status, claimed by the publisher
+09	Livre scolaire (non spécifié)	In France, a category of book that has a particular legal status, designated independently of the publisher
+10	Supplement to newspaper	Edition published for sale only with a newspaper or periodical
+11	Precio libre textbook	In Spain, a school textbook for which there is no fixed or suggested retail price and which is supplied by the publisher on terms individually agreed with the bookseller

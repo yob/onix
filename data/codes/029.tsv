@@ -1,0 +1,16 @@
+01	ONIX audience codes	Using List 28
+02	Proprietary	
+03	MPAA rating	Motion Picture Association of America rating applied to movies
+04	BBFC rating	British Board of Film Classification rating applied to movies
+05	FSK rating	German FSK (Freiwillige Selbstkontrolle der Filmwirtschaft) rating applied to movies
+06	BTLF audience code	French Canadian audience code list, used by BTLF for Memento
+07	Electre audience code	Audience code used by Electre (France)
+08	ANELE Tipo	Spain: educational audience and material type code of the Asociación Nacional de Editores de Libros y Material de Enseñanza
+09	AVI	Code list used to specify reading levels for children's books, used in Flanders and the Netherlands
+10	USK rating	German USK (Unterhaltungssoftware Selbstkontrolle) rating applied to video or computer games
+11	AWS	Audience code used in Flanders
+12	Schulform	Type of school: codelist maintained by VdS Bildungsmedien eV, the German association of educational media publishers
+13	Bundesland	School region: codelist maintained by VdS Bildungsmedien eV, the German association of educational media publishers, indicating where products are licensed to be used in schools
+14	Ausbildungsberuf	Occupation: codelist for vocational training materials, maintained by VdS Bildungsmedien eV, the German association of educational media publishers
+15	Suomalainen kouluasteluokitus	Finnish school or college level
+16	CBG age guidance	UK Publishers Association, Children’s Book Group, coded indication of intended reader age, carried on book covers

@@ -1,0 +1,13 @@
+01	Proprietary	
+02	Proprietary	DEPRECATED - use 01
+03	DNB publisher identifier	Deutsche Nationalbibliothek publisher identifier
+04	Börsenverein Verkehrsnummer	
+05	German ISBN Agency publisher identifier	
+06	GLN	GS1 global location number (formerly EAN location number)
+07	SAN	Book trade Standard Address Number - US, UK etc
+10	Centraal Boekhuis Relatie ID	Trading party identifier used in the Netherlands
+13	Fondscode Boekenbank	Flemish publisher code
+15	Y-tunnus	Business Identity Code (Finland)
+16	ISNI	International Standard Name Identifier
+17	DNB-PND	Deutsche Nationalbibliothek Personennamendatei - person name code of the German national library
+18	LCCN	A control number assigned to a Library of Congress Name Authority record

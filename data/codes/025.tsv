@@ -1,0 +1,29 @@
+00	Unspecified, see description	See description in the <IllustrationTypeDescription> element
+01	Illustrations, black & white	
+02	Illustrations, color	
+03	Halftones, black & white	Including black & white photographs
+04	Halftones, color	Including color photographs
+05	Line drawings, black & white	
+06	Line drawings, color	
+07	Tables, black & white	
+08	Tables, color	
+09	Illustrations, unspecified	
+10	Halftones, unspecified	Including photographs
+11	Tables, unspecified	
+12	Line drawings, unspecified	
+13	Halftones, duotone	
+14	Maps	
+15	Frontispiece	
+16	Diagrams	
+17	Figures	
+18	Charts	
+19	Recorded music items	Recorded music extracts or examples, or complete recorded work(s), accompanying textual or other content
+20	Printed music items	Printed music extracts or examples, or complete music score(s), accompanying textual or other content
+21	Graphs	To be used in the mathematical sense of a diagram that represents numerical values plotted against an origin and axes, cf codes 16 and 18
+22	Plates, unspecified	‘Plates’ means illustrations that are on separate pages bound into the body of a book
+23	Plates, black & white	‘Plates’ means illustrations that are on separate pages bound into the body of a book
+24	Plates, color	‘Plates’ means illustrations that are on separate pages bound into the body of a book
+25	Index	
+26	Bibliography	
+27	Inset maps	Larger-scale inset maps of places or features of interest included in a map product
+28	GPS grids	GPS grids included in a map product

@@ -1,0 +1,13 @@
+00	Undefined	
+01	Distinctive title (book); Cover title (serial); Title on item (serial content item or reviewed resource)	The full text of the distinctive title of the item, without abbreviation or abridgement. For books, where the title alone is not distinctive, elements may be taken from a set or series title and part number etc to create a distinctive title. Where the item is an omnibus edition containing two or more works by the same author, and there is no separate combined title, a distinctive title may be constructed by concatenating the individual titles, with suitable punctuation, as in Pride and prejudice / Sense and sensibility / Northanger Abbey.
+02	ISSN key title of serial	Serials only
+03	Title in original language	Where the subject of the ONIX record is a translated item
+04	Title acronym or initialism	For serials: an acronym or initialism of Title Type 01, eg JAMA, JACM
+05	Abbreviated title	An abbreviated form of Title Type 01
+06	Title in other language	A translation of Title Type 01 into another language
+07	Thematic title of journal issue	Serials only: when a journal issue is explicitly devoted to a specified topic
+08	Former title	Books or serials: when an item was previously published under another title
+10	Distributor's title	For books: the title carried in a book distributor's title file: frequently incomplete, and may include elements not properly part of the title
+11	Alternative title on cover	An alternative title that appears on the cover of a book
+12	Alternative title on back	An alternative title that appears on the back of a book
+13	Expanded title	An expanded form of the title, eg the title of a school text book with grade and type and other details added to make the title meaningful, where otherwise it would comprise only the curriculum subject. This title type is required for submissions to the Spanish ISBN Agency.

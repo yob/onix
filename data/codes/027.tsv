@@ -1,0 +1,75 @@
+01	Dewey	Dewey Decimal Classification. Code
+02	Abridged Dewey	Code
+03	LC classification	US Library of Congress classification. Code
+04	LC subject heading	US Library of Congress subject heading. Text
+05	NLM classification	US National Library of Medicine medical classification
+06	MeSH heading	US National Library of Medicine Medical subject heading
+07	NAL subject heading	US National Agricultural Library subject heading
+08	AAT	Getty Art & Architecture Thesaurus heading
+09	UDC	Universal Decimal Classification. Code
+10	BISAC Subject Heading	BISAC Subject Headings are used in the North American market to categorize books based on topical content. They serve as a guideline for shelving books in physical stores and browsing books in online stores.
+11	BISAC region code	A geographical qualifier used with a BISAC subject category. Code
+12	BIC subject category	For all BIC subject codes and qualifiers, see http://www.bic.org.uk/subcats.html. Code
+13	BIC geographical qualifier	Code
+14	BIC language qualifier (language as subject)	Code
+15	BIC time period qualifier	Code
+16	BIC educational purpose qualifier	Code
+17	BIC reading level & special interest qualifier	Code
+18	DDC-Sachgruppen der Deutschen Nationalbibliografie	Used for German National Bibliography since 2004 (100 subjects). Is different from value 30.
+19	LC fiction genre heading	Text
+20	Keywords	Text
+21	BIC children’s book marketing category	See http://www.bic.org.uk/cbmc.html. Code
+22	BISAC Merchandising Theme	BISAC Merchandising Themes are used in addition to BISAC Subject Headings to denote an audience to which a work may be of particular appeal, a time of year or event for which a work may be especially appropriate, or to further describe fictional works that have been subject-coded by genre
+23	Publisher’s own category code	Code
+24	Proprietary subject scheme	As specified in <SubjectSchemeName>
+25	Tabla de materias ISBN	Latin America. Code
+26	Warengruppen-Systematik des deutschen Buchhandels	Code
+27	Schlagwort-Normdatei (SWD)	Subject heading text
+28	Thèmes Electre	Subject classification used by Electre (France). Code
+29	CLIL	France. Code
+30	DNB-Sachgruppen	Deutsche Bibliothek subject groups. Code. Used for German National Bibliography until 2003 (65 subjects). Is different from value 18.
+31	NUGI	Nederlandse Uniforme Genre-Indeling (former Dutch book trade classification). Code
+32	NUR	Nederlandstalige Uniforme Rubrieksindeling (Dutch book trade classification, from 2002). Code
+33	ECPA Christian Book Category	ECPA Christian Product Category Book Codes, consisting of up to three x 3-letter blocks, for Super Category, Primary Category and Sub-Category. See http://www.ecpa.org/ECPA/cbacategories.xls. Code
+34	SISO	Schema Indeling Systematische Catalogus Openbare Bibliotheken (Dutch library classification). Code
+35	Korean Decimal Classification (KDC)	A modified Dewey Decimal Classification used in the Republic of Korea. Code
+36	DDC 22 ger	Code. German Translation of DDC 22. Also known as DDC Deutsch 22
+37	Bokgrupper	Norwegian book trade product categories (4701)
+38	Varegrupper	Norwegian bookselling subject categories (4702)
+39	Læreplaner	Norwegian school curriculum version (4703)
+40	Nippon Decimal Classification	Japanese subject classification scheme. Code
+41	BSQ	BookSelling Qualifier: Russian book trade classification. Code
+42	ANELE Materias	Spain: subject coding scheme of the Asociación Nacional de Editores de Libros y Material de Enseñanza. Code
+43	Skolefag	Norwegian primary and secondary school subject categories (4705)
+44	Videregående	Norwegian list of categories used in higher secondary education and vocational training (4706)
+45	Undervisningsmateriell	Norwegian list of categories for books and other material used in education (4707)
+46	Norsk DDK	Norwegian version of Dewey Decimal Classification
+47	Varugrupper	Swedish bookselling subject categories. Code
+48	SAB	Swedish classification scheme. Text
+49	Läromedel	Swedish bookselling educational subject. Code
+50	Förhandsbeskrivning	Swedish publishers preliminary subject classification. Code
+51	Spanish ISBN UDC subset	Controlled subset of UDC codes used by the Spanish ISBN Agency. Code
+52	ECI subject categories	Subject categories defined by El Corte Inglés and used widely in the Spanish book trade. Code
+53	Soggetto CCE	Classificazione commerciale editoriale (Italian book trade subject category based on BIC). Code
+54	Qualificatore geografico CCE	Code
+55	Qualificatore di lingua CCE	Code
+56	Qualificatore di periodo storico CCE	Code
+57	Qualificatore di livello scolastico CCE	Code
+58	Qualificatore di età di lettura CCE	Code
+59	VdS Bildungsmedien Fächer	Subject code list of the German association of educational media publishers
+60	Fagkoder	Undervisningsdirektoratets fagkoder for kunnskapsløftet I videregående (Norwegian educational curriculum for secondary schools) (4708)
+61	JEL classification	Journal of Economic Literature classification scheme
+62	CSH	National Library of Canada subject heading (English)
+63	RVM	Répertoire de vedettes-matière (Bibliothèque et Archives Canada et Bibliothèque de l'Université Laval) (French)
+64	YSA	Yleinen suomalainen asiasanasto: Finnish General Thesaurus
+65	Allärs	Allmän tesaurus på svenska: Swedish translation of the Finnish General Thesaurus
+66	YKL	Yleisten kirjastojen luokitusjärjestelmä: Finnish Public Libraries Classification System
+67	MUSA	Musiikin asiasanasto: Finnish Music Thesaurus
+68	CILLA	Specialtesaurus för musik: Swedish translation of the Finnish Music Thesaurus
+69	Kaunokki	Fiktiivisen aineiston asiasanasto: Finnish thesaurus for fiction
+70	Bella	Specialtesaurus för fiktivt material: Swedish translation of the Finnish thesaurus for fiction
+71	YSO	Yleinen suomalainen ontologia: Finnish General Upper Ontology
+72	Paikkatieto ontologia	Finnish Place Ontology
+73	Suomalainen kirja-alan luokitus	Finnish book trade categorisation
+74	Sears	Sears List of Subject Headings
+75	BIC E4L	BIC E4Libraries Category Headings

@@ -1,0 +1,12 @@
+0	All regions	DVD or Blu-Ray
+1	DVD region 1	US, US Territories, Canada
+2	DVD region 2	Japan, Europe, South Africa and Middle East (including Egypt)
+3	DVD region 3	Southeast Asia, Hong Kong, Macau, South Korea, and Taiwan
+4	DVD region 4	Australia, New Zealand, Pacific Islands, Central America, Mexico, South America and the Caribbean
+5	DVD region 5	Eastern Europe (former Soviet Union), Indian subcontinent, Africa, North Korea and Mongolia
+6	DVD region 6	People's Republic of China (except Macau and Hong Kong)
+7	DVD region 7	Reserved for future use
+8	DVD region 8	International venues: aircraft, cruise ships etc
+A	Blu-Ray region A	North America, Central America, South America, Japan, Taiwan, North Korea, South Korea, Hong Kong, and Southeast Asia.
+B	Blu-Ray region B	Most of Europe, Greenland, French territories, Middle East, Africa, Australia, and New Zealand, plus all of Oceania.
+C	Blu-Ray region C	India, Bangladesh, Nepal, Mainland China, Pakistan, Russia, Ukraine, Belarus, Central, and South Asia.

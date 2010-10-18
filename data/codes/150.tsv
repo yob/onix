@@ -1,0 +1,124 @@
+00	Undefined	
+AA	Audio	Audio recording - detail unspecified
+AB	Audio cassette	Audio cassette (analogue)
+AC	CD-Audio	Audio compact disc, in any recording format: use coding from List 78 to specify the format, if required
+AD	DAT	Digital audio tape cassette
+AE	Audio disc	Audio disc (excluding CD)
+AF	Audio tape	Audio tape (reel tape)
+AG	MiniDisc	Sony MiniDisc format
+AH	CD-Extra	Audio compact disc with part CD-ROM content
+AI	DVD Audio	
+AJ	Downloadable audio file	Audio recording downloadable online
+AK	Pre-recorded MP3 player	For example, Playaway audiobook and player
+AL	Pre-recorded SD card	For example, Audiofy audiobook chip
+AZ	Other audio format	Other audio format not specified by AB to AK
+BA	Book	Book - detail unspecified
+BB	Hardback	Hardback or cased book
+BC	Paperback / softback	Paperback or other softback book
+BD	Loose-leaf	Loose-leaf book
+BE	Spiral bound	Spiral, comb or coil bound book
+BF	Pamphlet	Pamphlet or brochure, stapled; German 'geheftet'
+BG	Leather / fine binding	
+BH	Board book	Child’s book with all pages printed on board
+BI	Rag book	Child’s book with all pages printed on textile
+BJ	Bath book	Child’s book printed on waterproof material
+BK	Novelty book	A book whose novelty consists wholly or partly in a format which cannot be described by any other available code – a ‘conventional’ format code is always to be preferred; one or more product form detail codes from List 78 / 175, eg from the B2nn group, should be used whenever possible to provide additional description.
+BL	Slide bound	Slide bound book
+BM	Big book	Extra-large format for teaching etc; this format and terminology may be specifically UK; required as a top-level differentiator
+BN	Part-work (fascículo)	A part-work issued with its own ISBN and intended to be collected and bound into a complete book
+BO	Fold-out book or chart	Concertina-folded book or chart, designed to fold to pocket or regular page size: use for German 'Leporello'
+BP	Foam book	A children’s book whose cover and pages are made of foam
+BZ	Other book format	Other book format or binding not specified by BB to BO
+CA	Sheet map	Sheet map - detail unspecified
+CB	Sheet map, folded	
+CC	Sheet map, flat	
+CD	Sheet map, rolled	See Code List 80 for 'rolled in tube'
+CE	Globe	Globe or planisphere
+CZ	Other cartographic	Other cartographic format not specified by CB to CE
+DA	Digital (on physical carrier)	Digital content delivered on a physical carrier (detail unspecified)
+DB	CD-ROM	
+DC	CD-I	CD interactive
+DE	Game cartridge	
+DF	Diskette	AKA 'floppy disc'
+DI	DVD-ROM	
+DJ	Secure Digital (SD) Memory Card	
+DK	Compact Flash Memory Card	
+DL	Memory Stick Memory Card	
+DM	USB Flash Drive	
+DN	Double-sided CD/DVD	Double-sided disc, one side Audio CD/CD-ROM, other side DVD
+DZ	Other digital carrier	Other carrier of digital content not specified by DB to DN
+EA	Digital (delivered electronically)	Digital content delivered electronically (delivery method unspecified)
+EB	Digital download and online	Digital content available both by download and by online access
+EC	Digital online	Digital content accessed online only
+ED	Digital download	Digital content delivered by download only
+FA	Film or transparency	Film or transparency – detail unspecified
+FC	Slides	Photographic transparencies mounted for projection
+FD	OHP transparencies	Transparencies for overhead projector
+FE	Filmstrip	
+FF	Film	Continuous movie film as opposed to filmstrip
+FZ	Other film or transparency format	Other film or transparency format not specified by FB to FF
+LA	Digital product license	Digital product license (delivery method not encoded)
+LB	Digital product license key	Digital product license delivered through the retail supply chain as a physical “key”, typically a card or booklet containing a code enabling the purchaser to download the associated product
+LC	Digital product license code	Digital product license delivered by email or other electronic distribution, typically providing a code enabling the purchaser to upgrade or extend the license supplied with the associated product
+MA	Microform	Microform – detail unspecified
+MB	Microfiche	
+MC	Microfilm	Roll microfilm
+MZ	Other microform	Other microform not specified by MB or MC
+PA	Miscellaneous print	Miscellaneous printed material – detail unspecified
+PB	Address book	May use product form detail codes P201 to P204 to specify binding
+PC	Calendar	
+PD	Cards	Cards, flash cards (eg for teaching reading)
+PE	Copymasters	Copymasters, photocopiable sheets
+PF	Diary	May use product form detail codes P201 to P204 to specify binding
+PG	Frieze	
+PH	Kit	
+PI	Sheet music	
+PJ	Postcard book or pack	
+PK	Poster	Poster for retail sale – see also XF
+PL	Record book	Record book (eg 'birthday book', 'baby book'): binding unspecified; may use product form detail codes P201 to P204 to specify binding
+PM	Wallet or folder	Wallet or folder (containing loose sheets etc): it is preferable to code the contents and treat 'wallet' as packaging (List 80), but if this is not possible the product as a whole may be coded as a 'wallet'
+PN	Pictures or photographs	
+PO	Wallchart	
+PP	Stickers	
+PQ	Plate (lámina)	A book-sized (as opposed to poster-sized) sheet, usually in colour or high quality print
+PR	Notebook / blank book	A book with all pages blank for the buyer's own use; may use product form detail codes P201 to P204 to specify binding
+PS	Organizer	May use product form detail codes P201 to P204 to specify binding
+PT	Bookmark	
+PZ	Other printed item	Other printed item not specified by PB to PQ
+SA	Multiple-item product	Presentation unspecified: format of product items must be given in <ProductPart>
+SB	Multiple-item product, boxed	Format of product items must be given in <ProductPart>
+SC	Multiple-item product, slip-cased	Format of product items must be given in <ProductPart>
+SD	Multiple-item product, shrinkwrapped	Format of product items must be given in <ProductPart>
+SE	Multiple-item product, loose	Format of product items must be given in <ProductPart>
+SF	Multiple-item product, part(s) enclosed	Multiple item product where subsidiary product part(s) is/are supplied as enclosures to the primary part. eg a book with a CD packaged in a sleeve glued within the back cover. Format of product items must be given in <ProductPart>
+VA	Video	Video – detail unspecified
+VF	Videodisc	eg Laserdisc
+VI	DVD video	DVD video: specify TV standard in List 78
+VJ	VHS video	VHS videotape: specify TV standard in List 78
+VK	Betamax video	Betamax videotape: specify TV standard in List 78
+VL	VCD	VideoCD
+VM	SVCD	Super VideoCD
+VN	HD DVD	High definition DVD disc, Toshiba HD DVD format
+VO	Blu-ray	High definition DVD disc, Sony Blu-ray format
+VP	UMD Video	Sony Universal Media disc
+VZ	Other video format	Other video format not specified by VB to VP
+XA	Trade-only material	Trade-only material (unspecified)
+XB	Dumpbin – empty	
+XC	Dumpbin – filled	Dumpbin with contents
+XD	Counterpack – empty	
+XE	Counterpack – filled	Counterpack with contents
+XF	Poster, promotional	Promotional poster for display, not for sale – see also PK
+XG	Shelf strip	
+XH	Window piece	Promotional piece for shop window display
+XI	Streamer	
+XJ	Spinner	
+XK	Large book display	Large scale facsimile of book for promotional display
+XL	Shrink-wrapped pack	A quantity pack with its own product code, for trade supply only: the retail items it contains are intended for sale individually – see also WX. For products or product bundles supplied shrink-wrapped for retail sale, use the Product Form code of the contents plus code 21 from List 80.
+XZ	Other point of sale	Other point of sale material not specified by XB to XL
+ZA	General merchandise	General merchandise – unspecified
+ZB	Doll	
+ZC	Soft toy	Soft or plush toy
+ZD	Toy	
+ZE	Game	Board game, or other game (except computer game: see DE)
+ZF	T-shirt	
+ZZ	Other merchandise	Other merchandise not specified by ZB to ZF

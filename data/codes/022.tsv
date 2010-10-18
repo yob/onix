@@ -1,0 +1,9 @@
+01	Language of text	
+02	Original language of a translated text	Where the text in the original language is NOT part of the current product
+03	Language of abstracts	Where different from language of text: used mainly for serials
+04	Rights language	Language to which specified rights apply
+05	Rights-excluded language	Language to which specified rights do not apply
+06	Original language in a multilingual edition	Where the text in the original language is part of a bilingual or multilingual edition
+07	Translated language in a multilingual edition	Where the text in a translated language is part of a bilingual or multilingual edition
+08	Language of audio track	For example, on a DVD
+09	Language of subtitles	For example, on a DVD

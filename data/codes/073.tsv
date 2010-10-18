@@ -1,0 +1,36 @@
+00	Unspecified, see website description	
+01	Publisher’s corporate website	See also codes 17 and 18
+02	Publisher’s website for a specified work	A publisher’s informative and/or promotional webpage relating to a specified work (book, journal, online resource or other publication type)
+03	Online hosting service home page	A webpage giving access to an online content hosting service as a whole
+04	Journal home page	A webpage giving general information about a serial, in print or electronic format or both.
+05	Online journal 'available contents' page	A webpage giving direct access to the content that is available online for a specified serial version.
+06	Contributor’s own website	A webpage maintained by an author or other contributor about her/his publications and personal background
+07	Publisher’s website relating to specified contributor	A publisher’s webpage devoted to a specific author or other contributor
+08	Other publisher’s website relating to specified contributor	A webpage devoted to a specific author or other contributor, and maintained by a publisher other than the publisher of the item described in the ONIX record
+09	Third-party website relating to specified contributor	A webpage devoted to a specific author or other contributor, and maintained by a third party (eg a fan site)
+10	Contributor’s own website for specified work	A webpage maintained by an author or other contributor and specific to an individual work
+11	Other publisher’s website relating to specified work	A webpage devoted to an individual work, and maintained by a publisher other than the publisher of the item described in the ONIX record
+12	Third-party website relating to specified work	A webpage devoted to an individual work, and maintained by a third party (eg a fan site)
+13	Contributor’s own website for group or series of works	A webpage maintained by an author or other contributor and specific to a group or series of works
+14	Publisher’s website relating to group or series of works	A publisher’s webpage devoted to a group or series of works
+15	Other publisher’s website relating to group or series of works	A webpage devoted to a group or series of works, and maintained by a publisher other than the publisher of the item described in the ONIX record
+16	Third-party website relating to group or series of works (eg a fan site)	A webpage devoted to a group or series of works, and maintained by a third party (eg a fan site)
+17	Publisher’s B2B website	Use instead of code 01 to specify a publisher’s website for trade users
+18	Publisher’s B2C website	Use instead of code 01 to specify a publisher’s website for consumers
+23	Author blog	
+24	Web page for author presentation / commentary	
+25	Web page for author interview	
+26	Web page for author reading	
+27	Web page for cover material	
+28	Web page for sample content	
+29	Web page for full content	
+30	Web page for other commentary / discussion	
+31	Transfer-URL	URL needed by the German National Library for direct access, harvesting and storage of an electronic resource.
+32	DOI Website Link	Link needed by German Books in Print (VLB) for DOI registration and ONIX DOI conversion.
+33	Supplier’s corporate website	A corporate website operated by a distributor or other supplier (not the publisher)
+34	Supplier’s B2B website	A website operated by a distributor or other supplier (not the publisher) and aimed at trade customers
+35	Supplier’s B2C website	A website operated by a distributor or other supplier (not the publisher) and aimed at consumers
+36	Supplier’s website for a specified work	A distributor or supplier’s webpage describing a specified work
+37	Supplier’s B2B website for a specified work	A distributor or supplier’s webpage describing a specified work, and aimed at trade customers
+38	Supplier’s B2C website for a specified work	A distributor or supplier’s webpage describing a specified work, and aimed at consumers
+39	Supplier’s website for a group or series of works	A distributor or supplier’s webpage describing a group or series of works
