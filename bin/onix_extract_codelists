@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+# coding: utf-8
+
+USAGE = "./onix_extract_codelists ONIX_BookProduct_CodeLists.xsd some_dir"
+
+require 'rubygems'
+$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
+require "onix"
+
+unless ARGV.size == 2
+  puts USAGE
+  exit(1)
+end
+
+extractor = ONIX::CodeListExtractor.new(ARGV.shift)
+extractor.run(ARGV.shift)

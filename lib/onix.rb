@@ -2,6 +2,7 @@
 
 require 'bigdecimal'
 require 'cgi'
+require 'singleton'
 require 'roxml'
 require 'andand'
 
@@ -82,18 +83,11 @@ require File.join(File.dirname(__FILE__), "onix", "product")
 require File.join(File.dirname(__FILE__), "onix", "reader")
 require File.join(File.dirname(__FILE__), "onix", "writer")
 
-# lists
-require File.join(File.dirname(__FILE__), "onix", "lists", "product_form")
-require File.join(File.dirname(__FILE__), "onix", "lists", "product_availability")
-require File.join(File.dirname(__FILE__), "onix", "lists", "country_code")
-require File.join(File.dirname(__FILE__), "onix", "lists", "language_code")
-require File.join(File.dirname(__FILE__), "onix", "lists", "language_role")
-require File.join(File.dirname(__FILE__), "onix", "lists", "notification_type")
-require File.join(File.dirname(__FILE__), "onix", "lists", "product_form_detail")
-
 # product wrappers
 require File.join(File.dirname(__FILE__), "onix", "simple_product")
 require File.join(File.dirname(__FILE__), "onix", "apa_product")
 
 # misc
+require File.join(File.dirname(__FILE__), "onix", "lists")
 require File.join(File.dirname(__FILE__), "onix", "normaliser")
+require File.join(File.dirname(__FILE__), "onix", "code_list_extractor")
