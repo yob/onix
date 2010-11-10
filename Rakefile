@@ -66,7 +66,7 @@ spec = Gem::Specification.new do |s|
     "support/**/*.*",
     "spec/**/*.*"
   ]
-  s.add_dependency('yob-roxml', '>=3.1.6')
+  s.add_dependency('roxml', '>=3.1.6')
   s.add_dependency('andand')
   s.add_dependency('nokogiri', '>=1.4')
 end
