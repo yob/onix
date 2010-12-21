@@ -1,10 +1,8 @@
-v0.8.6 (21st December 2010)
-- update packaging - use bundler and rspec 2.x
-- support normalising short tag files that include HTML tags
-
-v0.8.5 (9th November 2010)
+v0.8.5 (21st December 2010)
 - switch back to the vanilla roxml gem. Ben is maintaining it again and
   he has merged in my bug fixes
+- update packaging - use bundler and rspec 2.x
+- support normalising short tag files that include HTML tags
 
 v0.8.4 (18th October 2010)
 - some small fixes to xml names from Tim
