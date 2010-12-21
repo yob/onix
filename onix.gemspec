@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files             = Dir.glob("{lib/support/dtd}/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
 
   s.add_dependency('yob-roxml', '>=3.1.6')
-  s.add_dependency('activesupport', '< 3.0')
+  s.add_dependency('i18n')
   s.add_dependency('andand')
   s.add_dependency('nokogiri', '>=1.4')
 
