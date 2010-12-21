@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context ONIX::Lists, "list method" do
+describe ONIX::Lists, "list method" do
 
   it "should return a hash containing the ProductForm code list" do
     forms = ONIX::Lists.list(7)
@@ -12,7 +12,7 @@ context ONIX::Lists, "list method" do
 
 end
 
-context ONIX::Lists, "product_form shortcut method" do
+describe ONIX::Lists, "product_form shortcut method" do
 
   it "should return a hash containing the ProductForm code list" do
     forms = ONIX::Lists.product_form
@@ -22,7 +22,7 @@ context ONIX::Lists, "product_form shortcut method" do
 
 end
 
-context ONIX::Lists, "PRODUCT_FORM shortcut constant" do
+describe ONIX::Lists, "PRODUCT_FORM shortcut constant" do
 
   it "should return a hash containing the ProductForm code list" do
     forms = ONIX::Lists::PRODUCT_FORM

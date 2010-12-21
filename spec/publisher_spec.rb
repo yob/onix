@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Publisher" do
+describe ONIX::Publisher do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,18 +11,18 @@ context "ONIX::Publisher" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     pub = ONIX::Publisher.from_xml(@root.to_s)
     pub.to_xml.to_s[0,11].should eql("<Publisher>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     pub = ONIX::Publisher.from_xml(@root.to_s)
     pub.publishing_role.should eql(1)
     pub.publisher_name.should eql("Desbooks Publishing")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     pub = ONIX::Publisher.new
 
     pub.publisher_name = "Paulist Press"

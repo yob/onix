@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Product" do
+describe ONIX::Product do
 
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,7 +11,7 @@ context "ONIX::Product" do
     @product_node = @doc.root
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     product = ONIX::Product.from_xml(@product_node.to_s)
 
     product.record_reference.should eql("365-9780194351898")
@@ -32,27 +32,27 @@ context "ONIX::Product" do
     product.dimensions.should eql("100x200")
   end
 
-  specify "should provide read access to product IDs" do
+  it "should provide read access to product IDs" do
     product = ONIX::Product.from_xml(@product_node.to_s)
     product.product_identifiers.size.should eql(3)
   end
 
-  specify "should provide read access to titles" do
+  it "should provide read access to titles" do
     product = ONIX::Product.from_xml(@product_node.to_s)
     product.titles.size.should eql(1)
   end
 
-  specify "should provide read access to subjects" do
+  it "should provide read access to subjects" do
     product = ONIX::Product.from_xml(@product_node.to_s)
     product.subjects.size.should eql(1)
   end
 
-  specify "should provide read access to measurements" do
+  it "should provide read access to measurements" do
     product = ONIX::Product.from_xml(@product_node.to_s)
     product.measurements.size.should eql(1)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     product = ONIX::Product.new
 
     product.notification_type = 3
@@ -83,7 +83,7 @@ context "ONIX::Product" do
     product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be_true
   end
 
-  specify "should correctly from_xml files that have an invalid publication date" do
+  it "should correctly from_xml files that have an invalid publication date" do
     file = File.join(@data_path, "product_invalid_pubdate.xml")
     product = ONIX::Product.from_xml(File.read(file))
 

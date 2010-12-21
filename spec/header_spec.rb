@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Header" do
+describe ONIX::Header do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,12 +11,12 @@ context "ONIX::Header" do
     @header_node = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     header = ONIX::Header.from_xml(@header_node.to_s)
     header.to_xml.to_s[0,8].should eql("<Header>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     header = ONIX::Header.from_xml(@header_node.to_s)
 
     header.from_ean_number.should eql("1111111111111")
@@ -42,7 +42,7 @@ context "ONIX::Header" do
     header.default_class_of_trade.should eql("f")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     header = ONIX::Header.new
 
     header.from_ean_number = "1111111111111"
@@ -95,7 +95,7 @@ context "ONIX::Header" do
     header.to_xml.to_s.include?("<DefaultClassOfTrade>f</DefaultClassOfTrade>").should be_true
   end
 
-  specify "should correctly handle text with & < and >" do
+  it "should correctly handle text with & < and >" do
     header = ONIX::Header.new
 
     header.from_company = "James & Healy"
@@ -109,9 +109,9 @@ context "ONIX::Header" do
   end
 end
 
-context "ONIX::Header" do
+describe ONIX::Header do
 
-  specify "should correctly handle headers with an invalid sent date" do
+  it "should correctly handle headers with an invalid sent date" do
     data_path = File.join(File.dirname(__FILE__),"..","data")
     file = File.join(data_path, "header_invalid_sentdate.xml")
     header = ONIX::Header.from_xml(File.read(file))

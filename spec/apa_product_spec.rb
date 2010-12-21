@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 require 'date'
 
-context "ONIX::APAProduct" do
+describe "ONIX::APAProduct" do
 
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -12,7 +12,7 @@ context "ONIX::APAProduct" do
     @product_node = @doc.root
   end
 
-  specify "should provide read access to attributes" do
+  it "should provide read access to attributes" do
     @product = ONIX::Product.from_xml(@product_node.to_s)
     @apa     = ONIX::APAProduct.new(@product)
 
@@ -26,7 +26,7 @@ context "ONIX::APAProduct" do
     @apa.pack_quantity.should eql(12)
   end
 
-  specify "should provide write access to attributes" do
+  it "should provide write access to attributes" do
     apa = ONIX::APAProduct.new
 
     apa.notification_type = 3
@@ -56,8 +56,8 @@ context "ONIX::APAProduct" do
 
 end
 
-context ONIX::APAProduct, "series method" do
-  specify "should set the nested series value on the underlying product class" do
+describe ONIX::APAProduct, "series method" do
+  it "should set the nested series value on the underlying product class" do
     apa = ONIX::APAProduct.new
 
     apa.series = "Harry Potter"
@@ -66,7 +66,7 @@ context ONIX::APAProduct, "series method" do
   end
 end
 
-context ONIX::APAProduct, "price method" do
+describe ONIX::APAProduct, "price method" do
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(@data_path, "usd.xml")
@@ -74,7 +74,7 @@ context ONIX::APAProduct, "price method" do
     @product_node = @doc.root
   end
 
-  specify "should return the first price in the file, regardless of type" do
+  it "should return the first price in the file, regardless of type" do
     @product = ONIX::Product.from_xml(@product_node.to_s)
     @apa     = ONIX::APAProduct.new(@product)
 
@@ -82,7 +82,7 @@ context ONIX::APAProduct, "price method" do
   end
 end
 
-context ONIX::APAProduct, "rrp_exc_sales_tax method" do
+describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(@data_path, "usd.xml")
@@ -90,7 +90,7 @@ context ONIX::APAProduct, "rrp_exc_sales_tax method" do
     @product_node = @doc.root
   end
 
-  specify "should return the first price in the file of type 1" do
+  it "should return the first price in the file of type 1" do
     @product = ONIX::Product.from_xml(@product_node.to_s)
     @apa     = ONIX::APAProduct.new(@product)
 

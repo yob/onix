@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Normaliser", "with a simple short tag file" do
+describe ONIX::Normaliser, "with a simple short tag file" do
 
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -14,7 +14,7 @@ context "ONIX::Normaliser", "with a simple short tag file" do
     File.unlink(@outfile) if File.file?(@outfile)
   end
 
-  specify "should correctly convert short tag file to reference tag" do
+  it "should correctly convert short tag file to reference tag" do
     ONIX::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be_true
@@ -25,7 +25,7 @@ context "ONIX::Normaliser", "with a simple short tag file" do
 
 end
 
-context "ONIX::Normaliser", "with a utf8 file that has illegal control chars" do
+describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
 
   before(:each) do
     @data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -37,7 +37,7 @@ context "ONIX::Normaliser", "with a utf8 file that has illegal control chars" do
     File.unlink(@outfile) if File.file?(@outfile)
   end
 
-  specify "should remove all control chars except LF, CR and TAB" do
+  it "should remove all control chars except LF, CR and TAB" do
     ONIX::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be_true

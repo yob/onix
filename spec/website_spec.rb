@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Website" do
+describe ONIX::Website do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,19 +11,19 @@ context "ONIX::Website" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     web = ONIX::Website.from_xml(@root.to_s)
     web.to_xml.to_s[0,9].should eql("<Website>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     web = ONIX::Website.from_xml(@root.to_s)
 
     web.website_role.should eql(1)
     web.website_link.should eql("http://www.rainbowbooks.com.au")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     web = ONIX::Website.new
 
     web.website_role = 2

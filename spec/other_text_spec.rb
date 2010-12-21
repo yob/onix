@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::OtherText" do
+describe ONIX::OtherText do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,19 +11,19 @@ context "ONIX::OtherText" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     ot = ONIX::OtherText.from_xml(@root.to_s)
     ot.to_xml.to_s[0,11].should eql("<OtherText>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     ot = ONIX::OtherText.from_xml(@root.to_s)
 
     ot.text_type_code.should eql(2)
     ot.text[0,7].should eql("A woman")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     ot = ONIX::OtherText.new
 
     ot.text_type_code = 2

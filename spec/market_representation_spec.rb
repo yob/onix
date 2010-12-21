@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::MarketRepresentation" do
+describe ONIX::MarketRepresentation do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,19 +11,19 @@ context "ONIX::MarketRepresentation" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     rep = ONIX::MarketRepresentation.from_xml(@root.to_s)
     rep.to_xml.to_s[0,22].should eql("<MarketRepresentation>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     rep = ONIX::MarketRepresentation.from_xml(@root.to_s)
 
     rep.agent_name.should eql("Allen & Unwin")
     rep.agent_role.should eql(7)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     rep = ONIX::MarketRepresentation.new
 
     rep.agent_name = "Rainbow Book Agencies"
@@ -35,5 +35,3 @@ context "ONIX::MarketRepresentation" do
   end
 
 end
-
-

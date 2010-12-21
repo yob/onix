@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::SalesRestriction" do
+describe "ONIX::SalesRestriction" do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,18 +11,18 @@ context "ONIX::SalesRestriction" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     sr = ONIX::SalesRestriction.from_xml(@root.to_s)
     sr.to_xml.to_s[0,18].should eql("<SalesRestriction>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     sr = ONIX::SalesRestriction.from_xml(@root.to_s)
 
     sr.sales_restriction_type.should eql(0)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     sr = ONIX::SalesRestriction.new
 
     sr.sales_restriction_type = 1
@@ -30,4 +30,3 @@ context "ONIX::SalesRestriction" do
   end
 
 end
-

@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Price" do
+describe ONIX::Price do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,19 +11,19 @@ context "ONIX::Price" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     p = ONIX::Price.from_xml(@root.to_s)
     p.to_xml.to_s[0,7].should eql("<Price>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     p = ONIX::Price.from_xml(@root.to_s)
 
     p.price_type_code.should eql(2)
     p.price_amount.should eql(BigDecimal.new("7.5"))
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     p = ONIX::Price.new
 
     p.price_type_code = 1

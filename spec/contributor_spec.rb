@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Contributor" do
+describe ONIX::Contributor do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,12 +11,12 @@ context "ONIX::Contributor" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     header = ONIX::Contributor.from_xml(@root.to_s)
     header.to_xml.to_s[0,13].should eql("<Contributor>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     contrib = ONIX::Contributor.from_xml(@root.to_s)
 
     contrib.contributor_role.should eql("A01")
@@ -24,7 +24,7 @@ context "ONIX::Contributor" do
     contrib.sequence_number.should eql(1)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     contrib = ONIX::Contributor.new
 
     contrib.contributor_role = "A02"

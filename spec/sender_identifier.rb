@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::SenderIdentifier" do
+describe ONIX::SenderIdentifier do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,19 +11,19 @@ context "ONIX::SenderIdentifier" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     id = ONIX::SenderIdentifier.from_xml(@root.to_s)
     id.to_xml.to_s[0,18].should eql("<SenderIdentifier>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     id = ONIX::SenderIdentifier.from_xml(@root.to_s)
 
     id.sender_id_type.should eql(1)
     id.id_value.should eql("123456")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     id = ONIX::SenderIdentifier.new
 
     id.sender_id_type = 1

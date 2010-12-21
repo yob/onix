@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::SupplyDetail" do
+describe ONIX::SupplyDetail do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,12 +11,12 @@ context "ONIX::SupplyDetail" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     sd = ONIX::SupplyDetail.from_xml(@root.to_s)
     sd.to_xml.to_s[0,14].should eql("<SupplyDetail>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     sd = ONIX::SupplyDetail.from_xml(@root.to_s)
 
     sd.supplier_name.should eql("Rainbow Book Agencies")
@@ -28,7 +28,7 @@ context "ONIX::SupplyDetail" do
     sd.prices.size.should eql(1)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     sd = ONIX::SupplyDetail.new
 
     sd.supplier_name = "RBA"

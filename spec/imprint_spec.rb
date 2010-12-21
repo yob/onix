@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::Imprint" do
+describe ONIX::Imprint do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,18 +11,18 @@ context "ONIX::Imprint" do
     @root     = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     imp = ONIX::Imprint.from_xml(@root.to_s)
     imp.to_xml.to_s[0,9].should eql("<Imprint>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     imp = ONIX::Imprint.from_xml(@root.to_s)
 
     imp.imprint_name.should eql("Oxford University Press UK")
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     imp = ONIX::Imprint.new
 
     imp.imprint_name = "Paulist Press"

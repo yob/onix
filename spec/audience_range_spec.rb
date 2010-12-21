@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-context "ONIX::AudienceRange" do
+describe ONIX::AudienceRange do
 
   before(:each) do
     data_path = File.join(File.dirname(__FILE__),"..","data")
@@ -11,12 +11,12 @@ context "ONIX::AudienceRange" do
     @root = @doc.root
   end
 
-  specify "should correctly convert to a string" do
+  it "should correctly convert to a string" do
     aud = ONIX::AudienceRange.from_xml(@root.to_s)
     aud.to_xml.to_s[0,15].should eql("<AudienceRange>")
   end
 
-  specify "should provide read access to first level attributes" do
+  it "should provide read access to first level attributes" do
     aud = ONIX::AudienceRange.from_xml(@root.to_s)
 
     aud.audience_range_qualifier.should eql(11)
@@ -28,7 +28,7 @@ context "ONIX::AudienceRange" do
     aud.audience_range_values[1].should eql(5)
   end
 
-  specify "should provide write access to first level attributes" do
+  it "should provide write access to first level attributes" do
     aud = ONIX::AudienceRange.new
 
     aud.audience_range_qualifier = 12
