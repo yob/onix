@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.rdoc_options     << "--title" << "ONIX - Working with the ONIX XML spec" <<
                         "--line-numbers"
   s.test_files        = Dir.glob("spec/**/*.rb")
-  s.files             = Dir.glob("{lib/support/dtd}/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
+  s.files             = Dir.glob("{lib,support,dtd}/**/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
 
   s.add_dependency('yob-roxml', '>=3.1.6')
   s.add_dependency('i18n')
