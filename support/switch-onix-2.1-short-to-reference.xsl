@@ -8,8 +8,9 @@
 <xsl:template match="*">
 	<xsl:variable name="target-name">
 		<xsl:choose>
-			<xsl:when test="$target='short'"><xsl:value-of select="@shortname"/></xsl:when>
-			<xsl:otherwise><xsl:value-of select="@refname"/></xsl:otherwise>
+			<xsl:when test="$target='short' and @shortname"><xsl:value-of select="@shortname"/></xsl:when>
+			<xsl:when test="$target='reference' and @refname"><xsl:value-of select="@refname"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
  <xsl:element name="{$target-name}">
