@@ -41,6 +41,8 @@ module ONIX
     xml_accessor :measurements, :from => "Measure", :as => [ONIX::Measure]
     xml_accessor :supply_details, :from => "SupplyDetail", :as => [ONIX::SupplyDetail]
     xml_accessor :market_representations, :from => "MarketRepresentation", :as => [ONIX::MarketRepresentation]
+    xml_accessor :sales_rights, :from => "SalesRights", :as => [ONIX::SalesRights]
+    xml_accessor :not_for_sales, :from => "NotForSale", :as => [ONIX::NotForSale]
 
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying

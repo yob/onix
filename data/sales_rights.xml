@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product>
+  <RecordReference>365-9780194351898</RecordReference>
+  <NotificationType>03</NotificationType>
+  <ProductIdentifier>
+    <ProductIDType>03</ProductIDType>
+    <IDValue>9780194351898</IDValue>
+  </ProductIdentifier>
+
+  <SalesRights>
+    <SalesRightsType>01</SalesRightsType>
+    <RightsTerritory>WORLD</RightsTerritory>
+  </SalesRights>
+
+  <SalesRights>
+    <SalesRightsType>02</SalesRightsType>
+    <RightsCountry>AU NZ</RightsCountry>
+  </SalesRights>
+
+  <SalesRights>
+    <SalesRightsType>01</SalesRightsType>
+    <RightsRegion>001</RightsRegion>
+    <RightsRegion>002</RightsRegion>
+    <RightsRegion>003</RightsRegion>
+    <RightsRegion>004</RightsRegion>
+  </SalesRights>
+
+  <NotForSale>
+    <RightsCountry>UK</RightsCountry>
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9780194312345</IDValue>
+    </ProductIdentifier>
+  </NotForSale>
+</Product>
