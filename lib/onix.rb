@@ -51,6 +51,10 @@ module ONIX
         end
       end
     end
+
+    def self.space_separated
+      lambda { |val| val.join(" ")  if val }
+    end
   end
 end
 
@@ -74,6 +78,8 @@ require File.join(File.dirname(__FILE__), "onix", "publisher")
 require File.join(File.dirname(__FILE__), "onix", "other_text")
 require File.join(File.dirname(__FILE__), "onix", "media_file")
 require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
+require File.join(File.dirname(__FILE__), "onix", "sales_rights")
+require File.join(File.dirname(__FILE__), "onix", "not_for_sale")
 require File.join(File.dirname(__FILE__), "onix", "stock")
 require File.join(File.dirname(__FILE__), "onix", "price")
 require File.join(File.dirname(__FILE__), "onix", "supply_detail")
