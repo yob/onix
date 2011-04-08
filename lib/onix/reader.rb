@@ -4,10 +4,9 @@ require 'stringio'
 
 module ONIX
 
-  # This is the primary class for reading data from an ONIX file, and there's
-  # really not much to it
+  # This is the primary class for reading data from an ONIX file.
   #
-  # Each file should contain a single header, and 1 or more products:
+  # Each ONIX file should contain a single header, and 1 or more products:
   #
   #   reader = ONIX::Reader.new("somefile.xml")
   #
@@ -20,10 +19,10 @@ module ONIX
   # The header will be returned as an ONIX::Header object, and the product will
   # be an ONIX::Product.
   #
-  # The ONIX::Product class can be a bit of a hassle to work with, as data can be
-  # nested in it fairly deeply. To wrap all the products returned by the reader
-  # in a shim that provides simple accessor access to common attributes, pass the
-  # shim class as a second argument
+  # The ONIX::Product class can be a bit of a hassle to work with, as data can
+  # be nested in it fairly deeply. To wrap all the products returned by the
+  # reader in a shim that provides simple accessor access to common attributes,
+  # pass the shim class as a second argument.
   #
   #   reader = ONIX::Reader.new("somefile.xml", :product_class => ONIX::APAProduct)
   #
@@ -34,21 +33,16 @@ module ONIX
   #   end
   #
   # APAProduct stands for Australian Publishers Association and provides simple
-  # access to the ONIX attributes that are commonly used in the Australian market.
+  # access to the ONIX attributes that are commonly used in the Australian
+  # market.
   #
   # As well as accessing the file header, there are handful of other read only
   # attributes that might be useful
   #
   #   reader = ONIX::Reader.new("somefile.xml")
   #
-  #   puts reader.version
   #   puts reader.xml_lang
   #   puts reader.xml_version
-  #   puts reader.encoding
-  #
-  # The version attribute is particuarly useful. There are multiple revisions of the
-  # ONIX spec, and you may need to handle the file differently based on what
-  # version it is.
   #
   # == File Encoding
   #
@@ -77,22 +71,18 @@ module ONIX
     include Enumerable
 
     attr_reader :header, :release
+    attr_reader :xml_lang, :xml_version
 
     def initialize(input, *args)
       opts = args.last.kind_of?(Hash) ? args.pop : {}
       if args.size > 0
         ActiveSupport::Deprecation.warn("Passing a klass as ONIX::Reader's second argument is deprecated, use the :product_class option instead", caller)
       end
+      @input = input
       @product_klass = opts[:product_class] || args.pop || ::ONIX::Product
+      @options = opts
 
-      if input.kind_of?(String)
-        @file   = File.open(input, "r")
-        @reader = Nokogiri::XML::Reader(@file, nil, opts[:encoding]) { |cfg| cfg.dtdload.noent }
-      elsif input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(input, nil, opts[:encoding]) { |cfg| cfg.dtdload.noent }
-      else
-        raise ArgumentError, "Unable to read from file or IO stream"
-      end
+      create_parser
 
       @release = find_release
       @header = find_header
@@ -116,11 +106,35 @@ module ONIX
       end
     end
 
+    # Assemble all the products in the ONIX file into an array. Obviously this
+    # will chew through memory with very large ONIX files, so use with care.
+    #
+    def products
+      @products ||= [].tap { |prods| each { |prod| prods << prod } }
+    end
+
+    # Rewind the reader so that you can call 'each' again.
+    #
+    def rewind
+      create_parser
+    end
+
     def close
-      @reader.close if @reader
+      puts "Reader#close is deprecated."
     end
 
     private
+
+    def create_parser
+      if @input.kind_of?(String)
+        @file   = File.open(@input, "r")
+        @reader = Nokogiri::XML::Reader(@file, nil, @options[:encoding])# { |cfg| cfg.dtdload.noent }
+      elsif @input.kind_of?(IO)
+        @reader = Nokogiri::XML::Reader(@input, nil, @options[:encoding])# { |cfg| cfg.dtdload.noent }
+      else
+        raise ArgumentError, "Unable to read from file or IO stream"
+      end
+    end
 
     def find_release
       2.times do

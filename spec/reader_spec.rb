@@ -152,4 +152,30 @@ describe ONIX::Reader do
       product.should be_a_kind_of(ONIX::APAProduct)
     end
   end
+
+  it "should be rewindable" do
+    reader = ONIX::Reader.new(@file1)
+    product_arrays = [[],[],[]]
+
+    # On the first loop, products are found.
+    reader.each { |p| product_arrays[0] << p }
+    product_arrays[0].size.should eql(1)
+
+    # On the second loop, no products are found because parser is at end of file.
+    reader.each { |p| product_arrays[1] << p }
+    product_arrays[1].size.should eql(0)
+
+    # But after rewinding, it should find the products again.
+    reader.rewind
+    reader.each { |p| product_arrays[2] << p }
+    product_arrays[2].size.should eql(1)
+  end
+
+  it "should provide all products as an array" do
+    reader = ONIX::Reader.new(@file2)
+    reader.products.size.should eql(2)
+    # Test this again to make sure it's memoized.
+    reader.products.size.should eql(2)
+  end
+
 end
