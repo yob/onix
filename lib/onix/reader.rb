@@ -4,10 +4,9 @@ require 'stringio'
 
 module ONIX
 
-  # This is the primary class for reading data from an ONIX file, and there's
-  # really not much to it
+  # This is the primary class for reading data from an ONIX file.
   #
-  # Each file should contain a single header, and 1 or more products:
+  # Each ONIX file should contain a single header, and 1 or more products:
   #
   #   reader = ONIX::Reader.new("somefile.xml")
   #
@@ -20,10 +19,10 @@ module ONIX
   # The header will be returned as an ONIX::Header object, and the product will
   # be an ONIX::Product.
   #
-  # The ONIX::Product class can be a bit of a hassle to work with, as data can be
-  # nested in it fairly deeply. To wrap all the products returned by the reader
-  # in a shim that provides simple accessor access to common attributes, pass the
-  # shim class as a second argument
+  # The ONIX::Product class can be a bit of a hassle to work with, as data can
+  # be nested in it fairly deeply. To wrap all the products returned by the
+  # reader in a shim that provides simple accessor access to common attributes,
+  # pass the shim class as a second argument.
   #
   #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
   #
@@ -34,38 +33,28 @@ module ONIX
   #   end
   #
   # APAProduct stands for Australian Publishers Association and provides simple
-  # access to the ONIX attributes that are commonly used in the Australian market.
+  # access to the ONIX attributes that are commonly used in the Australian
+  # market.
   #
   # As well as accessing the file header, there are handful of other read only
   # attributes that might be useful
   #
   #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
   #
-  #   puts reader.version
   #   puts reader.xml_lang
   #   puts reader.xml_version
-  #   puts reader.encoding
-  #
-  # The version attribute is particuarly useful. There are multiple revisions of the
-  # ONIX spec, and you may need to handle the file differently based on what
-  # version it is.
   #
   class Reader
     include Enumerable
 
     attr_reader :header, :release
+    attr_reader :xml_lang, :xml_version
 
     def initialize(input, product_klass = ::ONIX::Product)
-      if input.kind_of?(String)
-        @file   = File.open(input, "r")
-        @reader = Nokogiri::XML::Reader(@file) { |cfg| cfg.dtdload.noent }
-      elsif input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(input) { |cfg| cfg.dtdload.noent }
-      else
-        raise ArgumentError, "Unable to read from file or IO stream"
-      end
-
+      @input = input
       @product_klass = product_klass
+
+      create_parser
 
       @release = find_release
       @header = find_header
@@ -89,11 +78,35 @@ module ONIX
       end
     end
 
+    # Assemble all the products in the ONIX file into an array. Obviously this
+    # will chew through memory with very large ONIX files, so use with care.
+    #
+    def products
+      @products ||= [].tap { |prods| each { |prod| prods << prod } }
+    end
+
+    # Rewind the reader so that you can call 'each' again.
+    #
+    def rewind
+      create_parser
+    end
+
     def close
-      @reader.close if @reader
+      puts "Reader#close is deprecated."
     end
 
     private
+
+    def create_parser
+      if @input.kind_of?(String)
+        @file   = File.open(@input, "r")
+        @reader = Nokogiri::XML::Reader(@file)# { |cfg| cfg.dtdload.noent }
+      elsif @input.kind_of?(IO)
+        @reader = Nokogiri::XML::Reader(@input)# { |cfg| cfg.dtdload.noent }
+      else
+        raise ArgumentError, "Unable to read from file or IO stream"
+      end
+    end
 
     def find_release
       2.times do
