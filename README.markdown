@@ -21,6 +21,10 @@ ONIX::Normaliser to convert any short tag files to reference tags.
 
 ONIX::Writer only generates reference tag ONIX files.
 
+It baffles me why anyone thought designing two parallel versions of the ONIX
+spec was a good idea. Use reference tags my friends, and let short tags fade
+away into irrelevant obscurity.
+
 ## DTD Loading
 
 To correctly handle named entities when reading an ONIX file, this gem attempts
