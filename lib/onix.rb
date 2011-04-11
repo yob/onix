@@ -58,42 +58,52 @@ module ONIX
   end
 end
 
-# core files
-# - ordering is important, classes need to be defined before any
-#   other class can use them
-require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
-require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
-require File.join(File.dirname(__FILE__), "onix", "header")
-require File.join(File.dirname(__FILE__), "onix", "product_identifier")
-require File.join(File.dirname(__FILE__), "onix", "series_identifier")
-require File.join(File.dirname(__FILE__), "onix", "series")
-require File.join(File.dirname(__FILE__), "onix", "title")
-require File.join(File.dirname(__FILE__), "onix", "website")
-require File.join(File.dirname(__FILE__), "onix", "contributor")
-require File.join(File.dirname(__FILE__), "onix", "language")
-require File.join(File.dirname(__FILE__), "onix", "subject")
-require File.join(File.dirname(__FILE__), "onix", "audience_range")
-require File.join(File.dirname(__FILE__), "onix", "imprint")
-require File.join(File.dirname(__FILE__), "onix", "publisher")
-require File.join(File.dirname(__FILE__), "onix", "other_text")
-require File.join(File.dirname(__FILE__), "onix", "media_file")
-require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
-require File.join(File.dirname(__FILE__), "onix", "sales_rights")
-require File.join(File.dirname(__FILE__), "onix", "not_for_sale")
-require File.join(File.dirname(__FILE__), "onix", "stock")
-require File.join(File.dirname(__FILE__), "onix", "price")
-require File.join(File.dirname(__FILE__), "onix", "supply_detail")
-require File.join(File.dirname(__FILE__), "onix", "market_representation")
-require File.join(File.dirname(__FILE__), "onix", "measure")
-require File.join(File.dirname(__FILE__), "onix", "product")
-require File.join(File.dirname(__FILE__), "onix", "reader")
-require File.join(File.dirname(__FILE__), "onix", "writer")
 
-# product wrappers
-require File.join(File.dirname(__FILE__), "onix", "simple_product")
-require File.join(File.dirname(__FILE__), "onix", "apa_product")
+# Ordering is important here; classes need to be defined before any
+# other class can use them.
+[
+  # core files
+  "core/onix_element",
+  "core/lists",
 
-# misc
-require File.join(File.dirname(__FILE__), "onix", "lists")
-require File.join(File.dirname(__FILE__), "onix", "normaliser")
-require File.join(File.dirname(__FILE__), "onix", "code_list_extractor")
+  # element mappings
+  "elements/sender_identifier",
+  "elements/addressee_identifier",
+  "elements/product_identifier",
+  "elements/series_identifier",
+  "elements/series",
+  "elements/title",
+  "elements/website",
+  "elements/contributor",
+  "elements/language",
+  "elements/subject",
+  "elements/audience_range",
+  "elements/imprint",
+  "elements/publisher",
+  "elements/other_text",
+  "elements/media_file",
+  "elements/sales_restriction",
+  "elements/sales_rights",
+  "elements/not_for_sale",
+  "elements/stock",
+  "elements/price",
+  "elements/supply_detail",
+  "elements/market_representation",
+  "elements/measure",
+  "elements/product",
+
+  # more core files
+  "core/header",
+  "core/reader",
+  "core/writer",
+
+  # product wrappers
+  "wrappers/simple_product",
+  "wrappers/apa_product",
+
+  # utilities
+  "utils/normaliser",
+  "utils/code_list_extractor"
+].each do |req|
+  require File.join(File.dirname(__FILE__), "onix", req)
+end
