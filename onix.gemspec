@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('roxml', '~>3.1.6')
   s.add_dependency('activesupport', '~> 3.0.5')
+  s.add_dependency('i18n')
   s.add_dependency('andand')
   s.add_dependency('nokogiri', '>=1.4')
 
