@@ -6,13 +6,11 @@ module ONIX
   # not for sale, but this can also be specified with SalesRightsType in
   # SalesRights.
   #
-  class NotForSale
-
-    include ROXML
+  class NotForSale < ONIX::Element
 
     xml_name "NotForSale"
-    xml_accessor(:rights_countries, :from => "RightsCountry", :to_xml => ONIX::Formatters.space_separated) { |v| v.split  if v }
-    xml_accessor(:rights_territories, :from => "RightsTerritory", :to_xml => ONIX::Formatters.space_separated) { |v| v.split  if v }
+    onix_space_separated_list(:rights_countries, "RightsCountry")
+    onix_space_separated_list(:rights_territories, "RightsTerritory")
     xml_accessor(:product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier])
     xml_accessor(:publisher_name, :from => "PublisherName")
 

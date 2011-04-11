@@ -63,8 +63,9 @@ end
 # other class can use them.
 [
   # core files
-  "core/onix_element",
+  "core/element",
   "core/lists",
+  "core/code",
 
   # element mappings
   "elements/sender_identifier",
