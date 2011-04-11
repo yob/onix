@@ -18,7 +18,7 @@ module ONIX
   # Usage:
   #
   #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml")
-  #   
+  #
   # Dependencies:
   #
   # At this stage the class depends on several external apps, all commonly available
@@ -93,7 +93,7 @@ module ONIX
     def to_reference_tags(src, dest)
       inpath = File.expand_path(src)
       outpath = File.expand_path(dest)
-      xsltpath = File.dirname(__FILE__) + "/../../support/switch-onix-2.1-short-to-reference.xsl"
+      xsltpath = File.dirname(__FILE__) + "/../../../support/switch-onix-2.1-short-to-reference.xsl"
       `xsltproc -o #{outpath} #{xsltpath} #{inpath}`
     end
 
