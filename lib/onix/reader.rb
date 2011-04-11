@@ -67,6 +67,19 @@ module ONIX
   # isn't the case. Nokogiri is used to parse the file, and it seems to ignore
   # IO encoding and just read raw bytes.
   #
+  # == DTDs
+  #
+  # Note that ONIX has 1500 valid named entities (such as &ndash;) that can
+  # cause the parser to throw an exception because it doesn't recognise them.
+  # To work around this, the parser loads the ONIX DTD. It generally has to
+  # do this over the internet, which slows parsing considerably. To skip DTD
+  # loading (running the risk of parser exceptions), you can pass an option
+  # to the constructor:
+  #
+  #   reader = ONIX::Reader.new("somefile.xml", ONIX::Product, :dtd => false)
+  #
+  # For more information, see http://is.gd/p7fHQq
+  #
   class Reader
     include Enumerable
 
@@ -126,11 +139,15 @@ module ONIX
     private
 
     def create_parser
+      parser_config = lambda { |cfg|
+        cfg.noent
+        cfg.dtdload  unless @options[:dtd] == false
+      }
       if @input.kind_of?(String)
-        @file   = File.open(@input, "r")
-        @reader = Nokogiri::XML::Reader(@file, nil, @options[:encoding])# { |cfg| cfg.dtdload.noent }
+        @file = File.open(@input, "r")
+        @reader = Nokogiri::XML::Reader(@file, nil, @options[:encoding], &parser_config)
       elsif @input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(@input, nil, @options[:encoding])# { |cfg| cfg.dtdload.noent }
+        @reader = Nokogiri::XML::Reader(@input, nil, @options[:encoding], &parser_config)
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end
