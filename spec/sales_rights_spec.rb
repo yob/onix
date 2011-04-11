@@ -12,7 +12,7 @@ describe ONIX::SalesRights do
 
   it "should correctly convert to a string" do
     rep = ONIX::SalesRights.from_xml(@first_right.to_s)
-    rep.should produce_the_tag("<SalesRights")
+    rep.should produce_the_tag("<SalesRights>")
   end
 
 

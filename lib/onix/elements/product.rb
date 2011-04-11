@@ -1,15 +1,16 @@
 # coding: utf-8
 
 module ONIX
-  class Product
-    include ROXML
+  class Product < ONIX::Element
 
     xml_name "Product"
 
     xml_accessor :record_reference, :from => "RecordReference"
     xml_accessor :notification_type, :from => "NotificationType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier]
-    xml_accessor :product_form, :from => "ProductForm"
+    #xml_accessor :product_form, :from => "ProductForm"
+    onix_code_from_list(:product_form, "ProductForm", :list => 7)
+
     xml_accessor :product_form_detail, :from => "ProductFormDetail"
     xml_accessor :series, :from => "Series", :as => [ONIX::Series]
     xml_accessor :titles, :from => "Title", :as => [ONIX::Title]
