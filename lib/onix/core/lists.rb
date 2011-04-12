@@ -26,6 +26,19 @@ module ONIX
       self.instance.list(number)
     end
 
+    # Return a hash with the data for a single code list.
+    #
+    # Number should be a fixnum specifying the list to retrieve:
+    #
+    #  ONIX::Lists.instance.list(7)
+    #  => { "BB" => "Hardback", ... }
+    #
+    def list(number)
+      raise "Invalid list number: #{number}"  unless number.to_s.match(/^\d+$/)
+      require File.join("onix", "codelists", number.to_s.rjust(3, "0"))
+      eval("ONIX::CodeLists::LIST_#{number}")
+    end
+
     # Shortcut to retrieve a common code list
     #
     def self.audience_code
@@ -79,45 +92,6 @@ module ONIX
     def self.product_form_detail
       self.instance.list(78)
     end
-
-    # return a hash with the data for a single code list.
-    #
-    # number should be a fixnum specifying the list to retrieve
-    #
-    #  ONIX::Lists.instance.list(7)
-    #  => { "BB" => "Hardback", ... }
-    #
-    def list(number)
-      cache[number] ||= build_hash(number)
-    end
-
-    private
-
-    def build_hash(number)
-      val = {}
-      data(number).each_line do |line|
-        code, desc, ldesc = *line.split("\t")
-        code = code.to_i if code.to_s.match(/^\d+$/)
-        val[code] = desc
-      end
-      val
-    end
-
-    def cache
-      @cache ||= {}
-    end
-
-    def path(number)
-      code_dir = File.dirname(__FILE__) + "/../../../support/codes"
-      filename = number.to_s.rjust(3, "0") + ".tsv"
-      File.join(code_dir, filename)
-    end
-
-    def data(number)
-      File.open(path(number)) { |f| f.read }
-    end
-
-    public
 
     # These are here for backwards compatability with the onix gem <= 0.8.3
     AUDIENCE_CODE        = ONIX::Lists.audience_code

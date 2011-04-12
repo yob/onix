@@ -1,0 +1,42 @@
+# coding: utf-8
+
+module ONIX; module CodeLists
+  LIST_73 = {
+    "00" => "Unspecified, see website description",
+    "01" => "Publisher's corporate website",
+    "02" => "Publisher's website for a specified work",
+    "03" => "Online hosting service home page",
+    "04" => "Journal home page",
+    "05" => "Online journal 'available contents' page",
+    "06" => "Contributor's own website",
+    "07" => "Publisher's website relating to specified contributor",
+    "08" => "Other publisher's website relating to specified contributor",
+    "09" => "Third-party website relating to specified contributor",
+    "10" => "Contributor's own website for specified work",
+    "11" => "Other publisher's website relating to specified work",
+    "12" => "Third-party website relating to specified work",
+    "13" => "Contributor's own website for group or series of works",
+    "14" => "Publisher's website relating to group or series of works",
+    "15" => "Other publisher's website relating to group or series of works",
+    "16" => "Third-party website relating to group or series of works (eg a fan site)",
+    "17" => "Publisher's B2B website",
+    "18" => "Publisher's B2C website",
+    "23" => "Author blog",
+    "24" => "Web page for author presentation / commentary",
+    "25" => "Web page for author interview",
+    "26" => "Web page for author reading",
+    "27" => "Web page for cover material",
+    "28" => "Web page for sample content",
+    "29" => "Web page for full content",
+    "30" => "Web page for other commentary / discussion",
+    "31" => "Transfer-URL",
+    "32" => "DOI Website Link",
+    "33" => "Supplier's corporate website",
+    "34" => "Supplier's B2B website",
+    "35" => "Supplier's B2C website",
+    "36" => "Supplier's website for a specified work",
+    "37" => "Supplier's B2B website for a specified work",
+    "38" => "Supplier's B2C website for a specified work",
+    "39" => "Supplier's website for a group or series of works"
+  }
+end; end

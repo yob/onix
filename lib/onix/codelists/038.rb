@@ -1,0 +1,43 @@
+# coding: utf-8
+
+module ONIX; module CodeLists
+  LIST_38 = {
+    "01" => "Whole product",
+    "02" => "Application: software demo",
+    "04" => "Image: front cover",
+    "06" => "Image: front cover, high quality",
+    "07" => "Image: front cover thumbnail",
+    "08" => "Image: contributor(s)",
+    "10" => "Image: for series",
+    "11" => "Image: series logo",
+    "12" => "Image: product logo",
+    "17" => "Image: publisher logo",
+    "18" => "Image: imprint logo",
+    "22" => "Image: table of contents",
+    "23" => "Image: sample content",
+    "24" => "Image: back cover",
+    "25" => "Image: back cover, high quality",
+    "26" => "Image: back cover thumbnail",
+    "27" => "Image: other cover material",
+    "28" => "Image: promotional material",
+    "29" => "Video segment: unspecified",
+    "30" => "Audio segment: unspecified",
+    "31" => "Video: author presentation / commentary",
+    "32" => "Video: author interview",
+    "33" => "Video: author reading",
+    "34" => "Video: cover material",
+    "35" => "Video: sample content",
+    "36" => "Video: promotional material",
+    "37" => "Video: review",
+    "38" => "Video: other commentary / discussion",
+    "41" => "Audio: author presentation / commentary",
+    "42" => "Audio: author interview",
+    "43" => "Audio: author reading",
+    "44" => "Audio: sample content",
+    "45" => "Audio: promotional material",
+    "46" => "Audio: review",
+    "47" => "Audio: other commentary / discussion",
+    "51" => "Application: sample content",
+    "52" => "Application: promotional material"
+  }
+end; end
