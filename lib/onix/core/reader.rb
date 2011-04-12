@@ -117,7 +117,7 @@ module ONIX
       if @input.kind_of?(String)
         @file   = File.open(@input, "r")
         @reader = Nokogiri::XML::Reader(@file, &parser_config)
-      elsif @input.kind_of?(IO)
+      elsif @input.respond_to?(:read)
         @reader = Nokogiri::XML::Reader(@input, &parser_config)
       else
         raise ArgumentError, "Unable to read from file or IO stream"
