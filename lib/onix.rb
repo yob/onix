@@ -15,6 +15,8 @@ module ONIX
     String = [Major, Minor, Tiny].join('.')
   end
 
+  VERSION = ONIX::Version::String
+
   class Formatters
     def self.decimal
       lambda do |val|
@@ -106,6 +108,5 @@ end
   "utils/normaliser",
   "utils/code_list_extractor"
 ].each do |req|
-  #require File.join("onix", req)
-  require File.join(File.dirname(__FILE__), "onix", req)
+  require File.join("onix", req)
 end
