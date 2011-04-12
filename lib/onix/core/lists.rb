@@ -97,7 +97,7 @@ module ONIX
       val = {}
       data(number).each_line do |line|
         code, desc, ldesc = *line.split("\t")
-        code = code.to_i if code.to_s.match(/\d+/)
+        code = code.to_i if code.to_s.match(/^\d+$/)
         val[code] = desc
       end
       val
