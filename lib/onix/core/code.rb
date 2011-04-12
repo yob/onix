@@ -16,7 +16,7 @@ module ONIX
         if @list.keys.include?(value)
           @key = value
           @value = @list[@key]
-        elsif value.match(/\d+/) && @list.keys.include?(value.to_i)
+        elsif value.match(/^\d+$/) && @list.keys.include?(value.to_i)
           @key = value.to_i
           @value = @list[@key]
         else

@@ -8,28 +8,31 @@ module ONIX
   #
   class CodeListExtractor
 
+    FORMATS = [:tsv, :ruby]
+
     # Creates a new extractor. Expects the path to a copy of the code lists
     # file from the spec (called ONIX_BookProduct_CodeLists.xsd on my system).
     #
-    def initialize(filename)
+    def initialize(filename, format = :tsv)
       raise ArgumentError, "#{filename} not found" unless File.file?(filename)
 
       @filename = filename
+      raise "Unknown format: #{format}"  unless FORMATS.include?(format)
+      @format = format
     end
 
-    # generate a set of TSV files in the given directory. Creates the directory
-    # if it doesn't exist and will overwrite existing files.
+    # Generate one file for each list in the specified format in the given
+    # directory. Creates the directory if it doesn't exist. This will
+    # overwrite any existing files.
     #
     def run(dir)
-      FileUtils.mkdir_p(dir) unless File.directory?(dir)
+      FileUtils.mkdir_p(dir)
 
       each_list do |number, data|
-        #puts number
-        file = number.to_s.rjust(3, "0") + ".tsv"
-        path = File.join(dir, file)
-        File.open(path, "w") { |f| f.write data}
+        send("write_to_#{@format}_format", dir, number, data)
       end
     end
+
 
     private
 
@@ -54,15 +57,55 @@ module ONIX
     end
 
     def list_data(num)
-      str   = ""
       nodes = document.xpath("//simpleType[@name='List#{num}']/restriction/enumeration")
-      nodes.each do |node|
+      nodes.inject([]) do |arr, node|
         code  = node.xpath("./@value").first.value
         desc  = node.xpath("./annotation/documentation").first.text
         ldesc = node.xpath("./annotation/documentation").last.text
-        str += "#{code}\t#{desc}\t#{ldesc}\n"
+        arr.tap { |a| a << [code, desc, ldesc] }
       end
-      str
+    end
+
+    def write_to_tsv_format(dir, number, data)
+      file = number.to_s.rjust(3, "0") + ".tsv"
+      path = File.join(dir, file)
+      out = data.collect { |row| row.join("\t") }.join("\n")
+      File.open(path, "w") { |f| f.write out }
+    end
+
+    def write_to_ruby_format(dir, number, data)
+      list_num = number.to_s.rjust(3, "0")
+      file = list_num + ".rb"
+      path = File.join(dir, file)
+      str2str = lambda { |str|
+        str.gsub!("\342\200\230", "'")
+        str.gsub!("\342\200\231", "'")
+        str.gsub!("\342\200\234", '"')
+        str.gsub!("\342\200\235", '"')
+        str.gsub!(/"/, '\"')
+        "\"#{str}\""
+      }
+      # An alternative format: two-dimensional array. More complete,
+      # but less addressable.
+      #
+      # out = ["# coding: utf-8"]
+      # out << "module ONIX; module CodeLists"
+      # out << "  LIST_#{number} = ["
+      # out += data.collect { |row|
+      #   row = row.collect { |f| "      #{str2str.call(f)}" }
+      #   "    [\n#{row.join(",\n")}\n    ]"
+      # }.join(",\n")
+      # out << "  ]"
+      # out << "end; end"
+      out = ["# coding: utf-8\n"]
+      out << "module ONIX; module CodeLists"
+      out << "  LIST_#{number} = {"
+      out << data.collect { |row|
+        "    #{str2str.call(row[0])} => #{str2str.call(row[1])}"
+      }.join(",\n")
+      out << "  }"
+      out << "end; end"
+      File.open(path, "w") { |f| f.write out.join("\n") }
     end
 
   end

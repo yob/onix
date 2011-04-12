@@ -106,5 +106,6 @@ end
   "utils/normaliser",
   "utils/code_list_extractor"
 ].each do |req|
+  #require File.join("onix", req)
   require File.join(File.dirname(__FILE__), "onix", req)
 end
