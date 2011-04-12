@@ -1,14 +1,11 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Language do
 
   before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "language.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+    load_doc_and_root("language.xml")
   end
 
   it "should correctly convert to a string" do

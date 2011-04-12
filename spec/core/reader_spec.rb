@@ -1,17 +1,16 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Reader do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @file1    = File.join(@data_path, "9780194351898.xml")
-    @file2    = File.join(@data_path, "two_products.xml")
-    @long_file   = File.join(@data_path, "Bookwise_July_2008.xml")
-    @entity_file = File.join(@data_path, "entities.xml")
-    @utf_16_file = File.join(@data_path, "utf_16.xml")
-    @iso_8859_1_file = File.join(@data_path, "iso_8859_1.xml")
+    @file1 = find_data_file("9780194351898.xml")
+    @file2 = find_data_file("two_products.xml")
+    @long_file = find_data_file("Bookwise_July_2008.xml")
+    @entity_file = find_data_file("entities.xml")
+    @utf_16_file = find_data_file("utf_16.xml")
+    @iso_8859_1_file = find_data_file("iso_8859_1.xml")
   end
 
   it "should initialize with a filename" do
@@ -27,7 +26,7 @@ describe ONIX::Reader do
   end
 
   it "should provide access to various XML metadata from file" do
-    filename = File.join(@data_path, "reference_with_release_attrib.xml")
+    filename = find_data_file("reference_with_release_attrib.xml")
     reader = ONIX::Reader.new(filename)
     reader.release.should eql(BigDecimal.new("2.1"))
   end

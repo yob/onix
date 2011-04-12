@@ -1,13 +1,12 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Normaliser, "with a simple short tag file" do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "short_tags.xml")
-    @outfile   = @filename + ".new"
+    @filename = find_data_file("short_tags.xml")
+    @outfile = @filename + ".new"
   end
 
   after(:each) do
@@ -27,9 +26,8 @@ end
 describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "short_tags_ivp.xml")
-    @outfile   = @filename + ".new"
+    @filename = find_data_file("short_tags_ivp.xml")
+    @outfile = @filename + ".new"
   end
 
   after(:each) do
@@ -51,9 +49,8 @@ end
 describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "control_chars.xml")
-    @outfile   = @filename + ".new"
+    @filename = find_data_file("control_chars.xml")
+    @outfile = @filename + ".new"
   end
 
   after(:each) do
