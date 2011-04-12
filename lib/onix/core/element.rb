@@ -54,54 +54,72 @@ module ONIX
     # A Code object can return the simple code (or "key"), or the value that
     # is associated with it in ONIX code lists, and so on.
     #
+    # Required:
+    #
+    #   :list - integer referring to an ONIX Code List
+    #
     # Special options for Code instantiation are:
     #
     #   :length - how many digits to pad (default is taken from total list size)
     #
     def self.onix_code_from_list(name, tag_name, options = {})
-      unless codelist_number = options.delete(:list)
-        raise ":list is a required option for onix_code_from_list!"
+      unless list_number = options.delete(:list)
+        raise ONIX::CodeListNotSpecified
       end
-      prep = lambda { |value| ONIX::Code.new(codelist_number, value, options) }
+      prep = lambda { |value| ONIX::Code.new(list_number, value, options) }
       options = options.merge(:from => tag_name)
       xml_accessor("#{name}_code", options, &prep)
-      define_method(name) { send("#{name}_code").key }
-      define_method("#{name}=") { |val|
+
+      define_method(name) do
+        send("#{name}_code").key
+      end
+
+      define_method("#{name}=") do |val|
         val = prep.call(val)  unless val.kind_of?(ONIX::Code)
         send("#{name}_code=", val)
-      }
+      end
     end
 
     # Like onix_code_from_list, but for an array of codes.
+    #
+    # Required:
+    #
+    #   :list - integer referring to an ONIX Code List
     #
     # One important caveat: when assigning to this accessor, you must
     # pass in the complete array -- if you assign an array that you later
     # push or shift items into, you might get unexpected results.
     #
     def self.onix_codes_from_list(name, tag_name, options = {})
-      unless codelist_number = options.delete(:list)
-        raise ":list is a required option for onix_code_from_list!"
+      unless list_number = options.delete(:list)
+        raise ONIX::CodeListNotSpecified
       end
       prep = lambda { |values|
-        [values].flatten.collect { |data|
-          ONIX::Code.new(codelist_number, data, options)
-        }
+        [values].flatten.collect do |data|
+          ONIX::Code.new(list_number, data, options)
+        end
       }
       options = options.merge(:from => tag_name, :as => [])
       xml_accessor("#{name}_codes", options, &prep)
-      define_method(name) {
+
+      define_method(name) do
         codes = send("#{name}_codes")
-        codes ? [codes].flatten.collect { |cd| cd.key } : nil
-      }
+        codes ? codes.collect { |cd| cd.key } : nil
+      end
+
       # FIXME: Hmm, adding to array? what happens with push, etc?
-      define_method("#{name}=") { |vals|
+      define_method("#{name}=") do |vals|
         vals = [vals].flatten.collect { |v|
           v.kind_of?(ONIX::Code) ? v : prep.call(v)
         }
         send("#{name}_codes=", vals)
-      }
+      end
     end
 
+  end
+
+
+  class CodeListNotSpecified < ArgumentError
   end
 
 end

@@ -5,7 +5,7 @@ module ONIX
 
   class Code
 
-    attr_reader :key, :value, :list
+    attr_reader :key, :value, :list, :list_number
 
     # Note re: key type. For backwards compatibility, code keys that are
     # all-digits are passed around in this gem as Fixnums.
@@ -14,9 +14,10 @@ module ONIX
     # you want the integer-or-string key, use Code#key. If you want the real
     # string key, use Code#to_s.
     #
-    def initialize(codelist_number, data, options = {})
-      unless @list = ONIX::Lists.list(codelist_number)
-        raise "No ONIX codelist for number: #{codelist_number}"
+    def initialize(list_number, data, options = {})
+      @list_number = list_number
+      unless @list = ONIX::Lists.list(@list_number)
+        raise ONIX::CodeListNotFound.new(@list_number)
       end
 
       @key = @value = nil
@@ -40,11 +41,13 @@ module ONIX
         }
       end
       @value = @list[@real_key]  if @real_key
+    end
 
-      unless @real_key
-        raise ArgumentError, "Invalid data (key or value): '#{data}'. " +
-          "Refer to ONIX Code List #{codelist_number}"
-      end
+
+    # Returns true if the given key has a value in the codelist.
+    #
+    def valid?
+      @value ? true : false
     end
 
 
@@ -67,16 +70,16 @@ module ONIX
       # Converts a Fixnum key into a String key.
       #
       def pad(key, len)
-        if key.nil?
-          ''
-        elsif key >= 0 && key < 10**len
-          sprintf("%0#{len}d", key)
-        else
-          raise ArgumentError, "List key '#{key}' " +
-            "does not conform to #{len}-digit restrictions"
-        end
+        key ? key.to_s.rjust(len, '0') : nil
       end
 
+  end
+
+
+  class CodeListNotFound < ArgumentError
+    def initialize(list_number)
+      @list_number = list_number
+    end
   end
 
 end
