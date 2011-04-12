@@ -1,15 +1,13 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 require 'date'
 
 describe "ONIX::APAProduct" do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(@data_path, "product.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @product_node = @doc.root
+    load_doc_and_root("product.xml")
+    @product_node = @root
   end
 
   it "should provide read access to attributes" do
@@ -68,10 +66,8 @@ end
 
 describe ONIX::APAProduct, "price method" do
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(@data_path, "usd.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @product_node = @doc.root
+    load_doc_and_root("usd.xml")
+    @product_node = @root
   end
 
   it "should return the first price in the file, regardless of type" do
@@ -84,10 +80,8 @@ end
 
 describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(@data_path, "usd.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @product_node = @doc.root
+    load_doc_and_root("usd.xml")
+    @product_node = @root
   end
 
   it "should return the first price in the file of type 1" do

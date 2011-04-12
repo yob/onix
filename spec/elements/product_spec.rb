@@ -1,14 +1,12 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Product do
 
   before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(@data_path, "product.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @product_node = @doc.root
+    load_doc_and_root("product.xml")
+    @product_node = @root
   end
 
   it "should provide read access to first level attributes" do
@@ -84,7 +82,7 @@ describe ONIX::Product do
   end
 
   it "should correctly from_xml files that have an invalid publication date" do
-    file = File.join(@data_path, "product_invalid_pubdate.xml")
+    file = find_data_file("product_invalid_pubdate.xml")
     product = ONIX::Product.from_xml(File.read(file))
 
     product.bic_main_subject.should eql("VXFC1")

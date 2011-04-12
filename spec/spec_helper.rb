@@ -12,10 +12,17 @@ require 'onix'
 
 module ONIX::SpecHelpers
 
-  def load_doc_and_root(subpath)
+  def find_data_file(subpath)
     data_path = File.join(File.dirname(__FILE__), '..', 'data')
-    file1 = File.join(data_path, subpath)
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
+    File.join(data_path, subpath).tap { |fn|
+      raise "File not found: #{fn}"  unless File.exists?(fn)
+    }
+  end
+
+  def load_doc_and_root(subpath)
+    fn = find_data_file(subpath)
+    data = File.read(fn)
+    @doc = Nokogiri::XML::Document.parse(data)
     @root = @doc.root
   end
 

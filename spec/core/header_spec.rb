@@ -1,14 +1,12 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Header do
 
   before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "header.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @header_node = @doc.root
+    load_doc_and_root("header.xml")
+    @header_node = @root
   end
 
   it "should correctly convert to a string" do
@@ -112,8 +110,7 @@ end
 describe ONIX::Header do
 
   it "should correctly handle headers with an invalid sent date" do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file = File.join(data_path, "header_invalid_sentdate.xml")
+    file = find_data_file("header_invalid_sentdate.xml")
     header = ONIX::Header.from_xml(File.read(file))
 
     header.sent_date.should be_nil

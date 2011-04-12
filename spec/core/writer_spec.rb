@@ -1,6 +1,6 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper.rb'
 
 describe ONIX::Writer do
 
@@ -49,7 +49,7 @@ describe ONIX::Writer do
     header = ONIX::Header.new
     product = ONIX::Product.new
 
-    ONIX::Writer.open(@output, header) do |writer| 
+    ONIX::Writer.open(@output, header) do |writer|
       writer << product
     end
 
