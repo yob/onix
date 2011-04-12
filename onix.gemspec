@@ -1,8 +1,13 @@
 Gem::Specification.new do |s|
   s.name              = "onix"
   s.version           = "0.9.0"
-  s.summary           = "A convenient mapping between ruby objects and the ONIX XML specification"
-  s.description       = "A convenient mapping between ruby objects and the ONIX XML specification"
+  s.summary           = "A convenient mapping between Ruby objects and the " +
+                        "ONIX XML specification"
+  s.description       = "ONIX is the standard XML format for electronic data " +
+                        "sharing in the book and publishing industries. This " +
+                        "library provides a slim layer over the format and " +
+                        "simplifies both reading and writing ONIX files in " +
+                        "your Ruby applications."
   s.authors           = ["James Healy"]
   s.email             = ["jimmy@deefa.com"]
   s.has_rdoc          = true
