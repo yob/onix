@@ -34,12 +34,13 @@ describe ONIX::Code, "instantiation" do
     ONIX::Code.new(1, "Early notification").key.should eql(1)
   end
 
-  it "should raise an error for an unmatched key or value" do
-    lambda { ONIX::Code.new(1, 9999) }.should raise_error
+  it "should say code is invalid for an unmatched key or value" do
+    ONIX::Code.new(1, 9999).valid?.should be_false
+    ONIX::Code.new(1, 1).valid?.should be_true
   end
 
-  it "should pad to_s output if initialised with integer data and length" do
-    ONIX::Code.new(1, 1, :length => 10).to_s.should eql("0000000001")
+  it "should pad to_s output if initialised with integer key and length" do
+    ONIX::Code.new(1, 1, :length => 2).to_s.should eql("01")
   end
 
 end
