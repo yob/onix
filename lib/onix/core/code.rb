@@ -5,7 +5,7 @@ module ONIX
 
   class Code
 
-    attr_reader :key, :value
+    attr_reader :key, :value, :list
 
     # Note re: key type. For backwards compatibility, code keys that are
     # all-digits are passed around in this gem as Fixnums.
@@ -34,12 +34,12 @@ module ONIX
       else
         @list.each_pair { |k, v|
           next  unless v == data
-          @key = @real_key = k
+          @real_key = k
+          @key = @real_key.match(/^\d+$/) ? @real_key.to_i : @real_key
           break
         }
       end
       @value = @list[@real_key]  if @real_key
-
 
       unless @real_key
         raise ArgumentError, "Invalid data (key or value): '#{data}'. " +
