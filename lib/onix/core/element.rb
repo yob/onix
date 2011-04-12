@@ -62,6 +62,34 @@ module ONIX
     #
     #   :length - how many digits to pad (default is taken from total list size)
     #
+    # As well as the normal accessor (x/x=), this will create a
+    # special accessor for the richer Code object (#x_code/#x_code=).
+    # For example:
+    #
+    #   class Foo < ONIX::Element
+    #     onix_code_from_list(:message_type, "MessageType", :list => 1)
+    #   end
+    #
+    #   foo = Foo.new
+    #
+    #   foo.message_type = 1
+    #
+    #   foo.message_type
+    #   >> 1
+    #
+    #   foo.message_type_code
+    #   >> #<ONIX::Code:.......>
+    #
+    #   foo.message_type_code.key
+    #   >> 1
+    #
+    #   foo.message_type_code.to_s
+    #   >> "01"
+    #
+    #   foo.message_type_code.value
+    #   >> "Early notification"
+    #
+    #
     def self.onix_code_from_list(name, tag_name, options = {})
       unless list_number = options.delete(:list)
         raise ONIX::CodeListNotSpecified
@@ -90,6 +118,20 @@ module ONIX
     # pass in the complete array -- if you assign an array that you later
     # push or shift items into, you might get unexpected results.
     #
+    # Similar to onix_code_from_list, this creates a special accessor for the
+    # Code objects at (#x_codes/#x_codes=). For example:
+    #
+    #   class Bar < ONIX::Element
+    #     onix_codes_from_list(:identifiers, "Identifier", :list => 5)
+    #   end
+    #
+    #   bar = Bar.new
+    #
+    #   bar.identifiers = [1, 5, 13]
+    #
+    #   bar.identifiers_codes.collect { |ids| ids.value }
+    #   >> ["Proprietary", "ISMN-10", "LLCN"]
+    #
     def self.onix_codes_from_list(name, tag_name, options = {})
       unless list_number = options.delete(:list)
         raise ONIX::CodeListNotSpecified
@@ -111,7 +153,7 @@ module ONIX
       define_method("#{name}=") do |vals|
         vals = [vals].flatten.collect { |v|
           v.kind_of?(ONIX::Code) ? v : prep.call(v)
-        }
+        }.flatten
         send("#{name}_codes=", vals)
       end
     end
