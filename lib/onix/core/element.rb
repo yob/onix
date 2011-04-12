@@ -28,7 +28,14 @@ module ONIX
         :from => tag_name,
         :to_xml => ONIX::Formatters.yyyymmdd
       )
-      xml_accessor(name, options) { |val| Date.parse(val) rescue nil }
+      if options[:as].kind_of?(Array)
+        prep = lambda { |vs|
+          [vs].flatten.collect { |v| Date.parse(v) rescue nil }
+        }
+      else
+        prep = lambda { |v| Date.parse(v) rescue nil }
+      end
+      xml_accessor(name, options, &prep)
     end
 
     # An accessor that treats the input as a space-separated list, and
@@ -75,12 +82,16 @@ module ONIX
       unless codelist_number = options.delete(:list)
         raise ":list is a required option for onix_code_from_list!"
       end
-      prep = lambda { |value| ONIX::Code.new(codelist_number, value, options) }
-      options = options.merge(:from => tag_name)
+      prep = lambda { |values|
+        [values].flatten.collect { |data|
+          ONIX::Code.new(codelist_number, data, options)
+        }
+      }
+      options = options.merge(:from => tag_name, :as => [])
       xml_accessor("#{name}_codes", options, &prep)
       define_method(name) {
         codes = send("#{name}_codes")
-        codes ? codes.collect { |cd| cd.key } : nil
+        codes ? [codes].flatten.collect { |cd| cd.key } : nil
       }
       # FIXME: Hmm, adding to array? what happens with push, etc?
       define_method("#{name}=") { |vals|
