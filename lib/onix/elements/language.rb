@@ -1,13 +1,8 @@
 # coding: utf-8
 
-module ONIX
-  class Language
-    include ROXML
-
-    xml_name "Language"
-
-    xml_accessor :language_role,        :from => "LanguageRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :language_code,        :from => "LanguageCode"
-    xml_accessor :country_code,         :from => "CountryCode"
-  end
+class ONIX::Language < ONIX::Element
+  xml_name "Language"
+  onix_code_from_list :language_role, "LanguageRole", :list => 22
+  onix_code_from_list :language_code, "LanguageCode", :list => 74
+  onix_code_from_list :country_code, "CountryCode", :list => 91
 end

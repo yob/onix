@@ -1,17 +1,19 @@
 # coding: utf-8
 
-module ONIX
-  class Series
-    include ROXML
+class ONIX::Series < ONIX::Element
+  xml_name "Series"
 
-    xml_name "Series"
+  onix_composite :series_identifiers, ONIX::SeriesIdentifier
+  xml_accessor :title_of_series, :from => "TitleOfSeries"
+  onix_composite :titles, ONIX::Title
+  onix_composite :contributors, ONIX::Contributor
+  xml_accessor :number_within_series, :from => "NumberWithinSeries"
+  xml_accessor :year_of_annual, :from => "YearOfAnnual"
 
-    xml_accessor :series_identifiers, :from => "SeriesIdentifier", :as => [ONIX::SeriesIdentifier]
-    xml_accessor :title_of_series, :from => "TitleOfSeries"
-
-    def initialize
-      self.series_identifiers = []
-    end
-
+  def initialize
+    self.series_identifiers = []
+    self.titles = []
+    self.contributors = []
   end
+
 end

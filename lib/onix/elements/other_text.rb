@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class OtherText
-    include ROXML
-
+  class OtherText < ONIX::Element
     xml_name "OtherText"
 
     xml_accessor :text_type_code, :from => "TextTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit

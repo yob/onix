@@ -1,11 +1,6 @@
 # coding: utf-8
 
-module ONIX
-  class AddresseeIdentifier
-    include ROXML
-
-    xml_accessor :addressee_id_type, :from => "AddresseeIDType", :as => Fixnum # should be a 2 digit num
-    xml_accessor :id_type_name,      :from => "IDTypeName"
-    xml_accessor :id_value,          :from => "IDValue"
-  end
+class ONIX::AddresseeIdentifier < ONIX::Identifier
+  xml_name "AddresseeIdentifier"
+  onix_code_from_list :addressee_id_type, "AddresseeIDType", :list => 44
 end

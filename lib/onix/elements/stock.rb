@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class Stock
-    include ROXML
-
+  class Stock < ONIX::Element
     xml_name "Stock"
 
     # NOTE: these *should* be numeric fields according to the spec,

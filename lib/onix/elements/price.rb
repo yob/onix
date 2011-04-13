@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class Price
-    include ROXML
-
+  class Price < ONIX::Element
     xml_name "Price"
 
     xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit

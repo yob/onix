@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class MarketRepresentation
-    include ROXML
-
+  class MarketRepresentation < ONIX::Element
     xml_name "MarketRepresentation"
 
     xml_accessor :agent_name, :from => "AgentName"

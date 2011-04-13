@@ -69,15 +69,31 @@ end
   "core/lists",
   "core/code",
 
-  # element mappings
+  # identifier mappings
+  "elements/identifier",
   "elements/sender_identifier",
   "elements/addressee_identifier",
+  "elements/person_name_identifier",
   "elements/product_identifier",
   "elements/series_identifier",
-  "elements/series",
+  "elements/work_identifier",
+  "elements/conference_sponsor_identifier",
+
+  # other element mappings
+  "elements/name",
+  "elements/person_date",
+  "elements/professional_affiliation",
+  "elements/product_form_feature",
+  "elements/product_classification",
   "elements/title",
   "elements/website",
   "elements/contributor",
+  "elements/series",
+  "elements/set",
+  "elements/conference_sponsor",
+  "elements/conference",
+  "elements/extent",
+  "elements/illustrations",
   "elements/language",
   "elements/subject",
   "elements/audience_range",
