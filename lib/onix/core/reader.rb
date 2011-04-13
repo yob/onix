@@ -86,14 +86,21 @@ module ONIX
     attr_reader :header, :release
     attr_reader :xml_lang, :xml_version
 
+    # Options:
+    #
+    #    :dtd - if false, then DTD is not loaded before parsing
+    #    :interpret - a module (or an array of modules) that should extend
+    #       each Product
+    #    :encoding - the character encoding of the source file (defaults
+    #       to UTF-8)
+    #
     def initialize(input, *args)
-      opts = args.last.kind_of?(Hash) ? args.pop : {}
+      @input = input
+      @options = args.last.kind_of?(Hash) ? args.pop : {}
       if args.size > 0
         ActiveSupport::Deprecation.warn("Passing a klass as ONIX::Reader's second argument is deprecated, use the :product_class option instead", caller)
       end
-      @input = input
-      @product_klass = opts[:product_class] || args.pop || ::ONIX::Product
-      @options = opts
+      @product_klass = @options[:product_class] || args.pop || ::ONIX::Product
 
       create_parser
 
@@ -110,11 +117,9 @@ module ONIX
       @reader.each do |node|
         if @reader.node_type == 1 && @reader.name == "Product"
           str = @reader.outer_xml
-          if str.nil?
-            yield @product_klass.new
-          else
-            yield @product_klass.from_xml(str)
-          end
+          product = str.nil? ? @product_klass.new : @product_klass.from_xml(str)
+          product.interpret @options[:interpret]
+          yield product
         end
       end
     end
