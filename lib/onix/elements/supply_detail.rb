@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class SupplyDetail
-    include ROXML
-
+  class SupplyDetail < ONIX::Element
     xml_name "SupplyDetail"
 
     xml_accessor :supplier_ean_location_number, :from => "SupplierEANLocationNumber"

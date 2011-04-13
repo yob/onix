@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class Publisher
-    include ROXML
-
+  class Publisher < ONIX::Element
     xml_name "Publisher"
 
     xml_accessor :publishing_role,      :from => "PublishingRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit

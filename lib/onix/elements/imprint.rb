@@ -1,9 +1,7 @@
 # coding: utf-8
 
 module ONIX
-  class Imprint
-    include ROXML
-
+  class Imprint < ONIX::Element
     xml_name "Imprint"
 
     xml_accessor :name_code_type,      :from => "NameCodeType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
