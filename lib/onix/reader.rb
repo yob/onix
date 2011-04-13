@@ -50,6 +50,19 @@ module ONIX
   # ONIX spec, and you may need to handle the file differently based on what
   # version it is.
   #
+  # == File Encoding
+  #
+  # ONIX::Reader returns all strings as UTF-8. Source file encoding is detected by
+  # the encoding declaration at the top of the file, like so:
+  #
+  #   <?xml version="1.0" encoding="iso-8859-1"?>
+  #
+  # If the encoding declaration is missing the file is assumed to be UTF-8.
+  #
+  # If the file contains invalid bytes for the source encoding an exception will
+  # be raised. This isn't ideal, but I'm still looking for ways to make this
+  # behaviour configurable.
+  #
   class Reader
     include Enumerable
 
