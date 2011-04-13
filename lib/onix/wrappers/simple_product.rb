@@ -11,7 +11,7 @@ module ONIX
     end
 
     class << self
-      
+
       include Forwardable
 
       def from_xml(xml)
@@ -25,7 +25,7 @@ module ONIX
       def parse(xml)
         self.new(::ONIX::Product.parse(xml))
       end
-    
+
       protected
 
       def delegate(*args)
@@ -40,6 +40,8 @@ module ONIX
     def to_xml
       product.to_xml
     end
+
+    delegate :interpret
 
     # TODO: add method missing magic to proxy through to the underlying product?
 

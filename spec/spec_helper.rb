@@ -31,6 +31,26 @@ end
 include ONIX::SpecHelpers
 
 
+# Simple example interpretations
+#
+module ONIX::SpecInterpretations
+  module Getters
+    def title
+      titles.first.title_text.downcase
+    end
+  end
+
+  module Setters
+    def title=(str)
+      composite = titles.first
+      titles << composite = ONIX::Title.new  if composite.nil?
+      composite.title_type = 1
+      composite.title_text = str
+    end
+  end
+end
+
+
 RSpec::Matchers.define(:produce_the_tag) do |expected|
   match do |actual|
     actual.to_xml.to_s[0, expected.size] == expected

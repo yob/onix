@@ -186,5 +186,42 @@ module ONIX
       self.supply_details = []
       self.market_representations = []
     end
+
+    # Extend this product instance with a module. Typically these modules
+    # make it easier to read or write common values in the Product.
+    #
+    # The product tracks the modules that have extended it, so that it
+    # can easily pass these extensions on to other products
+    # (see #interpret_like_me).
+    #
+    # For convenience, this method returns the product itself.
+    #
+    def interpret(mods)
+      @_extensions ||= []
+      [mods].flatten.compact.uniq.each { |mod|
+        next  if @_extensions.include?(mod)
+        @_extensions << mod
+        extend(mod)
+      }
+      self
+    end
+
+    # Apply all the modules that have extended this product to another product.
+    #
+    # This is useful when, say, accessing RelatedProduct or ContainedItem
+    # composites. Your module might do something like:
+    #
+    #   def print_product
+    #     prod = related_products.detect { |p| p.relation_code == 13 }
+    #     prod ? interpret_like_me(prod) : nil
+    #   end
+    #
+    # As a result, this related product will have all the extensions applied
+    # to this product.
+    #
+    def interpret_like_me(product)
+      product.interpret(@_extensions)
+    end
+
   end
 end

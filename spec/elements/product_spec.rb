@@ -88,4 +88,36 @@ describe ONIX::Product do
     product.bic_main_subject.should eql("VXFC1")
     product.publication_date.should be_nil
   end
+
+
+  it "should load an interpretation" do
+    product = ONIX::Product.new
+    product.interpret(ONIX::SpecInterpretations::Setters)
+    product.title = "Grimm's Fairy Tales"
+    product.titles.first.title_text.should eql("Grimm's Fairy Tales")
+  end
+
+  it "should load several interpretations" do
+    product = ONIX::Product.new
+    product.interpret([
+      ONIX::SpecInterpretations::Getters,
+      ONIX::SpecInterpretations::Setters
+    ])
+    product.title = "Grimm's Fairy Tales"
+    product.title.should eql("grimm's fairy tales")
+  end
+
+  it "should pass on interpretations to other products" do
+    product1 = ONIX::Product.new
+    product1.interpret([
+      ONIX::SpecInterpretations::Getters,
+      ONIX::SpecInterpretations::Setters
+    ])
+
+    product2 = ONIX::Product.new
+    product1.interpret_like_me(product2)
+    product2.title = "Grimm's Fairy Tales"
+    product2.title.should eql("grimm's fairy tales")
+  end
+
 end

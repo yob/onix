@@ -144,4 +144,24 @@ describe ONIX::Reader do
     reader.products.size.should eql(2)
   end
 
+
+  it "should augment ONIX::Product objects with interpretations" do
+    reader = ONIX::Reader.new(
+      @file1,
+      ONIX::Product,
+      :interpret => ONIX::SpecInterpretations::Getters
+    )
+    reader.products.first.title.should eql("oxford picture dictionary chinese")
+  end
+
+
+  it "should augment product inside SimpleProduct with interpretations" do
+    reader = ONIX::Reader.new(
+      @file1,
+      ONIX::APAProduct,
+      :interpret => ONIX::SpecInterpretations::Getters
+    )
+    reader.products.first.product.title.should eql("oxford picture dictionary chinese")
+  end
+
 end

@@ -61,6 +61,12 @@ module ONIX
     attr_reader :header, :release
     attr_reader :xml_lang, :xml_version
 
+    # Options:
+    #
+    #    :dtd - if false, then DTD is not loaded before parsing
+    #    :interpret - a module (or an array of modules) that should extend
+    #                 each Product
+    #
     def initialize(input, product_klass = ::ONIX::Product, options = {})
       @input = input
       @product_klass = product_klass
@@ -81,11 +87,9 @@ module ONIX
       @reader.each do |node|
         if @reader.node_type == 1 && @reader.name == "Product"
           str = @reader.outer_xml
-          if str.nil?
-            yield @product_klass.new
-          else
-            yield @product_klass.from_xml(str)
-          end
+          product = str.nil? ? @product_klass.new : @product_klass.from_xml(str)
+          product.interpret @options[:interpret]
+          yield product
         end
       end
     end
