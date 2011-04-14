@@ -1,9 +1,12 @@
-v0.8.6 (XXX)
-- ...
-
-v0.8.5 (21st December 2010)
+v0.8.6 (14th April 2011)
 - switch back to the vanilla roxml gem. Ben is maintaining it again and
   he has merged in my bug fixes
+- clarify comments explaining encoding behaviour
+- ONIX::Normaliser can now override the encoding marker in an ONIX file header
+  * doesn't touch the file encoding, just the header
+  * use when a file is missing or has an incorrect encoding marker
+
+v0.8.5 (21st December 2010)
 - update packaging - use bundler and rspec 2.x
 - support normalising short tag files that include HTML tags
 
