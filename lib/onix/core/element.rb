@@ -158,6 +158,50 @@ module ONIX
       end
     end
 
+    # Query a composite array within this element, looking for an attribute
+    # ('mthd') that has a value equal to 'query'.
+    #
+    # The idea is that you can shorten this:
+    #
+    #    product.websites.detect { |ws| ws.website_role == 1 }
+    #
+    # To this:
+    #
+    #    product.fetch(:websites, :website_role, 1)
+    #
+    # Note: query may be an array of values, will return the first
+    # composite that matches one of them. So this:
+    #
+    #    product.websites.detect { |ws| ws.website_role == 1 } ||
+    #      product.websites.detect { |ws| ws.website_role == 2 }
+    #
+    # becomes this:
+    #
+    #    product.fetch(:websites, :website_role, [1, 2])
+    #
+    def fetch(composite_symbol, mthd, query)
+      result = nil
+      [query].flatten.each do |matcher|
+        break  if result = send(composite_symbol).detect do |comp|
+          comp.send(mthd) == matcher
+        end
+      end
+      result
+    end
+
+    # Queries a composite array like #fetch, but returns *all* composites
+    # that have a match.
+    #
+    def fetch_all(composite_symbol, mthd, query)
+      [query].flatten.inject([]) do |acc, matcher|
+        comps = send(composite_symbol).select do |comp|
+          comp.send(mthd) == matcher
+        end
+        acc += comps  if comps.any?
+        acc
+      end
+    end
+
   end
 
 

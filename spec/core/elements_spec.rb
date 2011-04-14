@@ -95,4 +95,68 @@ describe ONIX::Element, "custom accessors" do
     elem.identifiers_codes.collect { |c| c.value }.should eql(["UPC", "URN"])
   end
 
+  it "should fetch a single composite with an attribute value matching query" do
+    xml = %Q`
+      <TestElement>
+        <Website>
+          <WebsiteRole>01</WebsiteRole>
+          <WebsiteLink>http://www.rainbowbooks.com.au</WebsiteLink>
+        </Website>
+        <Website>
+          <WebsiteRole>01</WebsiteRole>
+          <WebsiteDescription>Web-based ebooks!</WebsiteDescription>
+          <WebsiteLink>http://booki.sh</WebsiteLink>
+        </Website>
+      </TestElement>
+    `
+    elem = ONIX::TestElement.from_xml(xml)
+    website = elem.fetch(:websites, :website_role, 1)
+    website.should_not be_nil
+    website.website_link.should eql("http://www.rainbowbooks.com.au")
+  end
+
+  it "should fetch a composite array with attribute values matching query" do
+    xml = %Q`
+      <TestElement>
+        <Website>
+          <WebsiteRole>01</WebsiteRole>
+          <WebsiteLink>http://www.rainbowbooks.com.au</WebsiteLink>
+        </Website>
+        <Website>
+          <WebsiteRole>01</WebsiteRole>
+          <WebsiteDescription>Web-based ebooks!</WebsiteDescription>
+          <WebsiteLink>http://booki.sh</WebsiteLink>
+        </Website>
+      </TestElement>
+    `
+    elem = ONIX::TestElement.from_xml(xml)
+    websites = elem.fetch_all(:websites, :website_role, 1)
+    websites.should_not be_empty
+    websites.collect { |ws| ws.website_link }.should eql([
+      "http://www.rainbowbooks.com.au",
+      "http://booki.sh"
+    ])
+  end
+
+  it "should fetch a composite array with attribute values matching queries" do
+    xml = %Q`
+      <TestElement>
+        <Website>
+          <WebsiteRole>01</WebsiteRole>
+          <WebsiteLink>http://www.rainbowbooks.com.au</WebsiteLink>
+        </Website>
+        <Website>
+          <WebsiteRole>02</WebsiteRole>
+          <WebsiteDescription>Web-based ebooks!</WebsiteDescription>
+          <WebsiteLink>http://booki.sh</WebsiteLink>
+        </Website>
+      </TestElement>
+    `
+    elem = ONIX::TestElement.from_xml(xml)
+    websites1 = elem.fetch_all(:websites, :website_role, 1)
+    websites1.size.should eql(1)
+    websites2 = elem.fetch_all(:websites, :website_role, [1,2])
+    websites2.size.should eql(2)
+  end
+
 end
