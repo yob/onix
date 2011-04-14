@@ -25,7 +25,7 @@ module ONIX
   # in a shim that provides simple accessor access to common attributes, pass the
   # shim class as a second argument
   #
-  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
+  #   reader = ONIX::Reader.new("somefile.xml", :product_class => ONIX::APAProduct)
   #
   #   puts reader.header.inspect
   #
@@ -39,7 +39,7 @@ module ONIX
   # As well as accessing the file header, there are handful of other read only
   # attributes that might be useful
   #
-  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
+  #   reader = ONIX::Reader.new("somefile.xml")
   #
   #   puts reader.version
   #   puts reader.xml_lang
@@ -62,7 +62,7 @@ module ONIX
   # If the encoding declaration is missing or wrong and the file isn't UTF-8,
   # you can manually set or override it like so:
   #
-  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct, :encoding => "iso-8859-1")
+  #   reader = ONIX::Reader.new("somefile.xml", :encoding => "iso-8859-1")
   #
   # If the file contains invalid bytes for the source encoding an exception will
   # be raised. This isn't ideal, but I'm still looking for ways to make this
@@ -73,17 +73,21 @@ module ONIX
 
     attr_reader :header, :release
 
-    def initialize(input, product_klass = nil, options = {})
+    def initialize(input, *args)
+      opts = args.last.kind_of?(Hash) ? args.pop : {}
+      if args.size > 0
+        ActiveSupport::Deprecation.warn("Passing a klass as ONIX::Reader's second argument is deprecated, use the :product_class option instead", caller)
+      end
+      @product_klass = opts[:product_class] || args.pop || ::ONIX::Product
+
       if input.kind_of?(String)
         @file   = File.open(input, "r")
-        @reader = Nokogiri::XML::Reader(@file, nil, options[:encoding]) { |cfg| cfg.dtdload.noent }
+        @reader = Nokogiri::XML::Reader(@file, nil, opts[:encoding]) { |cfg| cfg.dtdload.noent }
       elsif input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(input, nil, options[:encoding]) { |cfg| cfg.dtdload.noent }
+        @reader = Nokogiri::XML::Reader(input, nil, opts[:encoding]) { |cfg| cfg.dtdload.noent }
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end
-
-      @product_klass = product_klass || ::ONIX::Product
 
       @release = find_release
       @header = find_header
