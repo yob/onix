@@ -105,8 +105,8 @@ describe ONIX::Reader do
   it "should raise an exception when an iso-8859-1 file isn't declared as such" do
     reader = ONIX::Reader.new(@no_encoding_decl_file)
     lambda {
-      reader.each do |product|
-      end
+      # we silence STDERR so that libxml's warning doesn't appear in output.
+      silence_stream(STDERR) { reader.products }
     }.should raise_error(Nokogiri::XML::SyntaxError)
   end
 
@@ -139,7 +139,8 @@ describe ONIX::Reader do
   end
 
   it "should support returning an APAProduct using deprecated API" do
-    reader = ONIX::Reader.new(@file1, ONIX::APAProduct)
+    # We silence STDERR so that the deprecation warning doesn't appear in output.
+    reader = silence_stream(STDERR) { ONIX::Reader.new(@file1, ONIX::APAProduct) }
     reader.each do |product|
       product.should be_a_kind_of(ONIX::APAProduct)
     end
