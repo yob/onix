@@ -24,7 +24,7 @@ module ONIX
   # reader in a shim that provides simple accessor access to common attributes,
   # pass the shim class as a second argument.
   #
-  #   reader = ONIX::Reader.new("somefile.xml", :product_class => ONIX::APAProduct)
+  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
   #
   #   puts reader.header.inspect
   #
@@ -39,35 +39,10 @@ module ONIX
   # As well as accessing the file header, there are handful of other read only
   # attributes that might be useful
   #
-  #   reader = ONIX::Reader.new("somefile.xml")
+  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct)
   #
   #   puts reader.xml_lang
   #   puts reader.xml_version
-  #
-  # == File Encoding
-  #
-  # ONIX::Reader returns all strings as UTF-8. Source file encoding is detected by
-  # the encoding declaration at the top of the file, like so:
-  #
-  #   <?xml version="1.0" encoding="iso-8859-1"?>
-  #
-  # If the encoding declaration is missing the file is assumed to be UTF-8.
-  #
-  # If the encoding declaration is missing or wrong and the file isn't UTF-8,
-  # you can manually set or override it like so:
-  #
-  #   reader = ONIX::Reader.new("somefile.xml", :encoding => "iso-8859-1")
-  #
-  # If the file contains invalid bytes for the source encoding an exception will
-  # be raised. This isn't ideal, but I'm still looking for ways to make this
-  # behaviour configurable.
-  #
-  # If you're running 1.9, you might imagine passing an IO stream that auto
-  # transcodes to UTF-8 into ONIX::Reader might have the same effect, but that
-  # isn't the case. Nokogiri is used to parse the file, and it seems to ignore
-  # IO encoding and just read raw bytes.
-  #
-  # == DTDs
   #
   # Note that ONIX has 1500 valid named entities (such as &ndash;) that can
   # cause the parser to throw an exception because it doesn't recognise them.
@@ -90,17 +65,12 @@ module ONIX
     #
     #    :dtd - if false, then DTD is not loaded before parsing
     #    :interpret - a module (or an array of modules) that should extend
-    #       each Product
-    #    :encoding - the character encoding of the source file (defaults
-    #       to UTF-8)
+    #                 each Product
     #
-    def initialize(input, *args)
+    def initialize(input, product_klass = ::ONIX::Product, options = {})
       @input = input
-      @options = args.last.kind_of?(Hash) ? args.pop : {}
-      if args.size > 0
-        ActiveSupport::Deprecation.warn("Passing a klass as ONIX::Reader's second argument is deprecated, use the :product_class option instead", caller)
-      end
-      @product_klass = @options[:product_class] || args.pop || ::ONIX::Product
+      @product_klass = product_klass
+      @options = options || {}
 
       create_parser
 
@@ -149,10 +119,10 @@ module ONIX
         cfg.dtdload  unless @options[:dtd] == false
       }
       if @input.kind_of?(String)
-        @file = File.open(@input, "r")
-        @reader = Nokogiri::XML::Reader(@file, nil, @options[:encoding], &parser_config)
-      elsif @input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(@input, nil, @options[:encoding], &parser_config)
+        @file   = File.open(@input, "r")
+        @reader = Nokogiri::XML::Reader(@file, &parser_config)
+      elsif @input.respond_to?(:read)
+        @reader = Nokogiri::XML::Reader(@input, &parser_config)
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end

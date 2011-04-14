@@ -11,7 +11,6 @@ describe ONIX::Reader do
     @entity_file = find_data_file("entities.xml")
     @utf_16_file = find_data_file("utf_16.xml")
     @iso_8859_1_file = find_data_file("iso_8859_1.xml")
-    @no_encoding_decl_file = find_data_file("aau.xml")
   end
 
   it "should initialize with a filename" do
@@ -90,36 +89,18 @@ describe ONIX::Reader do
 
   it "should transparently convert a iso-8859-1 file to utf-8" do
     reader = ONIX::Reader.new(@iso_8859_1_file)
-    reader.each do |product|
-      if RUBY_VERSION >= "1.9"
-        utf8 = Encoding.find("utf-8")
-        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
-      end
-
-      product.contributors[0].person_name_inverted.should eql("Küng, Hans")
+    product = nil
+    reader.each do |p|
+      product = p
     end
-  end
 
-  # This isn't ideal behaviour, but i'm somewhat hamstrung by nokogiri API. It'd
-  # be nice to have the option to replace unrecognised bytes with a valid char.
-  it "should raise an exception when an iso-8859-1 file isn't declared as such" do
-    reader = ONIX::Reader.new(@no_encoding_decl_file)
-    lambda {
-      # we silence STDERR so that libxml's warning doesn't appear in output.
-      silence_stream(STDERR) { reader.products }
-    }.should raise_error(Nokogiri::XML::SyntaxError)
-  end
-
-  it "should transparently convert an iso-8859-1 file to utf-8 when there's no declaration but the user manually specifies iso-8859-1" do
-    reader = ONIX::Reader.new(@no_encoding_decl_file, :encoding => "iso-8859-1")
-    reader.each do |product|
-      if RUBY_VERSION >= "1.9"
-        utf8 = Encoding.find("utf-8")
-        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
-      end
-
-      product.contributors[0].person_name_inverted.should eql("Melo,Patr¡cia")
+    # ROXML appears to munge the string encodings
+    if RUBY_VERSION >= "1.9"
+      utf8 = Encoding.find("utf-8")
+      product.contributors[0].person_name_inverted.encoding.should eql(utf8)
     end
+
+    product.contributors[0].person_name_inverted.should eql("Küng, Hans")
   end
 
   it "should transparently convert a utf-16 file to utf-8" do
@@ -136,21 +117,6 @@ describe ONIX::Reader do
     end
 
     product.contributors[0].person_name_inverted.should eql("Küng, Hans")
-  end
-
-  it "should support returning an APAProduct using deprecated API" do
-    # We silence STDERR so that the deprecation warning doesn't appear in output.
-    reader = silence_stream(STDERR) { ONIX::Reader.new(@file1, ONIX::APAProduct) }
-    reader.each do |product|
-      product.should be_a_kind_of(ONIX::APAProduct)
-    end
-  end
-
-  it "should support returning an APAProduct using new API" do
-    reader = ONIX::Reader.new(@file1, :product_class => ONIX::APAProduct)
-    reader.each do |product|
-      product.should be_a_kind_of(ONIX::APAProduct)
-    end
   end
 
   it "should be rewindable" do
@@ -182,7 +148,7 @@ describe ONIX::Reader do
   it "should augment ONIX::Product objects with interpretations" do
     reader = ONIX::Reader.new(
       @file1,
-      :product_class => ONIX::Product,
+      ONIX::Product,
       :interpret => ONIX::SpecInterpretations::Getters
     )
     reader.products.first.title.should eql("oxford picture dictionary chinese")
@@ -192,7 +158,7 @@ describe ONIX::Reader do
   it "should augment product inside SimpleProduct with interpretations" do
     reader = ONIX::Reader.new(
       @file1,
-      :product_class => ONIX::APAProduct,
+      ONIX::APAProduct,
       :interpret => ONIX::SpecInterpretations::Getters
     )
     reader.products.first.product.title.should eql("oxford picture dictionary chinese")
