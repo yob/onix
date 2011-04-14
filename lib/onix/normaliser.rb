@@ -11,18 +11,24 @@ module ONIX
   #
   # This will create a new file that:
   #
-  # - is UTF-8 encoded
   # - uses reference tags, not short
-  # - has no named entities (ndash, etc) other than &amp; &lt; and &gt;
+  # - doesn't contain control characters banned by the XML spec
+  #
+  # Optionally, it can also rewrite the XML declaration with a new
+  # encoding. This is useful when the original generator of the file left
+  # the encoding indicator off or got it wrong. The encoding indicator of
+  # the file *MUST* be correct for ONIX::Reader to function correctly.
   #
   # Usage:
   #
   #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml")
+  #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml", :encoding => "iso-8859-1")
+  #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml", :encoding => "utf-8")
   #
   # Dependencies:
   #
   # At this stage the class depends on several external apps, all commonly available
-  # on *nix systems: xsltproc, isutf8, iconv and sed
+  # on *nix systems: xsltproc, tr and sed
   #
   class Normaliser
 
@@ -41,6 +47,8 @@ module ONIX
       raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
       raise "xsltproc app not found" unless app_available?("xsltproc")
       raise "tr app not found"       unless app_available?("tr")
+      raise "sed app not found"      unless app_available?("sed")
+      raise "cat app not found"      unless app_available?("cat")
 
       @options = opts
       @oldfile = oldfile
