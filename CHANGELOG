@@ -2,9 +2,6 @@ v0.9.0 (14th April 2011)
 - switch back to the vanilla roxml gem. Ben is maintaining it again and
   he has merged in my bug fixes
 - clarify comments explaining encoding behaviour
-- ONIX::Normaliser can now override the encoding marker in an ONIX file header
-  * doesn't touch the file encoding, just the header
-  * use when a file is missing or has an incorrect encoding marker
 - Add options hash to ONIX::Reader. Only option at this stage is :encoding,
   which allows the user to override the assumed encoding of the input XML
 - API change, so new minor version
