@@ -18,7 +18,7 @@ module ONIX
   # Usage:
   #
   #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml")
-  #   
+  #
   # Dependencies:
   #
   # At this stage the class depends on several external apps, all commonly available
@@ -31,17 +31,18 @@ module ONIX
       # normalise oldfile and save it as newfile. oldfile
       # will be left untouched
       #
-      def process(oldfile, newfile)
-        self.new(oldfile, newfile).run
+      def process(oldfile, newfile, opts = {})
+        self.new(oldfile, newfile, opts).run
       end
     end
 
-    def initialize(oldfile, newfile)
+    def initialize(oldfile, newfile, opts = {})
       raise ArgumentError, "#{oldfile} does not exist" unless File.file?(oldfile)
       raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
       raise "xsltproc app not found" unless app_available?("xsltproc")
       raise "tr app not found"       unless app_available?("tr")
 
+      @options = opts
       @oldfile = oldfile
       @newfile = newfile
       @curfile = next_tempfile
@@ -54,6 +55,12 @@ module ONIX
       if @head.include?("ONIXmessage")
         dest = next_tempfile
         to_reference_tags(@curfile, dest)
+        @curfile = dest
+      end
+
+      if @options[:encoding]
+        dest = next_tempfile
+        fix_encoding_mark(@curfile, dest, @options[:encoding])
         @curfile = dest
       end
 
@@ -82,6 +89,20 @@ module ONIX
         tf.close!
       end
       p
+    end
+
+    def fix_encoding_mark(src, dest, enc)
+      inpath = File.expand_path(src)
+      outpath = File.expand_path(dest)
+
+      head = File.open(inpath,"r").read(512)
+      decl = "<?xml version=\"1.0\" encoding=\"#{enc}\" ?>"
+      if head.include?("<?xml")
+        `cat #{inpath} | sed -e 's/xml[^\\?]\\+/xml version="1.0" encoding="iso-8859-1" /' > #{outpath}`
+      else
+        `echo '#{decl}' > #{outpath}`
+        `cat #{inpath} >> #{outpath}`
+      end
     end
 
     # uses an XSLT stylesheet provided by edituer to convert
