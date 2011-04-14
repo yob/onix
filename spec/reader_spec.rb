@@ -12,6 +12,7 @@ describe ONIX::Reader do
     @entity_file = File.join(@data_path, "entities.xml")
     @utf_16_file = File.join(@data_path, "utf_16.xml")
     @iso_8859_1_file = File.join(@data_path, "iso_8859_1.xml")
+    @no_encoding_decl_file = File.join(@data_path, "aau.xml")
   end
 
   it "should initialize with a filename" do
@@ -90,19 +91,24 @@ describe ONIX::Reader do
 
   it "should transparently convert a iso-8859-1 file to utf-8" do
     reader = ONIX::Reader.new(@iso_8859_1_file)
-    product = nil
-    reader.each do |p|
-      product = p
+    reader.each do |product|
+      if RUBY_VERSION >= "1.9"
+        utf8 = Encoding.find("utf-8")
+        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+      end
+
+      product.contributors[0].person_name_inverted.should eql("Küng, Hans")
     end
+  end
 
-    # ROXML appears to munge the string encodings
-    if RUBY_VERSION >= "1.9"
-      utf8 = Encoding.find("utf-8")
-      product.contributors[0].person_name_inverted.encoding.should eql(utf8)
-    end
-
-    product.contributors[0].person_name_inverted.should eql("Küng, Hans")
-
+  # This isn't ideal behaviour, but i'm somewhat hamstrung by nokogiri API. It'd
+  # be nice to have the option to replace unrecognised bytes with a valid char.
+  it "should raise an exception when an iso-8859-1 file isn't declared as such" do
+    reader = ONIX::Reader.new(@no_encoding_decl_file)
+    lambda {
+      reader.each do |product|
+      end
+    }.should raise_error(Nokogiri::XML::SyntaxError)
   end
 
   it "should transparently convert a utf-16 file to utf-8" do
@@ -119,6 +125,5 @@ describe ONIX::Reader do
     end
 
     product.contributors[0].person_name_inverted.should eql("Küng, Hans")
-
   end
 end
