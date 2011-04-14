@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/02/reference/onix-international.dtd">
+<ONIXMessage>
+  <Header>
+    <FromCompany>AllenandUnwin</FromCompany>
+    <SentDate>20110411</SentDate>
+  </Header>
+  <Product>
+    <RecordReference>9780747595175</RecordReference>
+    <NotificationType></NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9780747595175</IDValue>
+    </ProductIdentifier>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9780747595175</IDValue>
+    </ProductIdentifier>
+    <ProductForm>BC</ProductForm>
+    <ProductFormDetail>B106</ProductFormDetail>
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Lost World</TitleText>
+      <TitlePrefix></TitlePrefix>
+      <TitleWithoutPrefix>Lost World</TitleWithoutPrefix>
+    </Title>
+    <Website>
+      <WebsiteLink>http://www.allenandunwin.com/default.aspx?page=94&amp;book=9780747595175</WebsiteLink>
+    </Website>
+    <MediaFile>
+      <MediaFileTypeCode>04</MediaFileTypeCode>
+      <MediaFileLinkTypeCode>01</MediaFileLinkTypeCode>
+      <MediaFileLink>http://www.allenandunwin.com/BookCovers/resized_9780747595175_224_297_FitSquare.jpg</MediaFileLink>
+    </MediaFile>
+    <Contributor>
+      <SequenceNumber>001</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonName></PersonName>
+      <PersonNameInverted>Melo,Patr¡cia</PersonNameInverted>
+    </Contributor>
+    <EditionNumber>1</EditionNumber>
+    <NumberOfPages>224</NumberOfPages>
+    <BICMainSubject>FH</BICMainSubject>
+    <AudienceCode></AudienceCode>
+    <OtherText>
+      <TextTypeCode>01</TextTypeCode>
+      <Text>Maiquel is an ex-contract killer who's been a fugitive for ten years - ever since his girlfriend Erica ran off with his daughter Samantha, took up with an evangelical pastor and disappeared as completely from his life as Maiquel himself has disappeared from the front pages of the Brazilian newspapers. Then his aunt dies, leaving him a house and a savings account and a fresh chance to find the lost world of his onetime family. Converting his new assets to cash and breaking all the rules in the book (including his own), Maiquel sets out to find the man who stole his girlfriend and daughter.</Text>
+    </OtherText>
+    <Imprint>
+      <ImprintName>Bloomsbury</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublishingRole>01</PublishingRole>
+      <PublisherName>Allen &amp; Unwin</PublisherName>
+    </Publisher>
+    <PublishingStatus>07</PublishingStatus>
+    <PublicationDate>20091201</PublicationDate>
+    <YearFirstPublished>2009</YearFirstPublished>
+    <Measure>
+      <MeasureTypeCode>01</MeasureTypeCode>
+      <Measurement>214</Measurement>
+      <MeasureUnitCode>mm</MeasureUnitCode>
+    </Measure>
+    <Measure>
+      <MeasureTypeCode>02</MeasureTypeCode>
+      <Measurement>135</Measurement>
+      <MeasureUnitCode>mm</MeasureUnitCode>
+    </Measure>
+    <Measure>
+      <MeasureTypeCode>08</MeasureTypeCode>
+      <Measurement>246</Measurement>
+      <MeasureUnitCode>gr</MeasureUnitCode>
+    </Measure>
+    <SupplyDetail>
+      <SupplierName>United Book Distributors</SupplierName>
+      <SupplierRole>02</SupplierRole>
+      <ProductAvailability>40</ProductAvailability>
+      <ExpectedShipDate></ExpectedShipDate>
+      <PackQuantity>21</PackQuantity>
+      <Price>
+        <PriceTypeCode>02</PriceTypeCode>
+        <PriceAmount>32.99</PriceAmount>
+      </Price>
+    </SupplyDetail>
+    <MarketRepresentation>
+      <AgentName>Allen &amp; Unwin</AgentName>
+      <AgentRole>07</AgentRole>
+      <MarketCountry>AU</MarketCountry>
+      <MarketPublishingStatus>07</MarketPublishingStatus>
+      <MarketDate>
+        <MarketDateRole>01</MarketDateRole>
+        <Date>20091201</Date>
+      </MarketDate>
+    </MarketRepresentation>
+  </Product>
+</ONIXMessage>
