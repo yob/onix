@@ -68,6 +68,11 @@ module ONIX
   # be raised. This isn't ideal, but I'm still looking for ways to make this
   # behaviour configurable.
   #
+  # If you're running 1.9, you might imagine passing an IO stream that auto
+  # transcodes to UTF-8 into ONIX::Reader might have the same effect, but that
+  # isn't the case. Nokogiri is used to parse the file, and it seems to ignore
+  # IO encoding and just read raw bytes.
+  #
   class Reader
     include Enumerable
 
