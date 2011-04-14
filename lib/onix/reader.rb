@@ -59,6 +59,11 @@ module ONIX
   #
   # If the encoding declaration is missing the file is assumed to be UTF-8.
   #
+  # If the encoding declaration is missing or wrong and the file isn't UTF-8,
+  # you can manually set or override it like so:
+  #
+  #   reader = ONIX::Reader.new("somefile.xml", ONIX::APAProduct, :encoding => "iso-8859-1")
+  #
   # If the file contains invalid bytes for the source encoding an exception will
   # be raised. This isn't ideal, but I'm still looking for ways to make this
   # behaviour configurable.
@@ -68,17 +73,17 @@ module ONIX
 
     attr_reader :header, :release
 
-    def initialize(input, product_klass = ::ONIX::Product)
+    def initialize(input, product_klass = nil, options = {})
       if input.kind_of?(String)
         @file   = File.open(input, "r")
-        @reader = Nokogiri::XML::Reader(@file) { |cfg| cfg.dtdload.noent }
+        @reader = Nokogiri::XML::Reader(@file, nil, options[:encoding]) { |cfg| cfg.dtdload.noent }
       elsif input.kind_of?(IO)
-        @reader = Nokogiri::XML::Reader(input) { |cfg| cfg.dtdload.noent }
+        @reader = Nokogiri::XML::Reader(input, nil, options[:encoding]) { |cfg| cfg.dtdload.noent }
       else
         raise ArgumentError, "Unable to read from file or IO stream"
       end
 
-      @product_klass = product_klass
+      @product_klass = product_klass || ::ONIX::Product
 
       @release = find_release
       @header = find_header

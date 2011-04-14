@@ -111,6 +111,18 @@ describe ONIX::Reader do
     }.should raise_error(Nokogiri::XML::SyntaxError)
   end
 
+  it "should transparently convert an iso-8859-1 file to utf-8 when there's no declaration but the user manually specifies iso-8859-1" do
+    reader = ONIX::Reader.new(@no_encoding_decl_file, nil, :encoding => "iso-8859-1")
+    reader.each do |product|
+      if RUBY_VERSION >= "1.9"
+        utf8 = Encoding.find("utf-8")
+        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+      end
+
+      product.contributors[0].person_name_inverted.should eql("Melo,Patr¡cia")
+    end
+  end
+
   it "should transparently convert a utf-16 file to utf-8" do
     reader = ONIX::Reader.new(@utf_16_file)
     product = nil
