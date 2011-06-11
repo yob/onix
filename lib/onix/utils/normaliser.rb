@@ -32,13 +32,14 @@ module ONIX
       # will be left untouched
       #
       def process(oldfile, newfile)
-        self.new(oldfile, newfile).run
+        self.new(oldfile).normalise_to_path(newfile)
       end
     end
 
-    def initialize(oldfile, newfile)
+    # NB: Newfile argument is deprecated.
+    #
+    def initialize(oldfile, newfile = nil)
       raise ArgumentError, "#{oldfile} does not exist" unless File.file?(oldfile)
-      raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
       raise "xsltproc app not found" unless app_available?("xsltproc")
       raise "tr app not found"       unless app_available?("tr")
 
@@ -49,20 +50,34 @@ module ONIX
       @head    = File.open(@oldfile, "r") { |f| f.read(1024) }
     end
 
+    # This is deprecated - use normalise_to_path with a path.
     def run
+      normalise_to_path(@newfile)
+    end
+
+    def normalise_to_path(newfile)
+      raise ArgumentError, "#{newfile} already exists" if File.file?(newfile)
+      @curfile = normalise_to_tempfile
+      FileUtils.cp(@curfile, newfile)
+    end
+
+    # Processes oldfile and puts the normalised result in a tempfile,
+    # returning the path to that tempfile.
+    #
+    def normalise_to_tempfile
+      src = @curfile
+
       # remove short tags
       if @head.include?("ONIXmessage")
         dest = next_tempfile
-        to_reference_tags(@curfile, dest)
-        @curfile = dest
+        to_reference_tags(src, dest)
+        src = dest
       end
 
       # remove control chars
       dest = next_tempfile
-      remove_control_chars(@curfile, dest)
-      @curfile = dest
-
-      FileUtils.cp(@curfile, @newfile)
+      remove_control_chars(src, dest)
+      dest
     end
 
     #private
