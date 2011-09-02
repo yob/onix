@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
                         "your Ruby applications."
   s.authors           = ["James Healy"]
   s.email             = ["jimmy@deefa.com"]
-  s.has_rdoc          = true
   s.homepage          = "http://github.com/yob/onix"
   s.rdoc_options     << "--title" << "ONIX - Working with the ONIX XML spec" <<
                         "--line-numbers"
