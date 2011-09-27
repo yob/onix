@@ -1,13 +1,11 @@
 # coding: utf-8
 
-module ONIX
-  class Publisher < ONIX::Element
-    xml_name "Publisher"
-
-    xml_accessor :publishing_role,      :from => "PublishingRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :name_code_type,       :from => "NameCodeType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :name_code_type_name,  :from => "NameCodeTypeName"
-    xml_accessor :name_code_type_value, :from => "NameCodeTypeValue"
-    xml_accessor :publisher_name,       :from => "PublisherName"
-  end
+class ONIX::Publisher < ONIX::Element
+  xml_name "Publisher"
+  onix_code_from_list :publishing_role, "PublishingRole", :list => 45
+  onix_code_from_list :name_code_type, "NameCodeType", :list => 44
+  xml_accessor :name_code_type_name, :from => "NameCodeTypeName"
+  xml_accessor :name_code_type_value, :from => "NameCodeTypeValue"
+  xml_accessor :publisher_name, :from => "PublisherName"
+  onix_composite :websites, ONIX::Website
 end

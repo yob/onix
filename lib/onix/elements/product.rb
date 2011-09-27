@@ -88,8 +88,10 @@ class ONIX::Product < ONIX::Element
 
   # PR.13 Subject
   xml_accessor :basic_main_subject, :from => "BASICMainSubject"
+  xml_accessor :basic_version, :from => "BASICVersion"
   xml_accessor :bic_main_subject, :from => "BICMainSubject"
-  # TODO: onix_composite :main_subject, ONIX::MainSubject
+  xml_accessor :bic_version, :from => "BICVersion"
+  onix_composite :main_subject, ONIX::MainSubject
   onix_composite :subjects, ONIX::Subject
   onix_composite :person_as_subjects, ONIX::Contributor, :from => "PersonAsSubject"
   xml_accessor :corporate_body_as_subject, :from => "CorporateBodyAsSubject", :as => []
@@ -97,24 +99,25 @@ class ONIX::Product < ONIX::Element
 
   # PR.14 Audience
   onix_codes_from_list :audience_codes, "AudienceCode", :list => 28
-  # TODO: onix_composite :audiences, ONIX::Audience
+  onix_composite :audiences, ONIX::Audience
   onix_composite :audience_ranges, ONIX::AudienceRange
   xml_accessor :audience_description, :from => "AudienceDescription"
-  # TODO: onix_composite :complexities, ONIX::Complexity
+  onix_composite :complexities, ONIX::Complexity
 
   # PR.15 Descriptions and supporting texts
-  # FIXME: should this be :text, :texts or :other_texts? Can we alias?
-  onix_composite :text, ONIX::OtherText
+  onix_composite :other_texts, ONIX::OtherText
+  # NB: alias included for backwards compatibility
+  alias :text :other_texts
 
   # PR.16 Links to image/audio/video files
   onix_composite :media_files, ONIX::MediaFile
   onix_composite :product_websites, ONIX::Website, :from => "ProductWebsite"
 
   # PR.17 Prizes
-  # TODO: onix_composite :prizes, ONIX::Prize
+  onix_composite :prizes, ONIX::Prize
 
   # PR.18 Content items
-  # TODO: onix_composite :content_items, ONIX::ContentItem
+  onix_composite :content_items, ONIX::ContentItem
 
   # PR.19 Publisher
   onix_composite :imprints, ONIX::Imprint
@@ -128,7 +131,7 @@ class ONIX::Product < ONIX::Element
   onix_date_accessor :announcement_date, "AnnouncementDate"
   onix_date_accessor :trade_announcement_date, "TradeAnnouncementDate"
   onix_date_accessor :publication_date, "PublicationDate"
-  # TODO: onix_composite :copyright_statements, ONIX::CopyrightStatement
+  onix_composite :copyright_statements, ONIX::CopyrightStatement
   xml_accessor :copyright_year, :from => "CopyrightYear", :as => Fixnum
   xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Fixnum
 
@@ -139,7 +142,8 @@ class ONIX::Product < ONIX::Element
 
   # PR.22 Dimensions
   # FIXME: rename to :measures?
-  onix_composite :measurements, ONIX::Measure
+  onix_composite :measures, ONIX::Measure
+  alias :measurements :measures
   # Some deprecated attributes. Read only
   # - See the measurements array for the current way of specifying
   #   various measurements of the product
@@ -150,10 +154,8 @@ class ONIX::Product < ONIX::Element
   xml_reader :dimensions, :from => "Dimensions"
 
   # PR.23 Related products
-  onix_composite :related_products, ONIX::Product, :from => "RelatedProduct"
+  onix_composite :related_products, ONIX::RelatedProduct
   onix_date_accessor :out_of_print_date, "OutOfPrintDate"
-  # Only pertains to products when they are RelatedProducts:
-  onix_code_from_list :relation_code, "RelationCode", :list => 51
 
   # PR.24 Supplier, availability and prices
   onix_composite :supply_details, ONIX::SupplyDetail

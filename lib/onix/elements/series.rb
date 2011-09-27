@@ -2,7 +2,6 @@
 
 class ONIX::Series < ONIX::Element
   xml_name "Series"
-
   onix_composite :series_identifiers, ONIX::SeriesIdentifier
   xml_accessor :title_of_series, :from => "TitleOfSeries"
   onix_composite :titles, ONIX::Title
@@ -15,5 +14,4 @@ class ONIX::Series < ONIX::Element
     self.titles = []
     self.contributors = []
   end
-
 end
