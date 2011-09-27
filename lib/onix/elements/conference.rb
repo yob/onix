@@ -11,9 +11,4 @@ class ONIX::Conference < ONIX::Element
   xml_accessor :conference_place, :from => "ConferencePlace"
   onix_composite :conference_sponsors, ONIX::ConferenceSponsor
   onix_composite :websites, ONIX::Website
-
-  def initialize
-    self.conference_sponsors = []
-    self.websites = []
-  end
 end

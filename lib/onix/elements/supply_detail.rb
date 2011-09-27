@@ -23,6 +23,7 @@ class ONIX::SupplyDetail < ONIX::Element
   xml_accessor :returns_code, :from => "ReturnsCode"
   onix_date_accessor :last_date_for_returns, "LastDateForReturns"
   onix_code_from_list :availability_code, "AvailabilityCode", :list => 54
+  alias_accessor :availability_status_code, :availability_code # back-compat
   onix_code_from_list :product_availability, "ProductAvailability", :list => 65
   onix_composite :new_supplier, ONIX::NewSupplier, :singular => true
   onix_code_from_list :date_format, "DateFormat", :list => 55
@@ -30,6 +31,7 @@ class ONIX::SupplyDetail < ONIX::Element
   onix_date_accessor :on_sale_date, "OnSaleDate"
   xml_accessor :order_time, :from => "OrderTime", :as => Fixnum
   onix_composite :stocks, ONIX::Stock
+  alias_accessor :stock, :stocks # back-compat
   xml_accessor :pack_quantity, :from => "PackQuantity", :as => Fixnum
   onix_code_from_list :audience_restriction_flag, "AudienceRestrictionFlag", :list => 56
   xml_accessor :audience_restriction_note, :from => "AudienceRestrictionNote"

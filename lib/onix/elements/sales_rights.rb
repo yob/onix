@@ -9,5 +9,5 @@ class ONIX::SalesRights < ONIX::Element
   onix_space_separated_list :rights_territories, "RightsTerritory"
 
   # Deprecated accessors
-  onix_code_from_list :rights_region, "RightsRegion", :list => 47
+  onix_codes_from_list :rights_region, "RightsRegion", :list => 47
 end

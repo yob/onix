@@ -31,10 +31,10 @@ describe ONIX::AudienceRange do
     aud.audience_range_qualifier = 12
     aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be_true
 
-    aud.audience_range_precisions[0] = 888
+    aud.audience_range_precisions = [888]
     aud.to_xml.to_s.include?("<AudienceRangePrecision>888</AudienceRangePrecision>").should be_true
 
-    aud.audience_range_values[0] = 999
+    aud.audience_range_values = [999]
     aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
   end
 

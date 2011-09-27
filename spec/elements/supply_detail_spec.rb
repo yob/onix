@@ -34,8 +34,8 @@ describe ONIX::SupplyDetail do
     sd.supplier_role = 1
     sd.to_xml.to_s.include?("<SupplierRole>01</SupplierRole>").should be_true
 
-    sd.availability_status_code = 2
-    sd.to_xml.to_s.include?("<AvailabilityStatusCode>02</AvailabilityStatusCode>").should be_true
+    sd.availability_code = 2
+    sd.to_xml.to_s.include?("<AvailabilityCode>02</AvailabilityCode>").should be_true
 
     sd.product_availability = 3
     sd.to_xml.to_s.include?("<ProductAvailability>03</ProductAvailability>").should be_true

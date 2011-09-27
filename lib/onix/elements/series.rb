@@ -8,10 +8,4 @@ class ONIX::Series < ONIX::Element
   onix_composite :contributors, ONIX::Contributor
   xml_accessor :number_within_series, :from => "NumberWithinSeries"
   xml_accessor :year_of_annual, :from => "YearOfAnnual"
-
-  def initialize
-    self.series_identifiers = []
-    self.titles = []
-    self.contributors = []
-  end
 end

@@ -1,6 +1,6 @@
 # coding: utf-8
 
-class ONIX::Product < ONIX::Element
+class ONIX::Product < ONIX::ProductBase
   xml_name "Product"
 
   # PR.1 Record reference number, type and source
@@ -14,34 +14,18 @@ class ONIX::Product < ONIX::Element
   xml_accessor :record_source_name, :from => "RecordSourceName"
 
   # PR.2 Product numbers
-  onix_composite :product_identifiers, ONIX::ProductIdentifier
   onix_codes_from_list :barcodes, "Barcode", :list => 6
 
   # PR.3 Product Form
-  onix_code_from_list :product_form, "ProductForm", :list => 7
-  onix_codes_from_list :product_form_details, "ProductFormDetail", :list => 78
-  onix_composite :product_form_features, ONIX::ProductFormFeature
-  onix_code_from_list :product_packaging, "ProductPackaging", :list => 80
-  xml_accessor :product_form_description, :from => "ProductFormDescription"
-  xml_accessor :number_of_pieces, :from => "NumberOfPieces", :as => Fixnum
-  onix_code_from_list :trade_category, "TradeCategory", :list => 12
-  onix_code_from_list :product_content_type, "ProductContentType", :list => 81
-  onix_composite :contained_items, ONIX::Product, :from => "ContainedItem"
+  # (See also ProductBase)
+  onix_composite :contained_items, ONIX::ContainedItem
   onix_composite :product_classifications, ONIX::ProductClassification
-  # Only pertains to products when they are ContainedItems:
-  xml_accessor :item_quantity, :from => "ItemQuantity", :as => Fixnum
 
   # PR.4 Epublication
-  onix_code_from_list :epub_type, "EpubType", :list => 10
-  xml_accessor :epub_type_version, "EpubTypeVersion"
-  xml_accessor :epub_type_description, "EpubTypeDescription"
-  onix_code_from_list :epub_format, "EpubFormat", :list => 11
-  xml_accessor :epub_format_version, "EpubFormatVersion"
-  xml_accessor :epub_format_description, "EpubFormatDescription"
+  # (See also ProductBase)
   onix_code_from_list :epub_source, "EpubSource", :list => 11
   xml_accessor :epub_source_version, "EpubSourceVersion"
   xml_accessor :epub_source_description, "EpubSourceDescription"
-  xml_accessor :epub_type_note, "EpubTypeNote"
 
   onix_composite :series, ONIX::Series
   # FIXME: NoSeries is an empty element flag. How to capture this?
@@ -52,10 +36,9 @@ class ONIX::Product < ONIX::Element
   # PR.7 Title
   onix_composite :titles, ONIX::Title
   onix_composite :work_identifiers, ONIX::WorkIdentifier
-  onix_composite :websites, ONIX::Website
   onix_code_from_list :thesis_type, "ThesisType", :list => 72
-  xml_accessor :thesis_presented_to, "ThesisPresentedTo"
-  xml_accessor :year_of_thesis, "YearOfThesis", :as => Fixnum
+  xml_accessor :thesis_presented_to, :from => "ThesisPresentedTo"
+  xml_accessor :year_of_thesis, :from => "YearOfThesis", :as => Fixnum
 
   # PR.8 Authorship
   onix_composite :contributors, ONIX::Contributor
@@ -107,7 +90,7 @@ class ONIX::Product < ONIX::Element
   # PR.15 Descriptions and supporting texts
   onix_composite :other_texts, ONIX::OtherText
   # NB: alias included for backwards compatibility
-  alias :text :other_texts
+  alias_accessor :text, :other_texts
 
   # PR.16 Links to image/audio/video files
   onix_composite :media_files, ONIX::MediaFile
@@ -141,9 +124,8 @@ class ONIX::Product < ONIX::Element
   onix_composite :sales_restrictions, ONIX::SalesRestriction
 
   # PR.22 Dimensions
-  # FIXME: rename to :measures?
   onix_composite :measures, ONIX::Measure
-  alias :measurements :measures
+  alias_accessor :measurements, :measures
   # Some deprecated attributes. Read only
   # - See the measurements array for the current way of specifying
   #   various measurements of the product
@@ -163,72 +145,11 @@ class ONIX::Product < ONIX::Element
   # PR.25 Market representation
   onix_composite :market_representations, ONIX::MarketRepresentation
 
-  # PR.26 Sales promotion information
+  # PR.26 Sales promotion
   xml_accessor :promotion_campaign, :from => "PromotionCampaign"
   xml_accessor :promotion_contact_details, :from => "PromotionContactDetails"
   xml_accessor :initial_print_run, :from => "InitialPrintRun"
   xml_accessor :reprint_details, :from => "ReprintDetail", :as => []
   xml_accessor :copies_sold, :from => "CopiesSold"
   xml_accessor :book_club_adoption, :from => "BookClubAdoption"
-
-
-  def initialize
-    self.product_identifiers = []
-    self.product_form_features = []
-    self.series = []
-    self.titles = []
-    self.contributors = []
-    self.work_identifiers = []
-    self.websites = []
-    self.conferences = []
-    self.extents = []
-    self.subjects = []
-    self.audience_ranges = []
-    self.text = []
-    self.languages = []
-    self.media_files = []
-    self.imprints = []
-    self.publishers = []
-    self.sales_restrictions = []
-    self.measurements = []
-    self.supply_details = []
-    self.market_representations = []
-  end
-
-  # Extend this product instance with a module. Typically these modules
-  # make it easier to read or write common values in the Product.
-  #
-  # The product tracks the modules that have extended it, so that it
-  # can easily pass these extensions on to other products
-  # (see #interpret_like_me).
-  #
-  # For convenience, this method returns the product itself.
-  #
-  def interpret(mods)
-    @_extensions ||= []
-    [mods].flatten.compact.uniq.each { |mod|
-      next  if @_extensions.include?(mod)
-      @_extensions << mod
-      extend(mod)
-    }
-    self
-  end
-
-  # Apply all the modules that have extended this product to another product.
-  #
-  # This is useful when, say, accessing RelatedProduct or ContainedItem
-  # composites. Your module might do something like:
-  #
-  #   def print_product
-  #     prod = related_products.detect { |p| p.relation_code == 13 }
-  #     prod ? interpret_like_me(prod) : nil
-  #   end
-  #
-  # As a result, this related product will have all the extensions applied
-  # to this product.
-  #
-  def interpret_like_me(product)
-    product.interpret(@_extensions)
-  end
-
 end

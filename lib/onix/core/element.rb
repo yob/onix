@@ -6,6 +6,10 @@ module ONIX
 
     include ROXML
 
+    require 'active_support/core_ext/class'
+
+    class_attribute(:xml_array_accessors)
+
     # An accessor to an array of element instances.
     #
     # Options:
@@ -200,6 +204,36 @@ module ONIX
         acc += comps  if comps.any?
         acc
       end
+    end
+
+
+    def self.alias_accessor(new_accessor, old_accessor)
+      alias_method(new_accessor, old_accessor)
+      alias_method("#{new_accessor}=", "#{old_accessor}=")
+    end
+
+
+    # We should initialize the instance accessors of array-type xml tags
+    # with an empty array. These two methods do that. If you override
+    # initialize in a subclass, don't forget to call super.
+    #
+
+    def self.xml_accessor(*syms, &blk)
+      options = syms.extract_options!
+      if options[:as] && options[:as].kind_of?(Array)
+        self.xml_array_accessors ||= []
+        self.xml_array_accessors << syms.first
+      end
+      syms.push(options)
+      super
+    end
+
+
+    def initialize
+      if self.class.xml_array_accessors
+        self.class.xml_array_accessors.each { |name| self.send("#{name}=", []) }
+      end
+      super
     end
 
   end

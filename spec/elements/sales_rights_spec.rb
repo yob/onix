@@ -33,7 +33,7 @@ describe ONIX::SalesRights do
 
   it "should provide an array for deprecated rights regions" do
     p = ONIX::Product.from_xml(@root.to_s)
-    p.sales_rights[2].rights_region.should eql(["001", "002", "003", "004"])
+    p.sales_rights[2].rights_region.should eql([0,1,2,3])
   end
 
 end

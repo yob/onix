@@ -10,9 +10,4 @@ class ONIX::Set < ONIX::Element
   xml_accessor :number_within_set, :from => "ItemNumberWithinSet"
   xml_accessor :level_sequence_number, :from => "LevelSequenceNumber"
   xml_accessor :set_item_title, :from => "SetItemTitle"
-
-  def initialize
-    self.product_identifiers = []
-    self.titles = []
-  end
 end

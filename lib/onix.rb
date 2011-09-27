@@ -86,6 +86,7 @@ end
   "elements/text_item_identifier",
 
   # other element mappings
+  "elements/name_base",
   "elements/name",
   "elements/person_date",
   "elements/professional_affiliation",
@@ -104,7 +105,6 @@ end
   "elements/page_run",
   "elements/prize",
   "elements/sales_outlet",
-  "elements/sales_promotion",
   "elements/stock_quantity_coded",
   "elements/text_item",
   "elements/title",
@@ -133,6 +133,8 @@ end
   "elements/market_representation",
   "elements/measure",
   "elements/content_item",
+  "elements/product_base",
+  "elements/contained_item",
   "elements/related_product",
   "elements/product",
 

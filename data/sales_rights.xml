@@ -19,10 +19,10 @@
 
   <SalesRights>
     <SalesRightsType>01</SalesRightsType>
+    <RightsRegion>000</RightsRegion>
     <RightsRegion>001</RightsRegion>
     <RightsRegion>002</RightsRegion>
     <RightsRegion>003</RightsRegion>
-    <RightsRegion>004</RightsRegion>
   </SalesRights>
 
   <NotForSale>
