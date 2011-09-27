@@ -54,6 +54,20 @@ module ONIX
       xml_accessor(name, options, &prep)
     end
 
+
+    # An accessor that treats an empty string as a true value -- so that
+    # something like <NoContributor /> is recognised as "there is no contributor".
+    #
+    def self.onix_boolean_flag(name, tag_name, options = {})
+      options = options.merge(
+        :from => tag_name,
+        :to_xml => ONIX::Formatters.boolean
+      )
+      prep = lambda { |v| v ? true : false }
+      xml_accessor(name, options, &prep)
+    end
+
+
     # An accessor that maps a "code" string into an ONIX::Code object.
     # A Code object can return the simple code (or "key"), or the value that
     # is associated with it in ONIX code lists, and so on.

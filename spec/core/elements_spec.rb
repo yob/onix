@@ -13,6 +13,8 @@ describe ONIX::Element, "custom accessors" do
       onix_space_separated_list(:countries, "CountryCodes")
       onix_code_from_list(:update_code, "UpdateCode", :list => 1)
       onix_codes_from_list(:identifiers, "Identifier", :list => 5)
+      onix_boolean_flag(:no_dice, "NoDice")
+      onix_boolean_flag(:no_cigar, "NoCigar")
     end
   end
 
@@ -94,6 +96,15 @@ describe ONIX::Element, "custom accessors" do
     elem.identifiers.should eql([4, 22])
     elem.identifiers_codes.collect { |c| c.value }.should eql(["UPC", "URN"])
   end
+
+
+  it "should recognise boolean flags" do
+    xml = "<TestElement><NoDice /></TestElement>"
+    elem = ONIX::TestElement.from_xml(xml)
+    elem.no_dice.should be_true
+    elem.no_cigar.should be_false
+  end
+
 
   it "should fetch a single composite with an attribute value matching query" do
     xml = %Q`

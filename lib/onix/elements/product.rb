@@ -28,7 +28,7 @@ class ONIX::Product < ONIX::ProductBase
   xml_accessor :epub_source_description, "EpubSourceDescription"
 
   onix_composite :series, ONIX::Series
-  # FIXME: NoSeries is an empty element flag. How to capture this?
+  onix_boolean_flag(:no_series, "NoSeries")
 
   # PR.6 Set
   onix_composite :sets, ONIX::Set
@@ -43,7 +43,7 @@ class ONIX::Product < ONIX::ProductBase
   # PR.8 Authorship
   onix_composite :contributors, ONIX::Contributor
   xml_accessor :contributor_statement, :from => "ContributorStatement"
-  # FIXME: NoContributor is an empty element flag. How to capture this?
+  onix_boolean_flag(:no_contributor, "NoContributor")
 
   # PR.9 Conference
   onix_composite :conferences, ONIX::Conference
@@ -53,7 +53,7 @@ class ONIX::Product < ONIX::ProductBase
   xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
   xml_accessor :edition_version_number, :from => "EditionVersionNumber"
   xml_accessor :edition_statement, :from => "EditionStatement"
-  # FIXME: NoEdition is an empty element flag. How to capture this?
+  onix_boolean_flag(:no_edition, "NoEdition")
   # TODO: onix_composite :religious_text, ONIX::ReligiousText, :singular => true
 
   # PR.11 Language
