@@ -141,6 +141,27 @@ describe ONIX::Element, "custom accessors" do
   end
 
 
+  it "should process code values through a block first if given" do
+    class ONIX::TestElementA < ONIX::Element
+      xml_name "TestElementA"
+      onix_codes_from_list(:ccs, "CC", :list => 91) { |v| v ? v.split : [] }
+      # ...this is simply sugar for the previous declaration
+      onix_spaced_codes_from_list(:dds, "DD", :list => 91)
+    end
+    xml = %Q`
+      <TestElementA>
+        <CC>AU UA NL</CC>
+        <CC>NZ</CC>
+        <DD>TD TG</DD>
+        <DD>TO</DD>
+      </TestElementA>
+    `
+    elem = ONIX::TestElementA.from_xml(xml)
+    elem.ccs_codes.collect(&:key).should eql(["AU","UA","NL","NZ"])
+    elem.dds_codes.collect(&:value).should eql(["Chad","Togo","Tonga"])
+  end
+
+
   it "should fetch a single composite with an attribute value matching query" do
     xml = %Q`
       <TestElement>

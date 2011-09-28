@@ -28,14 +28,10 @@ module ONIX
     onix_code_from_list :price_status, "PriceStatus", :list => 61
     onix_decimal_accessor :price_amount, "PriceAmount"
     onix_code_from_list :currency_code, "CurrencyCode", :list => 96
-
-    # FIXME: should be repeatable, and most of these attributes
-    # should be validated against lists 91 and 49 respectively
-    onix_codes_from_list :country_codes, "CountryCode", :list => 91
-    onix_code_from_list :territory, "Territory", :list => 49
-    onix_code_from_list :country_excluded, "CountryExcluded", :list => 91
-    onix_code_from_list :territory_excluded, "TerritoryExcluded", :list => 49
-
+    onix_spaced_codes_from_list :country_codes, "CountryCode", :list => 91
+    onix_spaced_codes_from_list :territories, "Territory", :list => 49
+    onix_spaced_codes_from_list :countries_excluded, "CountryExcluded", :list => 91
+    onix_spaced_codes_from_list :territories_excluded, "TerritoryExcluded", :list => 49
     onix_code_from_list :tax_rate_code_1, "TaxRateCode1", :list => 62
     onix_decimal_accessor :tax_rate_percent_1, "TaxRatePercent1"
     onix_decimal_accessor :taxable_amount_1, "TaxableAmount1"

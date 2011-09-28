@@ -11,13 +11,9 @@ class ONIX::SupplyDetail < ONIX::Element
   xml_accessor :email_address, :from => "EmailAddress"
   onix_composite :websites, ONIX::Website
   onix_code_from_list :supplier_role, "SupplierRole", :list => 93
-
-  # FIXME: supply_to_country should be repeatable, and both these attributes
-  # should be validated against lists 91 and 49 respectively
-  onix_space_separated_list :supply_to_country, "SupplyToCountry"
-  onix_space_separated_list :supply_to_territory, "SupplyToTerritory"
-  onix_space_separated_list :supply_to_country_excluded, "SupplyToCountryExcluded"
-
+  onix_spaced_codes_from_list :supply_to_countries, "SupplyToCountry", :list => 91
+  onix_spaced_codes_from_list :supply_to_territories, "SupplyToTerritory", :list => 49
+  onix_spaced_codes_from_list :supply_to_countries_excluded, "SupplyToCountryExcluded", :list => 91
   xml_accessor :supply_restriction_detail, :from => "SupplyRestrictionDetail"
   onix_code_from_list :returns_code_type, "ReturnsCodeType", :list => 53
   xml_accessor :returns_code, :from => "ReturnsCode"

@@ -155,13 +155,19 @@ module ONIX
     #   bar.identifiers_codes.collect { |ids| ids.value }
     #   >> ["Proprietary", "ISMN-10", "LLCN"]
     #
-    def self.onix_codes_from_list(name, tag_name, options = {})
+    # If a block is given, each value is passed into it first - return
+    # an array of the actual values.
+    #
+    def self.onix_codes_from_list(name, tag_name, options = {}, &blk)
       unless list_number = options.delete(:list)
         raise ONIX::CodeListNotSpecified
       end
       code_opts = options.slice(:length, :enforce)
       options.delete(:enforce)
       prep = lambda { |values|
+        if block_given?
+          values = [values].flatten.collect { |v| blk.call(v) }
+        end
         [values].flatten.collect do |data|
           ONIX::Code.new(list_number, data, code_opts)
         end
@@ -182,6 +188,15 @@ module ONIX
         send("#{name}_codes=", vals)
       end
     end
+
+
+    # Sugar for a common case -- country or territory codes.
+    #
+    def self.onix_spaced_codes_from_list(name, tag_name, options)
+      options[:to_xml] ||= ONIX::Formatters.space_separated
+      onix_codes_from_list(name, tag_name, options) { |v| v ? v.split : [] }
+    end
+
 
     # Query a composite array within this element, looking for an attribute
     # ('mthd') that has a value equal to 'query'.

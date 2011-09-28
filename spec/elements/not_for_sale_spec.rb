@@ -18,14 +18,14 @@ describe ONIX::NotForSale do
 
   it "should provide read access to first level attributes" do
     p = ONIX::Product.from_xml(@root.to_s)
-    p.not_for_sales[0].rights_countries.should eql(["UK"])
+    p.not_for_sales[0].rights_countries.should eql(["GB"])
   end
 
 
   it "should provide write access to first level attributes" do
     nfs = ONIX::NotForSale.new
-    nfs.rights_countries = ["UK", "US", "IR"]
-    nfs.should include_the_xml("<RightsCountry>UK US IR</RightsCountry>")
+    nfs.rights_countries = ["GB", "US", "IE"]
+    nfs.should include_the_xml("<RightsCountry>GB US IE</RightsCountry>")
   end
 
 end
