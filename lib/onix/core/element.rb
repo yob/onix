@@ -8,7 +8,7 @@ module ONIX
 
     require 'active_support/core_ext/class'
 
-    class_attribute(:xml_array_accessors)
+    class_inheritable_accessor(:xml_array_accessors)
 
     # An accessor to an array of element instances.
     #
@@ -267,7 +267,11 @@ module ONIX
 
     def initialize
       if self.class.xml_array_accessors
-        self.class.xml_array_accessors.each { |name| self.send("#{name}=", []) }
+        self.class.xml_array_accessors.each { |name|
+          asgn = "#{name}="
+          raise "Can't assign #{name} for #{self.class} - xml_array_accessors inheritance error?" unless respond_to?(asgn)
+          self.send(asgn, [])
+        }
       end
       super
     end
