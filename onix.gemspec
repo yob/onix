@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "onix"
-  s.version           = "0.9.0"
+  s.version           = "0.9.1"
   s.summary           = "A convenient mapping between Ruby objects and the " +
                         "ONIX XML specification"
   s.description       = "ONIX is the standard XML format for electronic data " +
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files             = Dir.glob("{lib,support,dtd}/**/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
 
   s.add_dependency('roxml', '~>3.1.6')
-  s.add_dependency('activesupport', '~> 3.0.5')
+  s.add_dependency('activesupport', '>= 3.0.5')
   s.add_dependency('i18n')
   s.add_dependency('andand')
   s.add_dependency('nokogiri', '>=1.4')
