@@ -54,7 +54,7 @@ class ONIX::Product < ONIX::ProductBase
   xml_accessor :edition_version_number, :from => "EditionVersionNumber"
   xml_accessor :edition_statement, :from => "EditionStatement"
   onix_boolean_flag(:no_edition, "NoEdition")
-  # TODO: onix_composite :religious_text, ONIX::ReligiousText, :singular => true
+  onix_composite :religious_text, ONIX::ReligiousText, :singular => true
 
   # PR.11 Language
   onix_composite :languages, ONIX::Language
