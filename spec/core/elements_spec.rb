@@ -13,6 +13,8 @@ describe ONIX::Element, "custom accessors" do
       onix_space_separated_list(:countries, "CountryCodes")
       onix_code_from_list(:update_code, "UpdateCode", :list => 1)
       onix_codes_from_list(:identifiers, "Identifier", :list => 5)
+      onix_code_from_list(:lax_identifier, "LaxIdentifier", :list => 5, :enforce => false)
+      onix_code_from_list(:strict_identifier, "StrictIdentifier", :list => 5, :enforce => true)
       onix_boolean_flag(:no_dice, "NoDice")
       onix_boolean_flag(:no_cigar, "NoCigar")
     end
@@ -95,6 +97,39 @@ describe ONIX::Element, "custom accessors" do
     elem = ONIX::TestElement.from_xml(xml)
     elem.identifiers.should eql([4, 22])
     elem.identifiers_codes.collect { |c| c.value }.should eql(["UPC", "URN"])
+  end
+
+
+  it "should nil invalid values from a list by default" do
+    xml = %Q`
+      <TestElement>
+        <Identifier>This is not a valid code in the list</Identifier>
+      </TestElement>
+    `
+    elem = ONIX::TestElement.from_xml(xml)
+    elem.identifiers_codes.first.value.should be_nil
+  end
+
+
+  it "should permit invalid values from a list if enforce option false" do
+    inv = "This is not a valid code in the list"
+    xml = %Q`
+      <TestElement>
+        <LaxIdentifier>#{inv}</LaxIdentifier>
+      </TestElement>
+    `
+    elem = ONIX::TestElement.from_xml(xml)
+    elem.lax_identifier_code.value.should eql(inv)
+  end
+
+
+  it "should raise invalid values from a list if enforce option true" do
+    xml = %Q`
+      <TestElement>
+        <StrictIdentifier>This is not a valid code in the list</StrictIdentifier>
+      </TestElement>
+    `
+    lambda { ONIX::TestElement.from_xml(xml) }.should raise_error
   end
 
 

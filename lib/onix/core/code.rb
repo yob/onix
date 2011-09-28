@@ -14,6 +14,11 @@ module ONIX
     # you want the integer-or-string key, use Code#key. If you want the real
     # string key, use Code#to_s.
     #
+    # If the key is not found in the list, the behaviour depends on the
+    # :enforce option. By default, it returns a code with key and value set to
+    # nil. If :enforce is true, an exception is raised. If :enforce is false,
+    # the key and value is the data given in the tag.
+    #
     def initialize(list_number, data, options = {})
       @list_number = list_number
       unless @list = ONIX::Lists.list(@list_number)
@@ -40,7 +45,15 @@ module ONIX
           break
         }
       end
-      @value = @list[@real_key]  if @real_key
+      if @real_key
+        @value = @list[@real_key]
+      elsif options[:enforce] == true
+        raise ONIX::CodeNotFoundInList.new(@list_number, data)
+      elsif options[:enforce] == false
+        @value = @key = @real_key = data
+      else
+        @value = @key = @real_key = nil
+      end
     end
 
 
@@ -79,6 +92,14 @@ module ONIX
   class CodeListNotFound < ArgumentError
     def initialize(list_number)
       @list_number = list_number
+    end
+  end
+
+
+  class CodeNotFoundInList < RuntimeError
+    def initialize(list_number, code)
+      @list_number = list_number
+      @code = code
     end
   end
 

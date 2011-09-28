@@ -56,7 +56,8 @@ module ONIX
 
 
     # An accessor that treats an empty string as a true value -- so that
-    # something like <NoContributor /> is recognised as "there is no contributor".
+    # something like <NoContributor /> is recognised as
+    # "there is no contributor".
     #
     def self.onix_boolean_flag(name, tag_name, options = {})
       options = options.merge(
@@ -112,7 +113,11 @@ module ONIX
       unless list_number = options.delete(:list)
         raise ONIX::CodeListNotSpecified
       end
-      prep = lambda { |value| ONIX::Code.new(list_number, value, options) }
+      code_opts = options.slice(:length, :enforce)
+      options.delete(:enforce)
+      prep = lambda { |value|
+        ONIX::Code.new(list_number, value, code_opts)
+      }
       options = options.merge(:from => tag_name)
       xml_accessor("#{name}_code", options, &prep)
 
@@ -154,9 +159,11 @@ module ONIX
       unless list_number = options.delete(:list)
         raise ONIX::CodeListNotSpecified
       end
+      code_opts = options.slice(:length, :enforce)
+      options.delete(:enforce)
       prep = lambda { |values|
         [values].flatten.collect do |data|
-          ONIX::Code.new(list_number, data, options)
+          ONIX::Code.new(list_number, data, code_opts)
         end
       }
       options = options.merge(:from => tag_name, :as => [])
