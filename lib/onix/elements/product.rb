@@ -74,7 +74,7 @@ class ONIX::Product < ONIX::ProductBase
   xml_accessor :basic_version, :from => "BASICVersion"
   xml_accessor :bic_main_subject, :from => "BICMainSubject"
   xml_accessor :bic_version, :from => "BICVersion"
-  onix_composite :main_subject, ONIX::MainSubject
+  onix_composite :main_subjects, ONIX::MainSubject
   onix_composite :subjects, ONIX::Subject
   onix_composite :person_as_subjects, ONIX::Contributor, :from => "PersonAsSubject"
   xml_accessor :corporate_body_as_subject, :from => "CorporateBodyAsSubject", :as => []
