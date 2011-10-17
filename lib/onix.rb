@@ -4,7 +4,6 @@ require 'bigdecimal'
 require 'cgi'
 require 'singleton'
 require 'roxml'
-require 'andand'
 
 module ONIX
   module Version #:nodoc:
@@ -14,6 +13,8 @@ module ONIX
 
     String = [Major, Minor, Tiny].join('.')
   end
+
+  VERSION = ONIX::Version::String
 
   class Formatters
     def self.decimal
@@ -51,43 +52,110 @@ module ONIX
         end
       end
     end
+
+    def self.space_separated
+      lambda { |val| val.join(" ")  if val }
+    end
+
+    def self.boolean
+      lambda { |val| ""  if val }
+    end
   end
 end
 
-# core files
-# - ordering is important, classes need to be defined before any
-#   other class can use them
-require File.join(File.dirname(__FILE__), "onix", "sender_identifier")
-require File.join(File.dirname(__FILE__), "onix", "addressee_identifier")
-require File.join(File.dirname(__FILE__), "onix", "header")
-require File.join(File.dirname(__FILE__), "onix", "product_identifier")
-require File.join(File.dirname(__FILE__), "onix", "series_identifier")
-require File.join(File.dirname(__FILE__), "onix", "series")
-require File.join(File.dirname(__FILE__), "onix", "title")
-require File.join(File.dirname(__FILE__), "onix", "website")
-require File.join(File.dirname(__FILE__), "onix", "contributor")
-require File.join(File.dirname(__FILE__), "onix", "language")
-require File.join(File.dirname(__FILE__), "onix", "subject")
-require File.join(File.dirname(__FILE__), "onix", "audience_range")
-require File.join(File.dirname(__FILE__), "onix", "imprint")
-require File.join(File.dirname(__FILE__), "onix", "publisher")
-require File.join(File.dirname(__FILE__), "onix", "other_text")
-require File.join(File.dirname(__FILE__), "onix", "media_file")
-require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
-require File.join(File.dirname(__FILE__), "onix", "stock")
-require File.join(File.dirname(__FILE__), "onix", "price")
-require File.join(File.dirname(__FILE__), "onix", "supply_detail")
-require File.join(File.dirname(__FILE__), "onix", "market_representation")
-require File.join(File.dirname(__FILE__), "onix", "measure")
-require File.join(File.dirname(__FILE__), "onix", "product")
-require File.join(File.dirname(__FILE__), "onix", "reader")
-require File.join(File.dirname(__FILE__), "onix", "writer")
 
-# product wrappers
-require File.join(File.dirname(__FILE__), "onix", "simple_product")
-require File.join(File.dirname(__FILE__), "onix", "apa_product")
+# Ordering is important here; classes need to be defined before any
+# other class can use them.
+[
+  # core files
+  "core/element",
+  "core/lists",
+  "core/code",
 
-# misc
-require File.join(File.dirname(__FILE__), "onix", "lists")
-require File.join(File.dirname(__FILE__), "onix", "normaliser")
-require File.join(File.dirname(__FILE__), "onix", "code_list_extractor")
+  # identifier mappings
+  "elements/identifier",
+  "elements/sender_identifier",
+  "elements/addressee_identifier",
+  "elements/person_name_identifier",
+  "elements/product_identifier",
+  "elements/series_identifier",
+  "elements/work_identifier",
+  "elements/agent_identifier",
+  "elements/conference_sponsor_identifier",
+  "elements/copyright_owner_identifier",
+  "elements/location_identifier",
+  "elements/sales_outlet_identifier",
+  "elements/supplier_identifier",
+  "elements/text_item_identifier",
+
+  # other element mappings
+  "elements/name_base",
+  "elements/name",
+  "elements/person_date",
+  "elements/professional_affiliation",
+  "elements/product_form_feature",
+  "elements/product_classification",
+  "elements/audience",
+  "elements/batch_bonus",
+  "elements/complexity",
+  "elements/copyright_owner",
+  "elements/copyright_statement",
+  "elements/discount_coded",
+  "elements/main_subject",
+  "elements/market_date",
+  "elements/new_supplier",
+  "elements/on_order_detail",
+  "elements/page_run",
+  "elements/prize",
+  "elements/sales_outlet",
+  "elements/stock_quantity_coded",
+  "elements/text_item",
+  "elements/title",
+  "elements/website",
+  "elements/contributor",
+  "elements/series",
+  "elements/set",
+  "elements/conference_sponsor",
+  "elements/conference",
+  "elements/extent",
+  "elements/illustrations",
+  "elements/language",
+  "elements/subject",
+  "elements/audience_range",
+  "elements/imprint",
+  "elements/publisher",
+  "elements/other_text",
+  "elements/media_file",
+  "elements/sales_restriction",
+  "elements/sales_rights",
+  "elements/not_for_sale",
+  "elements/stock",
+  "elements/price",
+  "elements/reissue",
+  "elements/supply_detail",
+  "elements/market_representation",
+  "elements/measure",
+  "elements/bible",
+  "elements/religious_text_feature",
+  "elements/religious_text",
+  "elements/content_item",
+  "elements/product_base",
+  "elements/contained_item",
+  "elements/related_product",
+  "elements/product",
+
+  # more core files
+  "core/header",
+  "core/reader",
+  "core/writer",
+
+  # product wrappers
+  "wrappers/simple_product",
+  "wrappers/apa_product",
+
+  # utilities
+  "utils/normaliser",
+  "utils/code_list_extractor"
+].each do |req|
+  require File.join("onix", req)
+end

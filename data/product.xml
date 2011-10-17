@@ -47,6 +47,13 @@
   <PublishingStatus>04</PublishingStatus>
   <PublicationDate>19980901</PublicationDate>
   <YearFirstPublished>1998</YearFirstPublished>
+  <RelatedProduct>
+    <RelationCode>13</RelationCode>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9781742752020</IDValue>
+    </ProductIdentifier>
+  </RelatedProduct>
   <Measure>
     <MeasureTypeCode>08</MeasureTypeCode>
     <Measurement>720   </Measurement>
