@@ -65,11 +65,11 @@
     </Stock>
     <PackQuantity>12</PackQuantity>
     <Price>
+      <PriceTypeCode>02</PriceTypeCode>
       <DiscountCoded>
         <DiscountCodeType>02</DiscountCodeType>
         <DiscountCode>123</DiscountCode>
       </DiscountCoded>
-      <PriceTypeCode>02</PriceTypeCode>
       <PriceAmount>59.95</PriceAmount>
     </Price>
   </SupplyDetail>
