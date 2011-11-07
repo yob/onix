@@ -42,9 +42,9 @@ module ONIX
       lambda do |val|
         if val.nil?
           nil
-        elsif val < 10
+        elsif val.to_i < 10
           "0#{val}"
-        elsif val > 99
+        elsif val.to_i > 99
           val.to_s[-2,2]
         else
           val.to_s
@@ -75,6 +75,7 @@ require File.join(File.dirname(__FILE__), "onix", "other_text")
 require File.join(File.dirname(__FILE__), "onix", "media_file")
 require File.join(File.dirname(__FILE__), "onix", "sales_restriction")
 require File.join(File.dirname(__FILE__), "onix", "stock")
+require File.join(File.dirname(__FILE__), "onix", "discount_coded")
 require File.join(File.dirname(__FILE__), "onix", "price")
 require File.join(File.dirname(__FILE__), "onix", "supply_detail")
 require File.join(File.dirname(__FILE__), "onix", "market_representation")
