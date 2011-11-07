@@ -97,3 +97,36 @@ describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
     @apa.rrp_exc_sales_tax.should eql(BigDecimal.new("99.95"))
   end
 end
+
+describe ONIX::APAProduct, "proprietry_discount_code_for_rrp method" do
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    file1    = File.join(@data_path, "product.xml")
+    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
+    @product_node = @doc.root
+  end
+
+  it "should return the first price in the file, regardless of type" do
+    @product = ONIX::Product.from_xml(@product_node.to_s)
+    @apa     = ONIX::APAProduct.new(@product)
+
+    @apa.proprietry_discount_code_for_rrp.should eql("123")
+  end
+end
+
+describe ONIX::APAProduct, "proprietry_discount_code_for_rrp= method" do
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    file1    = File.join(@data_path, "product.xml")
+    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
+    @product_node = @doc.root
+  end
+
+  it "should set the discount code on the RRP" do
+    @product = ONIX::Product.from_xml(@product_node.to_s)
+    @apa     = ONIX::APAProduct.new(@product)
+
+    @apa.proprietry_discount_code_for_rrp="123"
+    @apa.to_xml.to_s.include?("<DiscountCode>123</DiscountCode>").should be_true
+  end
+end

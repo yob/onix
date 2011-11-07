@@ -435,6 +435,33 @@ module ONIX
       price_set(2, num)
     end
 
+    # retrieve the discount code that describes the rrp in this file
+    def proprietry_discount_code_for_rrp
+      price    = price_get(2)
+      return nil if price.nil?
+
+      discount = price.discounts_coded.find { |disc| disc.discount_code_type == 2 }
+      discount.andand.discount_code
+    end
+
+    # set the discount code that describes the rrp in this file
+    def proprietry_discount_code_for_rrp=(code)
+      price    = price_get(2)
+      if price.nil?
+        self.rrp_inc_sales_tax = 0
+        price    = price_get(2)
+      end
+
+      discount = price.discounts_coded.find { |disc| disc.discount_code_type == 2 }
+
+      if discount.nil?
+        discount = ONIX::DiscountCoded.new
+        discount.discount_code_type = 2
+        price.discounts_coded << discount
+      end
+      discount.discount_code = code
+    end
+
     # just get the first price we can find, regardless of the type.
     # useful as a backup for reading files from that don't contain a type
     def price

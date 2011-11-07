@@ -6,6 +6,7 @@ module ONIX
 
     xml_name "Price"
 
+    xml_accessor :discounts_coded, :from => "DiscountCoded", :as => [ONIX::DiscountCoded]
     xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :price_type_qualifier, :from => "PriceQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :price_type_description, :from => "PriceTypeDescription"
@@ -16,5 +17,9 @@ module ONIX
     xml_accessor :price_status, :from => "PriceStatus", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :price_amount, :from => "PriceAmount", :as => BigDecimal, :to_xml => ONIX::Formatters.decimal
     xml_accessor :currency_code, :from => "CurrencyCode"
+
+    def initialize
+      self.discounts_coded = []
+    end
   end
 end
