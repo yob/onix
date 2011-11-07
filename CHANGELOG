@@ -1,3 +1,6 @@
+v0.9.3 (8th  November 2011)
+- Fix ordering of elements within thew Price composite
+
 v0.9.2 (7th November 2011)
 - add basic support for setting and retrieving discount codes on prices
 
