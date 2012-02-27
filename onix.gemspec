@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.test_files        = Dir.glob("spec/**/*.rb")
   s.files             = Dir.glob("{lib,support,dtd}/**/**/*") + ["README.markdown", "TODO", "CHANGELOG"]
 
-  s.add_dependency('roxml', '~>3.1.6')
+  s.add_dependency('roxml', '~>3.3.1')
   s.add_dependency('activesupport', '>= 3.0.5')
   s.add_dependency('i18n')
   s.add_dependency('andand')
