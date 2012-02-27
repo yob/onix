@@ -24,6 +24,28 @@ describe ONIX::Normaliser, "with a simple short tag file" do
   end
 end
 
+describe ONIX::Normaliser, "with a simple short tag file that has no doctype" do
+
+  before(:each) do
+    @data_path = File.join(File.dirname(__FILE__),"..","data")
+    @filename  = File.join(@data_path, "short_tags_no_doctype.xml")
+    @outfile   = @filename + ".new"
+  end
+
+  after(:each) do
+    File.unlink(@outfile) if File.file?(@outfile)
+  end
+
+  it "should correctly convert short tag file to reference tag" do
+    ONIX::Normaliser.process(@filename, @outfile)
+
+    File.file?(@outfile).should be_true
+    content = File.read(@outfile)
+    content.include?("<m174>").should be_false
+    content.include?("<FromCompany>").should be_true
+  end
+end
+
 describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
 
   before(:each) do
