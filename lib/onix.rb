@@ -54,7 +54,7 @@ module ONIX
     end
 
     def self.space_separated
-      lambda { |val| val.join(" ")  if val }
+      lambda { |val| [val.collect(&:to_s).join(" ")]  if val }
     end
 
     def self.boolean

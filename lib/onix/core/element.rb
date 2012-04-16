@@ -8,7 +8,8 @@ module ONIX
 
     require 'active_support/core_ext/class'
 
-    class_inheritable_accessor(:xml_array_accessors)
+    #class_inheritable_accessor(:xml_array_accessors)
+    class_attribute(:xml_array_accessors)
 
     # An accessor to an array of element instances.
     #
@@ -258,6 +259,7 @@ module ONIX
       options = syms.extract_options!
       if options[:as] && options[:as].kind_of?(Array)
         self.xml_array_accessors ||= []
+        self.xml_array_accessors = xml_array_accessors.dup
         self.xml_array_accessors << syms.first
       end
       syms.push(options)
@@ -267,6 +269,7 @@ module ONIX
 
     def initialize
       if self.class.xml_array_accessors
+        self.class.xml_array_accessors = self.class.xml_array_accessors.dup
         self.class.xml_array_accessors.each { |name|
           asgn = "#{name}="
           raise "Can't assign #{name} for #{self.class} - xml_array_accessors inheritance error?" unless respond_to?(asgn)
