@@ -435,6 +435,16 @@ module ONIX
       price_set(2, num)
     end
 
+    # retrieve the nett price including any sales tax
+    def nett_inc_sales_tax
+      price_get(7).andand.price_amount
+    end
+
+    # set the rrp including any sales tax
+    def nett_inc_sales_tax=(num)
+      price_set(7, num)
+    end
+
     # retrieve the discount code that describes the rrp in this file
     def proprietry_discount_code_for_rrp
       price    = price_get(2)
