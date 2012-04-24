@@ -37,6 +37,7 @@ describe ONIX::Normaliser, "with a simple short tag file that has no doctype" do
   end
 
   it "should correctly convert short tag file to reference tag" do
+    pending
     ONIX::Normaliser.process(@filename, @outfile)
 
     File.file?(@outfile).should be_true
