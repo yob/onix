@@ -1,3 +1,6 @@
+v0.9.5 (28th December 2012)
+- Bugfix: AudienceRangeValue can be non-numeric
+
 v0.9.4 (24th April 2012)
 - Upgrade roxml dependency
 - expand APAProduct to allow the nett price to be set
