@@ -93,9 +93,10 @@ describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
   it "should return the first price in the file of type 1" do
     @product = ONIX::Product.from_xml(@product_node.to_s)
     @apa     = ONIX::APAProduct.new(@product)
-
+    
     @apa.rrp_exc_sales_tax.should eql(BigDecimal.new("99.95"))
   end
+  
 end
 
 describe ONIX::APAProduct, "proprietry_discount_code_for_rrp method" do
