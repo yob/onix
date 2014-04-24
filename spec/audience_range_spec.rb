@@ -45,7 +45,7 @@ describe ONIX::AudienceRange do
     range.audience_range_qualifier = 18
     range.audience_range_precisions = [3,4]
     range.audience_range_values =[3,6]
-    print range.to_xml
+    range.to_xml.to_s.should eql("<AudienceRange>\n  <AudienceRangeQualifier>18</AudienceRangeQualifier>\n  <AudienceRangePrecision>3</AudienceRangePrecision>\n  <AudienceRangeValue>3</AudienceRangeValue>\n  <AudienceRangePrecision>4</AudienceRangePrecision>\n  <AudienceRangeValue>6</AudienceRangeValue>\n</AudienceRange>")
   end
 
 end
