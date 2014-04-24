@@ -419,10 +419,15 @@ module ONIX
     def rrp_exc_sales_tax
       price_get(1).andand.price_amount
     end
+    
+    # set the rrp excluding any sales tax
+    def rrp_exc_sales_tax_with_currency(num, currency_code)
+      price_set(1, num, currency_code)
+    end
 
     # set the rrp excluding any sales tax
-    def rrp_exc_sales_tax=(num, currency_code=nil)
-      price_set(1, num, currency_code)
+    def rrp_exc_sales_tax=(num)
+      price_set(1, num)
     end
 
     # retrieve the rrp including any sales tax
@@ -431,7 +436,7 @@ module ONIX
     end
 
     # set the rrp including any sales tax
-    def rrp_inc_sales_tax=(num, currency_code=nil)
+    def rrp_inc_sales_tax=(num)
       price_set(2, num, currency_code)
     end
 
