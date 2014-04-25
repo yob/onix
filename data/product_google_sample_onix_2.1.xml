@@ -1,0 +1,82 @@
+<!-- Sample product composite, puts a book a book on sale on Google Play -->
+<Product>
+    <RecordReference>myid.9789999999991</RecordReference> <!-- Unique idenfier per product record, Google suggests using ISBN13 -->
+    <NotificationType>03</NotificationType> <!-- 01 = early notification, 02 = advance notification, 03 = notification confirmed on publication, 05 = delete -->
+    <ProductIdentifier> <!-- The record must have at least one valid ISBN, when possible, type = 15 recommended -->
+        <ProductIDType>15</ProductIDType>
+        <IDValue>9789999999991</IDValue>
+    </ProductIdentifier>
+    <ProductForm>DG</ProductForm> <!-- DG = electronic book text -->
+    <EpubType>029</EpubType> <!-- 000 = Epublication content package, 002 = PDF, 023 = Open Ebook, 029 = EPUB, 032 = Google Edition -->
+    <Title>
+        <TitleType>01</TitleType>
+        <TitleText>This is my distinctive title.</TitleText>
+        <Subtitle>This is my subtitle.</Subtitle> <!-- optional -->
+    </Title>
+    <Contributor>
+        <ContributorRole>A01</ContributorRole>
+        <PersonName>Jane Smith</PersonName>
+        <BiographicalNote>I am a bibliographical note tied to a specific author.</BiographicalNote>
+    </Contributor>
+    <Language>
+        <LanguageRole>01</LanguageRole>
+        <LanguageCode>eng</LanguageCode>
+    </Language>
+    <NumberOfPages>1024</NumberOfPages>
+    <Subject>
+        <!-- BISAC classification -->
+        <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+        <SubjectCode>LIT014000</SubjectCode>
+    </Subject>
+    <OtherText>
+        <TextTypeCode>01</TextTypeCode>
+        <Text>I am the main description of the book.</Text>
+    </OtherText>
+    <OtherText>
+        <TextTypeCode>13</TextTypeCode>
+        <Text>I am a bibiliographical note of a book not a specific author.</Text>
+    </OtherText>
+    <Imprint>
+        <NameCodeType>02</NameCodeType>
+        <NameCodeValue>My Imprint Name</NameCodeValue>
+    </Imprint>
+    <Publisher> 
+        <NameCodeType>02</NameCodeType> 
+        <NameCodeValue>My Publishing Company</NameCodeValue>
+    </Publisher>
+    <PublishingStatus>04</PublishingStatus>
+    <PublicationDate>20120927</PublicationDate> <!-- YYYY and YYYYMM also valid -->
+    <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <RightsTerritory>WORLD</RightsTerritory>
+        <!-- Note, if you supply RightsCountry instead, do not also supply RightsTerritory -->
+    </SalesRights>
+    <RelatedProduct>
+        <RelationCode>13</RelationCode> <!-- 13 = Epublication based on print book, enables the digital book to appear in Play serach results  on a print ISBN -->
+        <ProductIdentifier>
+            <ProductIDType>15</ProductIDType>
+            <IDValue>9789999999984</IDValue> <!-- ISBN13 of print book -->
+        </ProductIdentifier>
+    </RelatedProduct>
+    <SupplyDetail>
+        <SupplierName>My Supplier Name</SupplierName>
+        <ProductAvailability>20</ProductAvailability>
+        <Price>
+            <PriceTypeCode>02</PriceTypeCode> <!-- This should match the price type that you are configured to sell in the Partner Center -->
+            <PriceAmount>9.99</PriceAmount>
+            <CurrencyCode>USD</CurrencyCode>
+            <CountryCode>US</CountryCode>
+            <!-- Note, if you supply CountryCode, do not also supply Territory -->
+        </Price>
+    </SupplyDetail>
+</Product>    
+
+<!-- Sample delete composite, deletes book from sale on Play and removes from preview on Google Books -->
+<Product>
+    <RecordReference>myid.9780000000009</RecordReference> <!-- The record reference of the product to delete, associated with the ISBN provided in ProductIdentifier -->
+    <NotificationType>05</NotificationType> <!-- 05 = delete record -->
+    <ProductIdentifier> <!-- The record must have at least one valid ISBN -->
+        <ProductIDType>15</ProductIDType>
+        <IDValue>9780000000009</IDValue>
+    </ProductIdentifier>
+</Product>
