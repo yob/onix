@@ -41,4 +41,20 @@ describe ONIX::AudienceRange do
     aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
   end
 
+  context "Given - should provide write access to first level attributes" do
+    Given(:aud) { ONIX::AudienceRange.new }
+    describe :audience_range_qualifier= do
+      When { aud.audience_range_qualifier = 12 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangeQualifier>12</AudienceRangeQualifier>" }
+    end
+    describe :audience_range_precisions= do
+      When { aud.audience_range_precisions[0] = 888 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangePrecision>888</AudienceRangePrecision>" }
+    end
+    describe :audience_range_values= do
+      When { aud.audience_range_values[0] = 999 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangeValue>999</AudienceRangeValue>" }
+    end
+  end
+
 end
