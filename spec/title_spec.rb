@@ -4,37 +4,36 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe ONIX::Title do
 
-  before(:each) do
+  Given{
     data_path = File.join(File.dirname(__FILE__),"..","data")
     file1    = File.join(data_path, "title.xml")
     @doc     = Nokogiri::XML::Document.parse(File.read(file1))
     @root = @doc.root
+  }
+
+  context "should correctly convert to a string" do
+    Given(:title){ ONIX::Title.from_xml(@root.to_s) }
+    Then{ title.to_xml.to_s[0,7] == "<Title>" }
   end
 
-  it "should correctly convert to a string" do
-    t = ONIX::Title.from_xml(@root.to_s)
-    t.to_xml.to_s[0,7].should eql("<Title>")
+  context "should provide read access to first level attributes" do
+    Given(:title){ ONIX::Title.from_xml(@root.to_s) }
+
+    Then{ title.title_type == 1 }
+    And{ title.title_text == "Good Grief" }
+    And{ title.subtitle == "A Constructive Approach to the Problem of Loss" }
   end
 
-  it "should provide read access to first level attributes" do
-    t = ONIX::Title.from_xml(@root.to_s)
-    t.title_type.should eql(1)
-    t.title_text.should eql("Good Grief")
-    t.subtitle.should   eql("A Constructive Approach to the Problem of Loss")
-  end
+  context "should provide write access to first level attributes" do
+    Given(:title){ ONIX::Title.new }
 
-  it "should provide write access to first level attributes" do
-    t = ONIX::Title.new
+    When{ title.title_type = 1 }
+    When{ title.title_text = "Good Grief" }
+    When{ title.subtitle = "Blah" }
 
-    t.title_type = 1
-    t.to_xml.to_s.include?("<TitleType>01</TitleType>").should be_true
-
-    t.title_text = "Good Grief"
-    t.to_xml.to_s.include?("<TitleText>Good Grief</TitleText>").should be_true
-
-    t.subtitle = "Blah"
-    t.to_xml.to_s.include?("<Subtitle>Blah</Subtitle>").should be_true
-
+    Then{ title.to_xml.to_s.include?("<TitleType>01</TitleType>") == true }
+    And{ title.to_xml.to_s.include?("<TitleText>Good Grief</TitleText>") == true }
+    And{ title.to_xml.to_s.include?("<Subtitle>Blah</Subtitle>") == true }
   end
 
 end
