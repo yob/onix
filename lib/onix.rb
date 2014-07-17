@@ -4,7 +4,6 @@ require 'bigdecimal'
 require 'cgi'
 require 'singleton'
 require 'roxml'
-require 'andand'
 
 module ONIX
   module Version #:nodoc:

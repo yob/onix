@@ -26,7 +26,7 @@ module ONIX
 
     # retrieve the current EAN
     def ean
-      identifier(3).andand.id_value
+      identifier(3).try(:id_value)
     end
 
     # set a new EAN
@@ -36,7 +36,7 @@ module ONIX
 
     # retrieve the proprietary ID
     def proprietary_id
-      identifier(1).andand.id_value
+      identifier(1).try(:id_value)
     end
 
     # set a new proprietary ID
@@ -46,7 +46,7 @@ module ONIX
 
     # retrieve the current ISBN 10
     def isbn10
-      identifier(2).andand.id_value
+      identifier(2).try(:id_value)
     end
 
     # set a new ISBN 10
@@ -56,7 +56,7 @@ module ONIX
 
     # retrieve the current ISBN 13
     def isbn13
-      identifier(15).andand.id_value
+      identifier(15).try(:id_value)
     end
 
     # set a new ISBN 13
@@ -108,7 +108,7 @@ module ONIX
 
     def series
       composite = product.series.first
-      composite.andand.title_of_series
+      composite.try(:title_of_series)
     end
 
     def series=(val)
@@ -122,7 +122,7 @@ module ONIX
 
     # retrieve the current publisher website for this particular product
     def publisher_website
-      website(2).andand.website_link
+      website(2).try(:website_link)
     end
 
     # set a new publisher website for this particular product
@@ -132,7 +132,7 @@ module ONIX
 
     # retrieve the current supplier website for this particular product
     def supplier_website
-      website(12).andand.website_link
+      website(12).try(:website_link)
     end
 
     # set a new supplier website for this particular product
@@ -181,7 +181,7 @@ module ONIX
 
     # retrieve the url to the product cover image
     def cover_url
-      media_file(4).andand.media_file_link
+      media_file(4).try(:media_file_link)
     end
 
     # set the url to the product cover image
@@ -193,7 +193,7 @@ module ONIX
 
     # retrieve the url to the high quality product cover image
     def cover_url_hq
-      media_file(6).andand.media_file_link
+      media_file(6).try(:media_file_link)
     end
 
     # set the url to the high quality product cover image
@@ -205,7 +205,7 @@ module ONIX
 
     # retrieve the url to the product thumbnail
     def thumbnail_url
-      media_file(7).andand.media_file_link
+      media_file(7).try(:media_file_link)
     end
 
     # set the url to the product cover image
@@ -217,7 +217,7 @@ module ONIX
 
     # retrieve the main description
     def main_description
-      other_text(1).andand.text
+      other_text(1).try(:text)
     end
 
     # set the main description
@@ -227,7 +227,7 @@ module ONIX
 
     # retrieve the short description
     def short_description
-      other_text(2).andand.text
+      other_text(2).try(:text)
     end
 
     # set the short description
@@ -237,7 +237,7 @@ module ONIX
 
     # retrieve the long description
     def long_description
-      other_text(3).andand.text
+      other_text(3).try(:text)
     end
 
     # set the long description
@@ -263,7 +263,7 @@ module ONIX
 
     # retrieve the publisher
     def publisher
-      publisher_get(1).andand.publisher_name
+      publisher_get(1).try(:publisher_name)
     end
 
     # set a new publisher
@@ -417,7 +417,7 @@ module ONIX
 
     # retrieve the rrp excluding any sales tax
     def rrp_exc_sales_tax
-      price_get(1).andand.price_amount
+      price_get(1).try(:price_amount)
     end
 
     # set the rrp excluding any sales tax
@@ -427,7 +427,7 @@ module ONIX
 
     # retrieve the rrp including any sales tax
     def rrp_inc_sales_tax
-      price_get(2).andand.price_amount
+      price_get(2).try(:price_amount)
     end
 
     # set the rrp including any sales tax
@@ -437,7 +437,7 @@ module ONIX
 
     # retrieve the nett price including any sales tax
     def nett_inc_sales_tax
-      price_get(7).andand.price_amount
+      price_get(7).try(:price_amount)
     end
 
     # set the rrp including any sales tax
@@ -451,7 +451,7 @@ module ONIX
       return nil if price.nil?
 
       discount = price.discounts_coded.find { |disc| disc.discount_code_type == 2 }
-      discount.andand.discount_code
+      discount.try(:discount_code)
     end
 
     # set the discount code that describes the rrp in this file
@@ -475,7 +475,7 @@ module ONIX
     # just get the first price we can find, regardless of the type.
     # useful as a backup for reading files from that don't contain a type
     def price
-      price_get(nil).andand.price_amount
+      price_get(nil).try(:price_amount)
     end
 
     # retrieve the height of the product
@@ -485,7 +485,7 @@ module ONIX
     #
     def height
       # TODO: auto unit conversion
-      measurement(1).andand.measurement
+      measurement(1).try(:measurement)
     end
 
     # set the height of the book
@@ -508,7 +508,7 @@ module ONIX
     #
     def width
       # TODO: auto unit conversion
-      measurement(2).andand.measurement
+      measurement(2).try(:measurement)
     end
 
     # set the width of the product
@@ -531,7 +531,7 @@ module ONIX
     #
     def weight
       # TODO: auto unit conversion
-      measurement(8).andand.measurement
+      measurement(8).try(:measurement)
     end
 
     # set the weight of the product
@@ -554,7 +554,7 @@ module ONIX
     #
     def thickness
       # TODO: auto unit conversion
-      measurement(3).andand.measurement
+      measurement(3).try(:measurement)
     end
 
     # set the thickness of the product
