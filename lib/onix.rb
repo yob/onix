@@ -52,43 +52,44 @@ module ONIX
       end
     end
   end
+
+  # core files
+  # - ordering is important, classes need to be defined before any
+  #   other class can use them
+  autoload :SenderIdentifier, "onix/sender_identifier"
+  autoload :AddresseeIdentifier, "onix/addressee_identifier"
+  autoload :Header, "onix/header"
+  autoload :ProductIdentifier, "onix/product_identifier"
+  autoload :SeriesIdentifier, "onix/series_identifier"
+  autoload :Series, "onix/series"
+  autoload :Title, "onix/title"
+  autoload :Website, "onix/website"
+  autoload :Contributor, "onix/contributor"
+  autoload :Language, "onix/language"
+  autoload :Subject, "onix/subject"
+  autoload :AudienceRange, "onix/audience_range"
+  autoload :Imprint, "onix/imprint"
+  autoload :Publisher, "onix/publisher"
+  autoload :OtherText, "onix/other_text"
+  autoload :MediaFile, "onix/media_file"
+  autoload :SalesRestriction, "onix/sales_restriction"
+  autoload :Stock, "onix/stock"
+  autoload :DiscountCoded, "onix/discount_coded"
+  autoload :Price, "onix/price"
+  autoload :SupplyDetail, "onix/supply_detail"
+  autoload :MarketRepresentation, "onix/market_representation"
+  autoload :Measure, "onix/measure"
+  autoload :Product, "onix/product"
+  autoload :Reader, "onix/reader"
+  autoload :Writer, "onix/writer"
+
+  # product wrappers
+  autoload :SimpleProduct, "onix/simple_product"
+  autoload :APAProduct, "onix/apa_product"
+
+  # misc
+  autoload :Lists, "onix/lists"
+  autoload :Normaliser, "onix/normaliser"
+  autoload :CodeListExtractor, "onix/code_list_extractor"
+
 end
-
-# core files
-# - ordering is important, classes need to be defined before any
-#   other class can use them
-require "onix/sender_identifier"
-require "onix/addressee_identifier"
-require "onix/header"
-require "onix/product_identifier"
-require "onix/series_identifier"
-require "onix/series"
-require "onix/title"
-require "onix/website"
-require "onix/contributor"
-require "onix/language"
-require "onix/subject"
-require "onix/audience_range"
-require "onix/imprint"
-require "onix/publisher"
-require "onix/other_text"
-require "onix/media_file"
-require "onix/sales_restriction"
-require "onix/stock"
-require "onix/discount_coded"
-require "onix/price"
-require "onix/supply_detail"
-require "onix/market_representation"
-require "onix/measure"
-require "onix/product"
-require "onix/reader"
-require "onix/writer"
-
-# product wrappers
-require "onix/simple_product"
-require "onix/apa_product"
-
-# misc
-require "onix/lists"
-require "onix/normaliser"
-require "onix/code_list_extractor"
