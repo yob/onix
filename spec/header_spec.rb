@@ -4,100 +4,120 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe ONIX::Header do
 
-  Given{
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "header.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @header_node = @doc.root
-  }
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "header.xml")) }
 
-  context "should correctly convert to a string" do
-    Given(:header){ ONIX::Header.from_xml(@header_node.to_s) }
-    Then{ header.to_xml.to_s[0,8] == "<Header>" }
+  describe "should correctly convert to a string" do
+    Given(:header) { ONIX::Header.from_xml(doc) }
+    Then { header.to_xml.to_s.start_with? "<Header>" }
   end
 
-  context "should provide read access to first level attributes" do
-    Given(:header){ ONIX::Header.from_xml(@header_node.to_s) }
+  describe "should provide read access to first level attributes" do
+    Given(:header) { ONIX::Header.from_xml(doc) }
 
-    Then{ header.from_ean_number == "1111111111111" }
-    And{ header.from_san == "1111111" }
-    And{ header.from_company == "Text Company" }
-    And{ header.from_email == "james@rainbowbooks.com.au" }
-    And{ header.from_person == "James" }
-
-    And{ header.to_ean_number == "2222222222222" }
-    And{ header.to_san == "2222222" }
-    And{ header.to_company == "Company 2" }
-    And{ header.to_person == "Chris" }
-
-    And{ header.message_note == "A Message" }
-    And{ header.message_repeat == 1 }
-    And{ header.sent_date == Date.civil(2008,5,19) }
-
-    And{ header.default_language_of_text == "aaa" }
-    And{ header.default_price_type_code == 1 }
-    And{ header.default_currency_code == "ccc" }
-    And{ header.default_linear_unit == "dd" }
-    And{ header.default_weight_unit == "ee" }
-    And{ header.default_class_of_trade == "f" }
+    Then { header.from_ean_number == "1111111111111" }
+    Then { header.from_san == "1111111" }
+    Then { header.from_company == "Text Company" }
+    Then { header.from_email == "james@rainbowbooks.com.au" }
+    Then { header.from_person == "James" }
+    Then { header.to_ean_number == "2222222222222" }
+    Then { header.to_san == "2222222" }
+    Then { header.to_company == "Company 2" }
+    Then { header.to_person == "Chris" }
+    Then { header.message_note == "A Message" }
+    Then { header.message_repeat == 1 }
+    Then { header.sent_date == Date.civil(2008,5,19) }
+    Then { header.default_language_of_text == "aaa" }
+    Then { header.default_price_type_code == 1 }
+    Then { header.default_currency_code == "ccc" }
+    Then { header.default_linear_unit == "dd" }
+    Then { header.default_weight_unit == "ee" }
+    Then { header.default_class_of_trade == "f" }
   end
 
   context "should provide write access to first level attributes" do
-    Given(:header){ ONIX::Header.new }
-    Given(:header_to_xml_to_s){ header.to_xml.to_s }
-
-    When{ header.from_ean_number = "1111111111111" }
-    When{ header.from_san = "1111111" }
-    When{ header.from_company = "Text Company" }
-    When{ header.from_email = "james@rainbowbooks.com.au" }
-    When{ header.from_person = "James" }
-    When{ header.to_ean_number = "2222222222222" }
-    When{ header.to_san = "2222222" }
-    When{ header.to_company = "Company 2" }
-    When{ header.to_person = "Chris" }
-    When{ header.message_note = "A Message" }
-    When{ header.message_repeat = 1 }
-    When{ header.sent_date = Date.civil(2008,5,19) }
-    When{ header.default_language_of_text = "aaa" }
-    When{ header.default_price_type_code = 1 }
-    When{ header.default_currency_code = "ccc" }
-    When{ header.default_class_of_trade = "f" }
-
-    Then{ header_to_xml_to_s.include?("<FromEANNumber>1111111111111</FromEANNumber>") == true }
-    And{ header_to_xml_to_s.include?("<FromSAN>1111111</FromSAN>") == true }
-    And{ header_to_xml_to_s.include?("<FromCompany>Text Company</FromCompany>") == true }
-    And{ header_to_xml_to_s.include?("<FromEmail>james@rainbowbooks.com.au</FromEmail>") == true }
-    And{ header_to_xml_to_s.include?("<FromPerson>James</FromPerson>") == true }
-    And{ header_to_xml_to_s.include?("<ToEANNumber>2222222222222</ToEANNumber>") == true }
-    And{ header_to_xml_to_s.include?("<ToSAN>2222222</ToSAN>") == true }
-    And{ header_to_xml_to_s.include?("<ToCompany>Company 2</ToCompany>") == true }
-    And{ header_to_xml_to_s.include?("<ToPerson>Chris</ToPerson>") == true }
-    And{ header_to_xml_to_s.include?("<MessageNote>A Message</MessageNote>") == true }
-    And{ header_to_xml_to_s.include?("<MessageRepeat>1</MessageRepeat>") == true }
-    And{ header_to_xml_to_s.include?("<SentDate>20080519</SentDate>") == true }
-    And{ header_to_xml_to_s.include?("<DefaultLanguageOfText>aaa</DefaultLanguageOfText>") == true }
-    And{ header_to_xml_to_s.include?("<DefaultPriceTypeCode>01</DefaultPriceTypeCode>") == true }
-    And{ header_to_xml_to_s.include?("<DefaultCurrencyCode>ccc</DefaultCurrencyCode>") == true }
-    And{ header_to_xml_to_s.include?("<DefaultClassOfTrade>f</DefaultClassOfTrade>") == true }
+    Given(:header) { ONIX::Header.new }
+    describe :from_ean_number= do
+      When { header.from_ean_number = "1111111111111" }
+      Then { header.to_xml.to_s.include? "<FromEANNumber>1111111111111</FromEANNumber>" }
+    end
+    describe :from_san= do
+      When { header.from_san = "1111111" }
+      Then { header.to_xml.to_s.include? "<FromSAN>1111111</FromSAN>" }
+    end
+    describe :from_company= do
+      When { header.from_company = "Text Company" }
+      Then { header.to_xml.to_s.include? "<FromCompany>Text Company</FromCompany>" }
+    end
+    describe :from_email= do
+      When { header.from_email = "james@rainbowbooks.com.au" }
+      Then { header.to_xml.to_s.include? "<FromEmail>james@rainbowbooks.com.au</FromEmail>" }
+    end
+    describe :from_person= do
+      When { header.from_person = "James" }
+      Then { header.to_xml.to_s.include? "<FromPerson>James</FromPerson>" }
+    end
+    describe :to_ean_number= do
+      When { header.to_ean_number = "2222222222222" }
+      Then { header.to_xml.to_s.include? "<ToEANNumber>2222222222222</ToEANNumber>" }
+    end
+    describe :to_san= do
+      When { header.to_san = "2222222" }
+      Then { header.to_xml.to_s.include? "<ToSAN>2222222</ToSAN>" }
+    end
+    describe :to_company= do
+      When { header.to_company = "Company 2" }
+      Then { header.to_xml.to_s.include? "<ToCompany>Company 2</ToCompany>" }
+    end
+    describe :to_person= do
+      When { header.to_person = "Chris" }
+      Then { header.to_xml.to_s.include? "<ToPerson>Chris</ToPerson>" }
+    end
+    describe :message_note= do
+      When { header.message_note = "A Message" }
+      Then { header.to_xml.to_s.include? "<MessageNote>A Message</MessageNote>" }
+    end
+    describe :message_repeat= do
+      When { header.message_repeat = 1 }
+      Then { header.to_xml.to_s.include? "<MessageRepeat>1</MessageRepeat>" }
+    end
+    describe :sent_date= do
+      When { header.sent_date = Date.civil(2008,5,19) }
+      Then { header.to_xml.to_s.include? "<SentDate>20080519</SentDate>" }
+    end
+    describe :default_language_of_text= do
+      When { header.default_language_of_text = "aaa" }
+      Then { header.to_xml.to_s.include? "<DefaultLanguageOfText>aaa</DefaultLanguageOfText>" }
+    end
+    describe :default_price_type_code= do
+      When { header.default_price_type_code = 1 }
+      Then { header.to_xml.to_s.include? "<DefaultPriceTypeCode>01</DefaultPriceTypeCode>" }
+    end
+    describe :default_currency_code= do
+      When { header.default_currency_code = "ccc" }
+      Then { header.to_xml.to_s.include? "<DefaultCurrencyCode>ccc</DefaultCurrencyCode>" }
+    end
+    describe :default_class_of_trade= do
+      When { header.default_class_of_trade = "f" }
+      Then { header.to_xml.to_s.include? "<DefaultClassOfTrade>f</DefaultClassOfTrade>" }
+    end
   end
 
   context "should correctly handle text with & < and >" do
-    Given(:header){ ONIX::Header.new }
-    Given(:header_to_xml_to_s){ header.to_xml.to_s }
+    Given(:header) { ONIX::Header.new }
 
-    context "with &" do
-      When{ header.from_company = "James & Healy" }
-      Then{ header_to_xml_to_s.include?("James &amp; Healy") == true }
+    describe "with &" do
+      When { header.from_company = "James & Healy" }
+      Then { header.to_xml.to_s.include?("James &amp; Healy") }
     end
 
-    context "with <" do
-      When{ header.from_company = "James < Healy" }
-      Then{ header_to_xml_to_s.include?("James &lt; Healy") == true }
+    describe "with <" do
+      When { header.from_company = "James < Healy" }
+      Then { header.to_xml.to_s.include?("James &lt; Healy") }
     end
 
-    context "with >" do
-      When{ header.from_company = "James > Healy" }
-      Then{ header_to_xml_to_s.include?("James &gt; Healy") == true }
+    describe "with >" do
+      When { header.from_company = "James > Healy" }
+      Then { header.to_xml.to_s.include?("James &gt; Healy") }
     end
   end
 
@@ -105,15 +125,11 @@ end
 
 describe ONIX::Header do
 
-  Given{
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    @file = File.join(data_path, "header_invalid_sentdate.xml")
-  }
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "header_invalid_sentdate.xml")) }
 
   context "should correctly handle headers with an invalid sent date" do
-    Given(:header){ ONIX::Header.from_xml(File.read(@file)) }
-
-    Then{ header.sent_date == nil }
+    Given(:header) { ONIX::Header.from_xml(doc) }
+    Then { header.sent_date.nil? }
   end
 
 end

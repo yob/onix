@@ -4,37 +4,35 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe ONIX::Title do
 
-  Given{
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "title.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
-  }
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "title.xml")) }
 
-  context "should correctly convert to a string" do
-    Given(:title){ ONIX::Title.from_xml(@root.to_s) }
-    Then{ title.to_xml.to_s[0,7] == "<Title>" }
+  describe "should correctly convert to a string" do
+    Given(:title) { ONIX::Title.from_xml(doc) }
+    Then { title.to_xml.to_s.start_with? "<Title>" }
   end
 
-  context "should provide read access to first level attributes" do
-    Given(:title){ ONIX::Title.from_xml(@root.to_s) }
+  describe "should provide read access to first level attributes" do
+    Given(:title){ ONIX::Title.from_xml(doc) }
 
-    Then{ title.title_type == 1 }
-    And{ title.title_text == "Good Grief" }
-    And{ title.subtitle == "A Constructive Approach to the Problem of Loss" }
+    Then { title.title_type == 1 }
+    Then { title.title_text == "Good Grief" }
+    Then { title.subtitle == "A Constructive Approach to the Problem of Loss" }
   end
 
   context "should provide write access to first level attributes" do
     Given(:title){ ONIX::Title.new }
-
-    When{ title.title_type = 1 }
-    When{ title.title_text = "Good Grief" }
-    When{ title.subtitle = "Blah" }
-
-    Then{ title.to_xml.to_s.include?("<TitleType>01</TitleType>") == true }
-    And{ title.to_xml.to_s.include?("<TitleText>Good Grief</TitleText>") == true }
-    And{ title.to_xml.to_s.include?("<Subtitle>Blah</Subtitle>") == true }
+    describe :title_type= do
+      When { title.title_type = 1 }
+      Then { title.to_xml.to_s.include? "<TitleType>01</TitleType>" }
+    end
+    describe :title_text= do
+      When { title.title_text = "Good Grief" }
+      Then { title.to_xml.to_s.include? "<TitleText>Good Grief</TitleText>" }
+    end
+    describe :subtitle= do
+      When { title.subtitle = "Blah" }
+      Then { title.to_xml.to_s.include? "<Subtitle>Blah</Subtitle>" }
+    end
   end
 
 end
-
