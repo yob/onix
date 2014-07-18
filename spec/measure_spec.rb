@@ -4,38 +4,35 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe ONIX::Measure do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "measure.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "measure.xml")) }
+
+  describe "should correctly convert to a string" do
+    Given(:m) { ONIX::Measure.from_xml(doc) }
+    Then { m.to_xml.to_s.start_with? "<Measure>" }
   end
 
-  it "should correctly convert to a string" do
-    m = ONIX::Measure.from_xml(@root.to_s)
-    m.to_xml.to_s[0,9].should eql("<Measure>")
+  describe "should provide read access to first level attributes" do
+    Given(:m) { ONIX::Measure.from_xml(doc) }
+
+    Then { m.measure_type_code == 1 }
+    Then { m.measurement == 210 }
+    Then { m.measure_unit_code == "mm" }
   end
 
-  it "should provide read access to first level attributes" do
-    m = ONIX::Measure.from_xml(@root.to_s)
-
-    m.measure_type_code.should eql(1)
-    m.measurement.should eql(210)
-    m.measure_unit_code.should eql("mm")
-  end
-
-  it "should provide write access to first level attributes" do
-    m = ONIX::Measure.new
-
-    m.measure_type_code = 1
-    m.to_xml.to_s.include?("<MeasureTypeCode>01</MeasureTypeCode>").should be_true
-
-    m.measurement = 300
-    m.to_xml.to_s.include?("<Measurement>300</Measurement>").should be_true
-
-    m.measure_unit_code = "mm"
-    m.to_xml.to_s.include?("<MeasureUnitCode>mm</MeasureUnitCode>").should be_true
+  context "should provide write access to first level attributes" do
+    Given(:m) { ONIX::Measure.new }
+    describe :measure_type_code= do
+      When { m.measure_type_code = 1 }
+      Then { m.to_xml.to_s.include? "<MeasureTypeCode>01</MeasureTypeCode>" }
+    end
+    describe :measurement= do
+      When { m.measurement = 300 }
+      Then { m.to_xml.to_s.include? "<Measurement>300</Measurement>" }
+    end
+    describe :measure_unit_code= do
+      When { m.measure_unit_code = "mm" }
+      Then { m.to_xml.to_s.include? "<MeasureUnitCode>mm</MeasureUnitCode>" }
+    end
   end
 
 end
-
