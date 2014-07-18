@@ -4,90 +4,99 @@ require File.dirname(__FILE__) + '/spec_helper.rb'
 
 describe ONIX::Product do
 
-  before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(@data_path, "product.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @product_node = @doc.root
-  end
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "product.xml")) }
 
-  it "should provide read access to first level attributes" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
+  describe "should provide read access to first level attributes" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
 
-    product.record_reference.should eql("365-9780194351898")
-    product.notification_type.should eql(3)
-    product.product_form.should eql("BC")
-    product.edition_number.should eql(1)
-    product.number_of_pages.should eql(100)
-    product.bic_main_subject.should eql("EB")
-    product.publishing_status.should eql(4)
-    product.publication_date.should eql(Date.civil(1998,9,1))
-    product.year_first_published.should eql(1998)
-
+    Then { product.record_reference == "365-9780194351898" }
+    Then { product.notification_type == 3 }
+    Then { product.product_form == "BC" }
+    Then { product.edition_number == 1 }
+    Then { product.number_of_pages == 100 }
+    Then { product.bic_main_subject == "EB" }
+    Then { product.publishing_status == 4 }
+    Then { product.publication_date == Date.civil(1998,9,1) }
+    Then { product.year_first_published == 1998 }
     # including ye olde, deprecated ones
-    product.height.should eql(100)
-    product.width.should eql(BigDecimal.new("200.5"))
-    product.weight.should eql(300)
-    product.thickness.should eql(300)
-    product.dimensions.should eql("100x200")
+    Then { product.height == 100 }
+    Then { product.width == BigDecimal.new("200.5") }
+    Then { product.weight == 300 }
+    Then { product.thickness == 300 }
+    Then { product.dimensions == "100x200" }
   end
 
-  it "should provide read access to product IDs" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
-    product.product_identifiers.size.should eql(3)
+  describe "should provide read access to product IDs" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
+    Then { product.product_identifiers.size == 3 }
   end
 
-  it "should provide read access to titles" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
-    product.titles.size.should eql(1)
+  describe "should provide read access to titles" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
+    Then { product.titles.size == 1 }
   end
 
-  it "should provide read access to subjects" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
-    product.subjects.size.should eql(1)
+  describe "should provide read access to subjects" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
+    Then { product.subjects.size == 1 }
   end
 
-  it "should provide read access to measurements" do
-    product = ONIX::Product.from_xml(@product_node.to_s)
-    product.measurements.size.should eql(1)
+  describe "should provide read access to measurements" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
+    Then { product.measurements.size == 1 }
   end
 
-  it "should provide write access to first level attributes" do
-    product = ONIX::Product.new
-
-    product.notification_type = 3
-    product.to_xml.to_s.include?("<NotificationType>03</NotificationType>").should be_true
-
-    product.record_reference = "365-9780194351898"
-    product.to_xml.to_s.include?("<RecordReference>365-9780194351898</RecordReference>").should be_true
-
-    product.product_form = "BC"
-    product.to_xml.to_s.include?("<ProductForm>BC</ProductForm>").should be_true
-
-    product.edition_number = 1
-    product.to_xml.to_s.include?("<EditionNumber>1</EditionNumber>").should be_true
-
-    product.number_of_pages = 100
-    product.to_xml.to_s.include?("<NumberOfPages>100</NumberOfPages>").should be_true
-
-    product.bic_main_subject = "EB"
-    product.to_xml.to_s.include?("<BICMainSubject>EB</BICMainSubject>").should be_true
-
-    product.publishing_status = 4
-    product.to_xml.to_s.include?("<PublishingStatus>04</PublishingStatus>").should be_true
-
-    product.publication_date = Date.civil(1998,9,1)
-    product.to_xml.to_s.include?("<PublicationDate>19980901</PublicationDate>").should be_true
-
-    product.year_first_published = 1998
-    product.to_xml.to_s.include?("<YearFirstPublished>1998</YearFirstPublished>").should be_true
+  context "should provide write access to first level attributes" do
+    Given(:product) { ONIX::Product.new }
+    describe :notification_type= do
+      When { product.notification_type = 3 }
+      Then { product.to_xml.to_s.include? "<NotificationType>03</NotificationType>" }
+    end
+    describe :record_reference= do
+      When { product.record_reference = "365-9780194351898" }
+      Then { product.to_xml.to_s.include? "<RecordReference>365-9780194351898</RecordReference>" }
+    end
+    describe :product_form= do
+      When { product.product_form = "BC" }
+      Then { product.to_xml.to_s.include? "<ProductForm>BC</ProductForm>" }
+    end
+    describe :edition_number= do
+      When { product.edition_number = 1 }
+      Then { product.to_xml.to_s.include? "<EditionNumber>1</EditionNumber>" }
+    end
+    describe :number_of_pages= do
+      When { product.number_of_pages = 100 }
+      Then { product.to_xml.to_s.include? "<NumberOfPages>100</NumberOfPages>" }
+    end
+    describe :bic_main_subject= do
+      When { product.bic_main_subject = "EB" }
+      Then { product.to_xml.to_s.include? "<BICMainSubject>EB</BICMainSubject>" }
+    end
+    describe :publishing_status= do
+      When { product.publishing_status = 4 }
+      Then { product.to_xml.to_s.include? "<PublishingStatus>04</PublishingStatus>" }
+    end
+    describe  :publication_date= do
+      When { product.publication_date = Date.civil(1998,9,1) }
+      Then { product.to_xml.to_s.include? "<PublicationDate>19980901</PublicationDate>" }
+    end
+    describe :year_first_published= do
+      When { product.year_first_published = 1998 }
+      Then { product.to_xml.to_s.include? "<YearFirstPublished>1998</YearFirstPublished>" }
+    end
   end
 
-  it "should correctly from_xml files that have an invalid publication date" do
-    file = File.join(@data_path, "product_invalid_pubdate.xml")
-    product = ONIX::Product.from_xml(File.read(file))
+end
 
-    product.bic_main_subject.should eql("VXFC1")
-    product.publication_date.should be_nil
+describe ONIX::Product do
+
+  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "product_invalid_pubdate.xml")) }
+
+  describe "should correctly from_xml files that have an invalid publication date" do
+    Given(:product) { ONIX::Product.from_xml(doc) }
+
+    Then { product.bic_main_subject == "VXFC1" }
+    Then { product.publication_date.nil? }
   end
+
 end
