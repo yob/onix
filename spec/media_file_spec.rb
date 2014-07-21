@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::MediaFile do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "media_file.xml")) }
+  Given(:doc) { load_xml "media_file.xml" }
 
   describe "should correctly convert to a string" do
     Given(:mf) { ONIX::MediaFile.from_xml(doc) }

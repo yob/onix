@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::MarketRepresentation do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "market_representation.xml")) }
+  Given(:doc) { load_xml "market_representation.xml" }
 
   describe "should correctly convert to a string" do
     Given(:rep) { ONIX::MarketRepresentation.from_xml(doc) }

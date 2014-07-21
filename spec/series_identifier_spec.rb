@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::SeriesIdentifier do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "series_identifier.xml")) }
+  Given(:doc) { load_xml "series_identifier.xml" }
 
   describe "should correctly convert to a string" do
     Given(:series) { ONIX::SeriesIdentifier.from_xml(doc) }

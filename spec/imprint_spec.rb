@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Imprint do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "imprint.xml")) }
+  Given(:doc) { load_xml "imprint.xml" }
 
   describe "should correctly convert to a string" do
     Given(:imp) { ONIX::Imprint.from_xml(doc) }

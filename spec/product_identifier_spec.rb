@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::ProductIdentifier do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "product_identifier.xml")) }
+  Given(:doc) { load_xml "product_identifier.xml" }
 
   describe "should correctly convert to a string" do
     Given(:id) { ONIX::ProductIdentifier.from_xml(doc) }

@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Header do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "header.xml")) }
+  Given(:doc) { load_xml "header.xml" }
 
   describe "should correctly convert to a string" do
     Given(:header) { ONIX::Header.from_xml(doc) }
@@ -125,7 +125,7 @@ end
 
 describe ONIX::Header do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "header_invalid_sentdate.xml")) }
+  Given(:doc) { load_xml "header_invalid_sentdate.xml" }
 
   context "should correctly handle headers with an invalid sent date" do
     Given(:header) { ONIX::Header.from_xml(doc) }

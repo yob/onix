@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::AudienceRange do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "audience_range.xml")) }
+  Given(:doc) { load_xml "audience_range.xml" }
 
   describe "should correctly convert to a string" do
     Given(:aud) { ONIX::AudienceRange.from_xml(doc) }

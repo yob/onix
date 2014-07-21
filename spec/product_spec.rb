@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Product do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "product.xml")) }
+  Given(:doc) { load_xml "product.xml" }
 
   describe "should provide read access to first level attributes" do
     Given(:product) { ONIX::Product.from_xml(doc) }
@@ -90,7 +90,7 @@ end
 
 describe ONIX::Product do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "product_invalid_pubdate.xml")) }
+  Given(:doc) { load_xml "product_invalid_pubdate.xml" }
 
   describe "should correctly from_xml files that have an invalid publication date" do
     Given(:product) { ONIX::Product.from_xml(doc) }

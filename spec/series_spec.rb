@@ -1,33 +1,29 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Series do
 
-  Given{
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "series.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
-  }
+  Given(:doc) { load_xml "series.xml" }
 
   context "should correctly convert to a string" do
-    Given(:series){ ONIX::Series.from_xml(@root.to_s) }
+    Given(:series) { ONIX::Series.from_xml(doc) }
 
-    Then{ series.to_xml.to_s[0,8] == "<Series>" }
+    Then{ series.to_xml.to_s.start_with? "<Series>" }
   end
 
   context "should provide read access to first level attributes" do
-    Given(:series){ ONIX::Series.from_xml(@root.to_s) }
+    Given(:series) { ONIX::Series.from_xml(doc) }
 
-    Then{ series.title_of_series == "Citizens and Their Governments" }
+    Then{  series.title_of_series == "Citizens and Their Governments" }
   end
 
   context "should provide write access to first level attributes" do
-    Given(:series){ ONIX::Series.new }
-
-    When{ series.title_of_series = "Cool Science Careers" }
-    Then{ series.to_xml.to_s.include?("<TitleOfSeries>Cool Science Careers</TitleOfSeries>") == true }
+    Given(:series) { ONIX::Series.new }
+    describe :title_of_series= do
+      When { series.title_of_series = "Cool Science Careers" }
+      Then { series.to_xml.to_s.include? "<TitleOfSeries>Cool Science Careers</TitleOfSeries>" }
+    end
   end
 
 end

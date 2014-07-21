@@ -1,14 +1,14 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Website do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "website.xml")) }
+  Given(:doc) { load_xml "website.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:web){ ONIX::Website.from_xml(doc) }
-    Then{ web.to_xml.to_s.start_with? "<Website>" }
+    Given(:web) { ONIX::Website.from_xml(doc) }
+    Then { web.to_xml.to_s.start_with? "<Website>" }
   end
 
   describe "should provide read access to first level attributes" do

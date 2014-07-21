@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Contributor do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "contributor.xml")) }
+  Given(:doc) { load_xml "contributor.xml" }
 
   describe "should correctly convert to a string" do
     Given(:header) { ONIX::Contributor.from_xml(doc) }

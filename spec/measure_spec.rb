@@ -1,10 +1,10 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Measure do
 
-  Given(:doc) { File.read(File.join(File.dirname(__FILE__), "..", "data", "measure.xml")) }
+  Given(:doc) { load_xml "measure.xml" }
 
   describe "should correctly convert to a string" do
     Given(:m) { ONIX::Measure.from_xml(doc) }
