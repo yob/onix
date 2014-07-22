@@ -1,94 +1,74 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Normaliser, "with a simple short tag file" do
 
-  before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "short_tags.xml")
-    @outfile   = @filename + ".new"
+  Given(:filename) { File.join(File.dirname(__FILE__), "..", "data", "short_tags.xml") }
+  Given(:outfile) { filename + ".new" }
+  Given { File.unlink(outfile) if File.file?(outfile) }
+
+  describe "should correctly convert short tag file to reference tag" do
+    Given { ONIX::Normaliser.process(filename, outfile) }
+    Then { File.file?(outfile) }
+
+    Given(:content) { File.read(outfile) }
+
+    Then { !content.include? "<m174>" }
+    Then { content.include? "<FromCompany>" }
   end
 
-  after(:each) do
-    File.unlink(@outfile) if File.file?(@outfile)
-  end
-
-  it "should correctly convert short tag file to reference tag" do
-    ONIX::Normaliser.process(@filename, @outfile)
-
-    File.file?(@outfile).should be_true
-    content = File.read(@outfile)
-    content.include?("<m174>").should be_false
-    content.include?("<FromCompany>").should be_true
-  end
 end
 
-describe ONIX::Normaliser, "with a simple short tag file that has no doctype" do
+# describe ONIX::Normaliser, "with a simple short tag file that has no doctype" do
+#   Given(:filename) { File.join(File.dirname(__FILE__), "..", "data", "short_tags_no_doctype.xml") }
+#   Given(:outfile) { filename + ".new" }
+#   Given { File.unlink(outfile) if File.file?(outfile) }
 
-  before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "short_tags_no_doctype.xml")
-    @outfile   = @filename + ".new"
-  end
+#   describe "should correctly convert short tag file to reference tag" do
+#     pending
+#     Given { ONIX::Normaliser.process(filename, outfile) }
+#     Then { File.file?(outfile) }
 
-  after(:each) do
-    File.unlink(@outfile) if File.file?(@outfile)
-  end
+#     Given(:content) { File.read(outfile) }
 
-  it "should correctly convert short tag file to reference tag" do
-    pending
-    ONIX::Normaliser.process(@filename, @outfile)
+#     Then { !content.include? "<m174>" }
+#     Then { content.include? "<FromCompany>" }
+#   end
 
-    File.file?(@outfile).should be_true
-    content = File.read(@outfile)
-    content.include?("<m174>").should be_false
-    content.include?("<FromCompany>").should be_true
-  end
-end
+# end
 
 describe ONIX::Normaliser, "with a short tag file that include HTML tags" do
 
-  before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "short_tags_ivp.xml")
-    @outfile   = @filename + ".new"
-  end
+  Given(:filename) { File.join(File.dirname(__FILE__), "..", "data", "short_tags_ivp.xml") }
+  Given(:outfile) { filename + ".new" }
+  Given { File.unlink(outfile) if File.file?(outfile) }
 
-  after(:each) do
-    File.unlink(@outfile) if File.file?(@outfile)
-  end
+  describe "should correctly convert short tag file to reference tag" do
+    Given { ONIX::Normaliser.process(filename, outfile) }
+    Then { File.file?(outfile) }
 
-  it "should correctly convert short tag file to reference tag" do
-    ONIX::Normaliser.process(@filename, @outfile)
+    Given(:content) { File.read(outfile) }
 
-    File.file?(@outfile).should be_true
-    content = File.read(@outfile)
-    content.include?("<m174>").should be_false
-    content.include?("<FromCompany>").should be_true
-    content.include?("<em>Discipleship Essentials</em>").should be_true
+    Then { !content.include? "<m174>" }
+    Then { content.include? "<FromCompany>" }
+    Then { content.include? "<em>Discipleship Essentials</em>" }
   end
 
 end
 
 describe ONIX::Normaliser, "with a utf8 file that has illegal control chars" do
 
-  before(:each) do
-    @data_path = File.join(File.dirname(__FILE__),"..","data")
-    @filename  = File.join(@data_path, "control_chars.xml")
-    @outfile   = @filename + ".new"
+  Given(:filename) { File.join(File.dirname(__FILE__), "..", "data", "control_chars.xml") }
+  Given(:outfile) { filename + ".new" }
+  Given { File.unlink(outfile) if File.file?(outfile) }
+
+  describe "should remove all control chars except LF, CR and TAB" do
+    Given { ONIX::Normaliser.process(filename, outfile) }
+    Then { File.file?(outfile) }
+
+    Given(:content) { File.read(outfile) }
+    Then { content.include? "<TitleText>OXFORDPICTURE DICTIONARY CHINESE</TitleText>" }
   end
 
-  after(:each) do
-    File.unlink(@outfile) if File.file?(@outfile)
-  end
-
-  it "should remove all control chars except LF, CR and TAB" do
-    ONIX::Normaliser.process(@filename, @outfile)
-
-    File.file?(@outfile).should be_true
-    content = File.read(@outfile)
-
-    content.include?("<TitleText>OXFORDPICTURE DICTIONARY CHINESE</TitleText>").should be_true
-  end
 end
