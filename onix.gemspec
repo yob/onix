@@ -1,6 +1,8 @@
+require File.expand_path('../lib/onix/version', __FILE__)
+
 Gem::Specification.new do |s|
   s.name              = "onix"
-  s.version           = "0.9.5"
+  s.version           = ONIX::VERSION
   s.summary           = "A convient mapping between ruby objects and the ONIX XML specification"
   s.description       = "A convient mapping between ruby objects and the ONIX XML specification"
   s.authors           = ["James Healy"]
@@ -15,10 +17,11 @@ Gem::Specification.new do |s|
   s.add_dependency('roxml', '~>3.3.1')
   s.add_dependency('activesupport', '>= 3.0.5')
   s.add_dependency('i18n')
-  s.add_dependency('andand')
   s.add_dependency('nokogiri', '~>1.4')
 
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec", ">=2.12")
   s.add_development_dependency("rspec-given")
+
+  s.required_ruby_version = '>= 1.9'
 end
