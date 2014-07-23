@@ -1,39 +1,33 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::Website do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "website.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "website.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:web) { ONIX::Website.from_xml(doc) }
+    Then { web.to_xml.to_s.start_with? "<Website>" }
   end
 
-  it "should correctly convert to a string" do
-    web = ONIX::Website.from_xml(@root.to_s)
-    web.to_xml.to_s[0,9].should eql("<Website>")
+  describe "should provide read access to first level attributes" do
+    Given(:web) { ONIX::Website.from_xml(doc) }
+
+    Then { web.website_role == 1 }
+    Then { web.website_link == "http://www.rainbowbooks.com.au" }
   end
 
-  it "should provide read access to first level attributes" do
-    web = ONIX::Website.from_xml(@root.to_s)
-
-    web.website_role.should eql(1)
-    web.website_link.should eql("http://www.rainbowbooks.com.au")
-  end
-
-  it "should provide write access to first level attributes" do
-    web = ONIX::Website.new
-
-    web.website_role = 2
-    web.to_xml.to_s.include?("<WebsiteRole>02</WebsiteRole>").should be_true
-
-    web.website_link = "http://www.yob.id.au"
-    web.to_xml.to_s.include?("<WebsiteLink>http://www.yob.id.au</WebsiteLink>").should be_true
-
+  context "should provide write access to first level attributes" do
+    Given(:web) { ONIX::Website.new }
+    describe :website_role= do
+      When { web.website_role = 2 }
+      Then { web.to_xml.to_s.include? "<WebsiteRole>02</WebsiteRole>" }
+    end
+    describe :website_link= do
+      When { web.website_link = "http://www.yob.id.au" }
+      Then { web.to_xml.to_s.include? "<WebsiteLink>http://www.yob.id.au</WebsiteLink>" }
+    end
   end
 
 end
-
-

@@ -1,44 +1,42 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
 describe ONIX::AudienceRange do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "audience_range.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "audience_range.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:aud) { ONIX::AudienceRange.from_xml(doc) }
+    Then { aud.to_xml.to_s.start_with? "<AudienceRange>" }
   end
 
-  it "should correctly convert to a string" do
-    aud = ONIX::AudienceRange.from_xml(@root.to_s)
-    aud.to_xml.to_s[0,15].should eql("<AudienceRange>")
+  describe "should provide read access to first level attributes" do
+    Given(:aud) { ONIX::AudienceRange.from_xml(doc) }
+
+    Then { aud.audience_range_qualifier == 11 }
+    Then { aud.audience_range_precisions.size == 2 }
+    Then { aud.audience_range_precisions[0] == 3 }
+    Then { aud.audience_range_precisions[1] == 4 }
+    Then { aud.audience_range_values.size == 2 }
+    Then { aud.audience_range_values[0] == 3 }
+    Then { aud.audience_range_values[1] == 5 }
   end
 
-  it "should provide read access to first level attributes" do
-    aud = ONIX::AudienceRange.from_xml(@root.to_s)
-
-    aud.audience_range_qualifier.should eql(11)
-    aud.audience_range_precisions.size.should eql(2)
-    aud.audience_range_precisions[0].should eql(3)
-    aud.audience_range_precisions[1].should eql(4)
-    aud.audience_range_values.size.should eql(2)
-    aud.audience_range_values[0].should eql(3)
-    aud.audience_range_values[1].should eql(5)
-  end
-
-  it "should provide write access to first level attributes" do
-    aud = ONIX::AudienceRange.new
-
-    aud.audience_range_qualifier = 12
-    aud.to_xml.to_s.include?("<AudienceRangeQualifier>12</AudienceRangeQualifier>").should be_true
-
-    aud.audience_range_precisions[0] = 888
-    aud.to_xml.to_s.include?("<AudienceRangePrecision>888</AudienceRangePrecision>").should be_true
-
-    aud.audience_range_values[0] = 999
-    aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
+  context "should provide write access to first level attributes" do
+    Given(:aud) { ONIX::AudienceRange.new }
+    describe :audience_range_qualifier= do
+      When { aud.audience_range_qualifier = 12 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangeQualifier>12</AudienceRangeQualifier>" }
+    end
+    describe :audience_range_precisions= do
+      When { aud.audience_range_precisions[0] = 888 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangePrecision>888</AudienceRangePrecision>" }
+    end
+    describe :audience_range_values= do
+      When { aud.audience_range_values[0] = 999 }
+      Then { aud.to_xml.to_s.include? "<AudienceRangeValue>999</AudienceRangeValue>" }
+    end
   end
 
 end

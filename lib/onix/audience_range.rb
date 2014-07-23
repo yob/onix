@@ -8,7 +8,7 @@ module ONIX
 
     xml_accessor :audience_range_qualifier, :from => "AudienceRangeQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
     xml_accessor :audience_range_precisions, :from => "AudienceRangePrecision", :as => [Fixnum], :to_xml => [ONIX::Formatters.two_digit] # TODO: two_digit isn't working on the array items
-    xml_accessor :audience_range_values, :from => "AudienceRangeValue"
+    xml_accessor :audience_range_values, :from => "AudienceRangeValue", :as => [Fixnum], :to_xml => [ONIX::Formatters.two_digit] # TODO: two_digit isn't working on the array items
 
     # TODO: element AudienceRange: validity error :
     #   Element AudienceRange content does not follow the DTD, expecting
