@@ -23,7 +23,7 @@ module ONIX
 
     self.representation_wrap = :Imprint
 
-    property :name_code_type, as: "NameCodeType", getter: lambda { |arg| "%02i" % name_code_type unless name_code_type.nil? }
+    property :name_code_type, as: "NameCodeType", getter: ->(**_) { "%02i" % name_code_type unless name_code_type.nil? }
     property :name_code_type_name, as: "NameCodeTypeName"
     property :name_code_value, as: "NameCodeValue"
     property :imprint_name, as: "ImprintName"
