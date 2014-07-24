@@ -29,3 +29,31 @@ describe ONIX::Imprint do
   end
 
 end
+
+describe ONIX::ImprintRepresenter do
+
+  Given(:doc) { load_xml "imprint.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:imp) { ONIX::Imprint.new.extend(ONIX::ImprintRepresenter).from_xml(doc) }
+    Then { imp.extend(ONIX::ImprintRepresenter).to_xml.to_s.start_with? "<Imprint>" }
+  end
+
+  describe "should provide read access to first level attributes" do
+    Given(:imp) { ONIX::Imprint.new.extend(ONIX::ImprintRepresenter).from_xml(doc) }
+    Then { imp.imprint_name == "Oxford University Press UK" }
+  end
+
+  context "should provide write access to first level attributes" do
+    Given(:imp) { ONIX::Imprint.new }
+    describe :imprint_name= do
+      When { imp.imprint_name = "Paulist Press" }
+      Then { imp.extend(ONIX::ImprintRepresenter).to_xml.to_s.include? "<ImprintName>Paulist Press</ImprintName>" }
+    end
+    describe :name_code_type= do
+      When { imp.name_code_type = 1 }
+      Then { imp.extend(ONIX::ImprintRepresenter).to_xml.to_s.include? "<NameCodeType>01</NameCodeType>" }
+    end
+  end
+
+end
