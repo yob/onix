@@ -1,5 +1,7 @@
 ## ONIX
 
+[![Build Status](https://travis-ci.org/whoiswasabi/onix.svg?branch=master)](https://travis-ci.org/whoiswasabi/onix)
+
 The ONIX standard is a somewhat verbose XML format that is rapidly becoming the
 industry standard for electronic data sharing in the book and publishing
 industries.
