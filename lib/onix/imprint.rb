@@ -12,7 +12,7 @@ module ONIX
     xml_accessor :imprint_name,        :from => "ImprintName"
   end
 
-  module ImprintRepresenter
+  class ImprintRepresenter < Representable::Decorator
     include Representable::XML
 
     self.representation_wrap = :Imprint
