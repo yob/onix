@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency('activesupport', '>= 3.0.5')
   s.add_dependency('i18n')
   s.add_dependency('nokogiri', '~>1.4')
+  s.add_dependency('representable')
 
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec", ">=2.12")
