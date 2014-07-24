@@ -2,12 +2,28 @@
 
 module ONIX
   class SenderIdentifier
-    include ROXML
+    include Virtus.model
 
-    xml_name "SenderIdentifier"
+    attribute :sender_id_type, Integer
+    attribute :id_type_name
+    attribute :id_value
 
-    xml_accessor :sender_id_type, :from => "SenderIDType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :id_type_name,   :from => "IDTypeName"
-    xml_accessor :id_value,       :from => "IDValue"
+    def to_xml
+      SenderIdentifierRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      SenderIdentifierRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class SenderIdentifierRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :SenderIdentifier
+
+    property :sender_id_type, as: "SenderIDType", getter: ->(**_) { "%02i" % sender_id_type unless sender_id_type.nil? }
+    property :id_type_name, as: "IDTypeName"
+    property :id_value, as: "IDValue"
   end
 end
