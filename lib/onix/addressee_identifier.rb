@@ -2,12 +2,28 @@
 
 module ONIX
   class AddresseeIdentifier
-    include ROXML
+    include Virtus.model
 
-    xml_name "AddresseeIdentifier"
+    attribute :addressee_id_type, Integer
+    attribute :id_type_name
+    attribute :id_value
 
-    xml_accessor :addressee_id_type, :from => "AddresseeIDType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :id_type_name,      :from => "IDTypeName"
-    xml_accessor :id_value,          :from => "IDValue"
+    def to_xml
+      AddresseeIdentifierRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      AddresseeIdentifierRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class AddresseeIdentifierRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :AddresseeIdentifier
+
+    property :addressee_id_type, as: "AddresseeIDType", getter: ->(**_) { "%02i" % addressee_id_type unless addressee_id_type.nil? }
+    property :id_type_name, as: "IDTypeName"
+    property :id_value, as: "IDValue"
   end
 end
