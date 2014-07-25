@@ -2,11 +2,26 @@
 
 module ONIX
   class SeriesIdentifier
-    include ROXML
+  include Virtus.model
 
-    xml_name "SeriesIdentifier"
+    attribute :series_id_type, Integer
+    attribute :id_value
 
-    xml_accessor :series_id_type, :from => "SeriesIDType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :id_value, :from => "IDValue"
+    def to_xml
+      SeriesIdentifierRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      SeriesIdentifierRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class SeriesIdentifierRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :SeriesIdentifier
+
+    property :series_id_type, as: "SeriesIDType", getter: ->(args) { "%02i" % series_id_type unless series_id_type.nil? }
+    property :id_value, as: "IDValue"
   end
 end
