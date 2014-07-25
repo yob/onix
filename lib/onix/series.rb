@@ -2,16 +2,27 @@
 
 module ONIX
   class Series
-    include ROXML
+    include Virtus.model
 
-    xml_name "Series"
+    attribute :series_identifiers, Array[ONIX::SeriesIdentifier]
+    attribute :title_of_series
 
-    xml_accessor :series_identifiers, :from => "SeriesIdentifier", :as => [ONIX::SeriesIdentifier]
-    xml_accessor :title_of_series, :from => "TitleOfSeries"
-
-    def initialize
-      self.series_identifiers = []
+    def to_xml
+      SeriesRepresenter.new(self).to_xml
     end
 
+    def self.from_xml(data)
+      SeriesRepresenter.new(self.new).from_xml(data)
+    end
+
+  end
+
+  class SeriesRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Series
+
+    collection :series_identifiers, as: "SeriesIdentifier", extend: ONIX::SeriesIdentifierRepresenter, class: ONIX::SeriesIdentifier
+    property :title_of_series, as: "TitleOfSeries"
   end
 end
