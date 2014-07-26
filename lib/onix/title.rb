@@ -2,15 +2,32 @@
 
 module ONIX
   class Title
-    include ROXML 
+    include Virtus.model
 
-    xml_name "Title"
+    attribute :title_type, Integer
+    attribute :title_text
+    attribute :title_prefix
+    attribute :title_without_prefix
+    attribute :subtitle
 
-    xml_accessor :title_type, :from => "TitleType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :title_text, :from => "TitleText"
-    xml_accessor :title_prefix, :from => "TitlePrefix"
-    xml_accessor :title_without_prefix, :from => "TitleWithoutPrefix"
-    xml_accessor :subtitle,   :from => "Subtitle"
+    def to_xml
+      TitleRepresenter.new(self).to_xml
+    end
 
+    def self.from_xml(data)
+      TitleRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class TitleRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Title
+
+    property :title_type, as: "TitleType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :title_text, as: "TitleText"
+    property :title_prefix, as: "TitlePrefix"
+    property :title_without_prefix, as: "TitleWithoutPrefix"
+    property :subtitle, as: "Subtitle"
   end
 end
