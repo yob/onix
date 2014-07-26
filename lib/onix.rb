@@ -10,7 +10,7 @@ require 'virtus'
 module ONIX
   class Formatters
 
-    TWO_DIGITS = ->(value, **context) { "%02i" % value.to_i }
+    TWO_DIGITS = ->(value, *context) { "%02i" % value.to_i }
     YYYYMMDD = ->(value, **context) { value.strftime("%Y%m%d") if value.respond_to? :strftime }
     DECIMAL = ->(value, **context) {
       case value

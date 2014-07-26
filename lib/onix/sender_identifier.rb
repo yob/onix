@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :SenderIdentifier
 
-    property :sender_id_type, as: "SenderIDType", getter: ->(**_) { "%02i" % sender_id_type unless sender_id_type.nil? }
+    property :sender_id_type, as: "SenderIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
     property :id_type_name, as: "IDTypeName"
     property :id_value, as: "IDValue"
   end

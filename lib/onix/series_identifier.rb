@@ -21,7 +21,7 @@ module ONIX
 
     self.representation_wrap = :SeriesIdentifier
 
-    property :series_id_type, as: "SeriesIDType", getter: ->(args) { "%02i" % series_id_type unless series_id_type.nil? }
+    property :series_id_type, as: "SeriesIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
     property :id_value, as: "IDValue"
   end
 end

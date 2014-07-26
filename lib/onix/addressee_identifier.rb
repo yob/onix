@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :AddresseeIdentifier
 
-    property :addressee_id_type, as: "AddresseeIDType", getter: ->(**_) { "%02i" % addressee_id_type unless addressee_id_type.nil? }
+    property :addressee_id_type, as: "AddresseeIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
     property :id_type_name, as: "IDTypeName"
     property :id_value, as: "IDValue"
   end

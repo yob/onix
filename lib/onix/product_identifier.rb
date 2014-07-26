@@ -21,7 +21,7 @@ module ONIX
 
     self.representation_wrap = :ProductIdentifier
 
-    property :product_id_type, as: "ProductIDType", getter: ->(args) { "%02i" % product_id_type unless product_id_type.nil? }
+    property :product_id_type, as: "ProductIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
     property :id_value, as: "IDValue"
   end
 end
