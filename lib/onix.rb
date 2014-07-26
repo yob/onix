@@ -9,6 +9,17 @@ require 'virtus'
 
 module ONIX
   class Formatters
+
+    TWO_DIGITS = ->(value, **context) { "%02i" % value.to_i }
+    YYYYMMDD = ->(value, **context) { value.strftime("%Y%m%d") if value.respond_to? :strftime }
+    DECIMAL = ->(value, **context) {
+      case value
+      when nil then nil
+      when BigDecimal then value.to_s("F")
+      else value.to_s
+      end
+    }
+
     def self.decimal
       lambda do |val|
         if val.nil?
