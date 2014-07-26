@@ -2,12 +2,28 @@
 
 module ONIX
   class Website
-    include ROXML
+    include Virtus.model
 
-    xml_name "Website"
+    attribute :website_role, Integer
+    attribute :website_description
+    attribute :website_link
 
-    xml_accessor :website_role,        :from => "WebsiteRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :website_description, :from => "WebsiteDescription"
-    xml_accessor :website_link,        :from => "WebsiteLink"
+    def to_xml
+      WebsiteRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      WebsiteRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class WebsiteRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Website
+
+    property :website_role, as: "WebsiteRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :website_description, as: "WebsiteDescription"
+    property :website_link, as: "WebsiteLink"
   end
 end
