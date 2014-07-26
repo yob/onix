@@ -2,12 +2,28 @@
 
 module ONIX
   class Language
-    include ROXML
+    include Virtus.model
 
-    xml_name "Language"
+    attribute :language_role, Integer
+    attribute :language_code
+    attribute :country_code
 
-    xml_accessor :language_role,        :from => "LanguageRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :language_code,        :from => "LanguageCode"
-    xml_accessor :country_code,         :from => "CountryCode"
+    def to_xml
+      LanguageRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      LanguageRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class LanguageRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Language
+
+    property :language_role, as: "LanguageRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :language_code, as: "LanguageCode"
+    property :country_code, as: "CountryCode"
   end
 end
