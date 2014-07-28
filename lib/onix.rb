@@ -10,7 +10,28 @@ require 'virtus'
 module ONIX
   class Formatters
 
-    TWO_DIGITS = ->(value, *context) { "%02i" % value.to_i }
+    TWO_DIGITS = ->(value, *context) {
+      if value.is_a?(Array)
+        value.each_with_index do |val, index|
+          value[index] = ONIX::Formatters::two_digits_format(val)
+        end
+      else
+        ONIX::Formatters::two_digits_format(value)
+      end
+    }
+
+    def self.two_digits_format(value)
+      if value.nil?
+          nil
+        elsif value.to_i < 10
+          "%02i" % value
+        elsif value.to_i > 99
+          value.to_s[-2,2]
+        else
+          value.to_s
+        end
+    end
+
     YYYYMMDD = ->(value, **context) { value.strftime("%Y%m%d") if value.respond_to? :strftime }
     DECIMAL = ->(value, **context) {
       case value
