@@ -2,12 +2,28 @@
 
 module ONIX
   class DiscountCoded
-    include ROXML
+    include Virtus.model
 
-    xml_name "DiscountCoded"
+    attribute :discount_code_type, Integer
+    attribute :discount_code_type_name
+    attribute :discount_code
 
-    xml_accessor :discount_code_type, :from => "DiscountCodeType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :discount_code_type_name, :from => "DiscountCodeTypeName"
-    xml_accessor :discount_code, :from => "DiscountCode"
+    def to_xml
+      DiscountCodedRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      DiscountCodedRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class DiscountCodedRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :DiscountCoded
+
+    property :discount_code_type, as: "DiscountCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :discount_code_type_name, as: "DiscountCodeTypeName"
+    property :discount_code, as: "DiscountCode"
   end
 end
