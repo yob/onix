@@ -33,7 +33,7 @@ module ONIX
     end
 
     YYYYMMDD = ->(value, **context) { value.strftime("%Y%m%d") if value.respond_to? :strftime }
-    DECIMAL = ->(value, **context) {
+    DECIMAL = ->(value, *context) {
       case value
       when nil then nil
       when BigDecimal then value.to_s("F")
