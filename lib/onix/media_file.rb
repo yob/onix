@@ -2,14 +2,32 @@
 
 module ONIX
   class MediaFile
-    include ROXML
+    include Virtus.model
 
-    xml_name "MediaFile"
+    attribute :media_file_type_code, Integer
+    attribute :media_file_format_code, Integer
+    attribute :image_resolution
+    attribute :media_file_link_type_code, Integer
+    attribute :media_file_link
 
-    xml_accessor :media_file_type_code, :from => "MediaFileTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :media_file_format_code, :from => "MediaFileFormatCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :image_resolution, :from => "ImageResolution"
-    xml_accessor :media_file_link_type_code, :from => "MediaFileLinkTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :media_file_link, :from => "MediaFileLink"
+    def to_xml
+      MediaFileRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      MediaFileRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class MediaFileRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :MediaFile
+
+    property :media_file_type_code, as: "MediaFileTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :media_file_format_code, as: "MediaFileFormatCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :image_resolution, as: "ImageResolution"
+    property :media_file_link_type_code, as: "MediaFileLinkTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :media_file_link, as: "MediaFileLink"
   end
 end
