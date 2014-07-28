@@ -2,14 +2,32 @@
 
 module ONIX
   class Publisher
-    include ROXML
+    include Virtus.model
 
-    xml_name "Publisher"
+    attribute :publishing_role, Integer
+    attribute :name_code_type, Integer
+    attribute :name_code_type_name
+    attribute :name_code_type_value
+    attribute :publisher_name
 
-    xml_accessor :publishing_role,      :from => "PublishingRole", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :name_code_type,       :from => "NameCodeType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :name_code_type_name,  :from => "NameCodeTypeName"
-    xml_accessor :name_code_type_value, :from => "NameCodeTypeValue"
-    xml_accessor :publisher_name,       :from => "PublisherName"
+    def to_xml
+      PublisherRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      PublisherRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class PublisherRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Publisher
+
+    property :publishing_role, as: "PublishingRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :name_code_type_name, as: "NameCodeTypeName"
+    property :name_code_type_value, as: "NameCodeTypeValue"
+    property :publisher_name, as: "PublisherName"
   end
 end
