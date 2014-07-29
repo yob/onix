@@ -18,4 +18,12 @@
   <DefaultLinearUnit>dd</DefaultLinearUnit>
   <DefaultWeightUnit>ee</DefaultWeightUnit>
   <DefaultClassOfTrade>f</DefaultClassOfTrade>
+  <SenderIdentifier>
+    <SenderIDType>01</SenderIDType>
+    <IDValue>123456</IDValue>
+  </SenderIdentifier>
+  <SenderIdentifier>
+    <SenderIDType>02</SenderIDType>
+    <IDValue>7891002</IDValue>
+  </SenderIdentifier>
 </Header>

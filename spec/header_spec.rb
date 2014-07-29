@@ -121,6 +121,24 @@ describe ONIX::Header do
     end
   end
 
+  describe "should provide read access to sender IDs" do
+    Given(:header) { ONIX::Header.from_xml(doc) }
+    Then { header.sender_identifiers.size == 2 }
+  end
+
+  context "should provide write access to addressee IDs" do
+    Given(:addressee_identifier1) { ONIX::AddresseeIdentifier.new(addressee_id_type: 1) }
+    Given(:addressee_identifier2) { ONIX::AddresseeIdentifier.new(id_value: 20002) }
+    Given(:header) { ONIX::Header.new }
+
+    describe :addressee_identifiers= do
+      When { header.addressee_identifiers = [addressee_identifier1, addressee_identifier2] }
+
+      Then { header.to_xml.to_s.include? "<AddresseeIDType>01</AddresseeIDType>" }
+      Then { header.to_xml.to_s.include? "<IDValue>20002</IDValue>" }
+    end
+  end
+
 end
 
 describe ONIX::Header do
