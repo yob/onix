@@ -3,7 +3,6 @@
 require 'bigdecimal'
 require 'cgi'
 require 'singleton'
-require 'roxml'
 require 'representable/xml'
 require 'virtus'
 
