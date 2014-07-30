@@ -40,41 +40,6 @@ module ONIX
       end
     }
 
-    def self.decimal
-      lambda do |val|
-        if val.nil?
-          nil
-        elsif val.kind_of?(BigDecimal)
-          val.to_s("F")
-        else
-          val.to_s
-        end
-      end
-    end
-
-    def self.yyyymmdd
-      lambda do |val|
-        if val.nil? || !val.respond_to?(:strftime)
-          nil
-        else
-          val.strftime("%Y%m%d")
-        end
-      end
-    end
-
-    def self.two_digit
-      lambda do |val|
-        if val.nil?
-          nil
-        elsif val.to_i < 10
-          "0#{val}"
-        elsif val.to_i > 99
-          val.to_s[-2,2]
-        else
-          val.to_s
-        end
-      end
-    end
   end
 
   # core files
