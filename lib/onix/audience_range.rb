@@ -2,13 +2,11 @@
 
 module ONIX
   class AudienceRange
-    include ROXML
+    include Virtus.model
 
-    xml_name "AudienceRange"
-
-    xml_accessor :audience_range_qualifier, :from => "AudienceRangeQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :audience_range_precisions, :from => "AudienceRangePrecision", :as => [Fixnum], :to_xml => [ONIX::Formatters.two_digit] # TODO: two_digit isn't working on the array items
-    xml_accessor :audience_range_values, :from => "AudienceRangeValue", :as => [Fixnum], :to_xml => [ONIX::Formatters.two_digit] # TODO: two_digit isn't working on the array items
+    attribute :audience_range_qualifier, Integer
+    attribute :audience_range_precisions, Array[Integer]
+    attribute :audience_range_values, Array[Integer]
 
     # TODO: element AudienceRange: validity error :
     #   Element AudienceRange content does not follow the DTD, expecting
@@ -17,9 +15,23 @@ module ONIX
     #   got
     #   (AudienceRangeQualifier AudienceRangePrecision AudienceRangePrecision
     #   AudienceRangeValue AudienceRangeValue )
-    def initialize
-      self.audience_range_precisions = []
-      self.audience_range_values = []
+
+    def to_xml
+      AudienceRangeRepresenter.new(self).to_xml
     end
+
+    def self.from_xml(data)
+      AudienceRangeRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class AudienceRangeRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :AudienceRange
+
+    property :audience_range_qualifier, as: "AudienceRangeQualifier", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :audience_range_precisions, as: "AudienceRangePrecision", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :audience_range_values, as: "AudienceRangeValue", render_filter: ::ONIX::Formatters::TWO_DIGITS
   end
 end

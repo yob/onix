@@ -2,72 +2,94 @@
 
 module ONIX
   class Product
-    include ROXML
+    include Virtus.model
 
-    xml_name "Product"
-
-    xml_accessor :record_reference, :from => "RecordReference"
-    xml_accessor :notification_type, :from => "NotificationType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :product_identifiers, :from => "ProductIdentifier", :as => [ONIX::ProductIdentifier]
-    xml_accessor :product_form, :from => "ProductForm"
-    xml_accessor :product_form_detail, :from => "ProductFormDetail"
-    xml_accessor :series, :from => "Series", :as => [ONIX::Series]
-    xml_accessor :titles, :from => "Title", :as => [ONIX::Title]
-    xml_accessor :websites, :from => "Website", :as => [ONIX::Website]
-    xml_accessor :contributors, :from => "Contributor", :as => [ONIX::Contributor]
-    xml_accessor :edition_number, :from => "EditionNumber", :as => Fixnum
-    xml_accessor :languages, :from => "Language", :as => [ONIX::Language]
-    xml_accessor :number_of_pages, :from => "NumberOfPages", :as => Fixnum
-    xml_accessor :basic_main_subject, :from => "BASICMainSubject"
-    xml_accessor :bic_main_subject, :from => "BICMainSubject"
-    xml_accessor :subjects, :from => "Subject", :as => [ONIX::Subject]
-    xml_accessor :audience_code, :from => "AudienceCode", :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :audience_ranges, :from => "AudienceRange", :as => [ONIX::AudienceRange]
-    xml_accessor :text, :from => "OtherText", :as => [ONIX::OtherText]
-    xml_accessor :media_files, :from => "MediaFile", :as => [ONIX::MediaFile]
-    xml_accessor :imprints, :from => "Imprint", :as => [ONIX::Imprint]
-    xml_accessor :publishers, :from => "Publisher", :as => [ONIX::Publisher]
-    xml_accessor :publishing_status, :from => "PublishingStatus", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor(:publication_date, :from => "PublicationDate", :to_xml => ONIX::Formatters.yyyymmdd) do |val|
-      begin
-        Date.parse(val)
-      rescue
-        nil
-      end
-    end
-    xml_accessor :copyright_year, :from => "CopyrightYear", :as => Integer
-    xml_accessor :year_first_published, :from => "YearFirstPublished", :as => Fixnum
-    xml_accessor :sales_restrictions, :from => "SalesRestriction", :as => [ONIX::SalesRestriction]
-    xml_accessor :measurements, :from => "Measure", :as => [ONIX::Measure]
-    xml_accessor :supply_details, :from => "SupplyDetail", :as => [ONIX::SupplyDetail]
-    xml_accessor :market_representations, :from => "MarketRepresentation", :as => [ONIX::MarketRepresentation]
+    attribute :record_reference
+    attribute :notification_type, Integer
+    attribute :product_identifiers, Array[ONIX::ProductIdentifier]
+    attribute :product_form
+    attribute :product_form_detail
+    attribute :series, Array[ONIX::Series]
+    attribute :titles, Array[ONIX::Title]
+    attribute :websites, Array[ONIX::Website]
+    attribute :contributors, Array[ONIX::Contributor]
+    attribute :edition_number, Integer
+    attribute :languages, Array[ONIX::Language]
+    attribute :number_of_pages, Integer
+    attribute :basic_main_subject
+    attribute :bic_main_subject
+    attribute :subjects, Array[ONIX::Subject]
+    attribute :audience_code
+    attribute :audience_ranges, Array[ONIX::AudienceRange]
+    attribute :text, Array[ONIX::OtherText]
+    attribute :media_files, Array[ONIX::MediaFile]
+    attribute :imprints, Array[ONIX::Imprint]
+    attribute :publishers, Array[ONIX::Publisher]
+    attribute :publishing_status, Integer
+    attribute :publication_date
+    attribute :copyright_year, Integer
+    attribute :year_first_published, Integer
+    attribute :sales_restrictions, Array[ONIX::SalesRestriction]
+    attribute :measurements, Array[ONIX::Measure]
+    attribute :supply_details, Array[ONIX::SupplyDetail]
+    attribute :market_representations, Array[ONIX::MarketRepresentation]
 
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying
     #   various measurements of the product
-    xml_reader :height,     :from => "Height", :as => BigDecimal
-    xml_reader :width,      :from => "Width", :as => BigDecimal
-    xml_reader :thickness,  :from => "Thickness", :as => BigDecimal
-    xml_reader :weight,     :from => "Weight", :as => BigDecimal
-    xml_reader :dimensions, :from => "Dimensions"
+    attribute :height, Decimal
+    attribute :width, Decimal
+    attribute :thickness, Decimal
+    attribute :weight, Decimal
+    attribute :dimensions
 
-    def initialize
-      self.product_identifiers = []
-      self.series = []
-      self.titles = []
-      self.contributors = []
-      self.websites = []
-      self.subjects = []
-      self.audience_ranges = []
-      self.text = []
-      self.languages = []
-      self.media_files = []
-      self.imprints = []
-      self.publishers = []
-      self.sales_restrictions = []
-      self.measurements = []
-      self.supply_details = []
-      self.market_representations = []
+    def to_xml
+      ProductRepresenter.new(self).to_xml
     end
+
+    def self.from_xml(data)
+      ProductRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class ProductRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Product
+
+    property :record_reference, as: "RecordReference"
+    property :notification_type, as: "NotificationType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :product_identifiers, as: "ProductIdentifier", extend: ONIX::ProductIdentifierRepresenter, class: ONIX::ProductIdentifier
+    property :product_form, as: "ProductForm"
+    property :product_form_detail, as: "ProductFormDetail", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :series, as: "Series", extend: ONIX::SeriesRepresenter, class: ONIX::Series
+    collection :titles, as: "Title", extend: ONIX::TitleRepresenter, class: ONIX::Title
+    collection :websites, as: "Website", extend: ONIX::WebsiteRepresenter, class: ONIX::Website
+    collection :contributors, as: "Contributor", extend: ONIX::ContributorRepresenter, class: ONIX::Contributor
+    property :edition_number, as: "EditionNumber"
+    collection :languages, as: "Language", extend: ONIX::LanguageRepresenter, class: ONIX::Language
+    property :number_of_pages, as: "NumberOfPages"
+    property :basic_main_subject, as: "BASICMainSubject"
+    property :bic_main_subject, as: "BICMainSubject"
+    collection :subjects, as: "Subject", extend: ONIX::SubjectRepresenter, class: ONIX::Subject
+    property :audience_code, as: "AudienceCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :audience_ranges, as: "AudienceRange", extend: ONIX::AudienceRangeRepresenter, class: ONIX::AudienceRange
+    collection :text, as: "OtherText", extend: ONIX::OtherTextRepresenter, class: ONIX::OtherText
+    collection :media_files, as: "MediaFile", extend: ONIX::MediaFileRepresenter, class: ONIX::MediaFile
+    collection :imprints, as: "Imprint", extend: ONIX::ImprintRepresenter, class: ONIX::Imprint
+    collection :publishers, as: "Publisher", extend: ONIX::PublisherRepresenter, class: ONIX::Publisher
+    property :publishing_status, as: "PublishingStatus", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :publication_date, as: "PublicationDate", render_filter: ::ONIX::Formatters::YYYYMMDD, parse_filter: ->(value, *context) { Date.parse(value) rescue nil }
+    property :copyright_year, as: "CopyrightYear"
+    property :year_first_published, as: "YearFirstPublished"
+    collection :sales_restrictions, as: "SalesRestriction", extend: ONIX::SalesRestrictionRepresenter, class: ONIX::SalesRestriction
+    collection :measurements, as: "Measure", extend: ONIX::MeasureRepresenter, class: ONIX::Measure
+    collection :supply_details, as: "SupplyDetail", extend: ONIX::SupplyDetailRepresenter, class: ONIX::SupplyDetail
+    collection :market_representations, as: "MarketRepresentation", extend: ONIX::MarketRepresentationRepresenter, class: ONIX::MarketRepresentation
+    property :height, as: "Height"
+    property :width, as: "Width"
+    property :thickness, as: "Thickness"
+    property :weight, as: "Weight"
+    property :dimensions, as: "Dimensions"
   end
 end

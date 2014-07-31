@@ -2,12 +2,28 @@
 
 module ONIX
   class Measure
-    include ROXML
+    include Virtus.model
 
-    xml_name "Measure"
+    attribute :measure_type_code, Integer
+    attribute :measurement #Integer or Decimal
+    attribute :measure_unit_code
 
-    xml_accessor :measure_type_code, :from => "MeasureTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :measurement,       :from => "Measurement", :as => BigDecimal
-    xml_accessor :measure_unit_code, :from => "MeasureUnitCode"
+    def to_xml
+      MeasureRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      MeasureRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class MeasureRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Measure
+
+    property :measure_type_code, as: "MeasureTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :measurement, as: "Measurement", render_filter: ::ONIX::Formatters::DECIMAL, parse_filter: ->(value, *context) { value.is_a?(Integer) ? value.to_i : BigDecimal.new(value) }
+    property :measure_unit_code, as: "MeasureUnitCode"
   end
 end

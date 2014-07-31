@@ -2,24 +2,44 @@
 
 module ONIX
   class Price
-    include ROXML
+    include Virtus.model
 
-    xml_name "Price"
+    attribute :price_type_code, Integer
+    attribute :price_type_qualifier, Integer
+    attribute :price_type_description
+    attribute :price_per, Integer
+    attribute :minimum_order_qty, Integer
+    attribute :class_of_trade
+    attribute :bic_discount_group_code
+    attribute :discounts_coded, Array[DiscountCoded]
+    attribute :price_status, Integer
+    attribute :price_amount, Decimal
+    attribute :currency_code
 
-    xml_accessor :price_type_code, :from => "PriceTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :price_type_qualifier, :from => "PriceQualifier", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :price_type_description, :from => "PriceTypeDescription"
-    xml_accessor :price_per, :from => "PricePer", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :minimum_order_qty, :from => "MinimumOrderQuantity", :as => Fixnum
-    xml_accessor :class_of_trade, :from => "ClassOfTrade"
-    xml_accessor :bic_discount_group_code, :from => "BICDiscountGroupCode"
-    xml_accessor :discounts_coded, :from => "DiscountCoded", :as => [ONIX::DiscountCoded]
-    xml_accessor :price_status, :from => "PriceStatus", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :price_amount, :from => "PriceAmount", :as => BigDecimal, :to_xml => ONIX::Formatters.decimal
-    xml_accessor :currency_code, :from => "CurrencyCode"
-
-    def initialize
-      self.discounts_coded = []
+    def to_xml
+      PriceRepresenter.new(self).to_xml
     end
+
+    def self.from_xml(data)
+      PriceRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class PriceRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Price
+
+    property :price_type_code, as: "PriceTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :price_type_qualifier, as: "PriceQualifier", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :price_type_description, as: "PriceTypeDescription"
+      property :price_per, as: "PricePer", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :minimum_order_qty, as: "MinimumOrderQuantity"
+    property :class_of_trade, as: "ClassOfTrade"
+    property :bic_discount_group_code, as: "BICDiscountGroupCode"
+    collection :discounts_coded, as: "DiscountCoded", extend: ONIX::DiscountCodedRepresenter, class: ONIX::DiscountCoded
+    property :price_status, as: "PriceStatus", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :price_amount, as: "PriceAmount", render_filter: ::ONIX::Formatters::DECIMAL
+    property :currency_code, as: "CurrencyCode"
   end
 end

@@ -2,15 +2,34 @@
 
 module ONIX
   class OtherText
-    include ROXML
+    include Virtus.model
 
-    xml_name "OtherText"
+    attribute :text_type_code, Integer
+    attribute :text_format
+    attribute :text
+    attribute :text_link_type,Integer
+    attribute :text_link
+    attribute :text_author
 
-    xml_accessor :text_type_code, :from => "TextTypeCode", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :text_format,    :from => "TextFormat"
-    xml_accessor :text,           :from => "Text"
-    xml_accessor :text_link_type, :from => "TextLinkType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :text_link,      :from => "TextLink"
-    xml_accessor :text_author,    :from => "TextAuthor"
+    def to_xml
+      OtherTextRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      OtherTextRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class OtherTextRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :OtherText
+
+    property :text_type_code, as: "TextTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :text_format, as: "TextFormat"
+    property :text, as: "Text"
+    property :text_link_type, as: "TextLinkType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :text_link, as: "TextLink"
+    property :text_author, as: "TextAuthor"
   end
 end

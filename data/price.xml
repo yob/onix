@@ -2,4 +2,14 @@
 <Price>
   <PriceTypeCode>02</PriceTypeCode>
   <PriceAmount>7.5</PriceAmount>
+  <DiscountCoded>
+    <DiscountCodeType>01</DiscountCodeType>
+    <DiscountCodeTypeName>IngramDC1</DiscountCodeTypeName>
+    <DiscountCode>AHACP011</DiscountCode>
+  </DiscountCoded>
+  <DiscountCoded>
+    <DiscountCodeType>02</DiscountCodeType>
+    <DiscountCodeTypeName>IngramDC2</DiscountCodeTypeName>
+    <DiscountCode>AHACP022</DiscountCode>
+  </DiscountCoded>
 </Price>

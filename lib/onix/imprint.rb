@@ -2,13 +2,30 @@
 
 module ONIX
   class Imprint
-    include ROXML
+    include Virtus.model
 
-    xml_name "Imprint"
+    attribute :name_code_type, Integer
+    attribute :name_code_type_name
+    attribute :name_code_value
+    attribute :imprint_name
 
-    xml_accessor :name_code_type,      :from => "NameCodeType", :as => Fixnum, :to_xml => ONIX::Formatters.two_digit
-    xml_accessor :name_code_type_name, :from => "NameCodeTypeName"
-    xml_accessor :name_code_value,     :from => "NameCodeValue"
-    xml_accessor :imprint_name,        :from => "ImprintName"
+    def to_xml
+      ImprintRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      ImprintRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class ImprintRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :Imprint
+
+    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :name_code_type_name, as: "NameCodeTypeName"
+    property :name_code_value, as: "NameCodeValue"
+    property :imprint_name, as: "ImprintName"
   end
 end

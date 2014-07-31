@@ -3,45 +3,43 @@
 require 'bigdecimal'
 require 'cgi'
 require 'singleton'
-require 'roxml'
+require 'representable/xml'
+require 'virtus'
 
 module ONIX
   class Formatters
-    def self.decimal
-      lambda do |val|
-        if val.nil?
-          nil
-        elsif val.kind_of?(BigDecimal)
-          val.to_s("F")
-        else
-          val.to_s
+
+    TWO_DIGITS = ->(value, *context) {
+      if value.is_a?(Array)
+        value.each_with_index do |val, index|
+          value[index] = ONIX::Formatters::two_digits_format(val)
         end
+      else
+        ONIX::Formatters::two_digits_format(value)
       end
+    }
+
+    def self.two_digits_format(value)
+      if value.nil?
+          nil
+        elsif value.to_i < 10
+          "%02i" % value
+        elsif value.to_i > 99
+          value.to_s[-2,2]
+        else
+          value.to_s
+        end
     end
 
-    def self.yyyymmdd
-      lambda do |val|
-        if val.nil? || !val.respond_to?(:strftime)
-          nil
-        else
-          val.strftime("%Y%m%d")
-        end
+    YYYYMMDD = ->(value, *context) { value.strftime("%Y%m%d") if value.respond_to? :strftime }
+    DECIMAL = ->(value, *context) {
+      case value
+      when nil then nil
+      when BigDecimal then value.to_s("F")
+      else value.to_s
       end
-    end
+    }
 
-    def self.two_digit
-      lambda do |val|
-        if val.nil?
-          nil
-        elsif val.to_i < 10
-          "0#{val}"
-        elsif val.to_i > 99
-          val.to_s[-2,2]
-        else
-          val.to_s
-        end
-      end
-    end
   end
 
   # core files

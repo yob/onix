@@ -2,10 +2,28 @@
 
 module ONIX
   class AddresseeIdentifier
-    include ROXML
+    include Virtus.model
 
-    xml_accessor :addressee_id_type, :from => "AddresseeIDType", :as => Fixnum # should be a 2 digit num
-    xml_accessor :id_type_name,      :from => "IDTypeName"
-    xml_accessor :id_value,          :from => "IDValue"
+    attribute :addressee_id_type, Integer
+    attribute :id_type_name
+    attribute :id_value
+
+    def to_xml
+      AddresseeIdentifierRepresenter.new(self).to_xml
+    end
+
+    def self.from_xml(data)
+      AddresseeIdentifierRepresenter.new(self.new).from_xml(data)
+    end
+  end
+
+  class AddresseeIdentifierRepresenter < Representable::Decorator
+    include Representable::XML
+
+    self.representation_wrap = :AddresseeIdentifier
+
+    property :addressee_id_type, as: "AddresseeIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :id_type_name, as: "IDTypeName"
+    property :id_value, as: "IDValue"
   end
 end

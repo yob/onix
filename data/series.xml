@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Series>
+  <SeriesIdentifier>
+    <SeriesIDType>01</SeriesIDType>
+    <IDValue>10001</IDValue>
+  </SeriesIdentifier>
+  <SeriesIdentifier>
+    <SeriesIDType>02</SeriesIDType>
+    <IDValue>20002</IDValue>
+  </SeriesIdentifier>
   <TitleOfSeries>Citizens and Their Governments</TitleOfSeries>
 </Series>
 

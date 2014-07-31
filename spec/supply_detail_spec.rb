@@ -47,4 +47,51 @@ describe ONIX::SupplyDetail do
     end
   end
 
+  describe "should provide read access to website IDs" do
+    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Then { sd.websites.size == 2 }
+  end
+
+  context "should provide write access to website IDs" do
+    Given(:website) { ONIX::Website.new(website_role: 1) }
+    Given(:sd) { ONIX::SupplyDetail.new }
+
+    describe :series_identifiers= do
+      When { sd.websites = [website] }
+      Then { sd.to_xml.to_s.include? "<WebsiteRole>01</WebsiteRole>" }
+    end
+  end
+
+  describe "should provide read access to stock IDs" do
+    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Then { sd.stock.size == 1 }
+  end
+
+  context "should provide write access to stock IDs" do
+    Given(:stock1) { ONIX::Stock.new(on_hand: 1251) }
+    Given(:stock2) { ONIX::Stock.new(on_hand: 52458, on_order: 0) }
+    Given(:sd) { ONIX::SupplyDetail.new }
+
+    describe :series_identifiers= do
+      When { sd.stock = [stock1, stock2] }
+      Then { sd.to_xml.to_s.include? "<OnHand>1251</OnHand>" }
+      Then { sd.to_xml.to_s.include? "<OnOrder>0</OnOrder>" }
+    end
+  end
+
+  describe "should provide read access to price IDs" do
+    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Then { sd.prices.size == 1 }
+  end
+
+  context "should provide write access to price IDs" do
+    Given(:price) { ONIX::Price.new(price_amount: BigDecimal.new("0.59")) }
+    Given(:sd) { ONIX::SupplyDetail.new }
+
+    describe :series_identifiers= do
+      When { sd.prices = [price] }
+      Then { sd.to_xml.to_s.include? "<PriceAmount>0.59</PriceAmount>" }
+    end
+  end
+
 end
