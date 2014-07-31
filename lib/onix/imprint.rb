@@ -16,6 +16,7 @@ module ONIX
     def self.from_xml(data)
       ImprintRepresenter.new(self.new).from_xml(data)
     end
+  end
 
   class ImprintRepresenter < Representable::Decorator
     include Representable::XML
