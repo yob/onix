@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Title
     include Virtus.model
 
@@ -24,7 +24,7 @@ module ONIX
 
     self.representation_wrap = :Title
 
-    property :title_type, as: "TitleType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :title_type, as: "TitleType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :title_text, as: "TitleText"
     property :title_prefix, as: "TitlePrefix"
     property :title_without_prefix, as: "TitleWithoutPrefix"

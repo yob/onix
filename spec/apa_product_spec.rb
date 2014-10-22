@@ -2,13 +2,13 @@
 
 require 'spec_helper'
 
-describe "ONIX::APAProduct" do
+describe "ONIX2::APAProduct" do
 
   Given(:doc) { load_xml "product.xml" }
 
   describe "should provide read access to attributes" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
-    Given(:apa) { ONIX::APAProduct.new(product) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
+    Given(:apa) { ONIX2::APAProduct.new(product) }
 
     Then { apa.record_reference == "365-9780194351898" }
     Then { apa.notification_type == 3 }
@@ -21,7 +21,7 @@ describe "ONIX::APAProduct" do
   end
 
   context "should provide write access to attributes" do
-    Given(:apa) { ONIX::APAProduct.new }
+    Given(:apa) { ONIX2::APAProduct.new }
     describe :notification_type= do
       When { apa.notification_type = 3 }
       Then { apa.to_xml.to_s.include? "<NotificationType>03</NotificationType>" }
@@ -58,9 +58,9 @@ describe "ONIX::APAProduct" do
 
 end
 
-describe ONIX::APAProduct, "series method" do
+describe ONIX2::APAProduct, "series method" do
   describe "should set the nested series value on the underlying product class" do
-    Given(:apa) { ONIX::APAProduct.new }
+    Given(:apa) { ONIX2::APAProduct.new }
 
     When { apa.series = "Harry Potter" }
     Then { apa.series == "Harry Potter" }
@@ -68,45 +68,45 @@ describe ONIX::APAProduct, "series method" do
   end
 end
 
-describe ONIX::APAProduct, "price method" do
+describe ONIX2::APAProduct, "price method" do
   Given(:doc) { load_xml "usd.xml" }
 
   describe "should return the first price in the file, regardless of type" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
-    Given(:apa) { ONIX::APAProduct.new(product) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
+    Given(:apa) { ONIX2::APAProduct.new(product) }
 
     Then { apa.price == BigDecimal.new("99.95") }
   end
 end
 
-describe ONIX::APAProduct, "rrp_exc_sales_tax method" do
+describe ONIX2::APAProduct, "rrp_exc_sales_tax method" do
   Given(:doc) { load_xml "usd.xml" }
 
   describe "should return the first price in the file of type 1" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
-    Given(:apa) { ONIX::APAProduct.new(product) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
+    Given(:apa) { ONIX2::APAProduct.new(product) }
 
     Then { apa.rrp_exc_sales_tax == BigDecimal.new("99.95") }
   end
 end
 
-describe ONIX::APAProduct, "proprietry_discount_code_for_rrp method" do
+describe ONIX2::APAProduct, "proprietry_discount_code_for_rrp method" do
   Given(:doc) { load_xml "product.xml" }
 
   describe "should return the first price in the file, regardless of type" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
-    Given(:apa) { ONIX::APAProduct.new(product) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
+    Given(:apa) { ONIX2::APAProduct.new(product) }
 
     Then { apa.proprietry_discount_code_for_rrp == "123" }
   end
 end
 
-describe ONIX::APAProduct, "proprietry_discount_code_for_rrp= method" do
+describe ONIX2::APAProduct, "proprietry_discount_code_for_rrp= method" do
   Given(:doc) { load_xml "product.xml" }
 
   describe "should set the discount code on the RRP" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
-    Given(:apa) { ONIX::APAProduct.new(product) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
+    Given(:apa) { ONIX2::APAProduct.new(product) }
 
     When { apa.proprietry_discount_code_for_rrp = "123" }
     Then { apa.to_xml.to_s.include? "<DiscountCode>123</DiscountCode>" }

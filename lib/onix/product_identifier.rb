@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class ProductIdentifier
     include Virtus.model
 
@@ -21,7 +21,7 @@ module ONIX
 
     self.representation_wrap = :ProductIdentifier
 
-    property :product_id_type, as: "ProductIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :product_id_type, as: "ProductIDType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :id_value, as: "IDValue"
   end
 end

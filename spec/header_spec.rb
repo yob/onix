@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::Header do
+describe ONIX2::Header do
 
   Given(:doc) { load_xml "header.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:header) { ONIX::Header.from_xml(doc) }
+    Given(:header) { ONIX2::Header.from_xml(doc) }
     Then { header.to_xml.to_s.start_with? "<Header>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:header) { ONIX::Header.from_xml(doc) }
+    Given(:header) { ONIX2::Header.from_xml(doc) }
 
     Then { header.from_ean_number == "1111111111111" }
     Then { header.from_san == "1111111" }
@@ -35,7 +35,7 @@ describe ONIX::Header do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:header) { ONIX::Header.new }
+    Given(:header) { ONIX2::Header.new }
     describe :from_ean_number= do
       When { header.from_ean_number = "1111111111111" }
       Then { header.to_xml.to_s.include? "<FromEANNumber>1111111111111</FromEANNumber>" }
@@ -103,7 +103,7 @@ describe ONIX::Header do
   end
 
   context "should correctly handle text with & < and >" do
-    Given(:header) { ONIX::Header.new }
+    Given(:header) { ONIX2::Header.new }
 
     describe "with &" do
       When { header.from_company = "James & Healy" }
@@ -122,14 +122,14 @@ describe ONIX::Header do
   end
 
   describe "should provide read access to sender IDs" do
-    Given(:header) { ONIX::Header.from_xml(doc) }
+    Given(:header) { ONIX2::Header.from_xml(doc) }
     Then { header.sender_identifiers.size == 2 }
   end
 
   context "should provide write access to addressee IDs" do
-    Given(:addressee_identifier1) { ONIX::AddresseeIdentifier.new(addressee_id_type: 1) }
-    Given(:addressee_identifier2) { ONIX::AddresseeIdentifier.new(id_value: 20002) }
-    Given(:header) { ONIX::Header.new }
+    Given(:addressee_identifier1) { ONIX2::AddresseeIdentifier.new(addressee_id_type: 1) }
+    Given(:addressee_identifier2) { ONIX2::AddresseeIdentifier.new(id_value: 20002) }
+    Given(:header) { ONIX2::Header.new }
 
     describe :addressee_identifiers= do
       When { header.addressee_identifiers = [addressee_identifier1, addressee_identifier2] }
@@ -141,12 +141,12 @@ describe ONIX::Header do
 
 end
 
-describe ONIX::Header do
+describe ONIX2::Header do
 
   Given(:doc) { load_xml "header_invalid_sentdate.xml" }
 
   context "should correctly handle headers with an invalid sent date" do
-    Given(:header) { ONIX::Header.from_xml(doc) }
+    Given(:header) { ONIX2::Header.from_xml(doc) }
     Then { header.sent_date.nil? }
   end
 

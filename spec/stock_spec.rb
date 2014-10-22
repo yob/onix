@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::Stock do
+describe ONIX2::Stock do
 
   Given(:doc) { load_xml "stock.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:s) { ONIX::Stock.from_xml(doc) }
+    Given(:s) { ONIX2::Stock.from_xml(doc) }
     Then { s.to_xml.to_s.start_with? "<Stock>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:s) { ONIX::Stock.from_xml(doc) }
+    Given(:s) { ONIX2::Stock.from_xml(doc) }
 
     # note that these fields *should* be numeric according to the ONIX spec,
     # however heaps of ONIX files in the wild have strings there.
@@ -21,7 +21,7 @@ describe ONIX::Stock do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:s) { ONIX::Stock.new }
+    Given(:s) { ONIX2::Stock.new }
     describe :on_hand= do
       When { s.on_hand = "123" }
       Then { s.to_xml.to_s.include? "<OnHand>123</OnHand>" }

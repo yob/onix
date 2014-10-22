@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class MediaFile
     include Virtus.model
 
@@ -24,10 +24,10 @@ module ONIX
 
     self.representation_wrap = :MediaFile
 
-    property :media_file_type_code, as: "MediaFileTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    property :media_file_format_code, as: "MediaFileFormatCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :media_file_type_code, as: "MediaFileTypeCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    property :media_file_format_code, as: "MediaFileFormatCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :image_resolution, as: "ImageResolution"
-    property :media_file_link_type_code, as: "MediaFileLinkTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :media_file_link_type_code, as: "MediaFileLinkTypeCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :media_file_link, as: "MediaFileLink"
   end
 end

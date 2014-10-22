@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class SenderIdentifier
     include Virtus.model
 
@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :SenderIdentifier
 
-    property :sender_id_type, as: "SenderIDType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :sender_id_type, as: "SenderIDType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :id_type_name, as: "IDTypeName"
     property :id_value, as: "IDValue"
   end

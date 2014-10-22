@@ -3,7 +3,7 @@
 require 'tempfile'
 require 'fileutils'
 
-module ONIX
+module ONIX2
 
   # A standalone class that can be used to normalise ONIX files
   # into a standardised form. If you're accepting ONIX files from a wide range
@@ -17,8 +17,8 @@ module ONIX
   #
   # Usage:
   #
-  #   ONIX::Normaliser.process("oldfile.xml", "newfile.xml")
-  #   
+  #   ONIX2::Normaliser.process("oldfile.xml", "newfile.xml")
+  #
   # Dependencies:
   #
   # At this stage the class depends on several external apps, all commonly available

@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::SupplyDetail do
+describe ONIX2::SupplyDetail do
 
   Given(:doc) { load_xml "supply_detail.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
     Then { sd.to_xml.to_s.start_with? "<SupplyDetail>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
 
     Then { sd.supplier_name == "Rainbow Book Agencies" }
     Then { sd.product_availability == 21 }
@@ -24,7 +24,7 @@ describe ONIX::SupplyDetail do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:sd) { ONIX::SupplyDetail.new }
+    Given(:sd) { ONIX2::SupplyDetail.new }
     describe :supplier_name= do
       When { sd.supplier_name = "RBA" }
       Then { sd.to_xml.to_s.include? "<SupplierName>RBA</SupplierName>" }
@@ -48,13 +48,13 @@ describe ONIX::SupplyDetail do
   end
 
   describe "should provide read access to website IDs" do
-    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
     Then { sd.websites.size == 2 }
   end
 
   context "should provide write access to website IDs" do
-    Given(:website) { ONIX::Website.new(website_role: 1) }
-    Given(:sd) { ONIX::SupplyDetail.new }
+    Given(:website) { ONIX2::Website.new(website_role: 1) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
 
     describe :series_identifiers= do
       When { sd.websites = [website] }
@@ -63,14 +63,14 @@ describe ONIX::SupplyDetail do
   end
 
   describe "should provide read access to stock IDs" do
-    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
     Then { sd.stock.size == 1 }
   end
 
   context "should provide write access to stock IDs" do
-    Given(:stock1) { ONIX::Stock.new(on_hand: 1251) }
-    Given(:stock2) { ONIX::Stock.new(on_hand: 52458, on_order: 0) }
-    Given(:sd) { ONIX::SupplyDetail.new }
+    Given(:stock1) { ONIX2::Stock.new(on_hand: 1251) }
+    Given(:stock2) { ONIX2::Stock.new(on_hand: 52458, on_order: 0) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
 
     describe :series_identifiers= do
       When { sd.stock = [stock1, stock2] }
@@ -80,13 +80,13 @@ describe ONIX::SupplyDetail do
   end
 
   describe "should provide read access to price IDs" do
-    Given(:sd) { ONIX::SupplyDetail.from_xml(doc) }
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
     Then { sd.prices.size == 1 }
   end
 
   context "should provide write access to price IDs" do
-    Given(:price) { ONIX::Price.new(price_amount: BigDecimal.new("0.59")) }
-    Given(:sd) { ONIX::SupplyDetail.new }
+    Given(:price) { ONIX2::Price.new(price_amount: BigDecimal.new("0.59")) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
 
     describe :series_identifiers= do
       When { sd.prices = [price] }

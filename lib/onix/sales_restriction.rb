@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class SalesRestriction
     include Virtus.model
 
@@ -20,6 +20,6 @@ module ONIX
 
     self.representation_wrap = :SalesRestriction
 
-    property :sales_restriction_type, as: "SalesRestrictionType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :sales_restriction_type, as: "SalesRestrictionType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
   end
 end

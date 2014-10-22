@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Imprint
     include Virtus.model
 
@@ -23,7 +23,7 @@ module ONIX
 
     self.representation_wrap = :Imprint
 
-    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :name_code_type_name, as: "NameCodeTypeName"
     property :name_code_value, as: "NameCodeValue"
     property :imprint_name, as: "ImprintName"

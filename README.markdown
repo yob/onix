@@ -18,10 +18,10 @@ This library currently only handles ONIX 2.1 files (all revisions). At some
 point I'll need to work out what to do about supporting ONIX 3.0 files. I
 suspect a separate library will be the simplest solution.
 
-ONIX::Reader only handles the reference tag versions of ONIX 2.1. Use
-ONIX::Normaliser to convert any short tag files to reference tags.
+ONIX2::Reader only handles the reference tag versions of ONIX 2.1. Use
+ONIX2::Normaliser to convert any short tag files to reference tags.
 
-ONIX::Writer only generates reference tag ONIX files.
+ONIX2::Writer only generates reference tag ONIX files.
 
 It baffles me why anyone thought designing two parallel versions of the ONIX
 spec was a good idea. Use reference tags my friends, and let short tags fade
@@ -48,10 +48,10 @@ http://github.com/yob/onix-dtd
 See files in the examples directory to get started quickly. For further reading
 view the comments to the following classes:
 
-* ONIX::Reader - For reading ONIX files
-* ONIX::Writer - For writing ONIX files
-* ONIX::Normaliser - For normalising ONIX files before reading them. Fixes encoding issues, etc
-* ONIX::Lists  - For building hashes of code lists from the ONIX spec
+* ONIX2::Reader - For reading ONIX files
+* ONIX2::Writer - For writing ONIX files
+* ONIX2::Normaliser - For normalising ONIX files before reading them. Fixes encoding issues, etc
+* ONIX2::Lists  - For building hashes of code lists from the ONIX spec
 
 ## Licensing
 

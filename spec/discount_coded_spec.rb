@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::DiscountCoded do
+describe ONIX2::DiscountCoded do
 
   Given(:doc) { load_xml "discount_coded.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:dc) { ONIX::DiscountCoded.from_xml(doc) }
+    Given(:dc) { ONIX2::DiscountCoded.from_xml(doc) }
     Then { dc.to_xml.to_s.start_with? "<DiscountCoded>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:dc) { ONIX::DiscountCoded.from_xml(doc) }
+    Given(:dc) { ONIX2::DiscountCoded.from_xml(doc) }
 
     Then { dc.discount_code_type == 2 }
     Then { dc.discount_code_type_name == "IngramDC" }
@@ -20,7 +20,7 @@ describe ONIX::DiscountCoded do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:dc) { ONIX::DiscountCoded.new }
+    Given(:dc) { ONIX2::DiscountCoded.new }
     describe :discount_code_type= do
       When { dc.discount_code_type = 1 }
       Then { dc.to_xml.to_s.include? "<DiscountCodeType>01</DiscountCodeType>" }

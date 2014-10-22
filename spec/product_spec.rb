@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe ONIX::Product do
+describe ONIX2::Product do
 
   Given(:doc) { load_xml "product.xml" }
 
   describe "should provide read access to first level attributes" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
 
     Then { product.record_reference == "365-9780194351898" }
     Then { product.notification_type == 3 }
@@ -27,27 +27,27 @@ describe ONIX::Product do
   end
 
   describe "should provide read access to product IDs" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
     Then { product.product_identifiers.size == 3 }
   end
 
   describe "should provide read access to titles" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
     Then { product.titles.size == 1 }
   end
 
   describe "should provide read access to subjects" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
     Then { product.subjects.size == 1 }
   end
 
   describe "should provide read access to measurements" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
     Then { product.measurements.size == 1 }
   end
 
   context "should provide write access to first level attributes" do
-    Given(:product) { ONIX::Product.new }
+    Given(:product) { ONIX2::Product.new }
     describe :notification_type= do
       When { product.notification_type = 3 }
       Then { product.to_xml.to_s.include? "<NotificationType>03</NotificationType>" }
@@ -88,12 +88,12 @@ describe ONIX::Product do
 
 end
 
-describe ONIX::Product do
+describe ONIX2::Product do
 
   Given(:doc) { load_xml "product_invalid_pubdate.xml" }
 
   describe "should correctly from_xml files that have an invalid publication date" do
-    Given(:product) { ONIX::Product.from_xml(doc) }
+    Given(:product) { ONIX2::Product.from_xml(doc) }
 
     Then { product.bic_main_subject == "VXFC1" }
     Then { product.publication_date.nil? }

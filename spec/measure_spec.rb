@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::Measure do
+describe ONIX2::Measure do
 
   Given(:doc) { load_xml "measure.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:m) { ONIX::Measure.from_xml(doc) }
+    Given(:m) { ONIX2::Measure.from_xml(doc) }
     Then { m.to_xml.to_s.start_with? "<Measure>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:m) { ONIX::Measure.from_xml(doc) }
+    Given(:m) { ONIX2::Measure.from_xml(doc) }
 
     Then { m.measure_type_code == 1 }
     Then { m.measurement == 210 }
@@ -20,7 +20,7 @@ describe ONIX::Measure do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:m) { ONIX::Measure.new }
+    Given(:m) { ONIX2::Measure.new }
     describe :measure_type_code= do
       When { m.measure_type_code = 1 }
       Then { m.to_xml.to_s.include? "<MeasureTypeCode>01</MeasureTypeCode>" }

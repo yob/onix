@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::AudienceRange do
+describe ONIX2::AudienceRange do
 
   Given(:doc) { load_xml "audience_range.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:aud) { ONIX::AudienceRange.from_xml(doc) }
+    Given(:aud) { ONIX2::AudienceRange.from_xml(doc) }
     Then { aud.to_xml.to_s.start_with? "<AudienceRange>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:aud) { ONIX::AudienceRange.from_xml(doc) }
+    Given(:aud) { ONIX2::AudienceRange.from_xml(doc) }
 
     Then { aud.audience_range_qualifier == 11 }
     Then { aud.audience_range_precisions.size == 2 }
@@ -24,7 +24,7 @@ describe ONIX::AudienceRange do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:aud) { ONIX::AudienceRange.new }
+    Given(:aud) { ONIX2::AudienceRange.new }
     describe :audience_range_qualifier= do
       When { aud.audience_range_qualifier = 2 }
       Then { aud.to_xml.to_s.include? "<AudienceRangeQualifier>02</AudienceRangeQualifier>" }

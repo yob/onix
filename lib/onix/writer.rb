@@ -1,26 +1,26 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   # The primary way to write a new ONIX file.
   #
   # Heres a quick example. The generated file will be nice and boring, as the
   # header and product objects have no data in them, but you get the idea.
   #
   #   File.open("output.xml","w") do |output|
-  #     header = ONIX::Header.new
-  #     ONIX::Writer.open(output, header) do |writer|
-  #       writer << ONIX::Product.new
-  #       writer << ONIX::Product.new
+  #     header = ONIX2::Header.new
+  #     ONIX2::Writer.open(output, header) do |writer|
+  #       writer << ONIX2::Product.new
+  #       writer << ONIX2::Product.new
   #     end
   #   end
   #
   # If you prefer, you can build your products using the APAProduct shim layer.
   #
   #   File.open("output.xml","w") do |output|
-  #     header = ONIX::Header.new
-  #     ONIX::Writer.open(output, header) do |writer|
-  #       writer << ONIX::APAProduct.new
-  #       writer << ONIX::APAProduct.new
+  #     header = ONIX2::Header.new
+  #     ONIX2::Writer.open(output, header) do |writer|
+  #       writer << ONIX2::APAProduct.new
+  #       writer << ONIX2::APAProduct.new
   #     end
   #   end
   #
@@ -30,7 +30,7 @@ module ONIX
 
     # Default constructor.
     def initialize(output, header)
-      raise ArgumentError, 'msg must be an ONIX::Header object' unless header.kind_of?(ONIX::Header)
+      raise ArgumentError, 'msg must be an ONIX2::Header object' unless header.kind_of?(ONIX2::Header)
       @output = output
       @header = header
       @finished = false
@@ -40,12 +40,12 @@ module ONIX
 
     # deprecated
     def start_document
-      puts "ONIX::StreamWriter#start_document is no longer required"
+      puts "ONIX2::StreamWriter#start_document is no longer required"
     end
 
     def << (product)
-      unless product.kind_of?(ONIX::Product) || product.kind_of?(ONIX::SimpleProduct)
-        raise ArgumentError, 'product must be an ONIX::Product or ONIX::SimpleProduct'
+      unless product.kind_of?(ONIX2::Product) || product.kind_of?(ONIX2::SimpleProduct)
+        raise ArgumentError, 'product must be an ONIX2::Product or ONIX2::SimpleProduct'
       end
       raise "Can't add products to a finished writer" if finished?
 

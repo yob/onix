@@ -1,17 +1,17 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
 
   # Builds hashes for all code lists in the ONIX spec.
   #
   # Use like so:
   #
-  #   ONIX::Lists.list(7)
+  #   ONIX2::Lists.list(7)
   #   => { "BB" => "Hardback", ... }
   #
   # There are also some constants for commonly used lists:
   #
-  #   ONIX::Lists::PRODUCT_FORM
+  #   ONIX2::Lists::PRODUCT_FORM
   #   => { "BB" => "Hardback", ... }
   #
   class Lists
@@ -19,7 +19,7 @@ module ONIX
 
     # retrieve a hash with the specified code list
     #
-    #  ONIX::Lists.list(7)
+    #  ONIX2::Lists.list(7)
     #  => { "BB" => "Hardback", ... }
     #
     def self.list(number)
@@ -84,7 +84,7 @@ module ONIX
     #
     # number should be a fixnum specifying the list to retrieve
     #
-    #  ONIX::Lists.instance.list(7)
+    #  ONIX2::Lists.instance.list(7)
     #  => { "BB" => "Hardback", ... }
     #
     def list(number)
@@ -120,15 +120,15 @@ module ONIX
     public
 
     # These are here for backwards compatability with the onix gem <= 0.8.3
-    AUDIENCE_CODE        = ONIX::Lists.audience_code
-    CONTRIBUTOR_ROLE     = ONIX::Lists.contributor_role
-    COUNTRY_CODE         = ONIX::Lists.country_code
-    LANGUAGE_CODE        = ONIX::Lists.language_code
-    LANGUAGE_ROLE        = ONIX::Lists.language_role
-    NOTIFICATION_TYPE    = ONIX::Lists.notification_type
-    PRODUCT_AVAILABILITY = ONIX::Lists.product_availability
-    PRODUCT_FORM         = ONIX::Lists.product_form
-    PRODUCT_FORM_DETAIL  = ONIX::Lists.product_form_detail
+    AUDIENCE_CODE        = ONIX2::Lists.audience_code
+    CONTRIBUTOR_ROLE     = ONIX2::Lists.contributor_role
+    COUNTRY_CODE         = ONIX2::Lists.country_code
+    LANGUAGE_CODE        = ONIX2::Lists.language_code
+    LANGUAGE_ROLE        = ONIX2::Lists.language_role
+    NOTIFICATION_TYPE    = ONIX2::Lists.notification_type
+    PRODUCT_AVAILABILITY = ONIX2::Lists.product_availability
+    PRODUCT_FORM         = ONIX2::Lists.product_form
+    PRODUCT_FORM_DETAIL  = ONIX2::Lists.product_form_detail
 
   end
 end

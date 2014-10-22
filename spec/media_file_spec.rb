@@ -2,17 +2,17 @@
 
 require 'spec_helper'
 
-describe ONIX::MediaFile do
+describe ONIX2::MediaFile do
 
   Given(:doc) { load_xml "media_file.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:mf) { ONIX::MediaFile.from_xml(doc) }
+    Given(:mf) { ONIX2::MediaFile.from_xml(doc) }
     Then { mf.to_xml.to_s.start_with? "<MediaFile>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:mf) { ONIX::MediaFile.from_xml(doc) }
+    Given(:mf) { ONIX2::MediaFile.from_xml(doc) }
 
     Then { mf.media_file_type_code == 4 }
     Then { mf.media_file_link_type_code == 1 }
@@ -20,7 +20,7 @@ describe ONIX::MediaFile do
   end
 
   context "should provide write access to first level attributes" do
-    Given(:mf) { ONIX::MediaFile.new }
+    Given(:mf) { ONIX2::MediaFile.new }
     describe :media_file_type_code= do
       When { mf.media_file_type_code = 2 }
       Then { mf.to_xml.to_s.include? "<MediaFileTypeCode>02</MediaFileTypeCode>" }

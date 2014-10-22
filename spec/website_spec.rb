@@ -2,24 +2,24 @@
 
 require 'spec_helper'
 
-describe ONIX::Website do
+describe ONIX2::Website do
 
   Given(:doc) { load_xml "website.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:web) { ONIX::Website.from_xml(doc) }
+    Given(:web) { ONIX2::Website.from_xml(doc) }
     Then { web.to_xml.to_s.start_with? "<Website>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:web) { ONIX::Website.from_xml(doc) }
+    Given(:web) { ONIX2::Website.from_xml(doc) }
 
     Then { web.website_role == 1 }
     Then { web.website_link == "http://www.rainbowbooks.com.au" }
   end
 
   context "should provide write access to first level attributes" do
-    Given(:web) { ONIX::Website.new }
+    Given(:web) { ONIX2::Website.new }
     describe :website_role= do
       When { web.website_role = 2 }
       Then { web.to_xml.to_s.include? "<WebsiteRole>02</WebsiteRole>" }

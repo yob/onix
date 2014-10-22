@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
 
   # A utility class that processes the code list XSD from the ONIX spec and
   # creates a set of TSV files. The generated files are used by this library

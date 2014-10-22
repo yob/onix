@@ -2,24 +2,24 @@
 
 require 'spec_helper'
 
-describe ONIX::SenderIdentifier do
+describe ONIX2::SenderIdentifier do
 
   Given(:doc) { load_xml "sender_identifier.xml" }
 
   describe "should correctly convert to a string" do
-    Given(:id) { ONIX::SenderIdentifier.from_xml(doc) }
+    Given(:id) { ONIX2::SenderIdentifier.from_xml(doc) }
     Then { id.to_xml.to_s.start_with? "<SenderIdentifier>" }
   end
 
   describe "should provide read access to first level attributes" do
-    Given(:id) { ONIX::SenderIdentifier.from_xml(doc) }
+    Given(:id) { ONIX2::SenderIdentifier.from_xml(doc) }
 
     Then { id.sender_id_type == 1 }
     Then { id.id_value == "123456" }
   end
 
   context "should provide write access to first level attributes" do
-    Given(:id) { ONIX::SenderIdentifier.new }
+    Given(:id) { ONIX2::SenderIdentifier.new }
     describe :sender_id_type= do
       When { id.sender_id_type = 1 }
       Then { id.to_xml.to_s.include? "<SenderIDType>01</SenderIDType>" }

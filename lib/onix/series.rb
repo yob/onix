@@ -1,10 +1,10 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Series
     include Virtus.model
 
-    attribute :series_identifiers, Array[ONIX::SeriesIdentifier]
+    attribute :series_identifiers, Array[ONIX2::SeriesIdentifier]
     attribute :title_of_series
 
     def to_xml
@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :Series
 
-    collection :series_identifiers, as: "SeriesIdentifier", extend: ONIX::SeriesIdentifierRepresenter, class: ONIX::SeriesIdentifier
+    collection :series_identifiers, as: "SeriesIdentifier", extend: ONIX2::SeriesIdentifierRepresenter, class: ONIX2::SeriesIdentifier
     property :title_of_series, as: "TitleOfSeries"
   end
 end

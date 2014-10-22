@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class MarketRepresentation
     include Virtus.model
 
@@ -27,12 +27,12 @@ module ONIX
     self.representation_wrap = :MarketRepresentation
 
     property :agent_name, as: "AgentName"
-    property :agent_role, as: "AgentRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :agent_role, as: "AgentRole", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :market_country, as: "MarketCountry"
     property :market_territory, as: "MarketTerritory"
     property :market_country_excluded, as: "MarketCountryExcluded"
     property :market_restriction_detail, as: "MarketRestrictionDetail"
-    property :market_publishing_status, as: "MarketPublishingStatus", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :market_publishing_status, as: "MarketPublishingStatus", render_filter: ::ONIX2::Formatters::TWO_DIGITS
   end
 end
 

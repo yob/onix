@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class AudienceRange
     include Virtus.model
 
@@ -30,8 +30,8 @@ module ONIX
 
     self.representation_wrap = :AudienceRange
 
-    property :audience_range_qualifier, as: "AudienceRangeQualifier", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    collection :audience_range_precisions, as: "AudienceRangePrecision", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    collection :audience_range_values, as: "AudienceRangeValue", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :audience_range_qualifier, as: "AudienceRangeQualifier", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    collection :audience_range_precisions, as: "AudienceRangePrecision", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    collection :audience_range_values, as: "AudienceRangeValue", render_filter: ::ONIX2::Formatters::TWO_DIGITS
   end
 end

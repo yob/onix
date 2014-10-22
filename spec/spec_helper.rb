@@ -7,7 +7,7 @@ Bundler.setup
 require 'date'
 require 'stringio'
 require 'rubygems'
-require 'onix'
+require 'onix2'
 require 'rspec/given'
 
 def load_xml(file)

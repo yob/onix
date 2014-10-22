@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Subject
     include Virtus.model
 
@@ -24,7 +24,7 @@ module ONIX
 
     self.representation_wrap = :Subject
 
-    property :subject_scheme_id, as: "SubjectSchemeIdentifier", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :subject_scheme_id, as: "SubjectSchemeIdentifier", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :subject_scheme_name, as: "SubjectSchemeName"
     property :subject_scheme_version, as: "SubjectSchemeVersion"
     property :subject_code, as: "SubjectCode"

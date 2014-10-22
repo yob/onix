@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class SupplyDetail
     include Virtus.model
 
@@ -10,15 +10,15 @@ module ONIX
     attribute :telephone_number
     attribute :fax_number
     attribute :email_address
-    attribute :websites, Array[ONIX::Website]
+    attribute :websites, Array[ONIX2::Website]
     attribute :supplier_role, Integer
     attribute :supply_to_country
     attribute :supply_to_territory
     attribute :availability_status_code, Integer
     attribute :product_availability, Integer
-    attribute :stock, Array[ONIX::Stock]
+    attribute :stock, Array[ONIX2::Stock]
     attribute :pack_quantity, Integer
-    attribute :prices, Array[ONIX::Price]
+    attribute :prices, Array[ONIX2::Price]
 
     def to_xml
       SupplyDetailRepresenter.new(self).to_xml
@@ -40,14 +40,14 @@ module ONIX
     property :telephone_number, as: "TelephoneNumber"
     property :fax_number, as: "FaxNumber"
     property :email_address, as: "EmailAddress"
-    collection :websites, as: "Website", extend: ONIX::WebsiteRepresenter, class: ONIX::Website
-    property :supplier_role, as: "SupplierRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    collection :websites, as: "Website", extend: ONIX2::WebsiteRepresenter, class: ONIX2::Website
+    property :supplier_role, as: "SupplierRole", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :supply_to_country, as: "SupplyToCountry"
     property :supply_to_territory, as: "SupplyToTerritory"
-    property :availability_status_code, as: "AvailabilityStatusCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    property :product_availability, as: "ProductAvailability", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    collection :stock, as: "Stock", extend: ONIX::StockRepresenter, class: ONIX::Stock
+    property :availability_status_code, as: "AvailabilityStatusCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    property :product_availability, as: "ProductAvailability", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    collection :stock, as: "Stock", extend: ONIX2::StockRepresenter, class: ONIX2::Stock
     property :pack_quantity, as: "PackQuantity"
-    collection :prices, as: "Price", extend: ONIX::PriceRepresenter, class: ONIX::Price
+    collection :prices, as: "Price", extend: ONIX2::PriceRepresenter, class: ONIX2::Price
   end
 end

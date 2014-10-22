@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Language
     include Virtus.model
 
@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :Language
 
-    property :language_role, as: "LanguageRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :language_role, as: "LanguageRole", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :language_code, as: "LanguageCode"
     property :country_code, as: "CountryCode"
   end

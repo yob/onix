@@ -12,5 +12,5 @@ unless ARGV.size == 2
   exit(1)
 end
 
-extractor = ONIX::CodeListExtractor.new(ARGV.shift)
+extractor = ONIX2::CodeListExtractor.new(ARGV.shift)
 extractor.run(ARGV.shift)

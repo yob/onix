@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Publisher
     include Virtus.model
 
@@ -24,8 +24,8 @@ module ONIX
 
     self.representation_wrap = :Publisher
 
-    property :publishing_role, as: "PublishingRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :publishing_role, as: "PublishingRole", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    property :name_code_type, as: "NameCodeType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :name_code_type_name, as: "NameCodeTypeName"
     property :name_code_type_value, as: "NameCodeTypeValue"
     property :publisher_name, as: "PublisherName"

@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Website
     include Virtus.model
 
@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :Website
 
-    property :website_role, as: "WebsiteRole", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :website_role, as: "WebsiteRole", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :website_description, as: "WebsiteDescription"
     property :website_link, as: "WebsiteLink"
   end

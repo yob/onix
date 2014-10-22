@@ -2,15 +2,15 @@
 
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe ONIX::Writer do
+describe ONIX2::Writer do
 
   before(:each) do
     @output = StringIO.new
   end
 
   it "should output the correct xml metadata" do
-    header = ONIX::Header.new
-    writer = ONIX::Writer.new(@output, header)
+    header = ONIX2::Header.new
+    writer = ONIX2::Writer.new(@output, header)
     writer.end_document
 
     lines = @output.string.split("\n")
@@ -23,8 +23,8 @@ describe ONIX::Writer do
   end
 
   it "should output the correct xml metadata when used in block form" do
-    header = ONIX::Header.new
-    ONIX::Writer.open(@output, header) { |writer| }
+    header = ONIX2::Header.new
+    ONIX2::Writer.open(@output, header) { |writer| }
 
     lines = @output.string.split("\n")
 
@@ -36,9 +36,9 @@ describe ONIX::Writer do
   end
 
   it "should output the header node" do
-    header = ONIX::Header.new
+    header = ONIX2::Header.new
 
-    ONIX::Writer.open(@output, header) { |writer| }
+    ONIX2::Writer.open(@output, header) { |writer| }
 
     lines = @output.string.split("\n")
 
@@ -46,10 +46,10 @@ describe ONIX::Writer do
   end
 
   it "should output the product node" do
-    header = ONIX::Header.new
-    product = ONIX::Product.new
+    header = ONIX2::Header.new
+    product = ONIX2::Product.new
 
-    ONIX::Writer.open(@output, header) do |writer| 
+    ONIX2::Writer.open(@output, header) do |writer|
       writer << product
     end
 
@@ -59,8 +59,8 @@ describe ONIX::Writer do
   end
 
   it "should correctly store finished state" do
-    header = ONIX::Header.new
-    writer = ONIX::Writer.new(@output, header)
+    header = ONIX2::Header.new
+    writer = ONIX2::Writer.new(@output, header)
     writer.finished?.should be_false
     writer.end_document
     writer.finished?.should be_true
@@ -68,9 +68,9 @@ describe ONIX::Writer do
 
 =begin
   it "should convert non-ASCII chars to references when outputting as a string" do
-    header = ONIX::Header.new
+    header = ONIX2::Header.new
     header.from_person = "Hans Küng"
-    ONIX::Writer.open(@output, header) { |writer| }
+    ONIX2::Writer.open(@output, header) { |writer| }
 
     @output.string.include?("K&#252;ng").should be_true
   end

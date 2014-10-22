@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class DiscountCoded
     include Virtus.model
 
@@ -22,7 +22,7 @@ module ONIX
 
     self.representation_wrap = :DiscountCoded
 
-    property :discount_code_type, as: "DiscountCodeType", render_filter: ::ONIX::Formatters::TWO_DIGITS
+    property :discount_code_type, as: "DiscountCodeType", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :discount_code_type_name, as: "DiscountCodeTypeName"
     property :discount_code, as: "DiscountCode"
   end

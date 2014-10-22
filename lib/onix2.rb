@@ -6,16 +6,16 @@ require 'singleton'
 require 'representable/xml'
 require 'virtus'
 
-module ONIX
+module ONIX2
   class Formatters
 
     TWO_DIGITS = ->(value, *context) {
       if value.is_a?(Array)
         value.each_with_index do |val, index|
-          value[index] = ONIX::Formatters::two_digits_format(val)
+          value[index] = ONIX2::Formatters::two_digits_format(val)
         end
       else
-        ONIX::Formatters::two_digits_format(value)
+        ONIX2::Formatters::two_digits_format(value)
       end
     }
 

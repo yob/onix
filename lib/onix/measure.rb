@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class Measure
     include Virtus.model
 
@@ -22,8 +22,8 @@ module ONIX
 
     self.representation_wrap = :Measure
 
-    property :measure_type_code, as: "MeasureTypeCode", render_filter: ::ONIX::Formatters::TWO_DIGITS
-    property :measurement, as: "Measurement", render_filter: ::ONIX::Formatters::DECIMAL, parse_filter: ->(value, *context) { value.is_a?(Integer) ? value.to_i : BigDecimal.new(value) }
+    property :measure_type_code, as: "MeasureTypeCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    property :measurement, as: "Measurement", render_filter: ::ONIX2::Formatters::DECIMAL, parse_filter: ->(value, *context) { value.is_a?(Integer) ? value.to_i : BigDecimal.new(value) }
     property :measure_unit_code, as: "MeasureUnitCode"
   end
 end

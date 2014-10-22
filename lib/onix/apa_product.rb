@@ -1,6 +1,6 @@
 # coding: utf-8
 
-module ONIX
+module ONIX2
   class APAProduct < SimpleProduct
 
     delegate :record_reference, :record_reference=
@@ -78,7 +78,7 @@ module ONIX
     def title=(str)
       composite = product.titles.first
       if composite.nil?
-        composite =  ONIX::Title.new
+        composite =  ONIX2::Title.new
         composite.title_type = 1
         product.titles << composite
       end
@@ -99,7 +99,7 @@ module ONIX
     def subtitle=(str)
       composite = product.titles.first
       if composite.nil?
-        composite =  ONIX::Title.new
+        composite =  ONIX2::Title.new
         composite.title_type = 1
         product.titles << composite
       end
@@ -114,7 +114,7 @@ module ONIX
     def series=(val)
       composite = product.series.first
       if composite.nil?
-        composite =  ONIX::Series.new
+        composite =  ONIX2::Series.new
         product.series << composite
       end
       composite.title_of_series = val.to_s
@@ -148,7 +148,7 @@ module ONIX
     # set a new contributor to this product
     # str should be the contributors name inverted (Healy, James)
     def add_contributor(str, role = "A01")
-      contrib = ::ONIX::Contributor.new
+      contrib = ::ONIX2::Contributor.new
       contrib.sequence_number = product.contributors.size + 1
       contrib.contributor_role = role
       contrib.person_name_inverted = str
@@ -255,7 +255,7 @@ module ONIX
     def imprint=(str)
       composite = product.imprints.first
       if composite.nil?
-        composite =  ONIX::Imprint.new
+        composite =  ONIX2::Imprint.new
         product.imprints << composite
       end
       composite.imprint_name = str
@@ -281,7 +281,7 @@ module ONIX
     def sales_restriction_type=(type)
       composite = product.sales_restrictions.first
       if composite.nil?
-        composite =  ONIX::SalesRestriction.new
+        composite =  ONIX2::SalesRestriction.new
         product.sales_restrictions << composite
       end
       composite.sales_restriction_type = type
@@ -364,7 +364,7 @@ module ONIX
       supply = find_or_create_supply_detail
       composite = supply.stock.first
       if composite.nil?
-        composite = ONIX::Stock.new
+        composite = ONIX2::Stock.new
         supply.stock << composite
       end
       composite.on_hand
@@ -375,7 +375,7 @@ module ONIX
       supply = find_or_create_supply_detail
       composite = supply.stock.first
       if composite.nil?
-        composite = ONIX::Stock.new
+        composite = ONIX2::Stock.new
         supply.stock << composite
       end
       composite.on_hand = num
@@ -386,7 +386,7 @@ module ONIX
       supply = find_or_create_supply_detail
       composite = supply.stock.first
       if composite.nil?
-        composite = ONIX::Stock.new
+        composite = ONIX2::Stock.new
         supply.stock << composite
       end
       composite.on_order
@@ -397,7 +397,7 @@ module ONIX
       supply = find_or_create_supply_detail
       composite = supply.stock.first
       if composite.nil?
-        composite = ONIX::Stock.new
+        composite = ONIX2::Stock.new
         supply.stock << composite
       end
       composite.on_order = num
@@ -465,7 +465,7 @@ module ONIX
       discount = price.discounts_coded.find { |disc| disc.discount_code_type == 2 }
 
       if discount.nil?
-        discount = ONIX::DiscountCoded.new
+        discount = ONIX2::DiscountCoded.new
         discount.discount_code_type = 2
         price.discounts_coded << discount
       end
@@ -579,7 +579,7 @@ module ONIX
     def agent_name=(value)
       reps = product.market_representations.first
       if reps.nil?
-        reps = ONIX::MarketRepresentation.new
+        reps = ONIX2::MarketRepresentation.new
         product.market_representations << reps
       end
       reps.agent_name = value.to_s
@@ -594,7 +594,7 @@ module ONIX
     def market_country=(value)
       reps = product.market_representations.first
       if reps.nil?
-        reps = ONIX::MarketRepresentation.new
+        reps = ONIX2::MarketRepresentation.new
         product.market_representations << reps
       end
       reps.market_country = value.to_s
@@ -609,7 +609,7 @@ module ONIX
     def market_publishing_status=(value)
       reps = product.market_representations.first
       if reps.nil?
-        reps = ONIX::MarketRepresentation.new
+        reps = ONIX2::MarketRepresentation.new
         product.market_representations << reps
       end
       reps.market_publishing_status = value.to_i
@@ -622,7 +622,7 @@ module ONIX
     # type should be the code for the subject scheme you're using. See ONIX codelist 27.
     # 12 is BIC
     def add_subject(str, type = "12")
-      subject = ::ONIX::Subject.new
+      subject = ::ONIX2::Subject.new
       subject.subject_scheme_id = type.to_i
       subject.subject_code = str
       product.subjects << subject
@@ -631,7 +631,7 @@ module ONIX
     def find_or_create_supply_detail
       composite = product.supply_details.first
       if composite.nil?
-        composite =  ONIX::SupplyDetail.new
+        composite =  ONIX2::SupplyDetail.new
         product.supply_details << composite
       end
       composite
@@ -648,7 +648,7 @@ module ONIX
 
       # create a new isbn record if we need to
       if isbn_id.nil?
-        isbn_id = ONIX::ProductIdentifier.new
+        isbn_id = ONIX2::ProductIdentifier.new
         isbn_id.product_id_type = type
         product.product_identifiers << isbn_id
       end
@@ -667,7 +667,7 @@ module ONIX
 
       # create a new isbn record if we need to
       if measure.nil?
-        measure = ONIX::Measure.new
+        measure = ONIX2::Measure.new
         measure.measure_type_code = type
         product.measurements << measure
       end
@@ -688,7 +688,7 @@ module ONIX
 
       # create a new isbn record if we need to
       if media.nil?
-        media = ONIX::MediaFile.new
+        media = ONIX2::MediaFile.new
         media.media_file_type_code = type
         media.media_file_link_type_code = link_type
         product.media_files << media
@@ -715,7 +715,7 @@ module ONIX
       # create a new isbn record if we need to
       if p.nil?
         supply = find_or_create_supply_detail
-        p = ONIX::Price.new
+        p = ONIX2::Price.new
         p.price_type_code = type
         supply.prices << p
       end
@@ -735,7 +735,7 @@ module ONIX
 
       # create a new isbn record if we need to
       if pub.nil?
-        pub = ONIX::Publisher.new
+        pub = ONIX2::Publisher.new
         pub.publishing_role = type
         product.publishers << pub
       end
@@ -754,7 +754,7 @@ module ONIX
       text = other_text(type)
 
       if text.nil?
-        text = ONIX::OtherText.new
+        text = ONIX2::OtherText.new
         text.text_type_code = type
         product.text << text
       end
@@ -774,7 +774,7 @@ module ONIX
 
       # create a new website record if we need to
       if site.nil?
-        site = ONIX::Website.new
+        site = ONIX2::Website.new
         site.website_role = type
         product.websites << site
       end

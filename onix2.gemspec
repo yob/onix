@@ -1,8 +1,8 @@
 require File.expand_path('../lib/onix/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name              = "onix"
-  s.version           = ONIX::VERSION
+  s.name              = "onix2"
+  s.version           = ONIX2::VERSION
   s.summary           = "A convient mapping between ruby objects and the ONIX XML specification"
   s.description       = "A convient mapping between ruby objects and the ONIX XML specification"
   s.authors           = ["James Healy"]
