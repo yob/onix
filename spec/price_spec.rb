@@ -16,6 +16,7 @@ describe ONIX2::Price do
 
     Then { p.price_type_code == 2 }
     Then { p.price_amount == BigDecimal.new("7.5") }
+    Then { p.discount_percent == 0.4 }
   end
 
   context "should provide write access to first level attributes" do

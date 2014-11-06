@@ -15,6 +15,7 @@ module ONIX2
     attribute :price_status, Integer
     attribute :price_amount, Decimal
     attribute :currency_code
+    attribute :discount_percent, Decimal
 
     def to_xml
       PriceRepresenter.new(self).to_xml
@@ -33,7 +34,7 @@ module ONIX2
     property :price_type_code, as: "PriceTypeCode", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :price_type_qualifier, as: "PriceQualifier", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :price_type_description, as: "PriceTypeDescription"
-      property :price_per, as: "PricePer", render_filter: ::ONIX2::Formatters::TWO_DIGITS
+    property :price_per, as: "PricePer", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :minimum_order_qty, as: "MinimumOrderQuantity"
     property :class_of_trade, as: "ClassOfTrade"
     property :bic_discount_group_code, as: "BICDiscountGroupCode"
@@ -41,5 +42,6 @@ module ONIX2
     property :price_status, as: "PriceStatus", render_filter: ::ONIX2::Formatters::TWO_DIGITS
     property :price_amount, as: "PriceAmount", render_filter: ::ONIX2::Formatters::DECIMAL
     property :currency_code, as: "CurrencyCode"
+    property :discount_percent, as: "DiscountPercent"
   end
 end

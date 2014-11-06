@@ -12,4 +12,5 @@
     <DiscountCodeTypeName>IngramDC2</DiscountCodeTypeName>
     <DiscountCode>AHACP022</DiscountCode>
   </DiscountCoded>
+  <DiscountPercent>0.4</DiscountPercent>
 </Price>
