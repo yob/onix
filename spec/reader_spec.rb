@@ -17,36 +17,36 @@ describe ONIX2::Reader do
 
   it "should initialize with a filename" do
     reader = ONIX2::Reader.new(@file1)
-    reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
+    expect(reader.instance_variable_get("@reader")).to be_a_kind_of(Nokogiri::XML::Reader)
   end
 
   it "should initialize with an IO object" do
     File.open(@file1,"rb") do |f|
       reader = ONIX2::Reader.new(f)
-      reader.instance_variable_get("@reader").should be_a_kind_of(Nokogiri::XML::Reader)
+      expect(reader.instance_variable_get("@reader")).to be_a_kind_of(Nokogiri::XML::Reader)
     end
   end
 
   it "should provide access to various XML metadata from file" do
     filename = File.join(@data_path, "reference_with_release_attrib.xml")
     reader = ONIX2::Reader.new(filename)
-    reader.release.should eql(BigDecimal.new("2.1"))
+    expect(reader.release).to eql(BigDecimal.new("2.1"))
   end
 
   it "should provide access to the header in an ONIX file" do
     reader = ONIX2::Reader.new(@file1)
-    reader.header.should be_a_kind_of(ONIX2::Header)
+    expect(reader.header).to be_a_kind_of(ONIX2::Header)
   end
 
   it "should iterate over all product records in an ONIX file" do
     reader = ONIX2::Reader.new(@file1)
     counter = 0
     reader.each do |product|
-      product.should be_a_kind_of(ONIX2::Product)
+      expect(product).to be_a_kind_of(ONIX2::Product)
       counter += 1
     end
 
-    counter.should eql(1)
+    expect(counter).to be_eql(1)
   end
 
   it "should iterate over all product records in an ONIX file" do
@@ -56,9 +56,9 @@ describe ONIX2::Reader do
       products << product
     end
 
-    products.size.should eql(2)
-    products[0].record_reference.should eql("365-9780194351898")
-    products[1].record_reference.should eql("9780754672326")
+    expect(products.size).to be_eql(2)
+    expect(products[0].record_reference).to be_eql("365-9780194351898")
+    expect(products[1].record_reference).to be_eql("9780754672326")
   end
 
   # libxml can handle the 3 standard entities fine (&amp; &lt; and ^gt;) but
@@ -72,10 +72,10 @@ describe ONIX2::Reader do
       products << product
     end
 
-    products.size.should eql(1)
-    products.first.titles.size.should eql(1)
-    products.first.titles.first.title_text.should eql("High Noon\342\200\223in Nimbin")
-    products.first.record_reference.should eql("9780732287573")
+    expect(products.size).to be_eql(1)
+    expect(products.first.titles.size).to be_eql(1)
+    expect(products.first.titles.first.title_text).to be_eql("High Noon\342\200\223in Nimbin")
+    expect(products.first.record_reference).to be_eql("9780732287573")
   end
 
   # for some reason I'm getting segfaults when I read a file with more than 7 records
@@ -86,7 +86,7 @@ describe ONIX2::Reader do
       counter += 1
     end
 
-    counter.should eql(346)
+    expect(counter).to be_eql(346)
   end
 
   it "should transparently convert a iso-8859-1 file to utf-8" do
@@ -94,10 +94,10 @@ describe ONIX2::Reader do
     reader.each do |product|
       if RUBY_VERSION >= "1.9"
         utf8 = Encoding.find("utf-8")
-        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+        expect(product.contributors[0].person_name_inverted.encoding).to be_eql(utf8)
       end
 
-      product.contributors[0].person_name_inverted.should eql("Küng, Hans")
+      expect(product.contributors[0].person_name_inverted).to be_eql("Küng, Hans")
     end
   end
 
@@ -105,10 +105,10 @@ describe ONIX2::Reader do
   # be nice to have the option to replace unrecognised bytes with a valid char.
   it "should raise an exception when an iso-8859-1 file isn't declared as such" do
     reader = ONIX2::Reader.new(@no_encoding_decl_file)
-    lambda {
+    expect {
       reader.each do |product|
       end
-    }.should raise_error(Nokogiri::XML::SyntaxError)
+    }.to raise_error(Nokogiri::XML::SyntaxError)
   end
 
   it "should transparently convert an iso-8859-1 file to utf-8 when there's no declaration but the user manually specifies iso-8859-1" do
@@ -116,10 +116,10 @@ describe ONIX2::Reader do
     reader.each do |product|
       if RUBY_VERSION >= "1.9"
         utf8 = Encoding.find("utf-8")
-        product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+        expect(product.contributors[0].person_name_inverted.encoding).to be_eql(utf8)
       end
 
-      product.contributors[0].person_name_inverted.should eql("Melo,Patr¡cia")
+      expect(product.contributors[0].person_name_inverted).to be_eql("Melo,Patr¡cia")
     end
   end
 
@@ -133,23 +133,23 @@ describe ONIX2::Reader do
     # ROXML appears to munge the string encodings
     if RUBY_VERSION >= "1.9"
       utf8 = Encoding.find("utf-8")
-      product.contributors[0].person_name_inverted.encoding.should eql(utf8)
+      expect(product.contributors[0].person_name_inverted.encoding).to be_eql(utf8)
     end
 
-    product.contributors[0].person_name_inverted.should eql("Küng, Hans")
+    expect(product.contributors[0].person_name_inverted).to be_eql("Küng, Hans")
   end
 
   it "should support returning an APAProduct using deprecated API" do
     reader = ONIX2::Reader.new(@file1, ONIX2::APAProduct)
     reader.each do |product|
-      product.should be_a_kind_of(ONIX2::APAProduct)
+      expect(product).to be_a_kind_of(ONIX2::APAProduct)
     end
   end
 
   it "should support returning an APAProduct using new API" do
     reader = ONIX2::Reader.new(@file1, :product_class => ONIX2::APAProduct)
     reader.each do |product|
-      product.should be_a_kind_of(ONIX2::APAProduct)
+      expect(product).to be_a_kind_of(ONIX2::APAProduct)
     end
   end
 end

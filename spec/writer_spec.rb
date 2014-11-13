@@ -16,10 +16,10 @@ describe ONIX2::Writer do
     lines = @output.string.split("\n")
 
     # xml declaration
-    lines[0][0,5].should eql("<?xml")
+    expect(lines[0][0,5]).to be_eql("<?xml")
 
     # doctype
-    lines[1][0,9].should eql("<!DOCTYPE")
+    expect(lines[1][0,9]).to be_eql("<!DOCTYPE")
   end
 
   it "should output the correct xml metadata when used in block form" do
@@ -29,10 +29,10 @@ describe ONIX2::Writer do
     lines = @output.string.split("\n")
 
     # xml declaration
-    lines[0][0,5].should eql("<?xml")
+    expect(lines[0][0,5]).to be_eql("<?xml")
 
     # doctype
-    lines[1][0,9].should eql("<!DOCTYPE")
+    expect(lines[1][0,9]).to be_eql("<!DOCTYPE")
   end
 
   it "should output the header node" do
@@ -42,7 +42,7 @@ describe ONIX2::Writer do
 
     lines = @output.string.split("\n")
 
-    lines[3][0,7].should eql("<Header")
+    expect(lines[3][0,7]).to be_eql("<Header")
   end
 
   it "should output the product node" do
@@ -55,15 +55,15 @@ describe ONIX2::Writer do
 
     lines = @output.string.split("\n")
 
-    lines[4][0,8].should eql("<Product")
+    expect(lines[4][0,8]).to be_eql("<Product")
   end
 
   it "should correctly store finished state" do
     header = ONIX2::Header.new
     writer = ONIX2::Writer.new(@output, header)
-    writer.finished?.should be_false
+    expect(writer).not_to be_finished
     writer.end_document
-    writer.finished?.should be_true
+    expect(writer).to be_finished
   end
 
 =begin
