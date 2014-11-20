@@ -1,4 +1,4 @@
-require File.expand_path('../lib/onix/version', __FILE__)
+require File.expand_path('../lib/onix2/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name              = "onix2"

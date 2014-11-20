@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'active_support'
 require 'bigdecimal'
 require 'cgi'
 require 'singleton'
@@ -45,40 +46,40 @@ module ONIX2
   # core files
   # - ordering is important, classes need to be defined before any
   #   other class can use them
-  autoload :SenderIdentifier, "onix/sender_identifier"
-  autoload :AddresseeIdentifier, "onix/addressee_identifier"
-  autoload :Header, "onix/header"
-  autoload :ProductIdentifier, "onix/product_identifier"
-  autoload :SeriesIdentifier, "onix/series_identifier"
-  autoload :Series, "onix/series"
-  autoload :Title, "onix/title"
-  autoload :Website, "onix/website"
-  autoload :Contributor, "onix/contributor"
-  autoload :Language, "onix/language"
-  autoload :Subject, "onix/subject"
-  autoload :AudienceRange, "onix/audience_range"
-  autoload :Imprint, "onix/imprint"
-  autoload :Publisher, "onix/publisher"
-  autoload :OtherText, "onix/other_text"
-  autoload :MediaFile, "onix/media_file"
-  autoload :SalesRestriction, "onix/sales_restriction"
-  autoload :Stock, "onix/stock"
-  autoload :DiscountCoded, "onix/discount_coded"
-  autoload :Price, "onix/price"
-  autoload :SupplyDetail, "onix/supply_detail"
-  autoload :MarketRepresentation, "onix/market_representation"
-  autoload :Measure, "onix/measure"
-  autoload :Product, "onix/product"
-  autoload :Reader, "onix/reader"
-  autoload :Writer, "onix/writer"
+  autoload :SenderIdentifier, "onix2/sender_identifier"
+  autoload :AddresseeIdentifier, "onix2/addressee_identifier"
+  autoload :Header, "onix2/header"
+  autoload :ProductIdentifier, "onix2/product_identifier"
+  autoload :SeriesIdentifier, "onix2/series_identifier"
+  autoload :Series, "onix2/series"
+  autoload :Title, "onix2/title"
+  autoload :Website, "onix2/website"
+  autoload :Contributor, "onix2/contributor"
+  autoload :Language, "onix2/language"
+  autoload :Subject, "onix2/subject"
+  autoload :AudienceRange, "onix2/audience_range"
+  autoload :Imprint, "onix2/imprint"
+  autoload :Publisher, "onix2/publisher"
+  autoload :OtherText, "onix2/other_text"
+  autoload :MediaFile, "onix2/media_file"
+  autoload :SalesRestriction, "onix2/sales_restriction"
+  autoload :Stock, "onix2/stock"
+  autoload :DiscountCoded, "onix2/discount_coded"
+  autoload :Price, "onix2/price"
+  autoload :SupplyDetail, "onix2/supply_detail"
+  autoload :MarketRepresentation, "onix2/market_representation"
+  autoload :Measure, "onix2/measure"
+  autoload :Product, "onix2/product"
+  autoload :Reader, "onix2/reader"
+  autoload :Writer, "onix2/writer"
 
   # product wrappers
-  autoload :SimpleProduct, "onix/simple_product"
-  autoload :APAProduct, "onix/apa_product"
+  autoload :SimpleProduct, "onix2/simple_product"
+  autoload :APAProduct, "onix2/apa_product"
 
   # misc
-  autoload :Lists, "onix/lists"
-  autoload :Normaliser, "onix/normaliser"
-  autoload :CodeListExtractor, "onix/code_list_extractor"
+  autoload :Lists, "onix2/lists"
+  autoload :Normaliser, "onix2/normaliser"
+  autoload :CodeListExtractor, "onix2/code_list_extractor"
 
 end
