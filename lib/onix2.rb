@@ -72,6 +72,7 @@ module ONIX2
   autoload :Product, "onix2/product"
   autoload :Reader, "onix2/reader"
   autoload :Writer, "onix2/writer"
+  autoload :SalesRight, "onix2/sales_right"
 
   # product wrappers
   autoload :SimpleProduct, "onix2/simple_product"

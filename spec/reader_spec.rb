@@ -108,7 +108,7 @@ describe ONIX2::Reader do
     expect {
       reader.each do |product|
       end
-    }.to raise_error(Nokogiri::XML::SyntaxError)
+    }.to raise_error(RuntimeError)
   end
 
   it "should transparently convert an iso-8859-1 file to utf-8 when there's no declaration but the user manually specifies iso-8859-1" do
