@@ -79,7 +79,6 @@ module ONIX2
 
   # misc
   autoload :Lists, "onix2/lists"
-  autoload :Normaliser, "onix2/normaliser"
   autoload :CodeListExtractor, "onix2/code_list_extractor"
 
 end
