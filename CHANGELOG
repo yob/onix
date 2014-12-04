@@ -1,3 +1,8 @@
+v1.0.0 (4th December 2014)
+- Rename ONIX to ONIX2
+- Add SalesRight to Product
+- Remove Normaliser
+
 v0.9.5 (28th December 2012)
 - Bugfix: AudienceRangeValue can be non-numeric
 

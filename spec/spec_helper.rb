@@ -3,6 +3,7 @@
 require "rubygems"
 require "bundler/setup"
 
+require "pry"
 require 'date'
 require 'stringio'
 require 'rubygems'
