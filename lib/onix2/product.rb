@@ -33,7 +33,7 @@ module ONIX2
     attribute :measurements, Array[ONIX2::Measure]
     attribute :supply_details, Array[ONIX2::SupplyDetail]
     attribute :market_representations, Array[ONIX2::MarketRepresentation]
-    attribute :sales_rights, Array[ONIX2::SalesRight]
+    attribute :sales_rights, Array[ONIX2::SalesRights]
 
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying
@@ -92,6 +92,6 @@ module ONIX2
     property :thickness, as: "Thickness"
     property :weight, as: "Weight"
     property :dimensions, as: "Dimensions"
-    collection :sales_rights, as: "SalesRight", extend: ONIX2::SalesRightRepresenter, class: ONIX2::SalesRight
+    collection :sales_rights, as: "SalesRights", extend: ONIX2::SalesRightsRepresenter, class: ONIX2::SalesRights
   end
 end
