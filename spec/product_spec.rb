@@ -24,6 +24,7 @@ describe ONIX2::Product do
     Then { product.weight == 300 }
     Then { product.thickness == 300 }
     Then { product.dimensions == "100x200" }
+    Then { product.epub_type == "029" }
   end
 
   describe "should provide read access to product IDs" do

@@ -34,6 +34,7 @@ module ONIX2
     attribute :supply_details, Array[ONIX2::SupplyDetail]
     attribute :market_representations, Array[ONIX2::MarketRepresentation]
     attribute :sales_rights, Array[ONIX2::SalesRights]
+    attribute :epub_type
 
     # some deprecated attributes. Read only
     # - See the measures array for the current way of specifying
@@ -93,5 +94,6 @@ module ONIX2
     property :weight, as: "Weight"
     property :dimensions, as: "Dimensions"
     collection :sales_rights, as: "SalesRights", extend: ONIX2::SalesRightsRepresenter, class: ONIX2::SalesRights
+    property :epub_type, as: "EpubType"
   end
 end
