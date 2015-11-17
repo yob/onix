@@ -1,36 +1,33 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
-describe ONIX::Publisher do
+describe ONIX2::Publisher do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "publisher.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "publisher.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:pub) { ONIX2::Publisher.from_xml(doc) }
+    Then { pub.to_xml.to_s.start_with? "<Publisher>" }
   end
 
-  it "should correctly convert to a string" do
-    pub = ONIX::Publisher.from_xml(@root.to_s)
-    pub.to_xml.to_s[0,11].should eql("<Publisher>")
+  describe "should provide read access to first level attributes" do
+    Given(:pub) { ONIX2::Publisher.from_xml(doc) }
+
+    Then { pub.publishing_role == 1 }
+    Then { pub.publisher_name == "Desbooks Publishing" }
   end
 
-  it "should provide read access to first level attributes" do
-    pub = ONIX::Publisher.from_xml(@root.to_s)
-    pub.publishing_role.should eql(1)
-    pub.publisher_name.should eql("Desbooks Publishing")
-  end
-
-  it "should provide write access to first level attributes" do
-    pub = ONIX::Publisher.new
-
-    pub.publisher_name = "Paulist Press"
-    pub.to_xml.to_s.include?("<PublisherName>Paulist Press</PublisherName>").should be_true
-
-    pub.publishing_role = 2
-    pub.to_xml.to_s.include?("<PublishingRole>02</PublishingRole>").should be_true
+  context "should provide write access to first level attributes" do
+    Given(:pub) { ONIX2::Publisher.new }
+    describe :publisher_name= do
+      When { pub.publisher_name = "Paulist Press" }
+      Then { pub.to_xml.to_s.include? "<PublisherName>Paulist Press</PublisherName>" }
+    end
+    describe :publishing_role= do
+      When { pub.publishing_role = 2 }
+      Then { pub.to_xml.to_s.include? "<PublishingRole>02</PublishingRole>" }
+    end
   end
 
 end
-

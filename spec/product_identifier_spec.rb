@@ -1,38 +1,34 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
-describe ONIX::ProductIdentifier do
+describe ONIX2::ProductIdentifier do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "product_identifier.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "product_identifier.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:id) { ONIX2::ProductIdentifier.from_xml(doc) }
+    Then { id.to_xml.to_s.start_with? "<ProductIdentifier>" }
   end
 
-  it "should correctly convert to a string" do
-    id = ONIX::ProductIdentifier.from_xml(@root.to_s)
-    id.to_xml.to_s[0,19].should eql("<ProductIdentifier>")
+  describe "should provide read access to first level attributes" do
+    Given(:id) { ONIX2::ProductIdentifier.from_xml(doc) }
+
+    Then { id.product_id_type == 2 }
+    Then { id.id_value == "0858198363" }
   end
 
-  it "should provide read access to first level attributes" do
-    id = ONIX::ProductIdentifier.from_xml(@root.to_s)
+  context "should provide write access to first level attributes" do
+    Given(:id) { ONIX2::ProductIdentifier.new }
 
-    id.product_id_type.should eql(2)
-    id.id_value.should eql("0858198363")
-  end
-
-  it "should provide write access to first level attributes" do
-    id = ONIX::ProductIdentifier.new
-
-    id.product_id_type = 2
-    id.to_xml.to_s.include?("<ProductIDType>02</ProductIDType>").should be_true
-
-    id.id_value = "James"
-    id.to_xml.to_s.include?("<IDValue>James</IDValue>").should be_true
-
+    describe :product_id_type= do
+      When { id.product_id_type = 2 }
+      Then { id.to_xml.to_s.include? "<ProductIDType>02</ProductIDType>" }
+    end
+    describe :id_value= do
+      When { id.id_value = "James" }
+      Then { id.to_xml.to_s.include? "<IDValue>James</IDValue>" }
+    end
   end
 
 end
-

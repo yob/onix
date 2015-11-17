@@ -1,51 +1,97 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
-describe ONIX::SupplyDetail do
+describe ONIX2::SupplyDetail do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "supply_detail.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "supply_detail.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
+    Then { sd.to_xml.to_s.start_with? "<SupplyDetail>" }
   end
 
-  it "should correctly convert to a string" do
-    sd = ONIX::SupplyDetail.from_xml(@root.to_s)
-    sd.to_xml.to_s[0,14].should eql("<SupplyDetail>")
+  describe "should provide read access to first level attributes" do
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
+
+    Then { sd.supplier_name == "Rainbow Book Agencies" }
+    Then { sd.product_availability == 21 }
+    Then { sd.stock.is_a? Array }
+    Then { sd.stock.size == 1 }
+    Then { sd.pack_quantity == 16 }
+    Then { sd.prices.is_a? Array }
+    Then { sd.prices.size == 1 }
   end
 
-  it "should provide read access to first level attributes" do
-    sd = ONIX::SupplyDetail.from_xml(@root.to_s)
-
-    sd.supplier_name.should eql("Rainbow Book Agencies")
-    sd.product_availability.should eql(21)
-    sd.stock.should be_a_kind_of(Array)
-    sd.stock.size.should eql(1)
-    sd.pack_quantity.should eql(16)
-    sd.prices.should be_a_kind_of(Array)
-    sd.prices.size.should eql(1)
+  context "should provide write access to first level attributes" do
+    Given(:sd) { ONIX2::SupplyDetail.new }
+    describe :supplier_name= do
+      When { sd.supplier_name = "RBA" }
+      Then { sd.to_xml.to_s.include? "<SupplierName>RBA</SupplierName>" }
+    end
+    describe :supplier_role= do
+      When { sd.supplier_role = 1 }
+      Then { sd.to_xml.to_s.include? "<SupplierRole>01</SupplierRole>" }
+    end
+    describe :availability_status_code= do
+      When { sd.availability_status_code = 2 }
+      Then { sd.to_xml.to_s.include? "<AvailabilityStatusCode>02</AvailabilityStatusCode>" }
+    end
+    describe :product_availability= do
+      When { sd.product_availability = 3 }
+      Then { sd.to_xml.to_s.include? "<ProductAvailability>03</ProductAvailability>" }
+    end
+    describe :pack_quantity= do
+      When { sd.pack_quantity = 12 }
+      Then { sd.to_xml.to_s.include? "<PackQuantity>12</PackQuantity>" }
+    end
   end
 
-  it "should provide write access to first level attributes" do
-    sd = ONIX::SupplyDetail.new
+  describe "should provide read access to website IDs" do
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
+    Then { sd.websites.size == 2 }
+  end
 
-    sd.supplier_name = "RBA"
-    sd.to_xml.to_s.include?("<SupplierName>RBA</SupplierName>").should be_true
+  context "should provide write access to website IDs" do
+    Given(:website) { ONIX2::Website.new(website_role: 1) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
 
-    sd.supplier_role = 1
-    sd.to_xml.to_s.include?("<SupplierRole>01</SupplierRole>").should be_true
+    describe :series_identifiers= do
+      When { sd.websites = [website] }
+      Then { sd.to_xml.to_s.include? "<WebsiteRole>01</WebsiteRole>" }
+    end
+  end
 
-    sd.availability_status_code = 2
-    sd.to_xml.to_s.include?("<AvailabilityStatusCode>02</AvailabilityStatusCode>").should be_true
+  describe "should provide read access to stock IDs" do
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
+    Then { sd.stock.size == 1 }
+  end
 
-    sd.product_availability = 3
-    sd.to_xml.to_s.include?("<ProductAvailability>03</ProductAvailability>").should be_true
+  context "should provide write access to stock IDs" do
+    Given(:stock1) { ONIX2::Stock.new(on_hand: 1251) }
+    Given(:stock2) { ONIX2::Stock.new(on_hand: 52458, on_order: 0) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
 
-    sd.pack_quantity = 12
-    sd.to_xml.to_s.include?("<PackQuantity>12</PackQuantity>").should be_true
+    describe :series_identifiers= do
+      When { sd.stock = [stock1, stock2] }
+      Then { sd.to_xml.to_s.include? "<OnHand>1251</OnHand>" }
+      Then { sd.to_xml.to_s.include? "<OnOrder>0</OnOrder>" }
+    end
+  end
+
+  describe "should provide read access to price IDs" do
+    Given(:sd) { ONIX2::SupplyDetail.from_xml(doc) }
+    Then { sd.prices.size == 1 }
+  end
+
+  context "should provide write access to price IDs" do
+    Given(:price) { ONIX2::Price.new(price_amount: BigDecimal.new("0.59")) }
+    Given(:sd) { ONIX2::SupplyDetail.new }
+
+    describe :series_identifiers= do
+      When { sd.prices = [price] }
+      Then { sd.to_xml.to_s.include? "<PriceAmount>0.59</PriceAmount>" }
+    end
   end
 
 end
-

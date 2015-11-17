@@ -1,3 +1,8 @@
+v1.0.0 (4th December 2014)
+- Rename ONIX to ONIX2
+- Add SalesRight to Product
+- Remove Normaliser
+
 v0.9.5 (28th December 2012)
 - Bugfix: AudienceRangeValue can be non-numeric
 
@@ -18,7 +23,7 @@ v0.9.0 (14th April 2011)
 - switch back to the vanilla roxml gem. Ben is maintaining it again and
   he has merged in my bug fixes
 - clarify comments explaining encoding behaviour
-- Add options hash to ONIX::Reader. Only option at this stage is :encoding,
+- Add options hash to ONIX2::Reader. Only option at this stage is :encoding,
   which allows the user to override the assumed encoding of the input XML
 - API change, so new minor version
 
@@ -28,10 +33,10 @@ v0.8.5 (21st December 2010)
 
 v0.8.4 (18th October 2010)
 - some small fixes to xml names from Tim
-- make all code lists available via the ONIX::Lists class
+- make all code lists available via the ONIX2::Lists class
 
 v0.8.3 (9th September 2010)
-- Fix for race condition in ONIX::Normaliser
+- Fix for race condition in ONIX2::Normaliser
   - thanks to pixelvixen for reporting
 - force roxml to be 3.1.6 or higher. Earlier versions misbehaved when monkey
   patching nokogiri
@@ -41,16 +46,16 @@ v0.8.2 (6th May 2010)
 
 v0.8.1 (5th January 2010)
 - Use nokogiri's support for transparent entity conversion when reading an ONIX file
-- Removed entity replacement from ONIX::Normaliser
+- Removed entity replacement from ONIX2::Normaliser
   - the external dependency on sed made me uncomfortable, and it wasn't really
     necessary now that nokogiri can do it for us
-- Removed utf-8 normalisation from ONIX::Normaliser
+- Removed utf-8 normalisation from ONIX2::Normaliser
   - nokogiri also handles this really cleanly and transparently. Regardless of
     the source file encoding, Nokogiri::Reader returns utf-8 encoded data
 - Add the release attribute to files we generate
   - it's optional in 2.1, but mandatory in 3.0. As we start to see 3.0 files in the
     wild it will help to have a rapid way to distinguish between them
-- Add ONIX::Reader#release - to detect the release version of files we read in
+- Add ONIX2::Reader#release - to detect the release version of files we read in
 
 v0.8.0 (31st October 2009)
 - Replace LibXML dependency with Nokogiri. Nokogiri is under active development, has
@@ -67,7 +72,7 @@ v0.7.8 (19th October 2009)
   - thanks tim
 
 v0.7.7 (1st October 2009)
-- optimise sed usage in ONIX::Normaliser. *huge* speed improvement on
+- optimise sed usage in ONIX2::Normaliser. *huge* speed improvement on
   large files.
 
 v0.7.6 (21st September 2009)
@@ -77,7 +82,7 @@ v0.7.5 (8th September 2009)
 - Don't raise an exception on malformed dates when reading files
 
 v0.7.4 (2nd September 2009)
-- Expand ONIX::Normaliser
+- Expand ONIX2::Normaliser
   - strip control chars
   - add encoding declaration to valid utf-8 files that aren't declared
     as such
@@ -87,7 +92,7 @@ v0.7.3 (19th August 2009)
   to reference tags
 
 v0.7.2 (19th August 2009)
-- Added ONIX::Normaliser class
+- Added ONIX2::Normaliser class
   - for normalising various ONIX files into a form that makes them easy
     to process. Shouldn't be necesary to pre-process files like this, but
     I'm sick of trying to wrestle the libxml ruby bindings
@@ -101,7 +106,7 @@ v0.7.0 (17th June 2009)
     that seems to be the source of our instability
 - Various Ruby 1.9 compatability tweaks
   - add source file coding declarations. All source files are UTF-8
-  - ONIX::Reader ensures all input data is converted to UTF-8
+  - ONIX2::Reader ensures all input data is converted to UTF-8
   - the ROXML based objects seem to forget the encoding when they're marshalled,
     so force string based attributes *back* to UTF-8
 
@@ -135,7 +140,7 @@ v0.6.1 (Unreleased)
     libxml
 
 v0.6.0 (18th March 2009)
-- remove use of threads in ONIX::Reader
+- remove use of threads in ONIX2::Reader
   - a producer/consumer pattern was useful in the REXML stream parsing days, but
     now LibXML's Reader binding provides a better alternative
   - API left unchanged, this was all under the hood
@@ -170,7 +175,7 @@ v0.4.2 (1st November 2008)
 
 v0.4.1 (UNRELEASED)
 - Added accessors to various product measurements. Height, weight, etc.
-- Reduced time for an ONIX::Reader class to initialise
+- Reduced time for an ONIX2::Reader class to initialise
 
 v0.4.0 (28th October 2008)
 - Major rework: now based on ROXML instead of xml-mapping
