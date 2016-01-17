@@ -1,32 +1,47 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
-describe ONIX::Series do
+describe ONIX2::Series do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "series.xml")
-    @doc = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "series.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:series) { ONIX2::Series.from_xml(doc) }
+
+    Then{ series.to_xml.to_s.start_with? "<Series>" }
   end
 
-  it "should correctly convert to a string" do
-    series = ONIX::Series.from_xml(@root.to_s)
-    series.to_xml.to_s[0,8].should eql("<Series>")
+  describe "should provide read access to first level attributes" do
+    Given(:series) { ONIX2::Series.from_xml(doc) }
+
+    Then{  series.title_of_series == "Citizens and Their Governments" }
   end
 
-  it "should provide read access to first level attributes" do
-    series = ONIX::Series.from_xml(@root.to_s)
-
-    series.title_of_series.should eql("Citizens and Their Governments")
+  context "should provide write access to first level attributes" do
+    Given(:series) { ONIX2::Series.new }
+    describe :title_of_series= do
+      When { series.title_of_series = "Cool Science Careers" }
+      Then { series.to_xml.to_s.include? "<TitleOfSeries>Cool Science Careers</TitleOfSeries>" }
+    end
   end
 
-  it "should provide write access to first level attributes" do
-    series = ONIX::Series.new
+  describe "should provide read access to series IDs" do
+    Given(:series) { ONIX2::Series.from_xml(doc) }
+    Then { series.series_identifiers.size == 2 }
+  end
 
-    series.title_of_series = "Cool Science Careers"
-    series.to_xml.to_s.include?("<TitleOfSeries>Cool Science Careers</TitleOfSeries>").should be_true
+  context "should provide write access to series IDs" do
+    Given(:series_identifier1) { ONIX2::SeriesIdentifier.new(series_id_type: 1, id_value: 10001) }
+    Given(:series_identifier2) { ONIX2::SeriesIdentifier.new(series_id_type: 2, id_value: 20002) }
+    Given(:series) { ONIX2::Series.new }
+
+    describe :series_identifiers= do
+      When { series.series_identifiers = [series_identifier1, series_identifier2] }
+
+      Then { series.to_xml.to_s.include? "<SeriesIDType>01</SeriesIDType>" }
+      Then { series.to_xml.to_s.include? "<IDValue>20002</IDValue>" }
+    end
   end
 
 end

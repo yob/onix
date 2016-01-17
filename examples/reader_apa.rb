@@ -2,11 +2,11 @@ $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
 
 require 'onix'
 
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","Bookwise_July_2008.xml"), ::ONIX::APAProduct)
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","Ashgate Other.xml"), ::ONIX::APAProduct)
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","9780194351898.xml"), ::ONIX::APAProduct)
-reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","jul.xml"), ::ONIX::APAProduct)
-#reader = ONIX::Reader.new(File.join(File.dirname(__FILE__),"..","data","rba_FANT.xml"))
+#reader = ONIX2::Reader.new(File.join(File.dirname(__FILE__),"..","data","Bookwise_July_2008.xml"), ::ONIX2::APAProduct)
+#reader = ONIX2::Reader.new(File.join(File.dirname(__FILE__),"..","data","Ashgate Other.xml"), ::ONIX2::APAProduct)
+#reader = ONIX2::Reader.new(File.join(File.dirname(__FILE__),"..","data","9780194351898.xml"), ::ONIX2::APAProduct)
+reader = ONIX2::Reader.new(File.join(File.dirname(__FILE__),"..","data","jul.xml"), ::ONIX2::APAProduct)
+#reader = ONIX2::Reader.new(File.join(File.dirname(__FILE__),"..","data","rba_FANT.xml"))
 counter = 0
 
 # display header info

@@ -15,4 +15,12 @@
     <PriceTypeCode>02</PriceTypeCode>
     <PriceAmount>7.5</PriceAmount>
   </Price>
+  <Website>
+    <WebsiteRole>01</WebsiteRole>
+    <WebsiteLink>http://www.rainbowbooks.com.au</WebsiteLink>
+  </Website>
+  <Website>
+    <WebsiteRole>02</WebsiteRole>
+    <WebsiteLink>http://www.google.com</WebsiteLink>
+  </Website>
 </SupplyDetail>

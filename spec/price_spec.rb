@@ -1,38 +1,52 @@
 # coding: utf-8
 
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'spec_helper'
 
-describe ONIX::Price do
+describe ONIX2::Price do
 
-  before(:each) do
-    data_path = File.join(File.dirname(__FILE__),"..","data")
-    file1    = File.join(data_path, "price.xml")
-    @doc     = Nokogiri::XML::Document.parse(File.read(file1))
-    @root = @doc.root
+  Given(:doc) { load_xml "price.xml" }
+
+  describe "should correctly convert to a string" do
+    Given(:p) { ONIX2::Price.from_xml(doc) }
+    Then { p.to_xml.to_s.start_with? "<Price>" }
   end
 
-  it "should correctly convert to a string" do
-    p = ONIX::Price.from_xml(@root.to_s)
-    p.to_xml.to_s[0,7].should eql("<Price>")
+  describe "should provide read access to first level attributes" do
+    Given(:p) { ONIX2::Price.from_xml(doc) }
+
+    Then { p.price_type_code == 2 }
+    Then { p.price_amount == BigDecimal.new("7.5") }
+    Then { p.discount_percent == 0.4 }
   end
 
-  it "should provide read access to first level attributes" do
-    p = ONIX::Price.from_xml(@root.to_s)
-
-    p.price_type_code.should eql(2)
-    p.price_amount.should eql(BigDecimal.new("7.5"))
+  context "should provide write access to first level attributes" do
+    Given(:p) { ONIX2::Price.new }
+    describe :price_type_code= do
+      When { p.price_type_code = 1 }
+      Then { p.to_xml.to_s.include? "<PriceTypeCode>01</PriceTypeCode>" }
+    end
+    describe :price_amount= do
+      When { p.price_amount = BigDecimal.new("7.5") }
+      Then { p.to_xml.to_s.include? "<PriceAmount>7.5</PriceAmount>" }
+    end
   end
 
-  it "should provide write access to first level attributes" do
-    p = ONIX::Price.new
+  describe "should provide read access to discount_coded IDs" do
+    Given(:p) { ONIX2::Price.from_xml(doc) }
+    Then { p.discounts_coded.size == 2 }
+  end
 
-    p.price_type_code = 1
-    p.to_xml.to_s.include?("<PriceTypeCode>01</PriceTypeCode>").should be_true
+  context "should provide write access to discount_coded IDs" do
+    Given(:discount_coded1) { ONIX2::DiscountCoded.new(discount_code_type: 1) }
+    Given(:discount_coded2) { ONIX2::DiscountCoded.new(discount_code: "code2") }
+    Given(:p) { ONIX2::Price.new }
 
-    p.price_amount = BigDecimal.new("7.5")
-    p.to_xml.to_s.include?("<PriceAmount>7.5</PriceAmount>").should be_true
+    describe :series_identifiers= do
+      When { p.discounts_coded = [discount_coded1, discount_coded2] }
 
+      Then { p.to_xml.to_s.include? "<DiscountCodeType>01</DiscountCodeType>" }
+      Then { p.to_xml.to_s.include? "<DiscountCode>code2</DiscountCode>" }
+    end
   end
 
 end
-

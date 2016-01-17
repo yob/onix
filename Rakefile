@@ -1,9 +1,8 @@
 require "rubygems"
-require "bundler"
-Bundler.setup
+require "bundler/setup"
 
 require 'rake'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'rspec/core/rake_task'
 
 
@@ -18,7 +17,7 @@ end
 desc 'Generate documentation'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ONIX'
+  rdoc.title    = 'ONIX2'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README.markdown')
   rdoc.rdoc_files.include('TODO')
