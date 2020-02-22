@@ -1,5 +1,10 @@
 ## ONIX
 
+**UNMAINTAINED**
+
+**This gem is unmaintained. A fork with active maintainers is available: [cacofonix](https://github.com/icelab/cacofonix)**
+
+
 The ONIX standard is a somewhat verbose XML format that is rapidly becoming the
 industry standard for electronic data sharing in the book and publishing
 industries.
