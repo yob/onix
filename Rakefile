@@ -3,7 +3,7 @@ require "bundler"
 Bundler.setup
 
 require 'rake'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'rspec/core/rake_task'
 
 
@@ -16,7 +16,7 @@ RSpec::Core::RakeTask.new("spec") do |t|
   t.rspec_opts  = ["--color", "--format progress"]
 end
 desc 'Generate documentation'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'ONIX'
   rdoc.options << '--line-numbers' << '--inline-source'

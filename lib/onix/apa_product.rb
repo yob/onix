@@ -419,6 +419,11 @@ module ONIX
     def rrp_exc_sales_tax
       price_get(1).andand.price_amount
     end
+    
+    # set the rrp excluding any sales tax
+    def rrp_exc_sales_tax_with_currency(num, currency_code)
+      price_set(1, num, currency_code)
+    end
 
     # set the rrp excluding any sales tax
     def rrp_exc_sales_tax=(num)
@@ -432,7 +437,7 @@ module ONIX
 
     # set the rrp including any sales tax
     def rrp_inc_sales_tax=(num)
-      price_set(2, num)
+      price_set(2, num, currency_code)
     end
 
     # retrieve the nett price including any sales tax
@@ -709,7 +714,7 @@ module ONIX
     end
 
     # set the value of a particular price
-    def price_set(type, num)
+    def price_set(type, num, currency_code=nil)
       p = price_get(type)
 
       # create a new isbn record if we need to
@@ -717,6 +722,7 @@ module ONIX
         supply = find_or_create_supply_detail
         p = ONIX::Price.new
         p.price_type_code = type
+        p.currency_code = currency_code if currency_code
         supply.prices << p
       end
 

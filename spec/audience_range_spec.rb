@@ -18,7 +18,6 @@ describe ONIX::AudienceRange do
 
   it "should provide read access to first level attributes" do
     aud = ONIX::AudienceRange.from_xml(@root.to_s)
-
     aud.audience_range_qualifier.should eql(11)
     aud.audience_range_precisions.size.should eql(2)
     aud.audience_range_precisions[0].should eql(3)
@@ -39,6 +38,14 @@ describe ONIX::AudienceRange do
 
     aud.audience_range_values[0] = 999
     aud.to_xml.to_s.include?("<AudienceRangeValue>999</AudienceRangeValue>").should be_true
+  end
+
+  it "should provide write access to first level attributes and handle arrays" do
+    range = ONIX::AudienceRange.new
+    range.audience_range_qualifier = 18
+    range.audience_range_precisions = [3,4]
+    range.audience_range_values =[3,6]
+    range.to_xml.to_s.should eql("<AudienceRange>\n  <AudienceRangeQualifier>18</AudienceRangeQualifier>\n  <AudienceRangePrecision>3</AudienceRangePrecision>\n  <AudienceRangeValue>3</AudienceRangeValue>\n  <AudienceRangePrecision>4</AudienceRangePrecision>\n  <AudienceRangeValue>6</AudienceRangeValue>\n</AudienceRange>")
   end
 
 end
